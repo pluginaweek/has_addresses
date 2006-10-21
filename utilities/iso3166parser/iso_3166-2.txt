@@ -1,0 +1,4551 @@
+##
+## ISO-3166-2 Standard for country subdivisions
+##
+## The following conventions are used in this file:
+##
+## If the standard lists a subdivision name in more than language
+## and/or romanization system, only the first listed name is shown.
+##
+## Proper subdivision codes have the format 'XX-YYY' where XX is the
+## ISO 3166-1 Alpha-2 country code and YYY is a 1-, 2- or 3-character
+## code  for the subdivision.
+##
+## For some countries the standard also lists a second level of
+## regional divisions (e.g. for BE, FR, GB, IT, etc.). The codes
+## for these regional divisions are shown as 'XX YYYY', i.e. with a
+## space character instead of the '-'.
+##
+## The subdivision names are UTF-8 encoded.
+##
+## The sorting order is the same that is used in the standard.
+##
+## Up-to-date as of newsletter, 2004-03-08, Newsletter 6.
+#
+# ISO 3166-2 codes for the United Arab Emirates
+#
+AE-AZ	Abu Zaby
+AE-AJ	'Ajman
+AE-FU	Al Fujayrah
+AE-SH	Ash Shariqah
+AE-DU	Dubayy
+AE-RK	Ra's al Khaymah
+AE-UQ	Umm al Qaywayn
+# ISO 3166-2 codes for Afghanistan
+#
+AF-BDS	Badakhshan
+AF-BDG	Badghis
+AF-BGL	Baghlan
+AF-BAL	Balkh
+AF-BAM	Bamian
+AF-FRA	Farah
+AF-FYB	Faryab
+AF-GHA	Ghazni
+AF-GHO	Ghowr
+AF-HEL	Helmand
+AF-HER	Herat
+AF-JOW	Jowzjan
+AF-KAB	Kabul
+AF-KAN	Kandahar
+AF-KAP	Kapisa
+AF-KHO  Khowst
+AF-KNR	Konar
+AF-KDZ	Kondoz
+AF-LAG	Laghman
+AF-LOW	Lowgar
+AF-NAN	Nangrahar
+AF-NIM	Nimruz
+AF-NUR	Nurestan
+AF-ORU	Oruzgan
+AF-PIA	Paktia
+AF-PKA	Paktika
+AF-PAR	Parwan
+AF-SAM	Samangan
+AF-SAR	Sar-e Pol
+AF-TAK	Takhar
+AF-WAR	Wardak
+AF-ZAB	Zabol
+#
+# ISO-3166-2 regions for Albania
+# 
+# Administrative region: county
+#
+AL-BR	Berat
+AL-BU	Bulqizë
+AL-DL	Delvinë
+AL-DV	Devoll
+AL-DI	Dibër
+AL-DR	Durrsës
+AL-EL	Elbasan
+AL-FR	Fier
+AL-GR	Gramsh
+AL-GJ	Gjirokastër
+AL-HA	Has
+AL-KA	Kavajë
+AL-ER	Kolonjë
+AL-KO	Korcë
+AL-KR	Krujë
+AL-KC	Kuçovë
+AL-KU	Kukës
+AL-KB	Kurbin
+AL-LE	Lezhë
+AL-LB	Librazhd
+AL-LU	Lushnjë
+AL-MM	Malësi e Madhe
+AL-MK	Mallakastër
+AL-MT	Mat
+AL-MR	Mirditë
+AL-PQ	Peqin
+AL-PR	Përmet
+AL-PG	Pogradec
+AL-PU	Pukë
+AL-SR	Sarandë
+AL-SK	Skrapar
+AL-SH	Shkodër
+AL-TE	Tepelenë
+AL-TR	Tiranë
+AL-TP	Tropojë
+AL-VL	Vlorë
+#
+# ISO 3166-2 regions for Armenia
+#
+AM-ER	Erevan
+AM-AG	Aragacotn
+AM-AR	Ararat
+AM-AV	Armavir
+AM-GR	Gegarkunik'
+AM-KT	Kotayk'
+AM-LO	Lory
+AM-SH	Sirak
+AM-SU	Syunik'
+AM-TV	Tavus
+AM-VD	Vayoc Jor
+#
+# ISO 3166-2 regions for Angola
+#
+AO-BGO	Bengo
+AO-BGU	Benguela
+AO-BIE	Bie
+AO-CAB	Cabinda
+AO-CCU	Cuando-Cubango
+AO-CNO	Cuanza Norte
+AO-CUS	Cuanza Sul
+AO-CNN	Cunene
+AO-HUA	Huambo
+AO-HUI	Huila
+AO-LUA	Luanda
+AO-LNO	Lunda Norte
+AO-LSU	Lunda Sul
+AO-MAL	Malange
+AO-MOX	Moxico
+AO-NAM	Namibe
+AO-UIG	Uige
+AO-ZAI	Zaire
+#
+# ISO 3166-2 regions for Argentina
+#
+AR-C	Capital federal
+AR-B	Buenos Aires
+AR-K	Catamarca
+AR-X	Cordoba
+AR-W	Corrientes
+AR-H	Chaco
+AR-U	Chubut
+AR-E	Entre Rios
+AR-P	Formosa
+AR-Y	Jujuy
+AR-L	La Pampa
+AR-M	Mendoza
+AR-N	Misiones
+AR-Q	Neuquen
+AR-R	Rio Negro
+AR-A	Salta
+AR-J	San Juan
+AR-D	San Luis
+AR-Z	Santa Cruz
+AR-S	Santa Fe
+AR-G	Santiago del Estero
+AR-V	Tierra del Fuego
+AR-T	Tucuman
+# ISO 3166-2 regions for Austria
+#
+AT-1	Burgenland
+AT-2	Kärnten
+AT-3	Niederosterreich
+AT-4	Oberosterreich
+AT-5	Salzburg
+AT-6	Steiermark
+AT-7	Tirol
+AT-8	Vorarlberg
+AT-9	Wien
+#
+# ISO 3166-2 codes for regions in Australia
+# 
+AAT	Australian Antarctic Territory
+ACT	Australian Capital Territory
+NT	Northern Territory
+NSW	New South Wales
+QLD	Queensland
+SA	South Australia
+TAS	Tasmania
+VIC	Victoria
+WA	Western Australia
+#
+# ISO 3166-2 regions for Azerbaijan
+#
+AZ-NX	Naxcivan
+AZ-AB	Ali Bayramli
+AZ-BA	Baki
+AZ-GA	Ganca
+AZ-LA	Lankaran
+AZ-MI	Mingacevir
+AZ-NA	Naftalan
+AZ-SA	Saki
+AZ-SM	Sumqayit
+AZ-SS	Susa 
+AZ-XA	Xankandi
+AZ-YE	Yevlax
+AZ-ABS	Abseron
+AZ-AGC	Agcabadi
+AZ-AGM	Agdam
+AZ-AGS	Agdas 
+AZ-AGA	Agstafa
+AZ-AGU	Agsu
+AZ-AST	Astara
+AZ-BAB	Babak
+AZ-BAL	Balakan
+AZ-BAR	Barda
+AZ-BEY	Beylagan
+AZ-BIL	Bilasuvar
+AZ-CAB	Cabrayll
+AZ-CAL	Calilabad
+AZ-CUL	Culfa
+AZ-DAS	Daskasan
+AZ-DAV	Davaci
+AZ-FUZ	Fuzuli
+AZ-GAD	Gadabay
+AZ-GOR	Goranboy
+AZ-GOY	Goycay
+AZ-HAC	Haciqabul
+AZ-IMI	Imisli
+AZ-ISM	Ismayilli
+AZ-KAL	Kalbacar
+AZ-KUR	Kurdamir
+AZ-LAC	Lacin
+AZ-LAN	Lankaran
+AZ-LER	Lerik
+AZ-MAS	Masalli
+AZ-NEF	Neftcala
+AZ-OGU	Oguz
+AZ-ORD	Ordubad
+AZ-QAB	Qabala
+AZ-QAX	Qax
+AZ-QAZ	Qazax
+AZ-QOB	Qobustan
+AZ-QBA	Quba
+AZ-QBI	Qubadli
+AZ-QUS	Qusar
+AZ-SAT	Saatli
+AZ-SAB	Sabirabad
+AZ-SAD	Sadarak
+AZ-SAH	Sahbuz
+AZ-SAK	Saki
+AZ-SAL	Salyan
+AZ-SMI	Samaxi
+AZ-SKR	Samkir
+AZ-SMX	Samux
+AZ-SAR	Sarur
+AZ-SIY	Siyazan
+AZ-SUS	Susa
+AZ-TAR	Tartar
+AZ-TOV	Tovuz
+AZ-UCA	Ucar
+AZ-XAC	Xacmaz
+AZ-XAN	Xanlar
+AZ-XIZ	Xizi
+AZ-XCI	Xocali
+AZ-XVD	Xocavand
+AZ-YAR	Yardimli
+AZ-YEV	Yevlax
+AZ-ZAN	Zangilan
+AZ-ZAQ	Zaqatala
+AZ-ZAR	Zardab
+#
+# ISO 3166-2 regions for Bosnia - Herzegovina
+#
+BA-BIH	Federacija Bosna i Hercegovina
+BA-SRP	Republika Srpska
+# ISO 3166-2 regions for Bangladesh
+# 
+BD-05	Bagerhat zila
+BD-01	Bandarban zila
+BD-02	Barguna zila
+BD-06	Barisal zila
+BD-07	Bhola zila
+BD-03	Bogra zila
+BD-04	Brahmanbaria zila
+BD-09	Chandpur zila
+BD-10	Chittagong zila
+BD-12	Chuadanga zila
+BD-08	Comilla zila
+BD-11	Cox's Bazar zila
+BD-13	Dhaka zila
+BD-14	Dinajpur zila
+BD-15	Faridpur zila
+BD-16	Feni zila
+BD-19	Gaibandha zila
+BD-18	Gazipur zila
+BD-17	Gopalganj zila
+BD-20	Habiganj zila
+BD-24	Jaipurhat zila
+BD-21	Jamalpur zila
+BD-22	Jessore zila
+BD-25	Jhalakati zila
+BD-23	Jhenaidah zila
+BD-29	Khagrachari zila
+BD-27	Khulna zila
+BD-26	Kishorganj zila
+BD-28	Kurigram zila
+BD-30	Kushtia zila
+BD-31	Lakshmipur zila
+BD-32	Lalmonirhat zila
+BD-36	Madaripur zila
+BD-37	Magura zila
+BD-33	Manikganj zila
+BD-39	Meherpur zila
+BD-38	Moulvibazar zila
+BD-35	Munshiganj zila
+BD-34	Mymensingh zila
+BD-48	Naogaon zila
+BD-43	Narail zila
+BD-40	Narayanganj zila
+BD-42	Narsingdi zila
+BD-44	Natore zila
+BD-45	Nawabganj zila
+BD-41	Netrakona zila
+BD-46	Nilphamari zila
+BD-47	Noakhali zila
+BD-49	Pabna zila
+BD-52	Panchagarh zila
+BD-51	Patuakhali zila
+BD-50	Pirojpur zila
+BD-53	Rajbari zila
+BD-54	Rajshahi zila
+BD-56	Rangamati zila
+BD-55	Rangpur zila
+BD-58	Satkhira zila
+BD-62	Shariatpur zila
+BD-57	Sherpur zila
+BD-59	Sirajganj zila
+BD-61	SunamOanj zila
+BD-60	Sylhet zila
+BD-63	Tangail zila
+BD-64	Thakurgaon zila
+# ISO 3166-2 regions for Belgium
+#
+BE-VAN	Antwerpen
+BE-WBR	Brabant Wallon
+BE-WHT	Hainaut
+BE-WLG	Liege
+BE-VLI	Limburg
+BE-WLX	Luxembourg
+BE-WNA	Namur
+BE-VOV	Oost-Vlaanderen
+BE-VBR	Vlaams-Brabant
+BE-VWV	West-Vlaanderen
+# ISO 3166-2 regions for Burkina-Faso
+#
+BF-BAL	Bale
+BF-BAM	Bam
+BF-BAN	Banwa
+BF-BAZ	Bazega
+BF-BGR	Bougouriba
+BF-BLG	Boulgou
+BF-BLK	Boulkiemde
+BF-COM	Comoe
+BF-GAN	Ganzourgou
+BF-GNA	Gnagna
+BF-GOU	Gourma
+BF-HOU	Houet
+BF-IOB	Ioba
+BF-KAD	Kadiogo
+BF-KEN	Kenedougou
+BF-KMD	Komondjari
+BF-KMP	Kompienga
+BF-KOS	Kossi
+BF-KOP	Koulpulogo
+BF-KOT	Kouritenga
+BF-KOW	Kourweogo
+BF-LER	Leraba
+BF-LOR	Loroum
+BF-MOU	Mouhoun
+BF-NAO	Nahouri
+BF-NAM	Namentenga
+BF-NAY	Nayala
+BF-NOU	Noumbiel
+BF-OUB	Oubritenga
+BF-OUD	Oudalan
+BF-PAS	Passore
+BF-PON	Poni
+BF-SNG	Sanguie
+BF-SMT	Sanmatenga
+BF-SEN	Seno
+BF-SIS	Siasili
+BF-SOM	Soum
+BF-SOR	Sourou
+BF-TAP	Tapoa
+BF-TUI	Tui
+BF-YAG	Yagha
+BF-YAT	Yatenga
+BF-ZIR	Ziro
+BF-ZON	Zondoma
+BF-ZOU	Zoundweogo
+#
+# ISO 3166-2 regions for Bulgaria
+#
+BG-01	Blagoevgrad
+BG-02	Burgas
+BG-08	Dobric
+BG-07	Gabrovo
+BG-26	Haskovo
+BG-28	Jambol
+BG-09	Kardzali
+BG-10	Kjstendil
+BG-11	Lovec
+BG-12	Montana
+BG-13	Pazardzik
+BG-14	Pernik
+BG-15	Pleven
+BG-16	Plovdiv
+BG-17	Razgrad
+BG-18	Ruse
+BG-19	Silistra
+BG-20	Sliven
+BG-21	Smoljan
+BG-23	Sofija
+BG-24	Stara Zagora
+BG-27	Sumen
+BG-25	Targoviste
+BG-03	Varna
+BG-04	Veliko Tarnovo
+BG-05	Vidin
+BG-06	Vraca
+#
+# ISO 3166-2 regions for Bahrain
+#
+BH-01	Al Hadd
+BH-03	Al Manamah
+BH-10	Al Mintaqah al Gharbiyah
+BH-07	Al Mintagah al Wusta
+BH-05	Al Mintaqah ash Shamaliyah
+BH-02	Al Muharraq
+BH-09	Ar Rifa
+BH-04	Jidd Hafs
+BH-12	Madluat Jamad
+BH-08	Madluat Isa
+BH-11	Mintaqat Juzur tawar
+BH-06	Sitrah
+#
+# ISO 3166-2 codes for Burundi
+#
+BI-BB	Bubanza
+BI-BJ	Bujumbura
+BI-BR	Bururi
+BI-CA	Cankuzo
+BI-CI	Cibitoke
+BI-GI	Gitega
+BI-KR	Karuzi
+BI-KY	Kayanza
+BI-MA	Makamba
+BI-MU	Muramvya
+BI-MW	Mwaro
+BI-NG	Ngozi
+BI-RT	Rutana
+BI-RY	Ruyigi
+#
+# ISO 3166-2 codes for Benin
+#
+BJ-AL	Alibori
+BJ-AK	Atakora
+BJ-AQ	Atlantique
+BJ-BO	Borgou
+BJ-CO	Collines
+BJ-DO	Donga
+BJ-KO	Kouffo
+BJ-LI	Littoral
+BJ-MO	Mono
+BJ-OU	Oueme
+BJ-PL	Plateau
+BJ-ZO	Zou
+#
+# ISO 3166-2 regions for Brunei Darussalam
+#
+BN-BE	Belait
+BN-BM	Brunei-Muara
+BN-TE	Temburong
+BN-TU	Tutong
+# ISO 3166-2 regions for Bolivia
+#
+BO-C	Cochabamba
+BO-H	Chuquisaca
+BO-B	El Beni
+BO-L	La Paz
+BO-O	Oruro
+BO-N	Pando
+BO-P	Potosi
+BO-S	Santa Cruz
+BO-T	Tarija
+# ISO 3166-2 codes for Brazil
+#
+AC	Acre
+AL	Alagoas
+AM	Amazonas
+AP	Amapa
+BA	Baia
+CE	Ceara
+DF	Distrito Federal
+ES	Espirito Santo
+FN	Fernando de Noronha
+GO	Goias
+MA	Maranhao
+MG	Minas Gerais
+MS	Mato Grosso do Sul
+MT	Mato Grosso
+PA	Para
+PB	Paraiba
+PE	Pernambuco
+PI	Piaui
+PR	Parana
+RJ	Rio de Janeiro
+RN	Rio Grande do Norte
+RO	Rondonia
+RR	Roraima
+RS	Rio Grande do Sul
+SC	Santa Catarina
+SE	Sergipe
+SP	Sao Paulo
+TO	Tocatins
+# ISO 3166-2 regions for the Bahamas
+#  
+BS-AC	Acklins and Crooked Islands
+BS-BI	Bimini
+BS-CI	Cat Island
+BS-EX	Exuma
+BS-FP	Freeport
+BS-FC	Fresh Creek
+BS-GH	Governor's Harbour
+BS-GT	Green Turtle Cay
+BS-HI	Harbour Island
+BS-HR	High Rock
+BS-IN	Inagua
+BS-KB	Kemps Bay
+BS-LI	Long Island
+BS-MH	Marsh Harbour
+BS-MG	Mayaguana
+BS-NP	New Providence
+BS-NB	Nicholls Town and Berry Islands
+BS-RI	Ragged Island
+BS-RS	Rock Sound
+BS-SP	Sandy Point
+BS-SR	San Salvador and Rum Cay
+# ISO 3166-2 regions for Bhutan
+#  
+BT-33	Bumthang
+BT-12	Chhukha
+BT-22	Dagana
+BT-GA	Gasa
+BT-13	Ha
+BT-44	Lhuentse
+BT-42	Monggar
+BT-11	Paro
+BT-43	Pemagatshel
+BT-23	Punakha
+BT-45	Samdrup Jongkha
+BT-14	Samtee
+BT-31	Sarpang
+BT-15	Thimphu
+BT-41	Trashigang
+BT-TY	Trashi Yangtse
+BT-32	Trongsa
+BT-21	Tsirang
+BT-24	Wangdue Phodrang
+BT-34	Zhemgang
+# ISO 3166-2 regions for Botswana
+#   
+BW-CE	Central 
+BW-GH	Ghanzi
+BW-KG	Kgalagadi
+BW-KL	Kgatleng
+BW-KW	Kweneng
+BW-NG	Ngamiland 
+BW-NE	North-East
+BW-NW	North-West
+BW-SE	South-East
+BW-SO	Southern 
+# ISO 3166-2 codes for regions in Belarus
+#   
+# ISO 3166-2 gives several Romanised versions of the names; here we choose the GOST be version
+# translate appropriately in 'locales' .pot files
+#
+BY-BR	Bresckaja voblasc'
+BY-HO	Homel'skaja voblasc' 
+BY-HR	Hrodzenskaja voblasc'
+BY-MA	Mahileuskaja voblasc'
+BY-MI	Minskaja voblasc'
+BY-VI	Vicebskaja voblasc'
+# ISO 3166-2 regions for Belize
+#
+BZ-BZ	Belize
+BZ-CY	Cayo
+BZ-CZL	Corozal
+BZ-OW	Orange Walk
+BZ-SC	Stann Creek
+BZ-TOL	Toledo
+# ISO 3166-2 sub-region codes for Canadian provinces and territories
+#
+#  Provinces
+#   
+CA-AB	Alberta
+CA-BC	British Columbia
+CA-MB	Manitoba
+CA-NB	New Brunswick
+CA-NL	Newfoundland and Labrador
+CA-NS	Nova Scotia
+CA-ON	Ontario
+CA-PE	Prince Edward Island
+CA-QC	Quebec
+CA-SK	Saskatchewan
+# 
+# Territories
+#
+CA-NT	Northwest Territories
+CA-NU	Nunavut
+CA-YT	Yukon Territory
+# ISO 3166-2 regions for The Democratic Republic of Congo
+# 
+CD-KN	Kinshasa
+CD-BN	Bandundu
+CD-BC	Bas-Congo
+CD-EQ	Equateur
+CD-HC	Haut-Congo
+CD-KW	Kasai-Occidental
+CD-KE	Kasai-Oriental
+CD-KA	Katanga
+CD-MA	Maniema
+CD-NK	Nord-Kivu
+CD-OR	Orientale
+CD-SK	Sud-Kivu
+# ISO 3166-2 regions for the Central African Republic
+#  
+CF-BGF	Bangui
+CF-BB	Bamingui-Bangoran
+CF-BK	Baase-Kotto
+CF-HK	Haute-Kotto
+CF-HM	Haut-Mbomou
+CF-KG	Kemo
+CF-LB	Lobaye
+CF-HS	Mambere-Kadei
+CF-MB	Mbomou
+CF-KB	Nana-Grebizi
+CF-NM	Nana-Mambere
+CF-MP	Ombella-Mpoko
+CF-UK	Ouaka
+CF-AC	Ouham
+CF-OP	Ouham-Pende
+CF-SE	Sangha-Mbaere
+CF-VR	Vakaga
+# ISO 3166-2 regions for Congo
+#  
+CG-BZV	Brazzaville
+CG-11	Bouenza
+CG-8	Cuvette
+CG-15	Cuvette-Ouest
+CG-5	Kouilou
+CG-2	Lekoumou
+CG-7	Likouala
+CG-9	Niari
+CG-14	Plateaux
+CG-12	Pool
+CG-13	Sangha
+#
+# SO 3166-2 regions (cantons) for Switzerland
+#  
+CH-AG	Aargau
+CH-AI	Appenzell Innerrhoden
+CH-AR	Appenzell Ausserrhoden
+CH-BE	Bern
+CH-BL	Basel-Landschaft
+CH-BS	Basel-Stadt
+CH-FR	Fribourg
+CH-GE	Geneva
+CH-GL	Glarus
+CH-GR	Graubunden
+CH-JU	Jura
+CH-LU	Luzern
+CH-NE	Neuchatel
+CH-NW	Nidwalden
+CH-OW	Obwalden
+CH-SG	Sankt Gallen
+CH-SH	Schaffhausen
+CH-SO	Solothurn
+CH-SZ	Schwyz
+CH-TG	Thurgau
+CH-TI	Ticino
+CH-UR	Uri
+CH-VD	Vaud
+CH-VS	Valais
+CH-ZG	Zug
+CH-ZH	Zurich
+# ISO 3166-2 regions for Cote D'ivoire
+# 
+CI-06	18 Montagnes
+CI-16	Agnebi
+CI-09	Bas-Sassandra
+CI-10	Denguele
+CI-02	Haut-Sassandra
+CI-07	Lacs
+CI-01	Lagunes
+CI-12	Marahoue
+CI-05	Moyen-Comoe
+CI-11	Nzi-Comoe
+CI-03	Savanes
+CI-15	Sud-Bandama
+CI-13	Sud-Comoe
+CI-04	Vallee du Bandama
+CI-14	Worodouqou
+CI-08	Zanzan
+# ISO 3166-2 regions for Chile
+#   
+CL-AI	Aisen del General Carlos Ibanez del Campo
+CL-AN	Antofagasta
+CL-AR	Araucania
+CL-AT	Atacama
+CL-BI	Bio-Bio
+CL-CO	Coquimbo
+CL-LI	Libertador General Bernardo O'Higgins
+CL-LL	Los Lagos
+CL-MA	Magallanes
+CL-ML	Maule
+CL-RM	Region Metropolitana de Santiago
+CL-TA	Tarapaca
+CL-VS	Valparaiso
+# ISO 3166-2 regions for Cameroon
+#  
+CM-AD	Adamaoua
+CM-CE	Centre
+CM-ES	East
+CM-EN	Far North
+CM-LT	Littoral
+CM-NO	North
+CM-NW	North-West
+CM-SW	South
+CM-SW	South-West
+CM-OU	West
+# ISO 3166-2 regions for China
+#
+# For Taiwan, Hong Kong, see also seperate entries under TW,  HR
+#
+CN-11	Beijing
+CN-50	Chongqing
+CN-31	Shanghai
+CN-12	Tianjin
+CN-34	Anhui
+CN-35	Fujian
+CN-62	Gansu
+CN-44	Guangdong
+CN-52	Guizhou
+CN-46	Hainan
+CN-13	Hebei
+CN-23	Heilongjiang
+CN-41	Henan
+CN-42	Hubei
+CN-43	Hunan
+CN-32	Jiangsu
+CN-36	Jiangxi
+CN-22	Jilin
+CN-21	Liaoning
+CN-63	Qinghai
+CN-61	Shaanxi
+CN-37	Shandong
+CN-14	Shanxi
+CN-51	Sichuan
+CN-71	Taiwan
+CN-53	Yunnan
+CN-33	Zhejiang
+CN-45	Guangxi
+CN-15	Neia Mongol (mn)
+CN-65	Xinjiang
+CN-54	Xizang
+CN-91	Hong Kong
+CN-92	Macau
+#
+# ISO 3166-2 regions for Colombia
+#    
+CO-DC	Distrito Capital de Bogotá
+CO-AMA	Amazonea
+CO-ANT	Antioquia
+CO-ARA	Arauca
+CO-ATL	Atlántico
+CO-BOL	Bolívar
+CO-BOY	Boyacá
+CO-CAL	Caldea
+CO-CAQ	Caquetá
+CO-CAS	Casanare
+CO-CAU	Cauca
+CO-CES	Cesar
+CO-COR	Córdoba
+CO-CUN	Cundinamarca
+CO-CHO	Chocó
+CO-GUA	Guainía
+CO-GUV	Guaviare
+CO-HUI	Huila
+CO-LAG	La Guajira
+CO-MAG	Magdalena
+CO-MET	Meta
+CO-NAR	Nariño
+CO-NSA	Norte de Santander
+CO-PUT	Putumayo
+CO-QUI	Quindio
+CO-RIS	Risaralda
+CO-SAP	San Andrés, Providencia y Santa Catalina
+CO-SAN	Santander
+CO-SUC	Sucre
+CO-TOL	Tolima
+CO-VAC	Valle del Cauca
+CO-VAU	Vaupés
+CO-VID	Vichada
+# ISO 3166-2 regions for  Costa Rica
+#
+CR-A	Alajuela
+CR-C	Cartago
+CR-G	Guanacaste
+CR-H	Heredia
+CR-L	Limon
+CR-P	Puntarenas
+CR-SJ	San Jose
+#  ISO 3166-2 regions for Cuba
+#  
+CU-09	Camagey
+CU-08	Ciego de `vila
+CU-06	Cienfuegos
+CU-03	Ciudad de La Habana
+CU-12	Granma
+CU-14	Guantanamo
+CU-11	Holquin
+CU-02	La Habana
+CU-10	Las Tunas
+CU-04	Matanzas
+CU-01	Pinar del Rio
+CU-07	Sancti Spiritus
+CU-13	Santiago de Cuba
+CU-05	Villa Clara
+CU-99	Isla de la Juventud
+# 
+# Postal codes for Cuba.
+# Data taken from  http://www.columbia.edu/kermit/postal.html
+#  
+#  Provincias of Cuba, with recommended abbreviations
+#
+#CU-PR	Pinar del Roo
+#CU-CA	Ciego de Avila
+#CU-CH	Ciudad de La Habana
+#CU-CG	Camagoey
+#CU-HA	La Habana
+#CU-LT	Las Tunas
+#CU-MT	Matanzas
+#CU-HO	Holgun
+#CU-VC	Villa Clara
+#CU-GR	Granma
+#CU-CF	Cienfuegos
+#CU-SC	Santiago de Cuba
+#CU-SS	Sancti Spritus
+#CU-GT	Guantanamo
+#
+# This is a special Municipio, treated as a Provicia
+# CU-IJ	Municipio Especial Isla de la Juventud
+#
+# ISO 3166-2 regions for Cape Verde
+#   
+CV-BV	Boa Vista
+CV-BR	Brava
+CV-CS	Calheta de Sao Miguel
+CV-FO	Fogo
+CV-MA	Maio
+CV-MO	Mosteiros
+CV-PA	Paul
+CV-PN	Porto Novo
+CV-PR	Praia
+CV-RG	Ribeira Grande
+CV-SL	Sal
+CV-CA	Santa Catarina
+CV-CR	Santa Cruz
+CV-SD	Sao Domingos
+CV-SF	Sao Filipe
+CV-SN	Sao Nicolau
+CV-SV	Sao Vicente
+CV-TA	Tarrafal
+#
+# ISO 3166-2 regions for Cyprus
+#   
+CY-04	Ammochostos Magusa
+CY-06	Keryneia
+CY-03	Larnaka
+CY-01	Lefkosia
+CY-02	Lemesos
+CY-05	Pafos
+#
+# CZECH REPUBLIC
+#
+CZ-JC	Jiho?eský kraj
+CZ-JM	Jihomoravský kraj
+CZ-KA	Karlovarský kraj
+CZ-KR	Královéhradecký kraj
+CZ-LI	Liberecký kraj
+CZ-MO	Moravskoslezský kraj
+CZ-OL	Olomoucký kraj
+CZ-PA	Pardubický kraj
+CZ-PL	Plze?ský kraj
+CZ-PR	Praha, hlavaní ms?sto
+CZ-ST	St?edo?eský kraj
+CZ-US	Ústecký kraj
+CZ-VY	Vyso?ina
+CZ-ZL	Zlínský kraj
+#
+# ISO 3166-2 subregions for Germany
+# Germany uses the Bundeslander codes for ISO 3166-2 codes (any others?)
+DE-BW	Baden-Wuerttemberg
+DE-BY	Bayern
+DE-HB	Bremen
+DE-HH	Hamburg
+DE-HE	Hessen
+DE-NI	Niedersachsen
+DE-NW	Nordrhein-Westfalen
+DE-RP	Rheinland-Pfalz
+DE-SL	Saarland
+DE-SH	Schleswig-Holstein
+DE-BR	Berlin
+DE-BB	Brandenburg      
+DE-MV	Mecklenburg-Vorpommern
+DE-SN	Sachsen
+DE-ST	Sachsen-Anhalt
+DE-TH	Thueringen
+# ISO 3166-2 regions for Djibouti
+#   
+DJ-AS	Ali Sabiah
+DJ-DI	Dikhil
+DJ-DJ	Djibouti
+DJ-OB	Obock
+DJ-TA	Tadjoura
+#  Danish ISO 3166-2 subregions
+#   
+#  Denmark appears to use counties ("Amtskommune") as ISO 3166 subregions,
+#  according to the ISO 3166-2 examples page.
+#  This list came from http://www2.dst.dk/internet/matriceb/html05/0173.HTM
+#  Central Copenhagen and Frederiksberg have special status and are not part
+#  of an "Amtskommune". Thus they have separate entries.
+#
+DK-147	Frederikaberg municipality
+DK-101	Copenhagen municipality
+DK-015	Copenhagen
+DK-020	Frederiksborg
+DK-025	Roskilde
+DK-030	Western Zealand
+DK-035	Storstrøm
+DK-040	Bornholm
+DK-042	Funen
+DK-050	Storstrøm
+DK-055	Ribe
+DK-060	Vejle
+DK-065	Ringkøbing
+DK-070	Aarhus
+DK-076	Viborg
+DK-080	Northern Jutland
+#
+# ISO 3166-2 codes for Districts and Provinces in 
+# the Dominican Republic
+# Districts
+DO-01	Distrito Nacional (Santo Domingo)
+# Provinces:
+DO-02	Azua
+DO-03	Bahoruco
+DO-04	Barahona
+DO-05	Dajabon
+DO-06	Duarte
+DO-08	El Seybo [El Seibo]
+DO-09	Espaillat
+DO-30	Hato Mayor
+DO-10	Independencia
+DO-11	La Altagracia
+DO-07	La Estrelleta [Elias Pina]
+DO-12	La Romana
+DO-13	La Vega
+DO-14	Maroia Trinidad Sanchez
+DO-28	Monsenor Nouel
+DO-15	Monte Cristi
+DO-29	Monte Plata
+DO-16	Pedernales
+DO-17	Peravia
+DO-18	Puerto Plata
+DO-19	Salcedo
+DO-20	Samana
+DO-21	San Cristobal
+DO-22	San Juan
+DO-23	San Pedro de Macoris
+DO-24	Sanchez Ramirez
+DO-25	Santiago
+DO-26	Santiago Rodriguez
+DO-27	Valverde
+# ISO 3166-2 regions for Algeria
+#
+DZ-01	Adrar
+DZ-44	Ain Defla
+DZ-46	Ain Tmouchent
+DZ-16	Alger
+DZ-23	Annaba
+DZ-05	Batna
+DZ-08	Bechar
+DZ-06	Bejaia
+DZ-07	Biskra
+DZ-09	Blida
+DZ-34	Bordj Bou Arreridj
+DZ-10	Bouira
+DZ-35	Boumerdes
+DZ-02	Chlef
+DZ-25	Constantine
+DZ-17	Djelfa
+DZ-32	El Bayadh
+DZ-39	El Oued
+DZ-36	El Tarf
+DZ-47	Ghardaia
+DZ-24	Guelma
+DZ-33	Illizi
+DZ-18	Jijel
+DZ-40	Khenchela
+DZ-03	Laghouat
+DZ-29	Mascara
+DZ-26	Medea
+DZ-43	Mila
+DZ-27	Mostaganem
+DZ-28	Msila
+DZ-45	Naama
+DZ-31	Oran
+DZ-30	Ouargla
+DZ-04	Oum el Bouaghi
+DZ-48	Relizane
+DZ-20	Saida
+DZ-19	Setif
+DZ-22	Sidi Bel Abbes
+DZ-21	Skikda
+DZ-41	Souk Ahras
+DZ-11	Tamanghasset
+DZ-12	Tebessa
+DZ-14	Tiaret
+DZ-37	Tindouf
+DZ-42	Tipaza
+DZ-38	Tissemsilt
+DZ-15	Tizi Ouzou
+DZ-13	Tlemcen
+# ISO 3166-2 regions for Ecuador
+#
+EC-A	Azuay
+EC-B	Bolivar
+EC-F	Canar
+EC-C	Carchi
+EC-X	Cotopaxi
+EC-H	Chimborazo
+EC-O	El Oro
+EC-E	Esmeraldas
+EC-W	Galapagos
+EC-G	Guayas
+EC-I	Imbabura
+EC-L	Loja
+EC-R	Los Rios
+EC-M	Manabi
+EC-S	Morona-Santiago
+EC-N	Napo
+EC-D	Orellana
+EC-Y	Pastaza
+EC-P	Pichincha
+EC-U	Sucumbios
+EC-T	Tungurahua
+EC-Z	Zamora-Chinchipe
+# ISO 3166-2 regions for Estonia
+#
+EE-37	Harjumsa
+EE-39	Hitumea
+EE-44	Ida-Virumsa
+EE-49	Jogevamsa
+EE-51	Jarvamsa
+EE-57	Lasnemsa
+EE-59	Laane-Virumaa
+EE-65	Polvamea
+EE-67	Parnumsa
+EE-70	Raplamsa
+EE-74	Saaremsa
+EE-7B	Tartumsa
+EE-82	Valgamaa
+EE-84	Viljandimsa
+EE-86	Vorumaa
+# ISO 3166-2 regions for Egypt
+#   
+EG-DK	Ad Daqahllyah
+EG-BA	Al Bahr al Ahmar
+EG-BH	Al Buhayrah
+EG-FYM	Al Fayym
+EG-GH	Al Gharbiyah
+EG-ALX	Al Iskandarlyah
+EG-IS	Al Isma illyah
+EG-GZ	Al Jizah
+EG-MNF	Al Minuflyah
+EG-MN	Al Minya
+EG-C	Al Qahirah
+EG-KB	Al Qalyublyah
+EG-WAD	Al Wadi al Jadid
+EG-SHR	Ash Sharqiyah
+EG-SUZ	As Suways
+EG-ASN	Aswan
+EG-AST	Asyut
+EG-BNS	Bani Suwayf
+EG-PTS	Bur Sa'id
+EG-DT	Dumyat
+EG-JS	Janub Sina'
+EG-KFS	Kafr ash Shaykh
+EG-MT	Matruh
+EG-KN	Qina
+EG-SIN	Shamal Sina'
+EG-SHG	Suhaj
+#
+# ISO 3166-2 region codes for Eritrea
+#   
+ER-AN	Anseba
+ER-DU	Debub
+ER-DK	Debubawi Keyih Bahri [Debub-Keih-Bahri]
+ER-GB	Gash-Barka
+ER-MA	Maakel [Maekel]
+ER-SK	Semenawi Keyih Bahri [Semien-Keih-Bahri]
+#
+# ISO 3166-2 regions within Spain
+#    
+# Autonomous communities:
+# Provinces: Autonomous community:
+ES-VI	Alava
+ES-AB	Albacete
+ES-A	Alicante
+ES-AL	Almeria
+ES-O	Asturias
+ES-AV	Avila
+ES-BA	Badajoz
+ES-PM	Baleares
+ES-B	Barcelona
+ES-BU	Burgos
+ES-CC	Caceres
+ES-CA	Cadiz
+ES-S	Cantabria
+ES-CS	Castellon
+ES-CR	Ciudad Real
+ES-CO	Cordoba
+ES-CU	Cuenca
+ES-GE	Girona [Gerona]
+ES-GR	Granada
+ES-GU	Guadalajara
+ES-SS	Guipuzcoa
+ES-H	Huelva
+ES-HU	Huesca
+ES-J	Jaen
+ES-C	A Coruna
+ES-LO	La Rioja
+ES-GC	Las Palmas
+ES-LE	Leon
+ES-L	Lleida [Lerida]
+ES-LU	Lugo
+ES-M	Madrid
+ES-MA	Malaga
+ES-MU	Murcia
+ES-NA	Navarra
+ES-OR	Ourense
+ES-P	Palencia
+ES-PO	Pontevedra
+ES-SA	Salamanca
+ES-TF	Santa Cruz de Tenerife
+ES-SG	Segovia
+ES-SE	Sevilla
+ES-SO	Soria
+ES-T	Tarragona
+ES-TE	Teruel
+ES-TO	Toledo
+ES-V	Valencia
+ES-VA	Valladolid
+ES-BI	Vizcaya
+ES-ZA	Zamora
+ES-Z	Zaragoza
+# Major North African Locations:
+ES-CE	Ceuta
+ES-ML	Melilla
+#
+# Spainish regions
+#
+#AN	Andalucia
+#AR	Aragon
+#O	Asturias, Principado de
+#CN	Canarias
+#S	Cantabria
+#CM	CastillaLa Mancha
+#CL	Castillay Leon
+#CT	Cataluoa
+#EX	Extremadura
+#GA	Galicia
+#PM	Islas Baleares
+#LO	La Rioja
+#M	Madrid, Comunidad de
+#MU	Murcia, Region de
+#NA	Navarra, Comunidad Foral de
+#PV	Paos Vasco
+#VC	Valenciana, Comunidad
+#
+# ISO 3166-2 regions for Ethiopia
+#   
+ET-AA	Addis Ababa 
+ET-DD	Dire Dawa
+ET-AF	Afar
+ET-AM	Amara
+ET-BE	Benshangul-Gumaz 
+ET-GA	Gambela Peoples 
+ET-HA	Harari People 
+ET-OR	Oromia 
+ET-SO	Somali
+ET-SN	Southern Nations, Nationalities and Peoples
+ET-TI	Tigrai 
+#
+# ISO 3166-2 regions for Finland
+#
+FI-AL	Ahvenanmaan laani
+FI-ES	Etela-Suomen laani
+FI-IS	Ita-Suomen lasni
+FI-LL	Lapin Laani
+FI-LS	Lansi-Suomen Laani
+FI-OL	Oulun Lasni
+#
+# ISO 3166-2 regions for Fiji
+#  
+FJ-C	Central
+FJ-E	Eastern
+FJ-N	Northern
+FJ-W	Western
+FJ-R	Rotuma
+# ISO 3166-2 regions for the Federated States of Micronesia
+#  
+FM-TRK	Chuuk
+FM-KSA	Kosrae
+FM-PNI	Pohnpei
+FM-YAP	Yap
+# ISO 3166-2 regions in France
+#   
+# France uses its Department codes as ISO 3166-2 subregions
+#
+FR-01	Ain
+FR-02	Aisne
+FR-03	Allier
+FR-04	Alpes-de-Haute-Provence
+FR-06	Alpes-Maritimes
+FR-07	Ardèche
+FR-08	Ardennes
+FR-09	Ariège
+FR-10	Aube
+FR-11	Aude
+FR-12	Aveyron
+FR-67	Bas-Rhin
+FR-13	Bouches-du-Rhône
+FR-14	Calvados
+FR-15	Cantal
+FR-16	Charente
+FR-17	Charente-Maritime
+FR-18	Cher
+FR-19	Corrèze
+FR-20A	Corse-du-Sud
+FR-21	Côte-d'Or
+FR-22	Côtes-d'Armor
+FR-23	Creuse
+FR-79	Deux-Sèvres
+FR-24	Dordogne
+FR-25	Doubs
+FR-26	Drôme
+FR-91	Essonne
+FR-27	Eure
+FR-28	Eure-et-Loir
+FR-29	Finistère
+FR-30	Gard
+FR-32	Gers
+FR-33	Gironde
+FR-20B	Haute-Corse
+FR-31	Haute-Garonne
+FR-43	Haute-Loire
+FR-52	Haute-Marne
+FR-05	Hautes-Alpes
+FR-70	Haute-Saône
+FR-74	Haute-Savoie
+FR-65	Hautes-Pyrénées
+FR-87	Haute-Vienne
+FR-68	Haut-Rhin
+FR-92	Hauts-de-Seine
+FR-34	Hérault
+FR-35	Indre
+FR-36	Ille-et-Vilaine
+FR-37	Indre-et-Loire
+FR-38	Isère
+FR-39	Jura
+FR-40	Landes
+FR-41	Loir-et-Cher
+FR-42	Loire
+FR-44	Loire-Atlantique
+FR-45	Loiret
+FR-46	Lot
+FR-47	Lot-et-Garonne
+FR-48	Lozère
+FR-49	Maine-et-Loire
+FR-50	Manche
+FR-51	Marne
+FR-53	Mayenne
+FR-54	Meurthe-et-Moselle
+FR-55	Meuse
+FR-56	Morbihan
+FR-57	Moselle
+FR-58	Nièvre
+FR-59	Nord
+FR-60	Oise
+FR-61	Orne
+FR-75	Paris
+FR-62	Pas-de-Calais
+FR-63	Puy-de-Dôme
+FR-64	Pyrénées-Atlantiques
+FR-66	Pyrénées-Orientales
+FR-69	Rhône
+FR-71	Saône-et-Loire
+FR-72	Sarthe
+FR-73	Savoie
+FR-77	Seine-et-Marne
+FR-76	Seine-Maritime
+FR-93	Seine-Saint-Denis
+FR-80	Somme
+FR-81	Tarn
+FR-82	Tarn-et-Garonne
+FR-90	Territoire de Belfort
+FR-94	Val-de-Marne
+FR-95	Val d'Oise
+FR-83	Var
+FR-84	Vaucluse
+FR-85	Vendée
+FR-86	Vienne
+FR-88	Vosges
+FR-89	Yonne
+FR-78	Yvelines
+FR-YT	Mayotte
+FR-PM	Saint-Pierre-et-Miquelon
+FR-NC	Nouvelle-Calédonie
+FR-PF	Polynésie française
+FR-TF	Terres Australes Françaises
+FR-WF	Wallis et Futuna
+#
+GB-ABE	Aberdeen City
+GB-ABD	Aberdeenshire
+GB-ANS	Angus
+GB-ANT	Antrim
+GB-ARD	Ards
+GB-AGB	Argyll and Bute
+GB-ARM	Armagh
+GB-BLA	Ballymena
+GB-BLY	Ballymoney
+GB-BNB	Banbridge
+GB-BDG	Barking and Dagenham
+GB-BNE	Barnet
+GB-BNS	Barnsley
+GB-BAS	Bath and North East Somerset
+GB-BDF	Bedfordshire
+GB-BFS	Belfast
+GB-BEX	Bexley
+GB-BIR	Birmingham 
+GB-BBD	Blackburn with Darwen
+GB-BPL	Blackpool
+GB-BGW	Blaenau Gwent
+GB-BOL	Bolton
+GB-BMH	Bournemouth
+GB-BRC	Bracknell Forest
+GB-BRD	Bradford
+GB-BEN	Brent
+GB-BGE	Bridgend
+GB-BNH	Brighton and Hove
+GB-BST	Bristol, City of
+GB-BRY	Bromley
+GB-BKM	Buckinghamshire
+GB-BUR	Bury
+GB-CAY	Caerphilly
+GB-CLD	Calderdale
+GB-CAM	Cambridgeshire
+GB-CMD	Camden
+GB-CRF	Cardiff
+GB-CMN	Carmarthenshire
+GB-GFY	Sir Gaerfyrddin
+GB-CKF	Carrickfergus
+GB-CSR	Castlereagh
+GB-CGN	Ceredigion
+GB-CHS	Cheshire
+GB-CLK	Clackmannanshire
+GB-CLR	Coleraine
+GB-CWY	Conwy
+GB-CKT	Cookstown
+GB-CON	Cornwall
+GB-COV	Coventry
+GB-CGV	Cralgavon
+GB-CRY	Croydon
+GB-CMA	Cumbria
+GB-DAL	Darlington
+GB-DEN	Denbighshire
+GB-DER	Derby
+GB-DBY	Derbyshire
+GB-DRY	Derry
+GB-DEV	Devon
+GB-DNC	Doncaster
+GB-DOR	Dorset
+GB-DOW	Down
+GB-DUD	Dudley
+GB-DGY	Dumfries and Galloway
+GB-DND	Dundee City
+GB-DGN	Dungannon
+GB-DUR	Durham
+GB-EAL	Ealing
+GB-EAY	East Ayrshire
+GB-EDU	East Dunbartonshire
+GB-ELN	East Lothian
+GB-ERW	East Renfrewshire
+GB-ERY	East Riding of Yorkshire
+GB-ESX	East Sussex
+GB-EDH	Edinburgh, City of
+GB-ELS	Eilean Siar
+GB-ENF	Enfield
+GB-ESS	Essex
+GB-FAL	Falkirk
+GB-FER	Fermanagh
+GB-FIF	Fife
+GB-FLN	Flintshire
+GB-GAT	Gateshead
+GB-GLG	Glasgow City
+GB-GLS	Gloucestershire
+GB-GRE	Greenwich
+GB-GSY	Guernsey
+GB-GWN	Gwynedd
+GB-HCK	Hackney
+GB-HAL	Halton
+GB-HMF	Hammersmith and Fulham
+GB-HAM	Hampshire
+GB-HRY	Haringey
+GB-HRW	Harrow
+GB-HPL	Hartlepool
+GB-HAV	Havering
+GB-HEF	Herefordshire, County of
+GB-HRT	Hertfordshire
+GB-HED	Highland
+GB-HIL	Hillingdon
+GB-HNS	Hounslow
+GB-IVC	Inverclyde
+GB-AGY	Isle of Anglesey
+GB-IOW	Isle of Wight
+GB-IOS	Isles of Scilly
+GB-ISL	Islington
+GB-JSY	Jersey
+GB-KEC	Kensington and Chelsea
+GB-KEN	Kent
+GB-KHL	Kingston upon Hull, City of
+GB-KTT	Kingston upon Thames
+GB-KIR	Kirklees
+GB-KWL	Knowsley
+GB-LBH	Lambeth
+GB-LAN	Lancashire
+GB-LRN	Larne
+GB-LDS	Leeds
+GB-LCE	Leicester
+GB-LEC	Leicestershire
+GB-LEW	Lewisham
+GB-LMV	Limavady
+GB-LIN	Lincolnshire
+GB-LSB	Lisburn
+GB-LIV	Liverpool
+GB-LND	London, City of
+GB-LUT	Luton
+GB-MFT	Magherafelt
+GB-MAN	Manchester
+GB-MDW	Medway
+GB-MTY	Merthyr Tydfil
+GB-MRT	Merton
+GB-MDB	Middlesbrough
+GB-MLN	Midlothian
+GB-MIK	Milton Keynes
+GB-MON	Monmouthshire
+GB-MRY	Moray
+GB-MYL	Moyle
+GB-NTL	Neath Port Talbot
+GB-NET	Newcastle upon Tyne
+GB-NWM	Newham
+GB-NWP	Newport
+GB-NYM	Newry and Mourne
+GB-NTA	Newtownabbey
+GB-NFK	Norfolk
+GB-NAY	North Ayrahire
+GB-NDN	North Down
+GB-NEL	North East Lincolnshire
+GB-NLK	North Lanarkshire
+GB-NLN	North Lincolnshire
+GB-NSM	North Somerset
+GB-NTY	North Tyneside
+GB-NYK	North Yorkshire
+GB-NTH	Northamptonshire
+GB-NBL	Northumbarland
+GB-NGM	Nottingham
+GB-NTT	Nottinghamshire
+GB-OLD	Oldham
+GB-OMH	Omagh
+GB-ORR	Orkney Islands
+GB-OXF	Oxfordshire
+GB-PEM	Pembrokeshire
+GB-PKN	Perth and Kinross
+GB-PTE	Peterborough
+GB-PLY	Plymouth
+GB-POL	Poole
+GB-POR	Portsmouth
+GB-POW	Powys
+GB-RDG	Reading
+GB-RDB	Redbridge
+GB-RCC	Redcar and Cleveland
+GB-RFW	Renfrewshlre
+GB-RCT	Rhondda, Cynon, Taff
+GB-RIC	Richmond upon Thames
+GB-RCH	Rochdale
+GB-ROT	Rotherham
+GB-RUT	Rutland
+GB-SHN	St. Helens
+GB-SLF	Salford
+GB-SAW	Sandwell
+GB-SCB	Scottish Borders, The
+GB-SFT	Sefton
+GB-SHF	Sheffield
+GB-ZET	Shetland Islands
+GB-SHR	Shropshire
+GB-SLG	Slough
+GB-SOL	Solihull
+GB-SOM	merset
+GB-SAY	South Ayrshire
+GB-SGC	South Gloucestershire
+GB-SLK	South Lanarkshire
+GB-STY	South Tyneside
+GB-STH	Southampton
+GB-SOS	Southend-on-Sea
+GB-SWK	Southwark
+GB-STS	Staffordshire
+GB-STG	Stirling
+GB-SKP	Stockport
+GB-STT	Stockton-on-Tees
+GB-STE	Stoke-on-Trent
+GB-STB	Strabane
+GB-SFK	Suffolk
+GB-SND	Sunderland
+GB-SRY	Surrey
+GB-STN	Sutton
+GB-SWA	Swansea
+GB-SWD	Swindon
+GB-TAM	Tameside
+GB-TFW	Telford and Wrekin
+GB-THR	Thurrock
+GB-TOB	Torbay
+GB-TOF	Torfasn
+GB-TWH	Tower Hamlets
+GB-TRF	Trafford
+GB-VGL	Vale of Glamorgan, The
+GB-BMG	Bro Morgannwg
+GB-WKF	Wakefield
+GB-WLL	Walsall
+GB-WFT	Waltham Forest
+GB-WND	Wandsworth
+GB-WRT	Warrington
+GB-WAR	Warwickshire
+GB-WBX	West Berkshire
+GB-WDU	West Dunbartonshire
+GB-WLN	West Lothian
+GB-WSX	West Sussex
+GB-WSM	Westminster
+GB-WGN	Wigan
+GB-WIL	Wiltshire
+GB-WNM	Windsor and Maidenhead
+GB-WRL	Wirral
+GB-WOK	Wokingham
+GB-WLV	Wolverhampton
+GB-WOR	Worcestershire
+GB-WRX	Wrexham
+GB-YOR	York
+#
+# County Names, with official abbreviations
+#
+# BEDS		Bedfordshire
+# BERKS		Berkshire
+# BORDER	Borders
+# BUCKS		Buckinghamshire
+# CAMBS		Cambridgeshire
+# CENT		Central
+# CI		Channel Islands
+# CHESH		Cheshire
+# CLEV		Cleveland
+# CORN		Cornwall
+# CUMB		Cumbria
+# DERBY		Derbyshire
+# DEVON		Devonshire
+# DORSET	Dorsetshire
+# DUMGAL	Dumfries & Galloway
+# GLAM		Glamorganshire
+# GLOUS		Gloucestershire
+# GRAMP		Grampian
+# GWYNED	Gwynedd
+# HANTS		Hampshire 
+# HERWOR	Herefordshire & Worcestershire
+# HERTS		Hertfordshire
+# HIGHL		Highland
+# HUMBER	Humberside
+# HUNTS		Huntingdonshire
+# IOM		Isle of Man
+# IOW		Isle of White
+# LANARKS	Lanarkshire
+# LANCS		Lancashire
+# LEICS		Leicestershire
+# LINCS		Licolnshire
+# LOTH		Lothian
+# MIDDX		Middlesex
+# NORF		Norfolk
+# NHANTS	Northamptonshire
+# NTHUMB	Northumberland
+# NOTTS		Nottinghamshire
+# OXON		Oxfordshire
+# PEMBS		Pembrokeshire
+# RUTLAND	Rutlandshire
+# SHROPS	Shropshire
+# SOM		Somersetshire
+# STAFFS	Staffordshire
+# STRATH	Strathclyde
+# SUFF		Suffolk
+# SUSS		Sussex
+# TAYS		Tayside
+# TYNE		Tyne & Wear
+# WARKS		Warwickshire
+# WILTS		Wiltshire
+# WORCS		Worcestershire
+# YORK		Yorkshire
+# CO ANTRIM	County Antrim
+# CO ARMAGH	County Armagh
+# CO DOWN	County Down
+# CO DURHAM	County Durham
+# CO FERMANAGH	County Fermanagh
+# CO DERRY	County Londonderry
+# CO TYRONE	County Tyrone
+#
+# ISO 3166-2 regions for Georgia
+#   
+GE-AB	Abkhazia
+GE-AJ	Ajaria
+GE-GU	Guria
+GE-IM	Imereti
+GE-KA	Kakheti
+GE-KK	Kvemo o Kartli
+GE-MM	Mtskheta-Mtianeti
+GE-RL	Racha-Lechkumi and Kvemo Svaneti
+GE-SZ	Samegrelo-Zemo Svaneti
+GE-SJ	Samtskhe-Jacakheti
+GE-SK	Shida Kartli
+GE-TB	Tbilisi
+#
+# ISO 3166-2 regions for Ghana
+#   
+GH-AH	Ashanti
+GH-BA	Brong-Ahafo
+GH-CP	Central
+GH-EP	Eastern
+GH-AA	Greater Accra
+GH-NP	Northern
+GH-UE	Upper East
+GH-UW	Upper West
+GH-TV	Volta
+GH-WP	Western
+# ISO 3166-2 regions for Gambia
+#  
+GM-B	Banjul
+GM-L	Lower River
+GM-M	MacCarthy Island
+GM-N	North Bank
+GM-U	Upper River
+# ISO 3166-2 regions for Guinea
+#   
+GN-BE	Beyla
+GN-BF	Boffa
+GN-BK	Boke
+GN-CO	Coyah
+GN-DB	Dabola
+GN-DL	Dalaba
+GN-DI	Dinguiraye
+GN-DU	Dubreka
+GN-FA	Faranah
+GN-FO	Forecariah
+GN-FR	Fria
+GN-GA	Gaoual
+GN-GU	Guekedou
+GN-KA	Kankan
+GN-KE	Kerouane
+GN-KD	Kindia
+GN-KS	Kissidougou
+GN-KB	Koubia
+GN-KN	Koundara
+GN-KO	Kouroussa
+GN-LA	Labe
+GN-LE	Lelouma
+GN-LO	Lola
+GN-MC	Macenta
+GN-ML	Mali
+GN-MM	Mamou
+GN-MD	Mandiana
+GN-NZ	Nzerekore
+GN-PI	Pita
+GN-SI	Siguiri
+GN-TE	Telimele
+GN-TO	Tougue
+GN-YO	Yomou
+# ISO 3166-2 regions for Equatorial Guinea
+#   
+GQ-C	Region Continental
+GQ-I	Region Insular
+GQ-AN	Annobon
+GQ-BN	Bioko Norte
+GQ-BS	Bioko Sur
+GQ-CS	Centro Sur
+GQ-KN	Kie-Ntem
+GQ-LI	Litoral
+GQ-WN	Wele-Nzas
+# ISO 3166-2 regions for Greece
+#   
+GR-13	Achaa
+GR-01	Aitolia-Akarnania
+GR-11	Argolis
+GR-12	Arkadia
+GR-31	Arta
+GR-A1	Attiki
+GR-64	Chalkidiki
+GR-94	Chania
+GR-85	Chios
+GR-81	Dodekanisos
+GR-52	Drama
+GR-71	Evros
+GR-05	Evrytania
+GR-04	Evvoia
+GR-63	Florina
+GR-07	Fokis
+GR-06	Fthiotis
+GR-51	Grevena
+GR-14	Ileia
+GR-53	Imathia
+GR-33	Ioannina
+GR-91	Irakleion
+GR-41	Karditsa
+GR-56	Kastoria
+GR-55	Kavalla
+GR-23	Kefallinia
+GR-22	Kerkyra
+GR-57	Kilkis
+GR-15	Korinthia
+GR-58	Kozani
+GR-82	Kyklades
+GR-16	Lakonia
+GR-42	Larisa
+GR-92	Lasithion
+GR-24	Lefkas
+GR-83	Lesvos
+GR-43	Magnisia
+GR-17	Messinia
+GR-59	Pella
+GR-34	Preveza
+GR-93	Rethymnon
+GR-73	Rodopi
+GR-84	Samos
+GR-62	Serrai
+GR-32	Thesprotia
+GR-54	Thessaloniki
+GR-44	Trikala
+GR-03	Voiotia
+GR-72	Xanthi
+GR-21	Zakynthos
+GR-69	Agio Oros
+# ISO 3166-2 regions for Guatemala
+#   
+GT-AV	Alta Verapez
+GT-BV	Baja Verapez
+GT-CM	Chimaltenango
+GT-CQ	Chiquimula
+GT-PR	El Progreso
+GT-ES	Escuintla
+GT-GU	Guatemala
+GT-HU	Huehuetenango
+GT-IZ	Izabal
+GT-JA	Jalapa
+GT-JU	Jutiapa
+GT-PE	Peten
+GT-QZ	Quetzaltenango
+GT-QC	Quiche
+GT-RE	Reta.thuleu
+GT-SA	Sacatepequez
+GT-SM	San Marcos
+GT-SR	Santa Rosa
+GT-SO	Solol6
+GT-SU	Suchitepequez
+GT-TO	Totonicapan
+GT-ZA	Zacapa
+# ISO 3166-2 regions for Guinea Bissau
+#   
+GW-BS	Bissau
+GW-BA	Bafata
+GW-BM	Biombo
+GW-BL	Bolama
+GW-CA	Cacheu
+GW-GA	Gabu
+GW-OI	Oio
+GW-QU	Quloara
+GW-TO	Tombali S
+# ISO 3166-2 regions for Guyana
+#   
+GY-BA	Barima-Waini
+GY-CU	Cuyuni-Mazaruni
+GY-DE	Demerara-Mahaica
+GY-EB	East Berbice-Corentyne
+GY-ES	Essequibo Islands-West Demerara
+GY-MA	Mahaica-Berbice
+GY-PM	Pomeroon-Supenaam
+GY-PT	Potaro-Siparuni
+GY-UD	Upper Demerara-Berbice
+GY-UT	Upper Takutu-Upper Essequibo
+# ISO 3166-2 sub-regions of Honduras
+# 
+HN-AT	Atlantida
+HN-CL	Colon
+HN-CM	Comayagua
+HN-CP	Copan
+HN-CR	Cortes
+HN-CH	Choluteca
+HN-EP	El Paraiso
+HN-FM	Francisco Morazan
+HN-GD	Gracias a Dios
+HN-IN	Intibuca
+HN-IB	Islas de la Bahia
+HN-LP	La Paz
+HN-LE	Lempira
+HN-OC	Ocotepeque
+HN-OL	Olancho
+HN-SB	Santa Barbara
+HN-VA	Valle
+HN-YO	Yoro
+# ISO 3166-2 regions for Croatia
+#   
+HR-07	Bjelovarsko-bilogorska zupanija
+HR-12	Brodsko-posavska zupanija
+HR-19	Dubrovacko-neretvanska zupanija
+HR-18	Istarska zupanija
+HR-04	Karlovacka zupanija
+HR-06	Koprivnickco-krizevacka zupanija
+HR-02	Krapinako-zagorska zupanija
+HR-09	Licko-senjska zupanija
+HR-20	Medimurska zupanija
+HR-14	Osjecko-baranjska zupanija
+HR-11	Pozesko-slavonska zupanija
+HR-08	Primorsko-goranska zupanija
+HR-03	Sisacko-moelavacka Iupanija
+HR-17	Splitako-dalmatinska zupanija
+HR-15	Sibenako-kninska zupanija
+HR-05	Varaidinska zupanija
+HR-10	VirovitiEko-podravska zupanija
+HR-16	VuRovarako-srijemska zupanija
+HR-13	Zadaraka 
+HR-01	Zagrebacka zupanija
+# ISO 3166-2 regions for Haiti
+#   
+HT-CE	Centre
+HT-GA	Grande-Anse
+HT-ND	Nord
+HT-NE	Nord-Eat
+HT-NO	Nord-Ouest
+HT-OU	Ouest
+HT-SD	Sud
+HT-SE	Sud-Est
+# ISO 3166-2 regions for Hungary
+#   
+HU-BU	Budapest
+HU-BK	Bács-Kiskun
+HU-BA	Baranya
+HU-BE	Békés
+HU-BZ	Borsod-Abaúj-Zemplén
+HU-CS	Csongrád
+HU-FE	Fejér
+HU-GS	Gy?r-Moson-Sopron
+HU-HB	Hajdu-Bihar
+HU-HE	Heves
+HU-JN	Jász-Nagykun-Szolnok
+HU-KE	Komárom-Esztergom
+HU-NO	Nográd
+HU-PE	Pest
+HU-SO	Somogy
+HU-SZ	Szabolcs-Szatmár-Bereg
+HU-TO	Tolna
+HU-VA	Vas
+HU-VE	Veszprém
+HU-ZA	Zala
+HU-BC	Békéscsaba
+HU-DE	Debrecen
+HU-DU	Dunaújváros
+HU-EG	Eger
+HU-GY	Gy?r
+HU-HV	Hódmez?vásárhely
+HU-KV	Kaposvár
+HU-KM	Kecskemét
+HU-MI	Miskolc
+HU-NK	Nagykanizsa
+HU-NY	Nyiregyháza
+HU-PS	Pécs
+HU-ST	Salgótarján
+HU-SN	Sopron
+HU-SD	Szeged
+HU-SF	Székesfehérvár
+HU-SS	Szekszárd
+HU-SK	Szolnok
+HU-SH	Szombathely
+HU-TB	Tatabánya
+HU-VM	Veszprém
+HU-ZE	Zalaegerszeg
+# ISO 3166-2 subregion codes for Indonesia"
+#    
+# Taken from: http://www.iix.net.id/release_note.html
+# Which quotes the ISO 3166-2 standard
+# 
+# Provinces :
+ID-BA	Bali
+ID-BB	Bangka Belitung
+ID-BT	Banten
+ID-BE	Bengkulu
+ID-GO	Gorontalo
+ID-IJ	Irian Jaya
+ID-JA	Jambi
+ID-JB	Jawa Barat
+ID-JT	Jawa Tengah
+ID-JI	Jawa Timur
+ID-KB	Kalimantan Barat
+ID-KT	Kalimantan Timur
+ID-KS	Kalimantan Selatan
+ID-KI	Kalimantan Timur
+ID-KR	Kepulauan Riau
+ID-LA	Lampung
+ID-MA	Maluku
+ID-MU	Maluku Utara
+ID-NB	Nusa Tenggara Barat
+ID-NT	Nusa Tenggara Timur
+ID-PA	Papua
+ID-RI	Riau
+ID-SN	Sulawesi Selatan
+ID-ST	Sulawesi Tengah
+ID-SG	Sulawesi Tenggara
+ID-SA	Sulawesi Utara
+ID-SB	Sumatra Barat
+ID-SS	Sumatra Selatan
+ID-SU	Sumatera Utara
+# Special District
+ID-JK	Jakarta Raya
+# Autonomous Province
+ID-AC	Aceh
+# Special Region
+ID-YO	Yogyakarta
+#
+# Indonesian Geographical Units
+#   
+# IJ	Irian Jaya
+# JW	Jawa
+# KA	Kalimantan
+# MA	Maluku
+# NU	Nusa Tenggara
+# SL	Sulawesi
+# SM	Sumatera
+# ISO 3166-2 codes for Ireland
+#
+# Ireland uses Car Registration codes for Counties as ISO 3166-2 regions
+#   
+IE-C	Cork
+IE-CE	Clare
+IE-CN	Cavan
+IE-CW	Carlow
+IE-D	Dublin
+IE-DL	Donegal
+IE-G	Galway
+IE-KE	Kildare
+IE-KK	Kilkenny
+IE-KY	Kerry
+IE-LD	Longford
+IE-LH	Louth
+IE-LK	Limerick
+IE-LM	Leitrim
+IE-LS	Laois
+IE-MH	Meath
+IE-MN	Monaghan
+IE-MO	Mayo
+IE-OY	Offaly
+IE-RN	Roscommon
+IE-SO	Sligo
+IE-TA	Tipperary
+IE-WD	Waterford
+IE-WH	Westmeath
+IE-WW	Wicklow
+IE-WX	Wexford
+#
+# Names and Abbreviations for Irish provinces
+#
+# C	Connacht
+# L	Leinster
+# M	Munster
+# U	Ulster
+# ISO 3166-2 regions of Israel
+#        
+IL-D	HaDarom
+IL-M	HaMerkaz
+IL-Z	HaZafon
+IL-HA	Hefa
+IL-TA	Tel-Aviv
+IL-JM	Yerushalayim Al Quds
+# ISO 3166-2 regions for India
+#  
+IN-AP	Andhra Pradesh
+IN-AR	Arunachal Pradesh
+IN-AS	Assam
+IN-BR	Bihar
+IN-CH	Chhattisgarh
+IN-GA	Goa
+IN-GJ	Gujarat
+IN-HR	Haryana
+IN-HP	Himachal Pradesh
+IN-JK	Jammu and Kashmir
+IN-JH	Jharkhand
+IN-KA	Karnataka
+IN-KL	Kerala
+IN-MP	Madhya Pradesh
+IN-MM	Maharashtra
+IN-MN	Manipur
+IN-ML	Meghalaya
+IN-MZ	Mizoram
+IN-NL	Nagaland
+IN-OR	Orissa
+IN-PB	Punjab
+IN-RJ	Rajasthan
+IN-SK	Sikkim
+IN-TN	Tamil Nadu
+IN-TR	Tripura
+IN-UL	Uttaranchal
+IN-UP	Uttar Pradesh
+IN-WB	West Bengal
+# Union territories
+IN-AN	Andaman and Nicobar Islands
+IN-DN	Dadra and Nagar Haveli
+IN-DD	Daman and Diu
+IN-DL	Delhi
+IN-LD	Lakshadweep
+IN-PY	Pondicherry
+#
+# ISO 3166-2 regions for Iraq
+#    
+IQ-AN	Al Anbar
+IQ-BA	Al Ba,rah
+IQ-MU	Al Muthanna
+IQ-QA	Al Qadisiyah
+IQ-NA	An Najef
+IQ-AR	Arbil
+IQ-SW	As Sulaymaniyah
+IQ-TS	At Ta'mim
+IQ-BB	Babil
+IQ-BG	Baghdad
+IQ-DA	Dahuk
+IQ-DQ	Dhi Qar
+IQ-DI	Diyala
+IQ-KA	Karbala'
+IQ-MA	Maysan
+IQ-NI	Ninawa
+IQ-SD	Salah ad Din
+IQ-WA	Wasit
+#
+# ISO 3166-2 regions for Iran
+#
+IR-03	Ardabil
+IR-02	Azarbayjan-e Gharbi
+IR-01	Azarbayjan-e Sharqi
+IR-06	Bushehr
+IR-08	Chahar Mahall va Bakhtiari
+IR-04	Esfahan
+IR-14	Fars
+IR-19	Gilan
+IR-27	Golestan
+IR-24	Hamadan
+IR-23	Hormozgan
+IR-05	Iiam
+IR-15	Kerman
+IR-17	Kermanshah
+IR-09	Khorasan
+IR-10	Khuzestan
+IR-18	Kohjiluyeh va Buyer Ahmad
+IR-16	Kordestan
+IR-20	Lorestan
+IR-22	Markazi
+IR-21	Mazandaran
+IR-28	Qazvin
+IR-26	Qom
+IR-12	Semnan
+IR-13	Sistan va Baluchestan
+IR-07	Tehran
+IR-25	Yazd
+IR-11	Zanjan
+#
+# ISO 3166-2 regions for Iceland
+#    
+IS-7	Austurland
+IS-1	Hofuoborgarsvaeoi utan Reykjavikur
+IS-6	Norourland eystra
+IS-5	Norourland vestra
+IS-0	Reykjavik
+IS-8	Suourland
+IS-2	Suournes
+IS-4	Vestfirolr
+IS-3	Vesturland
+# ISO 3166-2 codes for regions in Italy
+#    
+# Provinces
+IT-AG	Agrigento
+IT-AL	Alessandria
+IT-AN	Ancona
+IT-AO	Aosta
+IT-AR	Arezzo
+IT-AP	Ascoli Piceno
+IT-AT	Asti
+IT-AV	Avellino
+IT-BA	Bari
+IT-BL	Belluno
+IT-BN	Benevento
+IT-BG	Bergamo
+IT-BI	Biella
+IT-BO	Bologna
+IT-BZ	Bolzano
+IT-BS	Brescia
+IT-BR	Brindisi
+IT-CA	Cagliari
+IT-CL	Caltanissetta
+IT-CB	Campobasso
+IT-CE	Caserta
+IT-CT	Catania
+IT-CZ	Catanzaro
+IT-CH	Chieti
+IT-CO	Como
+IT-CS	Cosenza
+IT-CR	Cremona
+IT-KR	Crotone
+IT-CN	Cuneo
+IT-EN	Enna
+IT-FE	Ferrara
+IT-FI	Firenze
+IT-FG	Foggia
+IT-FO	Forli
+IT-FR	Frosinone
+IT-GE	Genova
+IT-GO	Gorizia
+IT-GR	Grosseto
+IT-IM	Imperia
+IT-IS	Isernia
+IT-AQ	L'Aquila
+IT-SP	La Spezia
+IT-LT	Latina
+IT-LE	Lecce
+IT-LC	Lecco
+IT-LI	Livorno
+IT-LO	Lodi
+IT-LU	Lucca
+IT-SC	Macerata
+IT-MN	Mantova
+IT-MS	Massa-Carrara
+IT-MT	Matera
+IT-ME	Messina
+IT-MI	Milano
+IT-MO	Modena
+IT-NA	Napoli
+IT-NO	Novara
+IT-NU	Nuoro
+IT-OR	Oristano
+IT-PD	Padova
+IT-PA	Palermo
+IT-PR	Parma
+IT-PV	Pavia
+IT-PG	Perugia
+IT-PS	Pesaro e Urbino
+IT-PE	Pescara
+IT-PC	Piacenza
+IT-PI	Pisa
+IT-PT	Pistoia
+IT-PN	Pordenone
+IT-PZ	Potenza
+IT-PO	Prato
+IT-RG	Ragusa
+IT-RA	Ravenna
+IT-RC	Reggio Calabria
+IT-RE	Reggio Emilia
+IT-RI	Rieti
+IT-RN	Rimini
+IT-RM	Roma
+IT-RO	Rovigo
+IT-SA	Salerno
+IT-SS	Sassari
+IT-SV	Savona
+IT-SI	Siena
+IT-SR	Siracusa
+IT-SO	Sondrio
+IT-TA	Taranto
+IT-TE	Teramo
+IT-TR	Terni
+IT-TO	Torino
+IT-TP	Trapani
+IT-TN	Trento
+IT-TV	Treviso
+IT-TS	Trieste
+IT-UD	Udine
+IT-VA	Varese
+IT-VE	Venezia
+IT-VB	Verbano-Cusio-Ossola
+IT-VC	Vercelli
+IT-VR	Verona
+IT-VV	Vibo Valentia
+IT-VI	Vicenza
+IT-VT	Viterbo
+#
+# Official Italian Region codes
+# 
+# 65	Abruzzo
+# 77	Basilicata
+# 78	Calabria
+# 72	Campania
+# 45	Emilia-Romagna
+# 36	Friuli-Venezia Giulia
+# 62	Lazio
+# 42	Liguria
+# 25	Lombardia
+# 57	Marche
+# 67	Molise
+# 21	Piemonte
+# 75	Puglia
+# 88	Sardegna
+# 82	Sicilia
+# 52	Toscana
+# 32	Trentino-Alto Adige
+# 55	Umbria
+# 23	Valle d'Aosta
+# 34	Veneto
+# ISO 3166-2 regions for Japan
+# 
+#  Japan uses Prefectures for its ISO 3166-2 regions
+#  Data taken from http://fotw.digibel.be/flags/jp-prefe.html
+#   
+JP-23	Aichi
+JP-05	Akita
+JP-02	Aomori
+JP-12	Chiba
+JP-38	Ehime
+JP-18	Fukui
+JP-40	Fukuoka
+JP-07	Fukusima
+JP-21	Gifu
+JP-10	Gunma
+JP-34	Hiroshima
+JP-01	Hokkaido
+JP-28	Hyogo
+JP-08	Ibaraki
+JP-17	Ishikawa
+JP-03	Iwate
+JP-37	Kagawa
+JP-46	Kagoshima
+JP-14	Kanagawa
+JP-39	Kochi
+JP-43	Kumamoto
+JP-26	Kyoto
+JP-24	Mie
+JP-04	Miyagi
+JP-45	Miyazaki
+JP-20	Nagano
+JP-42	Nagasaki
+JP-29	Nara
+JP-15	Niigata
+JP-44	Oita
+JP-33	Okayama
+JP-47	Okinawa
+JP-27	Osaka
+JP-41	Saga
+JP-11	Saitama
+JP-25	Shiga
+JP-32	Shimane
+JP-22	Shizuoka
+JP-09	Tochigi
+JP-36	Tokushima
+JP-13	Tokyo
+JP-31	Tottori
+JP-16	Toyama
+JP-30	Wakayama
+JP-06	Yamagata
+JP-35	Yamaguchi
+JP-19	Yamanashi
+# ISO 3166-2 regions for Jamaica
+#   
+JM-13	Clarendon
+JM-09	Hanover
+JM-01	Kingston
+JM-12	Manchester
+JM-04	Portland
+JM-02	Saint Andrew
+JM-06	Saint Ann
+JM-14	Saint Catherine
+JM-11	Saint Elizabeth
+JM-08	Saint James
+JM-05	Saint Mary
+JM-03	Saint Thomea
+JM-07	Trelawny
+JM-10	Westmoreland
+# ISO 3166-2 regions for Jordan
+#   
+JO-AJ	Ajln
+JO-AQ	Al 'Aqaba
+JO-BA	Al Balqa'
+JO-KA	Al Karak
+JO-MA	Al Mafraq
+JO-AM	Amman
+JO-AT	At Tafilah
+JO-AZ	Az Zarga
+JO-JR	Irbid
+JO-JA	Jarash
+JO-MN	Ma'an
+JO-MD	Madaba
+#
+# ISO 3166-2 regions for Kenya
+#
+KE-110	Nairobi Municipality
+KE-200	Central
+KE-300	Coast
+KE-400	Eastern
+KE-500	North-Eastern Kaskazini Mashariki
+KE-700	Rift Valley
+KE-900	Western Magharibi
+#
+# ISO 3166-2 regions for Kyrgystan
+#
+KG-GB	Bishkek
+KG-B	Batken
+KG-C	Chu
+KG-J	Jalal-Abad
+KG-N	Naryn
+KG-O	Osh
+KG-T	Talas
+KG-Y	Ysyk-Kol
+#
+# ISO 3166-2 regions for Cambodia
+# 
+KH-23	Krong Kaeb 
+KH-24	Krong Pailin
+KH-18	Xrong Preah Sihanouk 
+KH-12	Phnom Penh 
+KH-2	Baat Dambang 
+KH-1	Banteay Mean Chey 
+KH-3	Kampong Chaam 
+KH-4	Kampong Chhnang 
+KH-5	Kampong Spueu 
+KH-6	Kampong Thum 
+KH-7	Kampot 
+KH-8	Kandaal 
+KH-9	Kach Kong 
+KH-10	Krachoh 
+KH-11	Mondol Kiri 
+KH-22	Otdar Mean Chey 
+KH-15	Pousaat 
+KH-13	Preah Vihear 
+KH-14	Prey Veaeng 
+KH-16	Rotanak Kiri 
+KH-17	Siem Reab 
+KH-19	Stueng Traeng 
+KH-20	Svaay Rieng 
+KH-21	Taakaev
+# ISO 3166-2 regions for Kiribati
+#    
+KI-G	Gilbert Islands
+KI-L	Line Islands
+KI-P	Phoenix Islands
+#
+# ISO 3166-2 regions for Comorros
+#   
+KM-A	Anjouan Ndzouani
+KM-G	Grande Comore Ngazidja
+KM-M	Moheli Moili
+#
+# ISO 3166-2 regions for North Korea
+#   
+KP-KAE	Kaesong-si
+KP-NAM	Nampo-si
+KP-PYO	Pyongyang-ai
+KP-CHA	Chagang-do
+KP-HAB	Hamgyongbuk-do
+KP-HAN	Hamgyongnam-do
+KP-HWB	Hwanghaebuk-do
+KP-HWN	Hwanghaenam-do
+KP-KAN	Kangwon-do
+KP-PYB	Pyonganbuk-do
+KP-PYN	Pyongannam-do
+KP-YAN	Yanggang-do
+KP-NAJ	Najin Sonbong-si
+#
+# ISO 3166-2 codes for regions in South Korea
+#    
+# Capital metropolitan city:
+KR-11	Seoul Teugbyeolsi
+# Metropolitan cities:
+KR-26	Busan Gwang'yeogsi
+KR-27	Daegu Gwang'yeogsi
+KR-30	Daejeon Gwang'yeogsi
+KR-29	Gwangju Gwang'yeogsi
+KR-28	Incheon Gwang'yeogsi
+KR-31	Ulsan Gwang'yeogsi
+# Provinces:
+KR-43	Chungcheongbugdo
+KR-44	Chungcheongnamdo
+KR-42	Gang'weondo
+KR-41	Gyeonggido
+KR-47	Gyeongsangbugdo
+KR-48	Gyeongsangnamdo
+KR-49	Jejudo
+KR-45	Jeonrabugdo
+KR-46	Jeonranamdo
+# ISO 3166-2 regions for Kuwait
+#  
+KW-AH	Al Ahmadi
+KW-FA	Al Farwanlyah
+KW-JA	Al Jahrah
+KW-KU	Al Kuwayt
+KW-HA	Hawalli
+#
+# ISO 3166-2 regions for Kazakhstan
+# 
+# Cities 
+KZ-ALA	Almaty
+KZ-AST	Astana
+# Regions
+KZ-ALM	Almaty oblysy
+KZ-AKM	Aqmola oblysy
+KZ-AKT	Aqtobe oblysy
+KZ-ATY	Atyrau oblyfiy
+KZ-ZAP	Batys Quzaqstan oblysy
+KZ-MAN	Mangghystau oblysy
+KZ-YUZ	Ongtustik Quzaqstan oblysy
+KZ-PAV	Pavlodar oblysy
+KZ-KAR	Qaraghandy oblysy
+KZ-KUS	Qostanay oblysy
+KZ-KZY	Qyzylorda oblysy
+KZ-VOS	Shyghys Quzaqstan oblysy
+KZ-SEV	Soltustik Quzaqstan oblysy
+KZ-ZHA	Zhambyl oblysy Zhambylskaya oblast'
+#
+# ISO 3166-2 regions for Laos
+#  
+LA-VT	Vientiane
+LA-AT	Attapu 
+LA-BK	Bokeo
+LA-BL	Bolikhamxai 
+LA-CH	Champasak 
+LA-HO	Houaphan
+LA-KH	Khammouan
+LA-LM	Louang Namtha
+LA-LP	Louangphabang 
+LA-OU	Oudomxai 
+LA-PH	Phongsali 
+LA-SL	Salavan 
+LA-SV	Savannakhet
+LA-VI	Vientiane
+LA-XA	Xaignabouli 
+LA-XN	Xiasomboun
+LA-XE	Xekong 
+LA-XI	Xiangkhoang
+# ISO 3166-2 regions for Lebanon
+#  
+LB-BA	Beirout
+LB-BI	El Begsa
+LB-JL	Jabal Loubnane
+LB-AS	Loubnane ech Chemali
+LB-JA	Loubnane ej Jnoubi
+LB-NA	Nabatiye
+# ISO 3166-2 regions for Syria
+#  
+LK-52	Ampara
+LK-71	Anuradhapura
+LK-81	Badulla
+LK-51	Batticaloa
+LK-11	Colombo
+LK-31	Galle
+LK-12	Gampaha
+LK-33	Hambantota
+LK-41	Jaffna
+LK-13	Kalutara
+LK-21	Kandy
+LK-92	Kegalla
+LK-42	Kilinochchi
+LK-61	Kurunegala
+LK-43	Mannar
+LK-22	Matale
+LK-32	Matara
+LK-82	Monaragala
+LK-45	Mullaittivu
+LK-23	Nuwara Eliya
+LK-72	Polonnaruwa
+LK-62	Puttalum
+LK-91	Ratnapura
+LK-53	Trincomalee
+LK-44	VavunLya
+# ISO 3166-2 regions for Liberia
+#  
+LR-BM	Bomi
+LR-BG	Bong
+LR-GB	Grand Basaa
+LR-CM	Grand Cape Mount
+LR-GG	Grand Gedeh
+LR-GK	Grand Kru
+LR-LO	Lofa
+LR-MG	Margibi
+LR-MY	Maryland
+LR-MO	Montserrado
+LR-NI	Nimba
+LR-RI	Rivercess
+LR-SI	Sinoe
+# ISO 3166-2 regions for Lesotho
+#   
+LS-D	Berea
+LS-B	Butha-Buthe
+LS-C	Leribe
+LS-E	Mafeteng
+LS-A	Maseru
+LS-F	Mohale's Hoek
+LS-J	Mokhotlong
+LS-H	Qacha's Nek
+LS-G	Quthing
+LS-K	Thaba-Tseka
+# ISO 3166-2 regions for Lithuania
+#   
+LT-AL	Alytaus Apskritis
+LT-KU	Kauno Apskritis
+LT-KL	Klaipedos Apskritis
+LT-MR	Marijampoles Apskritis
+LT-PN	Panevezio Apskritis
+LT-SA	Sisuliu Apskritis
+LT-TA	Taurages Apskritis
+LT-TE	Telsiu Apskritis
+LT-UT	Utenos Apskritis
+LT-VL	Vilniaus Apskritis
+# ISO 3166-2 regions for Luxembourg
+#  
+LU-D	Diekirch
+LU-G	GreveNmacher
+LU-L	Luxembourg
+# ISO 3166-2 regions for Latvia
+#
+LV-AI	Aizkraukles Apripkis
+LV-AL	Alkanes Apripkis
+LV-BL	Balvu Apripkis
+LV-BU	Bauskas Apripkis
+LV-CE	Cesu Aprikis
+LV-DA	Daugavpile Apripkis
+LV-DO	Dobeles Apripkis
+LV-GU	Gulbenes Aprlpkis
+LV-JL	Jelgavas Apripkis
+LV-JK	Jekabpils Apripkis
+LV-KR	Kraslavas Apripkis
+LV-KU	Kuldlgas Apripkis
+LV-LM	Limbazu Apripkis
+LV-LE	Liepajas Apripkis
+LV-LU	Ludzas Apripkis
+LV-MA	Madonas Apripkis
+LV-OG	Ogres Apripkis
+LV-PR	Preilu Apripkis
+LV-RE	Rezaknes Apripkis
+LV-RI	Rigas Apripkis
+LV-SA	Saldus Apripkis
+LV-TA	Talsu Apripkis
+LV-TU	Tukuma Apriplcis
+LV-VK	Valkas Apripkis
+LV-VM	Valmieras Apripkis
+LV-VE	Ventspils Apripkis
+LV-DGV	Daugavpils
+LV-JEL	Jelgava
+LV-JUR	Jurmala
+LV-LPX	Liepaja
+LV-REZ	Rezekne
+LV-RIX	Rlga
+LV-VEN	Ventspils
+#
+# ISO 3166-2 regions for Libya
+#  
+LY-AJ	Ajd?biy?
+LY-BU	Al Bu?n?n
+LY-HZ	Al Hiz?m al Akhdar
+LY-JA	Al Jabal al Akhdar
+LY-JI	Al Jif?rah
+LY-JU	Al Jufrah
+LY-KF	Al Kufrah
+LY-MJ	Al Marj
+LY-MB	Al Marqab
+LY-QT	Al Qa?r?n
+LY-QB	Al Qubbah
+LY-WA	Al W?hah
+LY-NQ	An Nuqa? al Khams
+LY-SH	Ash Sh??i'
+LY-ZA	Az Z?wiyah
+LY-BA	Bangh?z?
+LY-BW	Ban? Wal?d
+LY-DR	Darnah
+LY-GD	Ghad?mis
+LY-GR	Ghary?n
+LY-GT	Gh?t
+LY-JB	Jaghb?b
+LY-MI	Mi?r?tah
+LY-MZ	Mizdah
+LY-MQ	Murzuq
+LY-NL	N?l?t
+LY-SB	Sabh?
+LY-SS	?abr?tah ?urm?n
+LY-SR	Surt
+LY-TN	T?j?r?' wa an Naw?h? al Arb?h
+LY-TB	?ar?bulus
+LY-TM	Tarh?nah-Masall?tah
+LY-WD	W?d? al hay?t
+LY-YJ	Yafran-J?d?
+#
+# ISO 3166-2 regions for Morocco
+#   
+MA-AGD	Agadir
+MA-BAH	Aït Baha
+MA-MEL	Aït Melloul
+MA-HAO	Al Haouz
+MA-HOC	Al Hoceïma
+MA-ASZ	Assa-Zag
+MA-AZI	Azilal
+MA-BEM	Beni Mellal
+MA-BES	Ben Sllmane
+MA-BER	Berkane
+MA-BOD	Boujdour 
+MA-BOM	Boulemane
+MA-CAS	Casablanca  [Dar el Beïda]
+MA-CHE	Chefchaouene
+MA-CHI	Chichaoua
+MA-HAJ	El Hajeb
+MA-JDI	El Jadida
+MA-ERR	Errachidia
+MA-ESI	Essaouira
+MA-ESM	Es Smara 
+MA-FES	Fès
+MA-FIG	Figuig
+MA-GUE	Guelmim
+MA-IFR	Ifrane
+MA-JRA	Jerada
+MA-KES	Kelaat Sraghna
+MA-KEN	Kénitra
+MA-KHE	Khemisaet
+MA-KHN	Khenifra
+MA-KHO	Khouribga
+MA-LAA	Laâyoune (EH)
+MA-LAP	Larache
+MA-MAR	Marrakech
+MA-MEK	Meknsès
+MA-NAD	Nador
+MA-OUA	Ouarzazate
+MA-OUD	Oued ed Dahab (EH)
+MA-OUJ	Oujda
+MA-RBA	Rabat-Salé
+MA-SAF	Safi
+MA-SEF	Sefrou
+MA-SET	Settat
+MA-SIK	Sidl Kacem
+MA-TNG	Tanger
+MA-TNT	Tan-Tan
+MA-TAO	Taounate
+MA-TAR	Taroudannt
+MA-TAT	Tata
+MA-TAZ	Taza
+MA-TET	Tétouan
+MA-TIZ	Tiznit
+#
+# ISO 3166-2 regions for Moldova
+#
+MD-GA	Gagauzia, Unitate Teritoriala Autonoma
+MD-CU	Chisinau
+MD-SN	Stinga Nistrului, unitatea teritoriala din
+MD-BA	Balti
+MD-CA	Cahul
+MD-CH	Chisinau
+MD-ED	Edinet
+MD-LA	Lapusna
+MD-OR	Orhei
+MD-SO	Soroca
+MD-TA	Taraclia
+MD-TI	Tighina [Bender]
+MD-UN	Ungheni
+#
+# ISO 3166-2 regions for Madagascar
+#   
+MG-T	Antananarivo
+MG-D	Antsiranana
+MG-F	Fianarantsoa
+MG-M	Mahajanga
+MG-A	Toamasina
+MG-U	Toliara
+# ISO 3166-2 regions for the Marshall Islands
+#  
+MH-ALL	Ailinglapalap
+MH-ALK	Ailuk
+MH-ARN	Arno
+MH-AUR	Aur
+MH-EBO	Ebon
+MH-ENI	Eniwetok
+MH-JAL	Jaluit
+MH-KIL	Kili
+MH-KWA	Kwajalein
+MH-LAE	Lae
+MH-LIB	Lib
+MH-LIK	Likiep
+MH-MAJ	Majuro
+MH-MAL	Maloelap
+MH-MEJ	Mejit
+MH-MIL	Mili
+MH-NMK	Namorik
+MH-NMU	Namu
+MH-RON	Rongelap
+MH-UJA	Ujae
+MH-UJL	Ujelang
+MH-UTI	Utirik
+MH-WTN	Wotho
+MH-WTJ	Wotje
+# ISO 3166-2 regions for Mali
+#  
+ML-BK0	Bamako
+ML-7	Gao
+ML-1	Kayes
+ML-8	Kidal
+ML-2	Xoulikoro
+ML-5	Mopti
+ML-4	S69ou
+ML-3	Sikasso
+ML-6	Tombouctou
+# ISO 3166-2 regions for Myanmar
+#  
+MM-07	Ayeyarwady
+MM-02	Bago
+MM-03	Magway
+MM-04	Mandalay
+MM-01	Sagaing
+MM-05	Tanintharyi
+MM-06	Yangon
+MM-14	Chin
+MM-11	Kachin
+MM-12	Kayah
+MM-13	Kayin
+MM-15	Mon
+MM-16	Rakhine
+MM-17	Shan
+# ISO 3166-2 regions for Mongolia
+#  
+MN-1	Ulanbaatar
+MN-073	Arhangay
+MN-069	Bayanhongor
+MN-071	Bayan-Olgiy
+MN-067	Bulgan
+MN-037	Darhan uul
+MN-061	Dornod
+MN-063	Dornogov,
+MN-059	DundgovL
+MN-057	Dzavhan
+MN-065	Govi-Altay
+MN-064	Govi-Smber
+MN-039	Hentiy
+MN-043	Hovd
+MN-041	Hovsgol
+MN-053	Omnogovi
+MN-035	Orhon
+MN-055	Ovorhangay
+MN-049	Selenge
+MN-051	Shbaatar
+MN-047	Tov
+MN-046	Uvs
+#
+MO	Macao
+#
+# ISO 3166-2 regions for Mauritania
+#  
+MR-NKC	Nouakchott
+MR-07	Adrar
+MR-03	Assaba
+MR-05	Brakna
+MR-08	Dakhlet Nouadhibou
+MR-04	Gorgol
+MR-10	Guidimaka
+MR-01	Hodh ech Chargui
+MR-02	Hodh el Charbi
+MR-12	Inchiri
+MR-09	Tagant
+MR-11	Tiris Zemmour
+MR-06	Trarza
+#
+# ISO 3166-2 regions for Mauritius
+#
+# Cities  
+MU-BR	Beau Bassin-Rose Hill
+MU-CU	Curepipe
+MU-PU	Port Louis
+MU-QB	Quatre Bornes
+MU-VP	Vacosa-Phoenix
+# Districts
+MU-BL	Black River
+MU-FL	Flacq
+MU-GP	Grand Port
+MU-MO	Moka
+MU-PA	Pamplemousses
+MU-PW	Plaines Wilhems
+MU-PL	Port Louis
+MU-RP	Riviere du Rempart
+MU-SA	Savanne
+# Dependencies
+MU-AG	Agalega Islands
+MU-CC	Cargados Carajos Shoals 
+MU-RO	Rodrigues Island
+# ISO 3166-2 regions for the Maldives
+#
+MV-MLE	Male
+MV-02	Alif
+MV-20	Baa
+MV-17	Dhaalu
+MV-14	Faafu
+MV-27	Gaaf Alif
+MV-28	Gaefu Dhaalu
+MV-29	Gnaviyani
+MV-07	Haa Alif
+MV-23	Haa Dhaalu
+MV-26	Kaafu
+MV-05	Laamu
+MV-03	Lhaviyani
+MV-12	Meemu
+MV-25	Noonu
+MV-13	Raa
+MV-01	Seenu
+MV-24	Shaviyani
+MV-08	Thaa
+MV-04	Vaavu
+#
+# ISO 3166-2 regions for Malawi
+#  
+MW-BA	Balaka
+MW-BL	Blantyre
+MW-CK	Chikwawa
+MW-CR	Chiradzulu
+MW-CT	Chitipa
+MW-DE	Dedza
+MW-DO	Dowa
+MW-KR	Karonga
+MW-KS	Kasungu
+MW-LK	Likoma Island
+MW-LI	Lilongwe
+MW-MH	Machinga
+MW-MG	Mangochi
+MW-MC	Mchinji
+MW-MU	Mulanje
+MW-MW	Mwanza
+MW-MZ	Mzimba
+MW-NB	Nkhata Bay
+MW-NK	Nkhotakota
+MW-NS	Nsanje
+MW-NU	Ntcheu
+MW-NI	Ntchisi
+MW-PH	Phalomba
+MW-RU	Rumphi
+MW-SA	Salima
+MW-TH	Thyolo
+MW-ZO	Zomba
+#
+# ISO 3166-2 regions for Mexico
+#  
+MX-DIF	Distrito Federal
+MX-AGU	Aguascalientes
+MX-BCN	Baja California
+MX-BCS	Baja California Sur
+MX-CAM	Campeche
+MX-COA	Coahu ila
+MX-COL	Col ima
+MX-CHP	Chiapas
+MX-CHH	Chihushua
+MX-DUR	Durango
+MX-GUA	Guanajuato
+MX-GRO	Guerrero
+MX-HID	Hidalgo
+MX-JAL	Jalisco
+MX-MEX	Mexico
+MX-MIC	Michoacin
+MX-MOR	Moreloa
+MX-NAY	Nayarit
+MX-NLE	Nuevo Leon
+MX-OAX	Oaxaca
+MX-PUE	Puebla
+MX-QUE	Queretaro
+MX-ROO	Quintana Roo
+MX-SLP	San Luis Potosi
+MX-SIN	Sinaloa
+MX-SON	Sonora
+MX-TAB	Tabasco
+MX-TAM	Tamaulipas
+MX-TLA	Tlaxcala
+MX-VER	Veracruz
+MX-YUC	Yucatan
+MX-ZAC	Zacatecas
+# ISO 3166-2 regions for Malaysia
+#
+# Data taken from
+# http://www.din.de/gremien/nas/nabd/iso3166ma/samp_pt2.html
+#
+# Federal Territories
+MY-14	Wilayah Persekutuan Kuala Lumpur
+MY-15	Wilayah Persekutuan Labuan
+MY-16	Wilayah Persekutuan Putrajaya
+# States: 
+MY-01	Johor
+MY-02	Kedah
+MY-03	Kelantan
+MY-04	Melaka
+MY-05	Negeri Sembilan
+MY-06	Pahang
+MY-08	Perak
+MY-09	Perlis
+MY-07	Pulau Pinang
+MY-12	Sabah
+MY-13	Sarawak
+MY-10	Selangor
+MY-11	Terengganu
+# ISO 3166-2 regions for Mozambique
+# 
+MZ-MPM	Maputo
+MZ-P	Cabo Delgado
+MZ-G	Gaza
+MZ-I	Inhambane
+MZ-B	Manica
+MZ-L	Maputo
+MZ-N	Numpula
+MZ-A	Niaaea
+MZ-S	Sofala
+MZ-T	Tete
+MZ-Q	Zambezia
+# ISO 3166-2 regions for Namibia
+#
+NA-CA	Caprivi
+NA-ER	Erongo
+NA-HA	Hardap
+NA-KA	Karas
+NA-KH	Khomae
+NA-KU	Kunene
+NA-OW	Ohangwena
+NA-OK	Okavango
+NA-OH	Omaheke
+NA-OS	Omusati
+NA-ON	Oshana
+NA-OT	Oshikoto
+NA-OD	Otjozondjupa
+# ISO 3166-2 regions for Niger
+#  
+NE-8	Niamey
+NE-1	Agadez
+NE-2	Diffa
+NE-3	Dosso
+NE-4	Maradi
+NE-S	Tahoua
+NE-6	Tillaberi
+NE-7	Zinder
+# ISO 3166-2 codes for regions in Nigeria
+#   
+# Capital territory:
+NG-FC	Abuja Capital Territory
+# States:
+NG-AB	Abia
+NG-AD	Adamawa
+NG-AK	Akwa Ibom
+NG-AN	Anambra
+NG-BA	Bauchi
+NG-BY	Bayelsa
+NG-BE	Benue
+NG-BO	Borno
+NG-CR	Cross River
+NG-DE	Delta
+NG-EB	Ebonyi
+NG-ED	Edo
+NG-EK	Ekiti
+NG-EN	Enugu
+NG-GO	Gombe
+NG-IM	Imo
+NG-JI	Jigawa
+NG-KD	Kaduna
+NG-KN	Kano
+NG-KT	Katsina
+NG-KE	Kebbi
+NG-KO	Kogi
+NG-KW	Kwara
+NG-LA	Lagos
+NG-NA	Nassarawa
+NG-NI	Niger
+NG-OG	Ogun
+NG-ON	Ondo
+NG-OS	Osun
+NG-OY	Oyo
+NG-PL	Plateau
+NG-RI	Rivers
+NG-SO	Sokoto
+NG-TA	Taraba
+NG-YO	Yobe
+NG-ZA	Zamfara
+#
+# ISO 3166-2 regions for Nigeria
+#  
+NI-BO	Boaco
+NI-CA	Carazo
+NI-CI	Chinandega
+NI-CO	Chontales
+NI-ES	Esteli
+NI-GR	Granada
+NI-JI	Jinotega
+NI-LE	Leon
+NI-MD	Madriz
+NI-MN	Managua
+NI-MS	Masaya
+NI-MT	Matagalpa
+NI-NS	Nueva Segovia
+NI-SJ	Rio San Juan
+NI-RI	Rivas
+# Autonomous regions
+NI-AN	Atlantico Norte
+NI-AS	Atlantico Sur
+#
+# ISO 3166-2 codes for Regions of the Netherlands
+#   
+DR	Drente
+FL	Flevoland
+FR	Friesland
+GL	Gelderland
+GR	Groningen
+LB	Limburg
+NB	Noord-Brabant
+NH	Noord-Holland
+OV	Overijssel
+UT	Utrecht
+ZH	Zuid-Holland
+ZL	Zeeland
+# ISO 3166-2 regions for Norway
+#
+# Derived from http://geotags.com/geo/DMS3.html
+#
+NO-02	Akershus
+NO-09	Aust-Agder
+NO-06	Buskerud
+NO-20	Finumark
+NO-04	Hedmark
+NO-12	Hordaland
+NO-15	Mire og Romsdal
+NO-18	Nordland
+NO-17	Nord-Trindelag
+NO-05	Oppland
+NO-03	Oslo
+NO-11	Rogaland
+NO-14	Sogn og Fjordane
+NO-16	Sir-Trindelag
+NO-06	Telemark
+NO-19	Troms
+NO-10	Vest-Agder
+NO-07	Vestfold
+NO-01	Ostfold
+NO-22	Jan Mayen
+NO-21	Svalbard
+# See also Country code 'SJ' for Jan Mayen & Svalbard
+# ISO 3166-2 regions for New Zealand
+#  
+NZ-AUK	Auckland
+NZ-BOP	Bay of Plenty
+NZ-CAN	Canterbury
+NZ-GIS	Gisborne
+NZ-HKB	Hawkes's Bay
+NZ-MWT	Manawatu-Wanganui
+NZ-MBH	Marlborough
+NZ-NSN	Nelson
+NZ-NTL	Northland
+NZ-OTA	Otago
+NZ-STL	Southland
+NZ-TKI	Taranaki
+NZ-TAS	Tasman
+NZ-WKO	waikato
+NZ-WGN	Wellington
+NZ-WTC	West Coast
+# ISO 3166-2 regions for Oman
+#  
+OM-DA	Ad Dakhillyah
+OM-BA	Al Batinah
+OM-JA	Al Janblyah 
+OM-WU	Al Wusta
+OM-SH	Ash Sharqlyah
+OM-ZA	Az Zahirah
+OM-MA	Masqat
+OM-MU	Musandam
+# ISO 3166-2 regions for Panama
+#  
+PA-1	Bocas del Toro
+PA-2	Cocle
+PA-3	Colon
+PA-4	Chiriqui
+PA-5	Darien
+PA-6	Herrera
+PA-7	Loa Santoa
+PA-8	Panama
+PA-9	Veraguas
+PA-Q	Comarca de San Blas
+# ISO 3166-2 regions for Peru
+#  
+PE-CAL	El Callao
+PE-AMA	Amazonas
+PE-ANC	Ancash
+PE-APU	Apurimac
+PE-ARE	Arequipa
+PE-AYA	Ayacucho
+PE-CAJ	Cajamarca
+PE-CUS	Cuzco 
+PE-HUV	Huancavelica
+PE-HUC	Huanuco
+PE-ICA	Ica
+PE-JUN	Junin
+PE-LAL	La Libertad
+PE-LAM	Lambayeque
+PE-LIM	Lima
+PE-LOR	Loreto
+PE-MDD	Madre de Dios
+PE-MOQ	Moquegua
+PE-PAS	Pasco
+PE-PIU	Piura
+PE-PUN	Puno
+PE-SAM	San Martin
+PE-TAC	Tacna
+PE-TUM	Tumbes
+PE-UCA	Ucayali
+# ISO 3166-2 regions for Papua New Guinea
+#   
+PG-NCD	National Capital District (Port Moresby)
+PG-CPM	Central
+PG-CPK	Chimbu
+PG-EHG	Eastern Highlands
+PG-EBR	East New Britain
+PG-ESW	East Sepik
+PG-EPW	Enga
+PG-GPK	Gulf
+PG-MPM	Madang
+PG-MRL	Manus
+PG-MBA	Milne Bay
+PG-MPL	Morobe
+PG-NIK	New Ireland
+PG-NPP	Northern
+PG-NSA	North Solomons
+PG-SAN	Santaun 
+PG-SHM	Southern Highlands
+PG-WPD	Western
+PG-WHM	Western Highlands
+PG-WBK	West New Britain
+# ISO 3166-2 regions for the Philippines
+#  
+PH-ABR	Abra
+PH-AGN	Agusan del Norte
+PH-AGS	Agusan del Sur
+PH-AKL	Aklan
+PH-ALB	Albay
+PH-ANT	Antique
+PH-APA	Apayao
+PH-AUR	Aurora
+PH-BAS	Basilan
+PH-BAN	Batasn
+PH-BTN	Batanes
+PH-BTG	Batangas
+PH-BEN	Benguet
+PH-BIL	Biliran
+PH-BOH	Bohol
+PH-BUK	Bukidnon
+PH-BUL	Bulacan
+PH-CAG	Cagayan
+PH-CAN	Camarines Norte
+PH-CAS	Camarines Sur
+PH-CAM	Camiguin
+PH-CAP	Capiz
+PH-CAT	Catanduanes
+PH-CAV	Cavite
+PH-CEB	Cebu
+PH-COM	Compostela Valley
+PH-DAV	Davao
+PH-DAS	Davao del Sur
+PH-DAO	Davao Oriental
+PH-EAS	Eastern Samar
+PH-GUI	Guimaras
+PH-IFU	Ifugao
+PH-ILN	Ilocos Norte
+PH-ILS	Ilocos Sur
+PH-ILI	Iloilo
+PH-ISA	Isabela
+PH-KAL	Kalinga-Apayso
+PH-LAG	Laguna
+PH-LAN	Lanao del Norte
+PH-LAS	Lanao del Sur
+PH-LUN	La Union
+PH-LEY	Leyte
+PH-MAG	Maguindanao
+PH-MAD	Marinduque
+PH-MAS	Masbate
+PH-MDC	Mindoro Occidental
+PH-MDR	Mindoro Oriental
+PH-MSC	Misamis Occidental
+PH-MSR	Misamis Oriental
+PH-MOU	Mountain Province
+PH-NEC	Negroe Occidental
+PH-NER	Negros Oriental
+PH-NCO	North Cotabato
+PH-NSA	Northern Samar
+PH-NUE	Nueva Ecija
+PH-NUV	Nueva Vizcaya
+PH-PLW	Palawan
+PH-PAM	Pampanga
+PH-PAN	Pangasinan
+PH-QUE	Quezon
+PH-QUI	Quirino
+PH-RIZ	Rizal
+PH-ROM	Romblon
+PH-SAR	Sarangani
+PH-SIG	Siquijor
+PH-SOR	Sorsogon
+PH-SCO	South Cotabato
+PH-SLE	Southern Leyte
+PH-SUK	Sultan Kudarat
+PH-SLU	Sulu
+PH-SUN	Surigao del Norte
+PH-SUR	Surigao del Sur
+PH-TAR	Tarlac
+PH-TAW	Tawi-Tawi
+PH-WSA	Western Samar
+PH-ZMB	Zambales
+PH-ZAN	Zamboanga del Norte
+PH-ZAS	Zamboanga del Sur
+PH-ZSI	Zamboanga Sibiguey
+#
+# ISO 3166-2 regions for Pakistan
+#
+PK-IS	Islamabad
+PK-BA	Baluchistan (en)
+PK-NW	North-West Frontier
+PK-PB	Punjab
+PK-SD	Sind (en)
+PK-TA	Federally Administered Tribal Aresa
+PK-JK	Azad Rashmir
+PK-NA	Northern Areas
+#
+# ISO 3166-2 regions for Poland
+#  
+PL-DS	Dolnoslaskie
+PL-KP	Kujawsko-pomorskie
+PL-LU	Lubelskie
+PL-LB	Lubuskie
+PL-LD	Lodzkie
+PL-MA	Malopolskie
+PL-MZ	Mazowieckie
+PL-OP	Opolskie
+PL-PK	Podkarpackie
+PL-PD	Podlaskie
+PL-PM	Pomorskie
+PL-SL	Slaskie
+PL-SK	Swietokrzyskie
+PL-WN	Warminsko-mazurskie
+PL-WP	Wielkopolskie
+PL-ZP	Zachodniopomorskie	
+#
+# ISO 3166 name for Palestine
+#
+PS	Palestinian Territory, Occupied
+#
+# ISO 3166-2 regions for Portugal
+#
+PT-01	Aveiro
+PT-02	Beja
+PT-03	Braga
+PT-04	Braganca
+PT-05	Castelo Branco
+PT-06	Colmbra
+PT-07	Ovora
+PT-08	Faro
+PT-09	Guarda
+PT-10	Leiria
+PT-11	Lisboa
+PT-12	Portalegre
+PT-13	Porto
+PT-14	Santarem
+PT-15	Setubal
+PT-16	Viana do Castelo
+PT-17	Vila Real
+PT-18	Viseu
+PT-20	Regiao Autonoma dos Acores
+PT-30	Regiao Autonoma da Madeira
+# ISO 3166-2 regions for Paraguay
+#  
+PY-ASU	Asuncion
+PY-16	Alto Paraguay
+PY-10	Alto Parana
+PY-13	Amambay
+PY-19	Boqueron
+PY-5	Caeguazu
+PY-6	Caazapl
+PY-14	Canindeyu
+PY-11	Central
+PY-1	Concepcion
+PY-3	Cordillera
+PY-4	Guaira
+PY-7	Itapua
+PY-8	Miaiones
+PY-12	Neembucu
+PY-9	Paraguari
+PY-15	Presidente Hayes
+PY-2	San Pedro
+# ISO 3166-2 regions for Qatar
+#  
+QA-DA	Ad Dawhah
+QA-GH	Al Ghuwayriyah
+QA-JU	Al Jumayliyah
+QA-KH	Al Khawr
+QA-WA	Al Wakrah
+QA-RA	Ar Rayyan
+QA-JB	Jariyan al Batnah
+QA-MS	Madinat ash Shamal
+QA-US	Umm Salal
+# ISO 3166-2 codes for regions in Romania
+#  
+# Municipality:
+RO-B	Bucuresti
+# Departments:
+RO-AB	Alba
+RO-AR	Arad
+RO-AG	Arges
+RO-BC	Bacau
+RO-BH	Bihor
+RO-BN	Bistrita-Nasaud
+RO-BT	Boto'ani
+RO-BV	Bra'ov
+RO-BR	Braila
+RO-BZ	Buzau
+RO-CS	Caras-Severin
+RO-CL	Ca la ras'i
+RO-CJ	Cluj
+RO-CT	Constant'a
+RO-CV	Covasna
+RO-DB	Dambovit'a
+RO-DJ	Dolj
+RO-GL	Galat'i
+RO-GR	Giurgiu
+RO-GJ	Gorj
+RO-HR	Harghita
+RO-HD	Hunedoara
+RO-IL	Ialomit'a
+RO-IS	Ias'i
+RO-IF	Ilfov
+RO-MM	Maramures
+RO-MH	Mehedint'i
+RO-MS	Mures
+RO-NT	Neamt
+RO-OT	Olt
+RO-PH	Prahova
+RO-SM	Satu Mare
+RO-SJ	Sa laj
+RO-SB	Sibiu
+RO-SV	Suceava
+RO-TR	Teleorman
+RO-TM	Timis
+RO-TL	Tulcea
+RO-VS	Vaslui
+RO-VL	Valcea
+RO-VN	Vrancea
+# ISO 3166-2 codes for regions in Russia
+#   
+# The ISO 3166-2 entries give romanised versions according to two standards, 
+# GOST (1983) and  Russian   BGN/PCGN (1947).
+# Here the BGN entry is listed , since it was listed first in the ISO document
+# Localize to Cyrillic anyway in the po files.
+#
+# Republics:
+#
+RU-AD	Adygeya, Respublika
+RU-AL	Altay, Respublika
+RU-BA	Bashkortostan, Respublika
+RU-BU	Buryatiya, Respublika
+RU-CE	Chechenskaya Respublika
+RU-CU	Chuvashskaya Respublika
+RU-DA	Dagestan, Respublika
+RU-IN	Ingushskaya Respublika
+RU-KB	Kabardino-Balkarskaya
+RU-KL	Kalmykiya, Respublika
+RU-KC	Karachayevo-Cherkesskaya Respublika
+RU-KR	Kareliya, Respublika
+RU-KK	Khakasiya, Respublika
+RU-KO	Komi, Respublika
+RU-ME	Mariy El, Respublika
+RU-MO	Mordoviya, Respublika
+RU-SA	Sakha, Respublika [Yakutiya]
+RU-SE	Severnaya Osetiya, Respublika
+RU-TA	Tatarstan, Respublika
+RU-TY	Tyva, Respublika [Tuva]
+RU-UD	Udmurtskaya Respublika
+#
+# Administrative territories:
+#
+RU-ALT	Altayskiy kray
+RU-KHA	Khabarovskiy kray
+RU-KDA	Krasnodarskiy kray
+RU-KYA	Krasnoyarskiy kray
+RU-PRI	Primorskiy kray
+RU-STA	Stavropol'skiy kray
+#
+# Administrative regions:
+#
+RU-AMU	Amurskaya oblast'
+RU-ARK	Arkhangel'skaya oblast'
+RU-AST	Astrakhanskaya oblast'
+RU-BEL	Belgorodskaya oblast'
+RU-BRY	Bryanskaya oblast'
+RU-CHE	Chelyabinskaya oblast'
+RU-CHI	Chitinskaya oblast'
+RU-IRK	Irkutskaya oblast'
+RU-IVA	Ivanovskaya oblast'
+RU-KGD	Kaliningradskaya oblast'
+RU-KLU	Kaluzhskaya oblast'
+RU-KAM	Kamchatskaya oblast'
+RU-KEM	Kemerovskaya oblast'
+RU-KIR	Kirovskaya oblast'
+RU-KOS	Kostromskaya oblast'
+RU-KGN	Kurganskaya oblast'
+RU-KRS	Kurskaya oblast'
+RU-LEN	Leningradskaya oblast'
+RU-LIP	Lipetskaya oblast'
+RU-MAG	Magadanskaya oblast'
+RU-MOS	Moskovskaya oblast'
+RU-MUR	Murmanskaya oblast'
+RU-NIZ	Nizhegorodskaya oblast'
+RU-NGR	Novgorodskaya oblast'
+RU-NVS	Novosibirskaya oblast'
+RU-OMS	Omskaya oblast'
+RU-ORE	Orenburgskaya oblast'
+RU-ORL	Orlovskaya oblast'
+RU-PNZ	Penzenskaya oblast'
+RU-PER	Permskaya oblast'
+RU-PSK	Pskovskaya oblast'
+RU-ROS	Rostovskaya oblast'
+RU-RYA	Ryazanskaya oblast'
+RU-SAK	Sakhalinskaya oblast'
+RU-SAM	Samarskaya oblast'
+RU-SAR	Saratovskaya oblast'
+RU-SMO	Smolenskaya oblast'
+RU-SVE	Sverdlovskaya oblast'
+RU-TAM	Tambovskaya oblast'
+RU-TOM	Tomskaya oblast'
+RU-TUL	Tul'skaya oblast'
+RU-TVE	Tverskaya oblast'
+RU-TYU	Tyumenskaya oblast'
+RU-ULY	Ul'yanovskaya oblast'
+RU-VLA	Vladimirskaya oblast'
+RU-VGG	Volgogradskaya oblast'
+RU-VLG	Vologodskaya oblast'
+RU-VOR	Voronezhskaya oblast'
+RU-YAR	Yaroslavskaya oblast'
+#
+# Autonomous cities:
+#    
+RU-MOW	Moskva
+RU-SPE	Sankt-Peterburg
+#
+# Autonomous region:
+#    
+RU-YEV	Yevreyskaya avtonomnaya oblast'
+#
+#  Autonomous districts:
+#    
+RU-AGB	Aginskiy Buryatskiy avtonomnyy
+RU-CHU	Chukotskiy avtonomnyy okrug
+RU-EVE	Evenkiyskiy avtonomnyy okrug
+RU-KHM	Khanty-Mansiyskiy avtonomnyy okrug
+RU-KOP	Komi-Permyatskiy avtonomnyy okrug
+RU-KOR	Koryakskiy avtonomnyy okrug
+RU-NEN	Nenetskiy avtonomnyy okrug
+RU-TAY	Taymyrskiy (Dolgano-Nenetskiy)
+RU-UOB	Ust'-Ordynskiy Buryatskiy
+RU-YAN	Yamalo-Nenetskiy avtonomnyy okrug
+# ISO 3166-2 regions for Rwanda
+#  
+RW-C	Butare
+RW-I	Byumba
+RW-E	Cyangugu
+RW-D	Gikongoro
+RW-G	Gisenyi
+RW-B	Gitarama
+RW-J	Kibungo
+RW-F	Kibuye
+RW-K	Kigali-Rural Kigali y' Icyaro
+RW-L	Kigali-Ville Kigali Ngari
+RW-M	Mutara
+RW-H	Ruhengeri
+# ISO 3166-2 regions for Saudi Arabia
+#  
+SA-11	Al Batah
+SA-08	Al H,udd ash Shamallyah
+SA-12	Al Jawf
+SA-03	Al Madinah
+SA-05	Al Qasim
+SA-01	Ar Riyad
+SA-04	Ash Sharqlyah
+SA-14	Asir
+SA-06	Ha'il
+SA-09	Jlzan
+SA-02	Makkah
+SA-10	Najran
+SA-07	Tabuk
+# ISO 3166-2 regions for the Solomon Islands
+#  
+SB-CT	Capital Territory (Honiara)
+SB-CE	Central
+SB-GU	Guadalcanal
+SB-IS	Isabel
+SB-MK	Makira
+SB-ML	Malaita
+SB-TE	Temotu
+SB-WE	Western
+# ISO 3166-2 regions for Sudan
+#  
+SD-23	A'ali an Nil
+SD-26	Al Bah al Ahmar
+SD-18	Al Buhayrat
+SD-07	Al Jazirah
+SD-03	Al Khartum
+SD-06	Al Qadarif
+SD-22	Al Wahdah
+SD-04	An Nil
+SD-08	An Nil al Abyaq
+SD-24	An Nil al Azraq
+SD-01	Ash Shamallyah
+SD-17	Bahr al Jabal
+SD-16	Gharb al Istiwa'iyah
+SD-14	Gharb Ba~r al Ghazal
+SD-12	Gharb Darfur
+SD-10	Gharb Kurdufan
+SD-11	Janub Darfur
+SD-13	Janub Rurdufan
+SD-20	Jnqall
+SD-05	Kassala
+SD-15	Shamal Batr al Ghazal
+SD-02	Shamal Darfur
+SD-09	Shamal Kurdufan
+SD-19	Sharq al Istiwa'iyah
+SD-25	Sinnar
+SD-21	Warab
+# ISO 3166-2 regions for Sweden
+#  
+SE-K	Blekinge lan
+SE-W	Dalarnas lan
+SE-I	Gotlands lan
+SE-X	Gavleborge lan
+SE-N	Hallands lan
+SE-Z	Jamtlande lan
+SE-F	Jonkopings lan
+SE-H	Kalmar lan
+SE-G	Kronoberge lan
+SE-BD	Norrbottena lan
+SE-M	Skane lan
+SE-AB	Stockholms lan
+SE-D	Sodermanlands lan
+SE-C	Uppsala lan
+SE-S	Varmlanda lan
+SE-AC	Vasterbottens lan
+SE-Y	Vasternorrlands lan
+SE-U	Vastmanlanda lan
+SE-Q	Vastra Gotalands lan
+SE-T	Orebro lan
+SE-E	Ostergotlands lan
+# ISO 3166-2 regions for Saint Helena
+#  
+SH-SH	Saint Helena
+SH-AC	Ascension
+SH-TA	Tristan da Cunha
+#
+# ISO 3166-2 regions for Slovenia
+#
+SI-001	Ajdovscina
+SI-002	Beltinci
+SI-148	Benedikt
+SI-149	Bistrica ob Sotli
+SI-003	Bled
+SI-150	Bloke
+SI-004	Bohinj
+SI-005	Borovnica
+SI-006	Bovec
+SI-151	Braslovce
+SI-007	Brda
+SI-008	Brezovica
+SI-009	Brezica
+SI-152	Cankova
+SI-011	Celje
+SI-012	Cerklje	na Gorenjskem
+SI-013	Cerknica
+SI-014	Cerkno
+SI-153	Cerkvenjak
+SI-015	Crensovci
+SI-016	Crna na Koroskem
+SI-017	Crnomelj
+SI-018	Destrnik
+SI-019	Divaca
+SI-154	Dobje
+SI-020	Dobrepolje
+SI-155	Dobrna
+SI-021	Dobrova-Polhov Gradec
+SI-156	Dobrovnik
+SI-022	Dol pri Ljubljani
+SI-157	Dolenjske Toplice
+SI-023	Domzale
+SI-024	Dornava
+SI-025	Dravograd
+SI-026	Duplek
+SI-027	Gorenja vas-Poljane
+SI-028	Gorsnica
+SI-029	Gornja Radgona
+SI-030	Gornji Grad
+SI-031	Gornji Petrovci
+SI-158	Grad
+SI-032	Grosuplje
+SI-159	Hajdina
+SI-160	Hoce-Slivnica
+SI-161	Hodos
+SI-162	Jorjul
+SI-034	Hrastnik
+SI-035	Hrpelje-Kozina
+SI-036	Idrija
+SI-037	Ig
+SI-038	IIrska Bistrica
+SI-039	Ivancna Gorica
+SI-040	Izola
+SI-041	Jesenice
+SI-163	Jezersko
+SI-042	Jursinci
+SI-043	Kamnik
+SI-044	Kanal
+SI-045	Kidricevo
+SI-046	Kobarid
+SI-047	Kobilje
+SI-048	Jovevje
+SI-049	Komen
+SI-164	Komenda
+SI-050	Koper
+SI-165	Kostel
+SI-051	Kozje
+SI-052	Kranj
+SI-053	Kranjska Gora
+SI-166	Krizevci
+SI-054	Krsko
+SI-055	Kungota
+SI-056	Kuzma
+SI-057	Lasko
+SI-058	Lenart
+SI-059	Lendava
+SI-060	Litija
+SI-061	Ljubljana
+SI-062	Ljubno
+SI-063	Ljutomer
+SI-064	Logatec
+SI-065	Loska dolina
+SI-066	Loski Potok
+SI-167	Lovrenc na Pohorju
+SI-067	Luce
+SI-068	Lukovica
+SI-069	Majsperk
+SI-070	Maribor
+SI-168	Markovci
+SI-071	Medvode
+SI-072	Menges
+SI-073	Metlika
+SI-074	Mezica
+SI-169	Miklavz na Dravskern polju
+SI-075	Miren-Kostanjevica
+SI-170	Mirna Pec
+SI-076	Mislinja
+SI-077	Moravce
+SI-078	Moravske Toplice
+SI-079	Mozirje
+SI-080	Murska Sobota
+SI-081	Muta
+SI-082	Naklo
+SI-083	Nazarje
+SI-084	Nova Gorica
+SI-085	Nova mesto
+SI-181	Sveta Ana
+SI-182	Sveti Andraz v Slovenskih goricah
+SI-116	Sveti Jurij
+SI-033	Salovci
+SI-183	Sempeter-Vrtojba
+SI-117	Sencur
+SI-118	Sentilj
+SI-119	Sentjernej
+SI-120	Sentjur pri Celju
+SI-121	Skocjan
+SI-122	Skofja Loka
+SI-123	Skoftjica
+SI-124	Smarje pri Jelsah
+SI-125	Smartno ob Paki
+SI-194	Smartno pri Litiji
+SI-126	Sostanj
+SI-127	Store
+SI-184	Tabor
+SI-010	Tisina
+SI-128	Tolmin
+SI-129	Trbovje
+SI-130	Trebnje
+SI-185	Trnovska vas
+SI-131	Trzic
+SI-186	Trzin
+SI-132	Turnisce
+SI-133	Velenje
+SI-187	Velika Polana
+SI-134	Velika Lasce
+SI-188	Verzej
+SI-135	Videm
+SI-136	Vipava
+SI-137	Vitanje
+SI-138	Vojnik
+SI-189	Vransko
+SI-140	Vrhnika
+SI-141	Vuzenica
+SI-142	Zagorje ob Savi
+SI-143	Zavrc
+SI-144	Zrece
+SI-190	Zalec
+SI-146	Zelezniki
+SI-191	Zetale
+SI-147	Ziri
+SI-192	Zirovnica
+SI-193	Zuzemberk
+#  
+# ISO 3166-2 regions for Slovakia
+#  
+SK-BC	Banskobyatricky kraj
+SK-BL	Bratislavsky kraj
+SK-KI	Kolicky kraj
+SK-NJ	Nitrianaky kraj
+SK-PV	Prebovaky kraj
+SK-TC	Trenciansky kraj
+SK-TA	Trnavaky kraj
+SK-ZI	Zilinaky kraj
+# ISO 3166-2 regions for Sierra Leone
+#  
+SL-W	western Area (Freetown)
+SL-E	Eastern
+SL-N	Northern
+SL-S	Southern
+#
+# ISO 3166-2 regions for Senegal
+#  
+SN-DK	Dakar
+SN-DB	Diourbel
+SN-FK	Fatick
+SN-KL	Kaolack
+SN-KD	Kolda
+SN-LG	Louga
+SN-MT	Matam
+SN-SL	Saint-Louis
+SN-TC	Tambacounda
+SN-TH	Thies
+SN-ZG	Ziguinchor
+# ISO 3166-2 regions for Somalia
+#  
+SO-AW	Awdal
+SO-BK	Bakool
+SO-BN	Banaadir
+SO-BR	Bari
+SO-BY	Bay
+SO-GA	Galguduud
+SO-GE	Gedo
+SO-HI	Hiirsan
+SO-JD	Jubbada Dhexe
+SO-JH	Jubbada Hoose
+SO-MU	Mudug
+SO-NU	Nugaal
+SO-SA	Saneag
+SO-SD	Shabeellaha Dhexe
+SO-SH	Shabeellaha Hoose
+SO-SO	Sool
+SO-TO	Togdheer
+SO-WO	Woqooyi Galbeed
+# ISO 3166-2 regions for Suriname
+#  
+SR-BR	Brokopondo
+SR-CM	Commewijne
+SR-CR	Coronie
+SR-MA	Marowijne
+SR-NI	Nickerie
+SR-PR	Para
+SR-PM	Paramaribo
+SR-SA	Saramacca
+SR-SI	Sipaliwini
+SR-WA	Wanica
+# ISO 3166-2 regions for Sao Tome and Principe
+#  
+ST-P	Principe
+ST-S	Sao Tome
+# ISO 3166-2 regions for El Salvador
+#  
+SV-AH	Ahuachapan
+SV-CA	Cabanas
+SV-CU	Cuscatlan
+SV-CH	Chalatenango
+SV-LI	La Libertad
+SV-PA	La Paz
+SV-UN	La Union
+SV-MO	Morazan
+SV-SM	San Miguel
+SV-SS	San Salvador
+SV-SA	Santa Ana
+SV-SV	San Vicente
+SV-SO	Sonsonate
+SV-US	Usulutan
+# ISO 3166-2 regions for Syria
+#  
+SY-HA	Al Hasakah
+SY-LA	Al Ladhiqiyah
+SY-QU	Al Qunaytirah
+SY-RA	Ar Raqqah
+SY-SU	As Suwayda'
+SY-DR	Dar'a
+SY-DY	Dayr az Zawr
+SY-DI	Dimashq
+SY-HL	Halab
+SY-HM	Hamah
+SY-HI	Jim'
+SY-ID	Idlib
+SY-RD	Rif Dimashq
+SY-TA	Tarts
+# ISO 3166-2 regions for Swaziland
+#  
+SZ-HH	Hhohho
+SZ-LU	Lubombo
+SZ-MA	Manzini
+SZ-SH	Shiselweni
+# ISO 3166-2 regions for Chad
+# 
+TD-BA	Batha
+TD-BI	Biltine
+TD-BET	Borkou-Ennedi-Tibesti
+TD-CB	Chari-Baguirmi
+TD-GR	Guera
+TD-KA	Kanem
+TD-LC	Lac
+TD-LO	Logone-Occidental
+TD-LR	Logone-Oriental
+TD-MK	Mayo-Kebbi
+TD-MC	Moyen-Chari
+TD-OD	Ouaddai
+TD-SA	Salamat
+TD-TA	Tandjile
+# ISO 3166-2 regions for Togo
+#  
+TG-C	Centre
+TG-K	Kara
+TG-M	Maritime (Region)
+TG-P	Plateaux
+TG-S	Savannes
+# ISO 3166-2 regions for Thailand
+#  
+TH-10	Krung Thep Maha Nakhon Bangkok
+TH-S	Phatthaya
+TH-37	Amnat Charoen
+TH-15	Ang Thong
+TH-31	Buri Ram
+TH-24	Chachoengsao
+TH-18	Chai Nat
+TH-36	Chaiyaphum
+TH-22	Chanthaburi
+TH-50	Chiang Mai
+TH-57	Chiang Rai
+TH-20	Chon Buri
+TH-86	Chumphon
+TH-46	Kalasin
+TH-62	Kamphaeng Phet
+TH-71	Kanchanaburi
+TH-40	Khon Kaen
+TH-81	Krabi
+TH-52	Lampang
+TH-51	Lamphun
+TH-42	Loei
+TH-16	Lop Buri
+TH-58	Mae Hong Son
+TH-44	Maha Sarakham
+TH-49	Mukdahan
+TH-26	Nakhon Nayok
+TH-73	Nakhon Pathom
+TH-48	Nakhon Phanom
+TH-30	Nakhon Ratchasima
+TH-60	Nakhon Sawan
+TH-80	Nakhon Si Thammarat
+TH-55	Nan
+TH-96	Narathiwat
+TH-39	Nong Bua Lam Phu
+TH-43	Nong Khai
+TH-12	Nonthaburi
+TH-13	Pathum Thani
+TH-94	Pattani
+TH-82	Phangnga
+TH-93	Phatthalung
+TH-56	Phayao
+TH-67	Phetchabun
+TH-76	Phetchaburi
+TH-66	Phichit
+TH-65	Phitsanulok
+TH-54	Phrae
+TH-14	Phra Nakhon Si Ayutthaya
+TH-83	Phuket
+TH-25	Prachin Buri
+TH-77	Prachuap Khiri Khan
+TH-85	Ranong
+TH-70	Ratchaburi
+TH-21	Rayong
+TH-45	Roi Et
+TH-27	Sa Kaeo
+TH-47	Sakon Nakhon
+TH-11	Samut Prakan
+TH-74	Samut Sakhon
+TH-75	Samut Songkhram
+TH-19	Saraburi
+TH-91	Satun
+TH-17	Sing Buri
+TH-33	Si Sa Ket
+TH-90	Songkhla
+TH-64	Sukhothai
+TH-72	Suphan Buri
+TH-84	Surat Thani
+TH-32	Surin
+TH-63	Tak
+TH-92	Trang
+TH-23	Trat
+TH-34	Ubon Ratchathani
+TH-41	Udon Thani
+TH-61	Uthai Thani
+TH-53	Uttaradit
+TH-95	Yala
+TH-35	Yasothon
+#
+# ISO 3166-2 regions for Tajikistan
+#  
+TJ-SU	Sughd
+TJ-KT	Khatlon
+TJ-GB	Gorno-Badakhshan
+#
+# ISO 3166-2 regions for Turkmenistan
+#  
+TM-A	Ahal
+TM-B	Balkan
+TM-D	Dasoguz
+TM-L	Lebap
+TM-M	Mary
+#
+# ISO 3166-2 regions for Tunisia
+#  
+TN-31	Béja
+TN-13	Ben Arous
+TN-23	Bizerte
+TN-81	Gabès
+TN-71	Gafsa
+TN-32	Jendouba
+TN-41	Kairouan
+TN-42	Rasserine
+TN-73	Kebili
+TN-12	L'Ariana
+TN-33	Le Ref
+TN-53	Mahdia
+TN-14	La Manouba
+TN-82	Medenine
+TN-52	Moneatir
+TN-21	Naboul
+TN-61	Sfax
+TN-43	Sidi Bouxid
+TN-34	Siliana
+TN-51	Sousse
+TN-83	Tataouine
+TN-72	Tozeur
+TN-11	Tunis
+TN-22	Zaghouan
+# ISO 3166-2 region codes for Turkish Provinces
+#   
+TR-01	Adana
+TR-02	Ad yaman
+TR-03	Afyon
+TR-04	Ag r
+TR-68	Aksaray
+TR-05	Amasya
+TR-06	Ankara
+TR-07	Antalya
+TR-75	Ardahan
+TR-08	Artvin
+TR-09	Aydin
+TR-10	Bal kesir
+TR-74	Bartin
+TR-72	Batman
+TR-69	Bayburt
+TR-11	Bilecik
+TR-12	Bingol
+TR-13	Bitlis
+TR-14	Bolu
+TR-15	Burdur
+TR-16	Bursa
+TR-17	Canakkale
+TR-18	Cankir
+TR-19	Corum
+TR-20	Denizli
+TR-21	Diyarbakir
+TR-81	Duzce
+TR-22	Edirne
+TR-23	Elazig
+TR-24	Erzincan
+TR-25	Erzurum
+TR-26	Eskis'ehir
+TR-27	Gaziantep
+TR-28	Giresun
+TR-29	Gms'hane
+TR-30	Hakkari
+TR-31	Hatay
+TR-76	Igidir
+TR-32	Isparta
+TR-33	Icel
+TR-34	Istanbul
+TR-35	Izmir
+TR-46	Kahramanmaras
+TR-78	Karabk
+TR-70	Karaman
+TR-36	Kars
+TR-37	Kastamonu
+TR-38	Kayseri
+TR-71	Kirikkale
+TR-39	Kirklareli
+TR-40	Kirs'ehir
+TR-79	Kilis
+TR-41	Kocaeli
+TR-42	Konya
+TR-43	Ktahya
+TR-44	Malatya
+TR-45	Manisa
+TR-47	Mardin
+TR-48	Mugila
+TR-49	Mus
+TR-50	Nevs'ehir
+TR-51	Nigide
+TR-52	Ordu
+TR-80	Osmaniye
+TR-53	Rize
+TR-54	Sakarya
+TR-55	Samsun
+TR-56	Siirt
+TR-57	Sinop
+TR-58	Sivas
+TR-63	S'anliurfa
+TR-73	S'rnak
+TR-59	Tekirdag
+TR-60	Tokat
+TR-61	Trabzon
+TR-62	Tunceli
+TR-64	Us'ak
+TR-65	Van
+TR-77	Yalova
+TR-66	Yozgat
+TR-67	Zonguldak
+# ISO 3166-2 regions for Trinidad and Tobago
+#  
+TT-CTT	Couva-Tabaquite-Talparo
+TT-DMN	Diego Martin
+TT-ETO	Eastern Tobago
+TT-PED	Penal-Debe
+TT-PRT	Princes Town
+TT-RCM	Rio Claro-Mayaro
+TT-SGE	Sangre Grande
+TT-SJL	San Juan-Laventille
+TT-SIP	Siparia
+TT-TUP	Tunapuna-Piarco
+TT-WTO	Western Tobago
+TT-ARI	Arima
+TT-CHA	Chaguanas
+TT-PTF	Point Fortin
+TT-POS	Port of Spain
+TT-SFO	San Fernando
+#
+# ISO 3166-2 regions for Timor-Leste
+#
+TL-AL	Aileu
+TL-AN	Ainaro
+TL-BA	Bacucau
+TL-BO	Bobonaro
+TL-CO	Cova Lima
+TL-DI	Dili
+TL-ER	Ermera
+TL-LA	Laulem
+TL-LI	Liquica
+TL-MT	Manatuto
+TL-MF	Manafahi
+TL-OE	Oecussi
+TL-VI	Viqueque
+#
+# ISO 3166-2 regions for Taiwan
+#
+# Districts:   
+TW-CHA	Changhua
+TW-CYQ	Chiayi
+TW-HSQ	Hsinchu
+TW-HUA	Hualien
+TW-ILA	Ilan
+TW-KHQ	Kaohsiung
+TW-MIA	Miaoli
+TW-NAN	Nantou
+TW-PEN	Penghu
+TW-PIF	Pingtung
+TW-TXQ	Taichung
+TW-TNQ	Tainan
+TW-TPQ	Taipei
+TW-TTT	Taitung
+TW-TAO	Taoyuan
+TW-YUN	Yunlin
+# Municipalities:
+TW-HSZ	Hsinchu
+TW-KEE	Keelung
+TW-TXG	Taichung
+TW-TNN	Tainan
+# Special municipalities:
+TW-KHH	Kaohsiung
+TW-TPE	Taipei
+#
+# ISO 3166-2 regions for Tanzania
+#  
+TZ-01	Arusha
+TZ-02	Dar-es-Salaam
+TZ-03	Dodoma
+TZ-04	Iringa
+TZ-05	Kagera
+TZ-06	Kaskazini Pemba
+TZ-07	Kaskazini Unguja
+TZ-08	Xigoma
+TZ-09	Kilimanjaro
+TZ-10	Rusini Pemba
+TZ-11	Kusini Unguja
+TZ-12	Lindi
+TZ-26	Manyara
+TZ-13	Mara
+TZ-14	Mbeya
+TZ-15	Mjini Magharibi
+TZ-16	Morogoro
+TZ-17	Mtwara
+TZ-18	Mwanza
+TZ-19	Pwani
+TZ-20	Rukwa
+TZ-21	Ruvuma
+TZ-22	Shinyanga
+TZ-23	Singida
+TZ-24	Tabora
+TZ-25	Tanga
+# ISO 3166-2 regions for Ukraine
+#  
+UA-71	Cherkas'ka Oblast'
+UA-74	Chernihivs'ka Oblast'
+UA-77	Chernivets'ka Oblast'
+UA-12	Dnipropetrovs'ka Oblast'
+UA-14	Donets'ka Oblast'
+UA-26	Ivano-Frankivs'ka Oblast'
+UA-63	Kharkivs'ka Oblast'
+UA-65	Khersons'ka Oblast'
+UA-68	Khmel'nyts'ka Oblast'
+UA-35	Kirovohrads'ka Oblast'
+UA-32	Kyivs'ka Oblast'
+UA-09	Luhans'ka Oblast'
+UA-46	L'vivs'ka Oblast'
+UA-48	Mykolaivs'ka Oblast'
+UA-51	Odes 'ka Oblast'
+UA-53	Poltavs'ka Oblast'
+UA-56	Rivnens'ka Oblast'
+UA-59	Sums 'ka Oblast'
+UA-61	Ternopil's'ka Oblast'
+UA-05	Vinnyts'ka Oblast'
+UA-07	Volyos'ka Oblast'
+UA-21	Zakarpats'ka Oblast'
+UA-23	Zaporiz'ka Oblast'
+UA-18	Zhytomyrs'ka Oblast'
+UA-43	Respublika Krym
+UA-30	Kyiv
+UA-40	Sevastopol'
+#
+# ISO 3166-2 regions for Uganda
+#
+UG-301	Adjumani
+UG-302	Apac
+UG-303	Arua
+UG-201	Bugiri
+UG-401	Bundibugyo
+UG-402	Bushenyi
+UG-202	Busia
+UG-304	Gulu
+UG-403	Hoima
+UG-203	Iganga
+UG-204	Jinja
+UG-404	Kabale
+UG-405	Kabarole
+UG-213	Kaberamaido
+UG-101	Kalangala
+UG-102	Kampala
+UG-205	Kamuli
+UG-413	Kamwenge
+UG-414	Kanungu
+UG-206	Kapchorwa
+UG-406	Kasese
+UG-207	Katakwi
+UG-112	Kayunga
+UG-407	Kibaale
+UG-103	Kiboga
+UG-408	Kisoro
+UG-305	Kitgum
+UG-306	Kotido
+UG-208	Kumi
+UG-415	Kyenjojo
+UG-307	Lira
+UG-104	Luwero
+UG-105	Masaka
+UG-409	Masindi
+UG-214	Mayuge
+UG-209	Mbale
+UG-410	Mbarara
+UG-308	Moroto
+UG-309	Moyo
+UG-106	Mpigi
+UG-107	Mubende
+UG-108	Mukono
+UG-311	Nakapiripirit
+UG-109	Nakasongola
+UG-310	Nebbi
+UG-411	Ntungamo
+UG-312	Pader
+UG-210	Pallisa
+UG-110	Rakai
+UG-412	Rukungiri
+UG-111	Sembabule
+UG-215	Sironko
+UG-211	Soroti
+UG-212	Tororo
+UG-113	Wakiso
+UG-313	Yumbe
+#
+# ISO 3166-2 regions for United States Minor Outlying Islands
+#  
+UM-81	Baker Island
+UM-84	Howland Island
+UM-86	Jarvis Island
+UM-67	Johnston Atoll
+UM-89	Kingman Reef
+UM-71	Midway Islands
+UM-76	Navassa Island
+UM-95	Palmyra Atoll
+UM-79	Wake Ialand
+# ISO 3166-2 sub-region codes for US territories
+#  
+# US ISO 3166-2 system (from one example) appears to be based on USPS State
+# and territory codes, which follow:
+#
+# Note US-UM: Outlying Islands have their own subregion in 'UM'
+#
+US-AL	Alabama
+US-AK	Alaska
+US-AS	American Samoa
+US-AZ	Arizona 
+US-AR	Arkansas
+US-CA	California 
+US-CO	Colorado 
+US-CT	Connecticut
+US-DE	Delaware
+US-DC	District of Columbia
+US-FL	Florida
+US-GA	Georgia
+US-GU	Guam
+US-HI	Hawaii
+US-ID	Idaho
+US-IL	Illinois
+US-IN	Indiana
+US-IA	Iowa
+US-KS	Kansas
+US-KY	Kentucky
+US-LA	Louisiana
+US-ME	Maine
+US-MD	Maryland
+US-MA	Massachusetts
+US-MI	Michigan
+US-MN	Minnesota
+US-MS	Mississippi
+US-MO	Missouri
+US-MT	Montana
+US-NE	Nebraska
+US-NV	Nevada
+US-NH	New Hampshire
+US-NJ	New Jersey
+US-NM	New Mexico
+US-NY	New York
+US-NC	North Carolina
+US-ND	North Dakota
+US-MP	Northern Mariana Islands
+US-OH	Ohio
+US-OK	Oklahoma
+US-OR	Oregon
+US-PA	Pennsylvania
+US-PR	Puerto Rico
+US-RI	Rhode Island
+US-SC	South Carolina
+US-SD	South Dakota
+US-TN	Tennessee
+US-TX	Texas
+US-UM	United States Minor Outlying Islands
+US-UT	Utah
+US-VT	Vermont
+US-VI	Virgin Islands
+US-VA	Virginia
+US-WA	Washington
+US-WV	West Virginia
+US-WI	Wisconsin
+US-WY	Wyoming
+#
+# The USPS Also recognizes the following Military "States"
+# (Europe includes Africa, Middile East)
+#
+US-AE	Armed Forces Europe
+US-AA	Armed Forces Americas
+US-AP	Armed Forces Pacific
+# ISO 3166-2 regions for Uruguay
+#   
+UY-AR	Artigsa
+UY-CA	Canelones
+UY-CL	Cerro Largo
+UY-CO	Colonia
+UY-DU	Durazno
+UY-FS	Flores
+UY-FD	Florida
+UY-LA	Lavalleja
+UY-MA	Maldonado
+UY-MO	Montevideo
+UY-PA	Paysandu
+UY-RN	Rio Negro
+UY-RV	Rivera
+UY-RO	Rocha
+UY-SA	Salto
+UY-SJ	San Jose
+UY-SO	Soriano
+UY-TA	Tacuarembo
+UY-TT	Treinta y Tres
+#
+# ISO 3166-2 regions of Uzbekistan
+#
+UZ-TK	Toshkent    
+UZ-QR	Qoraqalpogiston Respublikasi
+UZ-AN	Andijon
+UZ-BU	Buxoro
+UZ-FA	Farg'ona
+UZ-JI	Jizzax
+UZ-KH	Khorazm
+UZ-NG	Namangan
+UZ-NW	Navoiy
+UZ-QA	Qashqadaryo
+UZ-SA	Samarqand
+UZ-SI	Sirdaryo
+UZ-SU	Surxondaryo
+UZ-TO	Toshkent
+UZ-XO	Xorazm
+#
+# ISO 3166-2 regions for Venezuela
+# 
+# Federal Dependencies:
+VE-A	Diatrito Federal
+# States:
+VE-B	Anzoategui
+VE-C	Apure
+VE-D	Aragua
+VE-E	Barinas
+VE-F	Bolivar
+VE-G	Carabobo
+VE-H	Cojedes
+VE-I	Falcon
+VE-J	Guarico
+VE-K	Lara
+VE-L	Merida
+VE-M	Miranda
+VE-N	Monagas
+VE-O	Nueva Esparta
+VE-P	Portuguesa
+VE-R	Sucre
+VE-S	Tachira
+VE-T	Trujillo
+VE-X	Vargas
+VE-U	Yaracuy
+VE-V	Zulia
+VE-Z	Amazonas
+VE-Y	Delta Amacuro
+VE-W	Dependencias Federales
+#
+# ISO 3166-2 regions in Vietnam
+#   
+VN-44	An Giang
+VN-43	Ba Ria - Vung Tau
+VN-53	Bac Can
+VN-54	Bac Giang
+VN-55	Bac Lieu
+VN-56	Bac Ninh
+VN-50	Ben Tre
+VN-31	Binh Dinh
+VN-57	Binh Duong
+VN-58	Binh Phuoc
+VN-40	Binh Thuan
+VN-59	Ca Mau
+VN-48	Can Tho
+VN-04	Cao Bang
+VN-60	Da Nang, thanh pho
+VN-33	Dac Lac
+VN-39	Dong Nai
+VN-45	Dong Thap
+VN-30	Gia Lai
+VN-03	Ha Giang
+VN-63	Ha Nam
+VN-64	Ha Noi, thu do
+VN-15	Ha Tay
+VN-23	Ha Tinh
+VN-61	Hai Duong
+VN-62	Hai Phong, thanh pho
+VN-14	Hoa Binh
+VN-65	Ho Chi Minh, thanh pho [Sai Gon]
+VN-66	Hung Yen
+VN-34	Khanh Hoa
+VN-47	Kien Giang
+VN-28	Kon Tum
+VN-01	Lai Chau
+VN-35	Lam Dong
+VN-09	Lang Son
+VN-02	Lao Cai
+VN-41	Long An
+VN-67	Nam Dinh
+VN-22	Nghe An
+VN-18	Ninh Binh
+VN-36	Ninh Thuan
+VN-68	Phu Tho
+VN-32	Phu Yen
+VN-24	Quang Binh
+VN-27	Quang Nam
+VN-29	Quang Ngai
+VN-13	Quang Ninh
+VN-25	Quang Tri
+VN-52	Soc Trang
+VN-05	Son La
+VN-37	Tay Ninh
+VN-20	Thai Binh
+VN-69	Thai Nguyen
+VN-21	Thanh Hoa
+VN-26	Thua Thien-Hue
+VN-46	Tien Giang
+VN-51	Tra Vinh
+VN-07	Tuyen Quang
+VN-49	Vinh Long
+VN-70	Vinh Phuc
+VN-06	Yen Bai
+# ISO 3166-2 regions for Vanuatu
+#  
+VU-MAP	Malampa
+VU-PAM	Penama
+VU-SAM	Sanma
+VU-SEE	Shefa
+VU-TAE	Tafea
+VU-TOB	Torba
+# ISO 3166-2 regions for Wallis and Fortuna
+#  
+WS-AA	A'ana
+WS-AL	Aiga-i-le-Tai
+WS-AT	Atua
+WS-FA	Fa'aaaleleaga
+WS-GE	Gaga'emauga
+WS-GI	Gagaifomauga
+WS-PA	Palauli
+WS-SA	Satupa'itea
+WS-TU	Tuamasaga
+WS-VF	Va'a-o-Fonoti
+WS-VS	Vaisigano
+# 
+# ISO 3166-2 regions for Serbia and Montenegro
+#
+# Republics:
+CS-CG	Crna Gora
+CS-SR	Srbija
+# Autonomous provinces:
+CS-KM	Kosovo-Metohija
+CS-VO	Vojvodina
+#
+# ISO 3166-2 regions for Yemen
+#  
+YE-AB	Abyan
+YE-AD	Adan
+YE-DA	Ad Dali
+YE-BA	Al Bayda'
+YE-MU	Al Hudaydah
+YE-JA	Al Jawf
+YE-MR	Al Mahrah
+YE-MW	Al Mahwit
+YE-AM	Amran
+YE-DH	Dhamar
+YE-HD	Hadramawt
+YE-HJ	Hajjah
+YE-IB	Ibb
+YE-LA	Lahij
+YE-MA	Ma'rib
+YE-SD	Sa'dah
+YE-SN	San'a'
+YE-SH	Shabwah
+YE-TA	Ta'izz
+# ISO 3166-2 regions for South Africa
+#  
+ZA-EC	Eastern Cape
+ZA-FS	Free State
+ZA-GT	Gauteng
+ZA-NL	Kwazulu-Natal
+ZA-MP	Mpumalanga
+ZA-NC	Northern Cape
+ZA-NP	Limpopo
+ZA-NW	North-West
+ZA-WC	Western Cape
+# ISO 3166-2 regions for Zambia
+#  
+ZM-02	Central
+ZM-08	Copperbelt
+ZM-03	Eastern
+ZM-04	Luapula
+ZM-09	Lusaka
+ZM-05	Northern
+ZM-06	North-Western
+ZM-07	Southern
+ZM-01	Western
+# ISO 3166-2 subregion codes for Zimbabwe
+#
+ZW-BU	Bulawayo
+ZW-HA	Harare
+ZW-MA	Manicaland
+ZW-MC	Mashonaland Central
+ZW-ME	Mashonaland East
+ZW-MW	Mashonaland West
+ZW-MV	Masvingo
+ZW-MN	Matabeleland North
+ZW-MS	Matabeleland South
+ZW-MI	Midlands

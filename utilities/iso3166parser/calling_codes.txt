@@ -1,0 +1,313 @@
+| width="100%" align="center" colspan="10" |<tt>'''+0:''' Not used</tt>
+|-
+| width="100%" align="center" colspan="10" |<tt>'''+1:''' ([[North American Numbering Plan|NANP]]) [[United States|US]], [[Canada|CA]], [[Anguilla|AI]], [[Antigua and Barbuda|AG]], [[American Samoa|AS]], [[Barbados|BB]], [[Bahamas|BS]], [[British Virgin Islands|VG]], [[U.S. Virgin Islands|VI]], [[Cayman Islands|KY]], [[Bermuda|BM]], [[Grenada|GD]], [[Turks and Caicos Islands|TC]], [[Montserrat|MS]], [[Northern Mariana Islands|MP]], [[Guam|GU]], [[St. Lucia|LC]], [[Dominica|DM]], [[St. Vincent and the Grenadines|VC]], [[Puerto Rico|PR]], [[Dominican Republic|DO]], [[Trinidad and Tobago|TT]], [[St. Kitts and Nevis|KN]], [[Jamaica|JM]]</tt>
+|-
+| width="10%" align="center" |<tt>'''+20:''' [[Egypt|EG]]</tt>
+| width="10%" align="center" |<tt>
+'''+210:''' --<br>
+'''+211:''' --<br>
+'''+212:''' [[Morocco|MA]], ''[[Western Sahara|EH]]''<br>
+'''+213:''' [[Algeria|DZ]]<br>
+'''+214:''' --<br>
+'''+215:''' --<br>
+'''+216:''' [[Tunisia|TN]]<br>
+'''+217:''' --<br>
+'''+218:''' [[Libya|LY]]<br>
+'''+219:''' --</tt>
+| width="10%" align="center" |<tt>
+'''+220:''' [[The Gambia|GM]]<br>
+'''+221:''' [[Senegal|SN]]<br>
+'''+222:''' [[Mauritania|MR]]<br>
+'''+223:''' [[Mali|ML]]<br>
+'''+224:''' [[Guinea|GN]]<br>
+'''+225:''' [[Côte d'Ivoire|CI]]<br>
+'''+226:''' [[Burkina Faso|BF]]<br>
+'''+227:''' [[Niger|NE]]<br>
+'''+228:''' [[Togo|TG]]<br>
+'''+229:''' [[Benin|BJ]]</tt>
+| width="10%" align="center" |<tt>
+'''+230:''' [[Mauritius|MU]]<br>
+'''+231:''' [[Liberia|LR]]<br>
+'''+232:''' [[Sierra Leone|SL]]<br>
+'''+233:''' [[Ghana|GH]]<br>
+'''+234:''' [[Nigeria|NG]]<br>
+'''+235:''' [[Chad|TD]]<br>
+'''+236:''' [[Central African Republic|CF]]<br>
+'''+237:''' [[Cameroon|CM]]<br>
+'''+238:''' [[Cape Verde|CV]]<br>
+'''+239:''' [[São Tomé and Príncipe|ST]]</tt>
+| width="10%" align="center" |<tt>
+'''+240:''' [[Equatorial Guinea|GQ]]<br>
+'''+241:''' [[Gabon|GA]]<br>
+'''+242:''' [[Republic of Congo|CG]]<br>
+'''+243:''' [[Democratic Republic of Congo|CD]]<br>
+'''+244:''' [[Angola|AO]]<br>
+'''+245:''' [[Guinea-Bissau|GW]]<br>
+'''+246:''' [[British Indian Ocean Territory|IO]]<br>
+'''+247:''' [[Ascension Island|AC]]<br>
+'''+248:''' [[Seychelles|SC]]<br>
+'''+249:''' [[Sudan|SD]]</tt>
+| width="10%" align="center" |<tt>
+'''+250:''' [[Rwanda|RW]]<br>
+'''+251:''' [[Ethiopia|ET]]<br>
+'''+252:''' [[Somalia|SO]]<br>
+'''+253:''' [[Djibouti|DJ]]<br>
+'''+254:''' [[Kenya|KE]]<br>
+'''+255:''' [[Tanzania|TZ]]<br>
+'''+256:''' [[Uganda|UG]]<br>
+'''+257:''' [[Burundi|BI]]<br>
+'''+258:''' [[Mozambique|MZ]]<br>
+'''+259:''' --</tt>
+| width="10%" align="center" |<tt>
+'''+260:''' [[Zambia|ZM]]<br>
+'''+261:''' [[Madagascar|MG]]<br>
+'''+262:''' [[Réunion|RE]]<br>
+'''+263:''' [[Zimbabwe|ZW]]<br>
+'''+264:''' [[Namibia|NA]]<br>
+'''+265:''' [[Malawi|MW]]<br>
+'''+266:''' [[Lesotho|LS]]<br>
+'''+267:''' [[Botswana|BW]]<br>
+'''+268:''' [[Swaziland|SZ]]<br>
+'''+269:''' [[Comoros|KM][[Mayotte|YT]]]</tt>
+| width="10%" align="center" |<tt>'''+27:''' [[South Africa|ZA]]</tt>
+| width="10%" align="center" |<tt>'''+28:''' Not used</tt>
+| width="10%" align="center" |<tt>
+'''+290:''' [[Saint Helena|SH]]<br>
+'''+291:''' [[Eritrea|ER]]<br>
+'''+292:''' --<br>
+'''+293:''' --<br>
+'''+294:''' --<br>
+'''+295:''' --<br>
+'''+296:''' --<br>
+'''+297:''' [[Aruba|AW]]<br>
+'''+298:''' [[Faroe Islands|FO]]<br>
+'''+299:''' [[Greenland|GL]]</tt>
+|-
+| width="10%" align="center" |<tt>'''+30:''' [[Greece|GR]]</tt>
+| width="10%" align="center" |<tt>'''+31:''' [[Netherlands|NL]]</tt>
+| width="10%" align="center" |<tt>'''+32:''' [[Belgium|BE]]</tt>
+| width="10%" align="center" |<tt>'''+33:''' [[France|FR]]</tt>
+| width="10%" align="center" |<tt>'''+34:''' [[Spain|ES]]</tt>
+| width="10%" align="center" |<tt>
+'''+350:''' [[Gibraltar|GI]]<br>
+'''+351:''' [[Portugal|PT]]<br>
+'''+352:''' [[Luxembourg|LU]]<br>
+'''+353:''' [[Republic of Ireland|IE]]<br>
+'''+354:''' [[Iceland|IS]]<br>
+'''+355:''' [[Albania|AL]]<br>
+'''+356:''' [[Malta|MT]]<br>
+'''+357:''' [[Cyprus|CY]]<br>
+'''+358:''' [[Finland|FI]]<br>
+'''+359:''' [[Bulgaria|BG]]</tt>
+| width="10%" align="center" |<tt>'''+36:''' [[Hungary|HU]]</tt>
+| width="10%" align="center" |<tt>
+'''+370:''' [[Lithuania|LT]]<br>
+'''+371:''' [[Latvia|LV]]<br>
+'''+372:''' [[Estonia|EE]]<br>
+'''+373:''' [[Moldova|MD]]<br>
+('''+373 533:''' [[Transnistria|PMR]]) <br>
+'''+374:''' [[Armenia|AM]]<br>
+'''+375:''' [[Belarus|BY]]<br>
+'''+376:''' [[Andorra|AD]]<br>
+'''+377:''' [[Monaco|MC]]<br>
+'''+378:''' [[San Marino|SM]]<br>
+'''+379:''' [[Vatican City|VA]]</tt>
+| width="10%" align="center" |<tt>
+'''+380:''' [[Ukraine|UA]]<br>
+'''+381:''' [[Serbia and Montenegro|CS]]<br>
+'''+382:''' --<br>
+'''+383:''' --<br>
+'''+384:''' --<br>
+'''+385:''' [[Croatia|HR]]<br>
+'''+386:''' [[Slovenia|SI]]<br>
+'''+387:''' [[Bosnia and Herzegovina|BA]]<br>
+'''+388:''' [[European Telephony Numbering Space|EU]]<br>
+'''+389:''' [[Republic of Macedonia|MK]]</tt>
+| width="10%" align="center" |<tt>'''+39:''' [[Italy|IT]]</tt>
+|-
+| width="10%" align="center" |<tt>'''+40:''' [[Romania|RO]]</tt>
+| width="10%" align="center" |<tt>'''+41:''' [[Switzerland|CH]]</tt>
+| width="10%" align="center" |<tt>
+'''+420:''' [[Czech Republic|CZ]]<br>
+'''+421:''' [[Slovakia|SK]]<br>
+'''+422:''' --<br>
+'''+423:''' [[Liechtenstein|LI]]<br>
+'''+424:''' --<br>
+'''+425:''' --<br>
+'''+426:''' --<br>
+'''+427:''' --<br>
+'''+428:''' --<br>
+'''+429:''' --</tt>
+| width="10%" align="center" |<tt>'''+43:''' [[Austria|AT]]</tt>
+| width="10%" align="center" |<tt>'''+44:''' [[United Kingdom|GB]]</tt>
+| width="10%" align="center" |<tt>'''+45:''' [[Denmark|DK]]</tt>
+| width="10%" align="center" |<tt>'''+46:''' [[Sweden|SE]]</tt>
+| width="10%" align="center" |<tt>'''+47:''' [[Norway|NO]]</tt>
+| width="10%" align="center" |<tt>'''+48:''' [[Poland|PL]]</tt>
+| width="10%" align="center" |<tt>'''+49:''' [[Germany|DE]]</tt>
+|-
+| width="10%" align="center" |<tt>
+'''+500:''' [[Falkland Islands|FK]]<br>
+'''+501:''' [[Belize|BZ]]<br>
+'''+502:''' [[Guatemala|GT]]<br>
+'''+503:''' [[El Salvador|SV]]<br>
+'''+504:''' [[Honduras|HN]]<br>
+'''+505:''' [[Nicaragua|NI]]<br>
+'''+506:''' [[Costa Rica|CR]]<br>
+'''+507:''' [[Panama|PA]]<br>
+'''+508:''' [[St. Pierre and Miquelon|PM]]<br>
+'''+509:''' [[Haiti|HT]]</tt>
+| width="10%" align="center" |<tt>'''+51:''' [[Peru|PE]]</tt>
+| width="10%" align="center" |<tt>'''+52:''' [[Mexico|MX]]</tt>
+| width="10%" align="center" |<tt>'''+53:''' [[Cuba|CU]]</tt>
+| width="10%" align="center" |<tt>'''+54:''' [[Argentina|AR]]</tt>
+| width="10%" align="center" |<tt>'''+55:''' [[Brazil|BR]]</tt>
+| width="10%" align="center" |<tt>'''+56:''' [[Chile|CL]]</tt>
+| width="10%" align="center" |<tt>'''+57:''' [[Colombia|CO]]</tt>
+| width="10%" align="center" |<tt>'''+58:''' [[Venezuela|VE]]</tt>
+| width="10%" align="center" |<tt>
+'''+590:''' [[Guadeloupe|GP]]<br>
+'''+591:''' [[Bolivia|BO]]<br>
+'''+592:''' [[Guyana|GY]]<br>
+'''+593:''' [[Ecuador|EC]]<br>
+'''+594:''' [[French Guiana|GF]]<br>
+'''+595:''' [[Paraguay|PY]]<br>
+'''+596:''' [[Martinique|MQ]]<br>
+'''+597:''' [[Suriname|SR]]<br>
+'''+598:''' [[Uruguay|UY]]<br>
+'''+599:''' [[Netherlands Antilles|AN]]</tt>
+|-
+| width="10%" align="center" |<tt>'''+60:''' [[Malaysia|MY]]</tt>
+| width="10%" align="center" |<tt>'''+61:''' [[Australia|AU]]</tt>
+| width="10%" align="center" |<tt>'''+62:''' [[Indonesia|ID]]</tt>
+| width="10%" align="center" |<tt>'''+63:''' [[Philippines|PH]]</tt>
+| width="10%" align="center" |<tt>'''+64:''' [[New Zealand|NZ]]</tt>
+| width="10%" align="center" |<tt>'''+65:''' [[Singapore|SG]]</tt>
+| width="10%" align="center" |<tt>'''+66:''' [[Thailand|TH]]</tt>
+| width="10%" align="center" |<tt>
+'''+670:''' [[Timor-Leste|TL]]<br>
+'''+671:''' --<br>
+'''+672:''' [[Antarctica|AQ]]<br>
+'''+673:''' [[Brunei Darussalam|BN]]<br>
+'''+674:''' [[Nauru|NR]]<br>
+'''+675:''' [[Papua New Guinea|PG]]<br>
+'''+676:''' [[Tonga|TO]]<br>
+'''+677:''' [[Solomon Islands|SB]]<br>
+'''+678:''' [[Vanuatu|VU]]<br>
+'''+679:''' [[Fiji|FJ]]</tt>
+| width="10%" align="center" |<tt>
+'''+680:''' [[Palau|PW]]<br>
+'''+681:''' [[Wallis and Futuna|WF]]<br>
+'''+682:''' [[Cook Islands|CK]]<br>
+'''+683:''' [[Niue|NU]]<br>
+'''+684:''' --<br>
+'''+685:''' [[Samoa|WS]]<br>
+'''+686:''' [[Kiribati|KI]]<br>
+'''+687:''' [[New Caledonia|NC]]<br>
+'''+688:''' [[Tuvalu|TV]]<br>
+'''+689:''' [[French Polynesia|PF]]</tt>
+| width="10%" align="center" |<tt>
+'''+690:''' [[Tokelau|TK]]<br>
+'''+691:''' [[Federated States of Micronesia|FM]]<br>
+'''+692:''' [[Marshall Islands|MH]]<br>
+'''+693:''' --<br>
+'''+694:''' --<br>
+'''+695:''' --<br>
+'''+696:''' --<br>
+'''+697:''' --<br>
+'''+698:''' --<br>
+'''+699:''' --</tt>
+|-
+| width="100%" align="center" colspan="10" |<tt>'''+7:''' [[Russia|RU]], [[Kazakhstan|KZ]]</tt>
+|-
+| width="10%" align="center" |<tt>
+'''+800:''' [[Universal international freephone number|XT]]<br>
+'''+801:''' --<br>
+'''+802:''' --<br>
+'''+803:''' --<br>
+'''+804:''' --<br>
+'''+805:''' --<br>
+'''+806:''' --<br>
+'''+807:''' --<br>
+'''+808:''' [[Shared Cost Service|XS]]<br>
+'''+809:''' --</tt>
+| width="10%" align="center" |<tt>'''+81:''' [[Japan|JP]]</tt>
+| width="10%" align="center" |<tt>'''+82:''' [[South Korea|KR]]</tt>
+| width="10%" align="center" |<tt>'''+83:''' Not used</tt>
+| width="10%" align="center" |<tt>'''+84:''' [[Vietnam|VN]]</tt>
+| width="10%" align="center" |<tt>
+'''+850:''' [[North Korea|KP]]<br>
+'''+851:''' --<br>
+'''+852:''' [[Hong Kong|HK]]<br>
+'''+853:''' [[Macau|MO]]<br>
+'''+854:''' --<br>
+'''+855:''' [[Cambodia|KH]]<br>
+'''+856:''' [[Laos|LA]]<br>
+'''+857:''' --<br>
+'''+858:''' --<br>
+'''+859:''' --</tt>
+| width="10%" align="center" |<tt>'''+86:''' [[People's Republic of China|CN]]</tt>
+| width="10%" align="center" |<tt>
+'''+870:''' [[Inmarsat|XN]]<br>
+'''+871:''' [[Inmarsat|XE]]<br>
+'''+872:''' [[Inmarsat|XF]]<br>
+'''+873:''' [[Inmarsat|XI]]<br>
+'''+874:''' [[Inmarsat|XW]]<br>
+'''+875:''' --<br>
+'''+876:''' --<br>
+'''+877:''' --<br>
+'''+878:''' [[Universal Personal Telecommunications|XP]]<br>
+'''+879:''' --</tt>
+| width="10%" align="center" |<tt>
+'''+880:''' [[Bangladesh|BD]]<br>
+'''+881:''' [[Global Mobile Satellite System|XG]]<br>
+'''+882:''' [[International Networks (country code)|XV]]<br>
+'''+883:''' --<br>
+'''+884:''' --<br>
+'''+885:''' --<br>
+'''+886:''' [[Republic of China|TW]]<br>
+'''+887:''' --<br>
+'''+888:''' --<br>
+'''+889:''' --</tt>
+| width="10%" align="center" |<tt>'''+89:''' Not used</tt>
+|-
+| width="10%" align="center" |<tt>'''+90:''' [[Turkey|TR]] <BR> ('''+90 392:''' [[Turkish Republic of Northern Cyprus|TRNC]])</tt>
+| width="10%" align="center" |<tt>'''+91:''' [[India|IN]]</tt>
+| width="10%" align="center" |<tt>'''+92:''' [[Pakistan|PK]]</tt>
+| width="10%" align="center" |<tt>'''+93:''' [[Afghanistan|AF]]</tt>
+| width="10%" align="center" |<tt>'''+94:''' [[Sri Lanka|LK]]</tt>
+| width="10%" align="center" |<tt>'''+95:''' [[Myanmar|MM]]</tt>
+| width="10%" align="center" |<tt>
+'''+960:''' [[Maldives|MV]]<br>
+'''+961:''' [[Lebanon|LB]]<br>
+'''+962:''' [[Jordan|JO]]<br>
+'''+963:''' [[Syria|SY]]<br>
+'''+964:''' [[Iraq|IQ]]<br>
+'''+965:''' [[Kuwait|KW]]<br>
+'''+966:''' [[Saudi Arabia|SA]]<br>
+'''+967:''' [[Yemen|YE]]<br>
+'''+968:''' [[Oman|OM]]<br>
+'''+969:''' --</tt>
+| width="10%" align="center" |<tt>
+'''+970:''' [[Palestinian Authority|PS]]<br>
+'''+971:''' [[United Arab Emirates|AE]]<br>
+'''+972:''' [[Israel|IL]]<br>
+'''+973:''' [[Bahrain|BH]]<br>
+'''+974:''' [[Qatar|QA]]<br>
+'''+975:''' [[Bhutan|BT]]<br>
+'''+976:''' [[Mongolia|MN]]<br>
+'''+977:''' [[Nepal|NP]]<br>
+'''+978:''' --<br>
+'''+979:''' [[International premium rate service|XR]]</tt>
+| width="10%" align="center" |<tt>'''+98:''' [[Iran|IR]]</tt>
+| width="10%" align="center" |<tt>
+'''+990:''' --<br>
+'''+991:''' [[ITPCS|XC]]<br>
+'''+992:''' [[Tajikistan|TJ]]<br>
+'''+993:''' [[Turkmenistan|TM]]<br>
+'''+994:''' [[Azerbaidzhan|AZ]]<br>
+'''+995:''' [[Georgia (country)|GE]]<br>
+'''+996:''' [[Kyrgyzstan|KG]]<br>
+'''+997:''' --<br>
+'''+998:''' [[Uzbekistan|UZ]]<br>
+'''+999:''' [[Telecommunications for Disaster Relief|XD]]</tt>

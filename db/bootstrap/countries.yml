@@ -1,0 +1,1429 @@
+aaland_islands:
+  id: 1
+  name: Aaland Islands
+  abbreviation_2: AX
+  abbreviation_3: ALA
+andorra:
+  id: 2
+  name: Andorra
+  abbreviation_2: AD
+  abbreviation_3: AND
+  calling_code: 376
+united_arab_emirates:
+  id: 3
+  name: United Arab Emirates
+  abbreviation_2: AE
+  abbreviation_3: ARE
+  calling_code: 971
+afghanistan:
+  id: 4
+  name: Afghanistan
+  abbreviation_2: AF
+  abbreviation_3: AFG
+  calling_code: 93
+antigua_and_barbuda:
+  id: 5
+  name: Antigua and Barbuda
+  abbreviation_2: AG
+  abbreviation_3: ATG
+  calling_code: 1
+anguilla:
+  id: 6
+  name: Anguilla
+  abbreviation_2: AI
+  abbreviation_3: AIA
+  calling_code: 1
+albania:
+  id: 7
+  name: Albania
+  abbreviation_2: AL
+  abbreviation_3: ALB
+  calling_code: 355
+armenia:
+  id: 8
+  name: Armenia
+  abbreviation_2: AM
+  abbreviation_3: ARM
+  calling_code: 374
+netherlands_antilles:
+  id: 9
+  name: Netherlands Antilles
+  abbreviation_2: AN
+  abbreviation_3: ANT
+  calling_code: 599
+angola:
+  id: 10
+  name: Angola
+  abbreviation_2: AO
+  abbreviation_3: AGO
+  calling_code: 244
+antarctica:
+  id: 11
+  name: Antarctica
+  abbreviation_2: AQ
+  abbreviation_3: ATA
+  calling_code: 672
+argentina:
+  id: 12
+  name: Argentina
+  abbreviation_2: AR
+  abbreviation_3: ARG
+  calling_code: 54
+american_samoa:
+  id: 13
+  name: American Samoa
+  abbreviation_2: AS
+  abbreviation_3: ASM
+  calling_code: 1
+austria:
+  id: 14
+  name: Austria
+  abbreviation_2: AT
+  abbreviation_3: AUT
+  calling_code: 43
+australia:
+  id: 15
+  name: Australia
+  abbreviation_2: AU
+  abbreviation_3: AUS
+  calling_code: 61
+aruba:
+  id: 16
+  name: Aruba
+  abbreviation_2: AW
+  abbreviation_3: ABW
+  calling_code: 297
+azerbaijan:
+  id: 17
+  name: Azerbaijan
+  abbreviation_2: AZ
+  abbreviation_3: AZE
+  calling_code: 994
+bosnia_and_herzegovina:
+  id: 18
+  name: Bosnia and Herzegovina
+  abbreviation_2: BA
+  abbreviation_3: BIH
+  calling_code: 387
+barbados:
+  id: 19
+  name: Barbados
+  abbreviation_2: BB
+  abbreviation_3: BRB
+  calling_code: 1
+bangladesh:
+  id: 20
+  name: Bangladesh
+  abbreviation_2: BD
+  abbreviation_3: BGD
+  calling_code: 880
+belgium:
+  id: 21
+  name: Belgium
+  abbreviation_2: BE
+  abbreviation_3: BEL
+  calling_code: 32
+burkina_faso:
+  id: 22
+  name: Burkina Faso
+  abbreviation_2: BF
+  abbreviation_3: BFA
+  calling_code: 226
+bulgaria:
+  id: 23
+  name: Bulgaria
+  abbreviation_2: BG
+  abbreviation_3: BGR
+  calling_code: 359
+bahrain:
+  id: 24
+  name: Bahrain
+  abbreviation_2: BH
+  abbreviation_3: BHR
+  calling_code: 973
+burundi:
+  id: 25
+  name: Burundi
+  abbreviation_2: BI
+  abbreviation_3: BDI
+  calling_code: 257
+benin:
+  id: 26
+  name: Benin
+  abbreviation_2: BJ
+  abbreviation_3: BEN
+  calling_code: 229
+bermuda:
+  id: 27
+  name: Bermuda
+  abbreviation_2: BM
+  abbreviation_3: BMU
+  calling_code: 1
+brunei_darussalam:
+  id: 28
+  name: Brunei Darussalam
+  abbreviation_2: BN
+  abbreviation_3: BRN
+  calling_code: 673
+bolivia:
+  id: 29
+  name: Bolivia
+  abbreviation_2: BO
+  abbreviation_3: BOL
+  calling_code: 591
+brazil:
+  id: 30
+  name: Brazil
+  abbreviation_2: BR
+  abbreviation_3: BRA
+  calling_code: 55
+bahamas:
+  id: 31
+  name: Bahamas
+  abbreviation_2: BS
+  abbreviation_3: BHS
+  calling_code: 1
+bhutan:
+  id: 32
+  name: Bhutan
+  abbreviation_2: BT
+  abbreviation_3: BTN
+  calling_code: 975
+bouvet_island:
+  id: 33
+  name: Bouvet Island
+  abbreviation_2: BV
+  abbreviation_3: BVT
+botswana:
+  id: 34
+  name: Botswana
+  abbreviation_2: BW
+  abbreviation_3: BWA
+  calling_code: 267
+belarus:
+  id: 35
+  name: Belarus
+  abbreviation_2: BY
+  abbreviation_3: BLR
+  calling_code: 375
+belize:
+  id: 36
+  name: Belize
+  abbreviation_2: BZ
+  abbreviation_3: BLZ
+  calling_code: 501
+canada:
+  id: 37
+  name: Canada
+  abbreviation_2: CA
+  abbreviation_3: CAN
+  calling_code: 1
+cocos_keeling_islands:
+  id: 38
+  name: Cocos (Keeling) Islands
+  abbreviation_2: CC
+  abbreviation_3: CCK
+congo_the_democratic_republic_of_the:
+  id: 39
+  name: Congo, The Democratic Republic of the
+  abbreviation_2: CD
+  abbreviation_3: COD
+  calling_code: 243
+central_african_republic:
+  id: 40
+  name: Central African Republic
+  abbreviation_2: CF
+  abbreviation_3: CAF
+  calling_code: 236
+congo:
+  id: 41
+  name: Congo
+  abbreviation_2: CG
+  abbreviation_3: COG
+  calling_code: 242
+switzerland:
+  id: 42
+  name: Switzerland
+  abbreviation_2: CH
+  abbreviation_3: CHE
+  calling_code: 41
+cote_divoire:
+  id: 43
+  name: Cote D'Ivoire
+  abbreviation_2: CI
+  abbreviation_3: CIV
+  calling_code: 225
+cook_islands:
+  id: 44
+  name: Cook Islands
+  abbreviation_2: CK
+  abbreviation_3: COK
+  calling_code: 682
+chile:
+  id: 45
+  name: Chile
+  abbreviation_2: CL
+  abbreviation_3: CHL
+  calling_code: 56
+cameroon:
+  id: 46
+  name: Cameroon
+  abbreviation_2: CM
+  abbreviation_3: CMR
+  calling_code: 237
+china:
+  id: 47
+  name: China
+  abbreviation_2: CN
+  abbreviation_3: CHN
+  calling_code: 86
+colombia:
+  id: 48
+  name: Colombia
+  abbreviation_2: CO
+  abbreviation_3: COL
+  calling_code: 57
+costa_rica:
+  id: 49
+  name: Costa Rica
+  abbreviation_2: CR
+  abbreviation_3: CRI
+  calling_code: 506
+cuba:
+  id: 50
+  name: Cuba
+  abbreviation_2: CU
+  abbreviation_3: CUB
+  calling_code: 53
+cape_verde:
+  id: 51
+  name: Cape Verde
+  abbreviation_2: CV
+  abbreviation_3: CPV
+  calling_code: 238
+christmas_island:
+  id: 52
+  name: Christmas Island
+  abbreviation_2: CX
+  abbreviation_3: CXR
+cyprus:
+  id: 53
+  name: Cyprus
+  abbreviation_2: CY
+  abbreviation_3: CYP
+  calling_code: 357
+czech_republic:
+  id: 54
+  name: Czech Republic
+  abbreviation_2: CZ
+  abbreviation_3: CZE
+  calling_code: 420
+germany:
+  id: 55
+  name: Germany
+  abbreviation_2: DE
+  abbreviation_3: DEU
+  calling_code: 49
+djibouti:
+  id: 56
+  name: Djibouti
+  abbreviation_2: DJ
+  abbreviation_3: DJI
+  calling_code: 253
+denmark:
+  id: 57
+  name: Denmark
+  abbreviation_2: DK
+  abbreviation_3: DNK
+  calling_code: 45
+dominica:
+  id: 58
+  name: Dominica
+  abbreviation_2: DM
+  abbreviation_3: DMA
+  calling_code: 1
+dominican_republic:
+  id: 59
+  name: Dominican Republic
+  abbreviation_2: DO
+  abbreviation_3: DOM
+  calling_code: 1
+algeria:
+  id: 60
+  name: Algeria
+  abbreviation_2: DZ
+  abbreviation_3: DZA
+  calling_code: 213
+ecuador:
+  id: 61
+  name: Ecuador
+  abbreviation_2: EC
+  abbreviation_3: ECU
+  calling_code: 593
+estonia:
+  id: 62
+  name: Estonia
+  abbreviation_2: EE
+  abbreviation_3: EST
+  calling_code: 372
+egypt:
+  id: 63
+  name: Egypt
+  abbreviation_2: EG
+  abbreviation_3: EGY
+  calling_code: 20
+western_sahara:
+  id: 64
+  name: Western Sahara
+  abbreviation_2: EH
+  abbreviation_3: ESH
+  calling_code: 212
+eritrea:
+  id: 65
+  name: Eritrea
+  abbreviation_2: ER
+  abbreviation_3: ERI
+  calling_code: 291
+spain:
+  id: 66
+  name: Spain
+  abbreviation_2: ES
+  abbreviation_3: ESP
+  calling_code: 34
+ethiopia:
+  id: 67
+  name: Ethiopia
+  abbreviation_2: ET
+  abbreviation_3: ETH
+  calling_code: 251
+finland:
+  id: 68
+  name: Finland
+  abbreviation_2: FI
+  abbreviation_3: FIN
+  calling_code: 358
+fiji:
+  id: 69
+  name: Fiji
+  abbreviation_2: FJ
+  abbreviation_3: FJI
+  calling_code: 679
+falkland_islands_malvinas:
+  id: 70
+  name: Falkland Islands (Malvinas)
+  abbreviation_2: FK
+  abbreviation_3: FLK
+  calling_code: 500
+micronesia_federated_states_of:
+  id: 71
+  name: Micronesia, Federated States of
+  abbreviation_2: FM
+  abbreviation_3: FSM
+  calling_code: 691
+faroe_islands:
+  id: 72
+  name: Faroe Islands
+  abbreviation_2: FO
+  abbreviation_3: FRO
+  calling_code: 298
+france:
+  id: 73
+  name: France
+  abbreviation_2: FR
+  abbreviation_3: FRA
+  calling_code: 33
+gabon:
+  id: 74
+  name: Gabon
+  abbreviation_2: GA
+  abbreviation_3: GAB
+  calling_code: 241
+united_kingdom:
+  id: 75
+  name: United Kingdom
+  abbreviation_2: GB
+  abbreviation_3: GBR
+  calling_code: 44
+grenada:
+  id: 76
+  name: Grenada
+  abbreviation_2: GD
+  abbreviation_3: GRD
+  calling_code: 1
+georgia:
+  id: 77
+  name: Georgia
+  abbreviation_2: GE
+  abbreviation_3: GEO
+  calling_code: 995
+french_guiana:
+  id: 78
+  name: French Guiana
+  abbreviation_2: GF
+  abbreviation_3: GUF
+  calling_code: 594
+ghana:
+  id: 79
+  name: Ghana
+  abbreviation_2: GH
+  abbreviation_3: GHA
+  calling_code: 233
+gibraltar:
+  id: 80
+  name: Gibraltar
+  abbreviation_2: GI
+  abbreviation_3: GIB
+  calling_code: 350
+greenland:
+  id: 81
+  name: Greenland
+  abbreviation_2: GL
+  abbreviation_3: GRL
+  calling_code: 299
+gambia:
+  id: 82
+  name: Gambia
+  abbreviation_2: GM
+  abbreviation_3: GMB
+  calling_code: 220
+guinea:
+  id: 83
+  name: Guinea
+  abbreviation_2: GN
+  abbreviation_3: GIN
+  calling_code: 224
+guadeloupe:
+  id: 84
+  name: Guadeloupe
+  abbreviation_2: GP
+  abbreviation_3: GLP
+  calling_code: 590
+equatorial_guinea:
+  id: 85
+  name: Equatorial Guinea
+  abbreviation_2: GQ
+  abbreviation_3: GNQ
+  calling_code: 240
+greece:
+  id: 86
+  name: Greece
+  abbreviation_2: GR
+  abbreviation_3: GRC
+  calling_code: 30
+south_georgia_and_the_south_sandwich_islands:
+  id: 87
+  name: South Georgia and the South Sandwich Islands
+  abbreviation_2: GS
+  abbreviation_3: SGS
+guatemala:
+  id: 88
+  name: Guatemala
+  abbreviation_2: GT
+  abbreviation_3: GTM
+  calling_code: 502
+guam:
+  id: 89
+  name: Guam
+  abbreviation_2: GU
+  abbreviation_3: GUM
+  calling_code: 1
+guineabissau:
+  id: 90
+  name: Guinea-Bissau
+  abbreviation_2: GW
+  abbreviation_3: GNB
+  calling_code: 245
+guyana:
+  id: 91
+  name: Guyana
+  abbreviation_2: GY
+  abbreviation_3: GUY
+  calling_code: 592
+hong_kong:
+  id: 92
+  name: Hong Kong
+  abbreviation_2: HK
+  abbreviation_3: HKG
+  calling_code: 852
+heard_island_and_mcdonald_islands:
+  id: 93
+  name: Heard Island and McDonald Islands
+  abbreviation_2: HM
+  abbreviation_3: HMD
+honduras:
+  id: 94
+  name: Honduras
+  abbreviation_2: HN
+  abbreviation_3: HND
+  calling_code: 504
+croatia:
+  id: 95
+  name: Croatia
+  abbreviation_2: HR
+  abbreviation_3: HRV
+  calling_code: 385
+haiti:
+  id: 96
+  name: Haiti
+  abbreviation_2: HT
+  abbreviation_3: HTI
+  calling_code: 509
+hungary:
+  id: 97
+  name: Hungary
+  abbreviation_2: HU
+  abbreviation_3: HUN
+  calling_code: 36
+indonesia:
+  id: 98
+  name: Indonesia
+  abbreviation_2: ID
+  abbreviation_3: IDN
+  calling_code: 62
+ireland:
+  id: 99
+  name: Ireland
+  abbreviation_2: IE
+  abbreviation_3: IRL
+  calling_code: 353
+israel:
+  id: 100
+  name: Israel
+  abbreviation_2: IL
+  abbreviation_3: ISR
+  calling_code: 972
+india:
+  id: 101
+  name: India
+  abbreviation_2: IN
+  abbreviation_3: IND
+  calling_code: 91
+british_indian_ocean_territory:
+  id: 102
+  name: British Indian Ocean Territory
+  abbreviation_2: IO
+  abbreviation_3: IOT
+  calling_code: 246
+iraq:
+  id: 103
+  name: Iraq
+  abbreviation_2: IQ
+  abbreviation_3: IRQ
+  calling_code: 964
+iran_islamic_republic_of:
+  id: 104
+  name: Iran, Islamic Republic of
+  abbreviation_2: IR
+  abbreviation_3: IRN
+  calling_code: 98
+iceland:
+  id: 105
+  name: Iceland
+  abbreviation_2: IS
+  abbreviation_3: ISL
+  calling_code: 354
+italy:
+  id: 106
+  name: Italy
+  abbreviation_2: IT
+  abbreviation_3: ITA
+  calling_code: 39
+jamaica:
+  id: 107
+  name: Jamaica
+  abbreviation_2: JM
+  abbreviation_3: JAM
+  calling_code: 1
+jordan:
+  id: 108
+  name: Jordan
+  abbreviation_2: JO
+  abbreviation_3: JOR
+  calling_code: 962
+japan:
+  id: 109
+  name: Japan
+  abbreviation_2: JP
+  abbreviation_3: JPN
+  calling_code: 81
+kenya:
+  id: 110
+  name: Kenya
+  abbreviation_2: KE
+  abbreviation_3: KEN
+  calling_code: 254
+kyrgyzstan:
+  id: 111
+  name: Kyrgyzstan
+  abbreviation_2: KG
+  abbreviation_3: KGZ
+  calling_code: 996
+cambodia:
+  id: 112
+  name: Cambodia
+  abbreviation_2: KH
+  abbreviation_3: KHM
+  calling_code: 855
+kiribati:
+  id: 113
+  name: Kiribati
+  abbreviation_2: KI
+  abbreviation_3: KIR
+  calling_code: 686
+comoros:
+  id: 114
+  name: Comoros
+  abbreviation_2: KM
+  abbreviation_3: COM
+  calling_code: 269
+saint_kitts_and_nevis:
+  id: 115
+  name: Saint Kitts and Nevis
+  abbreviation_2: KN
+  abbreviation_3: KNA
+  calling_code: 1
+korea_democratic_peoples_republic_of:
+  id: 116
+  name: Korea, Democratic People's Republic of
+  abbreviation_2: KP
+  abbreviation_3: PRK
+  calling_code: 850
+korea_republic_of:
+  id: 117
+  name: Korea, Republic of
+  abbreviation_2: KR
+  abbreviation_3: KOR
+  calling_code: 82
+kuwait:
+  id: 118
+  name: Kuwait
+  abbreviation_2: KW
+  abbreviation_3: KWT
+  calling_code: 965
+cayman_islands:
+  id: 119
+  name: Cayman Islands
+  abbreviation_2: KY
+  abbreviation_3: CYM
+  calling_code: 1
+kazakstan:
+  id: 120
+  name: Kazakstan
+  abbreviation_2: KZ
+  abbreviation_3: KAZ
+  calling_code: 7
+lao_peoples_democratic_republic:
+  id: 121
+  name: Lao People's Democratic Republic
+  abbreviation_2: LA
+  abbreviation_3: LAO
+  calling_code: 856
+lebanon:
+  id: 122
+  name: Lebanon
+  abbreviation_2: LB
+  abbreviation_3: LBN
+  calling_code: 961
+saint_lucia:
+  id: 123
+  name: Saint Lucia
+  abbreviation_2: LC
+  abbreviation_3: LCA
+  calling_code: 1
+liechtenstein:
+  id: 124
+  name: Liechtenstein
+  abbreviation_2: LI
+  abbreviation_3: LIE
+  calling_code: 423
+sri_lanka:
+  id: 125
+  name: Sri Lanka
+  abbreviation_2: LK
+  abbreviation_3: LKA
+  calling_code: 94
+liberia:
+  id: 126
+  name: Liberia
+  abbreviation_2: LR
+  abbreviation_3: LBR
+  calling_code: 231
+lesotho:
+  id: 127
+  name: Lesotho
+  abbreviation_2: LS
+  abbreviation_3: LSO
+  calling_code: 266
+lithuania:
+  id: 128
+  name: Lithuania
+  abbreviation_2: LT
+  abbreviation_3: LTU
+  calling_code: 370
+luxembourg:
+  id: 129
+  name: Luxembourg
+  abbreviation_2: LU
+  abbreviation_3: LUX
+  calling_code: 352
+latvia:
+  id: 130
+  name: Latvia
+  abbreviation_2: LV
+  abbreviation_3: LVA
+  calling_code: 371
+libyan_arab_jamahiriya:
+  id: 131
+  name: Libyan Arab Jamahiriya
+  abbreviation_2: LY
+  abbreviation_3: LBY
+  calling_code: 218
+morocco:
+  id: 132
+  name: Morocco
+  abbreviation_2: MA
+  abbreviation_3: MAR
+  calling_code: 212
+monaco:
+  id: 133
+  name: Monaco
+  abbreviation_2: MC
+  abbreviation_3: MCO
+  calling_code: 377
+moldova_republic_of:
+  id: 134
+  name: Moldova, Republic of
+  abbreviation_2: MD
+  abbreviation_3: MDA
+  calling_code: 373
+madagascar:
+  id: 135
+  name: Madagascar
+  abbreviation_2: MG
+  abbreviation_3: MDG
+  calling_code: 261
+marshall_islands:
+  id: 136
+  name: Marshall Islands
+  abbreviation_2: MH
+  abbreviation_3: MHL
+  calling_code: 692
+macedonia_the_former_yugoslav_republic_of:
+  id: 137
+  name: Macedonia, the Former Yugoslav Republic of
+  abbreviation_2: MK
+  abbreviation_3: MKD
+  calling_code: 389
+mali:
+  id: 138
+  name: Mali
+  abbreviation_2: ML
+  abbreviation_3: MLI
+  calling_code: 223
+myanmar:
+  id: 139
+  name: Myanmar
+  abbreviation_2: MM
+  abbreviation_3: MMR
+  calling_code: 95
+mongolia:
+  id: 140
+  name: Mongolia
+  abbreviation_2: MN
+  abbreviation_3: MNG
+  calling_code: 976
+macau:
+  id: 141
+  name: Macau
+  abbreviation_2: MO
+  abbreviation_3: MAC
+  calling_code: 853
+northern_mariana_islands:
+  id: 142
+  name: Northern Mariana Islands
+  abbreviation_2: MP
+  abbreviation_3: MNP
+  calling_code: 1
+martinique:
+  id: 143
+  name: Martinique
+  abbreviation_2: MQ
+  abbreviation_3: MTQ
+  calling_code: 596
+mauritania:
+  id: 144
+  name: Mauritania
+  abbreviation_2: MR
+  abbreviation_3: MRT
+  calling_code: 222
+montserrat:
+  id: 145
+  name: Montserrat
+  abbreviation_2: MS
+  abbreviation_3: MSR
+  calling_code: 1
+malta:
+  id: 146
+  name: Malta
+  abbreviation_2: MT
+  abbreviation_3: MLT
+  calling_code: 356
+mauritius:
+  id: 147
+  name: Mauritius
+  abbreviation_2: MU
+  abbreviation_3: MUS
+  calling_code: 230
+maldives:
+  id: 148
+  name: Maldives
+  abbreviation_2: MV
+  abbreviation_3: MDV
+  calling_code: 960
+malawi:
+  id: 149
+  name: Malawi
+  abbreviation_2: MW
+  abbreviation_3: MWI
+  calling_code: 265
+mexico:
+  id: 150
+  name: Mexico
+  abbreviation_2: MX
+  abbreviation_3: MEX
+  calling_code: 52
+malaysia:
+  id: 151
+  name: Malaysia
+  abbreviation_2: MY
+  abbreviation_3: MYS
+  calling_code: 60
+mozambique:
+  id: 152
+  name: Mozambique
+  abbreviation_2: MZ
+  abbreviation_3: MOZ
+  calling_code: 258
+namibia:
+  id: 153
+  name: Namibia
+  abbreviation_2: NA
+  abbreviation_3: NAM
+  calling_code: 264
+new_caledonia:
+  id: 154
+  name: New Caledonia
+  abbreviation_2: NC
+  abbreviation_3: NCL
+  calling_code: 687
+niger:
+  id: 155
+  name: Niger
+  abbreviation_2: NE
+  abbreviation_3: NER
+  calling_code: 227
+norfolk_island:
+  id: 156
+  name: Norfolk Island
+  abbreviation_2: NF
+  abbreviation_3: NFK
+nigeria:
+  id: 157
+  name: Nigeria
+  abbreviation_2: NG
+  abbreviation_3: NGA
+  calling_code: 234
+nicaragua:
+  id: 158
+  name: Nicaragua
+  abbreviation_2: NI
+  abbreviation_3: NIC
+  calling_code: 505
+netherlands:
+  id: 159
+  name: Netherlands
+  abbreviation_2: NL
+  abbreviation_3: NLD
+  calling_code: 31
+norway:
+  id: 160
+  name: Norway
+  abbreviation_2: NO
+  abbreviation_3: NOR
+  calling_code: 47
+nepal:
+  id: 161
+  name: Nepal
+  abbreviation_2: NP
+  abbreviation_3: NPL
+  calling_code: 977
+nauru:
+  id: 162
+  name: Nauru
+  abbreviation_2: NR
+  abbreviation_3: NRU
+  calling_code: 674
+niue:
+  id: 163
+  name: Niue
+  abbreviation_2: NU
+  abbreviation_3: NIU
+  calling_code: 683
+new_zealand:
+  id: 164
+  name: New Zealand
+  abbreviation_2: NZ
+  abbreviation_3: NZL
+  calling_code: 64
+oman:
+  id: 165
+  name: Oman
+  abbreviation_2: OM
+  abbreviation_3: OMN
+  calling_code: 968
+panama:
+  id: 166
+  name: Panama
+  abbreviation_2: PA
+  abbreviation_3: PAN
+  calling_code: 507
+peru:
+  id: 167
+  name: Peru
+  abbreviation_2: PE
+  abbreviation_3: PER
+  calling_code: 51
+french_polynesia:
+  id: 168
+  name: French Polynesia
+  abbreviation_2: PF
+  abbreviation_3: PYF
+  calling_code: 689
+papua_new_guinea:
+  id: 169
+  name: Papua New Guinea
+  abbreviation_2: PG
+  abbreviation_3: PNG
+  calling_code: 675
+philippines:
+  id: 170
+  name: Philippines
+  abbreviation_2: PH
+  abbreviation_3: PHL
+  calling_code: 63
+pakistan:
+  id: 171
+  name: Pakistan
+  abbreviation_2: PK
+  abbreviation_3: PAK
+  calling_code: 92
+poland:
+  id: 172
+  name: Poland
+  abbreviation_2: PL
+  abbreviation_3: POL
+  calling_code: 48
+saint_pierre_and_miquelon:
+  id: 173
+  name: Saint Pierre and Miquelon
+  abbreviation_2: PM
+  abbreviation_3: SPM
+  calling_code: 508
+pitcairn:
+  id: 174
+  name: Pitcairn
+  abbreviation_2: PN
+  abbreviation_3: PCN
+puerto_rico:
+  id: 175
+  name: Puerto Rico
+  abbreviation_2: PR
+  abbreviation_3: PRI
+  calling_code: 1
+palestinian_territory_occupied:
+  id: 176
+  name: Palestinian Territory, Occupied
+  abbreviation_2: PS
+  abbreviation_3: PSE
+  calling_code: 970
+portugal:
+  id: 177
+  name: Portugal
+  abbreviation_2: PT
+  abbreviation_3: PRT
+  calling_code: 351
+palau:
+  id: 178
+  name: Palau
+  abbreviation_2: PW
+  abbreviation_3: PLW
+  calling_code: 680
+paraguay:
+  id: 179
+  name: Paraguay
+  abbreviation_2: PY
+  abbreviation_3: PRY
+  calling_code: 595
+qatar:
+  id: 180
+  name: Qatar
+  abbreviation_2: QA
+  abbreviation_3: QAT
+  calling_code: 974
+reunion:
+  id: 181
+  name: Reunion
+  abbreviation_2: RE
+  abbreviation_3: REU
+  calling_code: 262
+romania:
+  id: 182
+  name: Romania
+  abbreviation_2: RO
+  abbreviation_3: ROM
+  calling_code: 40
+russian_federation:
+  id: 183
+  name: Russian Federation
+  abbreviation_2: RU
+  abbreviation_3: RUS
+  calling_code: 7
+rwanda:
+  id: 184
+  name: Rwanda
+  abbreviation_2: RW
+  abbreviation_3: RWA
+  calling_code: 250
+saudi_arabia:
+  id: 185
+  name: Saudi Arabia
+  abbreviation_2: SA
+  abbreviation_3: SAU
+  calling_code: 966
+solomon_islands:
+  id: 186
+  name: Solomon Islands
+  abbreviation_2: SB
+  abbreviation_3: SLB
+  calling_code: 677
+seychelles:
+  id: 187
+  name: Seychelles
+  abbreviation_2: SC
+  abbreviation_3: SYC
+  calling_code: 248
+sudan:
+  id: 188
+  name: Sudan
+  abbreviation_2: SD
+  abbreviation_3: SDN
+  calling_code: 249
+sweden:
+  id: 189
+  name: Sweden
+  abbreviation_2: SE
+  abbreviation_3: SWE
+  calling_code: 46
+singapore:
+  id: 190
+  name: Singapore
+  abbreviation_2: SG
+  abbreviation_3: SGP
+  calling_code: 65
+saint_helena:
+  id: 191
+  name: Saint Helena
+  abbreviation_2: SH
+  abbreviation_3: SHN
+  calling_code: 290
+slovenia:
+  id: 192
+  name: Slovenia
+  abbreviation_2: SI
+  abbreviation_3: SVN
+  calling_code: 386
+svalbard_and_jan_mayen:
+  id: 193
+  name: Svalbard and Jan Mayen
+  abbreviation_2: SJ
+  abbreviation_3: SJM
+slovakia:
+  id: 194
+  name: Slovakia
+  abbreviation_2: SK
+  abbreviation_3: SVK
+  calling_code: 421
+sierra_leone:
+  id: 195
+  name: Sierra Leone
+  abbreviation_2: SL
+  abbreviation_3: SLE
+  calling_code: 232
+san_marino:
+  id: 196
+  name: San Marino
+  abbreviation_2: SM
+  abbreviation_3: SMR
+  calling_code: 378
+senegal:
+  id: 197
+  name: Senegal
+  abbreviation_2: SN
+  abbreviation_3: SEN
+  calling_code: 221
+somalia:
+  id: 198
+  name: Somalia
+  abbreviation_2: SO
+  abbreviation_3: SOM
+  calling_code: 252
+suriname:
+  id: 199
+  name: Suriname
+  abbreviation_2: SR
+  abbreviation_3: SUR
+  calling_code: 597
+sao_tome_and_principe:
+  id: 200
+  name: Sao Tome and Principe
+  abbreviation_2: ST
+  abbreviation_3: STP
+  calling_code: 239
+el_salvador:
+  id: 201
+  name: El Salvador
+  abbreviation_2: SV
+  abbreviation_3: SLV
+  calling_code: 503
+syrian_arab_republic:
+  id: 202
+  name: Syrian Arab Republic
+  abbreviation_2: SY
+  abbreviation_3: SYR
+  calling_code: 963
+swaziland:
+  id: 203
+  name: Swaziland
+  abbreviation_2: SZ
+  abbreviation_3: SWZ
+  calling_code: 268
+turks_and_caicos_islands:
+  id: 204
+  name: Turks and Caicos Islands
+  abbreviation_2: TC
+  abbreviation_3: TCA
+  calling_code: 1
+chad:
+  id: 205
+  name: Chad
+  abbreviation_2: TD
+  abbreviation_3: TCD
+  calling_code: 235
+french_southern_territories:
+  id: 206
+  name: French Southern Territories
+  abbreviation_2: TF
+  abbreviation_3: ATF
+togo:
+  id: 207
+  name: Togo
+  abbreviation_2: TG
+  abbreviation_3: TGO
+  calling_code: 228
+thailand:
+  id: 208
+  name: Thailand
+  abbreviation_2: TH
+  abbreviation_3: THA
+  calling_code: 66
+tajikistan:
+  id: 209
+  name: Tajikistan
+  abbreviation_2: TJ
+  abbreviation_3: TJK
+  calling_code: 992
+tokelau:
+  id: 210
+  name: Tokelau
+  abbreviation_2: TK
+  abbreviation_3: TKL
+  calling_code: 690
+turkmenistan:
+  id: 211
+  name: Turkmenistan
+  abbreviation_2: TM
+  abbreviation_3: TKM
+  calling_code: 993
+tunisia:
+  id: 212
+  name: Tunisia
+  abbreviation_2: TN
+  abbreviation_3: TUN
+  calling_code: 216
+tonga:
+  id: 213
+  name: Tonga
+  abbreviation_2: TO
+  abbreviation_3: TON
+  calling_code: 676
+timorleste:
+  id: 214
+  name: Timor-Leste
+  abbreviation_2: TL
+  abbreviation_3: TLS
+  calling_code: 670
+turkey:
+  id: 215
+  name: Turkey
+  abbreviation_2: TR
+  abbreviation_3: TUR
+  calling_code: 90
+trinidad_and_tobago:
+  id: 216
+  name: Trinidad and Tobago
+  abbreviation_2: TT
+  abbreviation_3: TTO
+  calling_code: 1
+tuvalu:
+  id: 217
+  name: Tuvalu
+  abbreviation_2: TV
+  abbreviation_3: TUV
+  calling_code: 688
+taiwan_province_of_china:
+  id: 218
+  name: Taiwan, Province of China
+  abbreviation_2: TW
+  abbreviation_3: TWN
+  calling_code: 886
+tanzania_united_republic_of:
+  id: 219
+  name: Tanzania, United Republic of
+  abbreviation_2: TZ
+  abbreviation_3: TZA
+  calling_code: 255
+ukraine:
+  id: 220
+  name: Ukraine
+  abbreviation_2: UA
+  abbreviation_3: UKR
+  calling_code: 380
+uganda:
+  id: 221
+  name: Uganda
+  abbreviation_2: UG
+  abbreviation_3: UGA
+  calling_code: 256
+united_states_minor_outlying_islands:
+  id: 222
+  name: United States Minor Outlying Islands
+  abbreviation_2: UM
+  abbreviation_3: UMI
+united_states:
+  id: 223
+  name: United States
+  abbreviation_2: US
+  abbreviation_3: USA
+  calling_code: 1
+uruguay:
+  id: 224
+  name: Uruguay
+  abbreviation_2: UY
+  abbreviation_3: URY
+  calling_code: 598
+uzbekistan:
+  id: 225
+  name: Uzbekistan
+  abbreviation_2: UZ
+  abbreviation_3: UZB
+  calling_code: 998
+holy_see_vatican_city_state:
+  id: 226
+  name: Holy See (Vatican City State)
+  abbreviation_2: VA
+  abbreviation_3: VAT
+  calling_code: 379
+saint_vincent_and_the_grenadines:
+  id: 227
+  name: Saint Vincent and the Grenadines
+  abbreviation_2: VC
+  abbreviation_3: VCT
+  calling_code: 1
+venezuela:
+  id: 228
+  name: Venezuela
+  abbreviation_2: VE
+  abbreviation_3: VEN
+  calling_code: 58
+virgin_islands_british:
+  id: 229
+  name: Virgin Islands, British
+  abbreviation_2: VG
+  abbreviation_3: VGB
+  calling_code: 1
+virgin_islands_us:
+  id: 230
+  name: Virgin Islands, U.S.
+  abbreviation_2: VI
+  abbreviation_3: VIR
+  calling_code: 1
+vietnam:
+  id: 231
+  name: Vietnam
+  abbreviation_2: VN
+  abbreviation_3: VNM
+  calling_code: 84
+vanuatu:
+  id: 232
+  name: Vanuatu
+  abbreviation_2: VU
+  abbreviation_3: VUT
+  calling_code: 678
+wallis_and_futuna:
+  id: 233
+  name: Wallis and Futuna
+  abbreviation_2: WF
+  abbreviation_3: WLF
+  calling_code: 681
+samoa:
+  id: 234
+  name: Samoa
+  abbreviation_2: WS
+  abbreviation_3: WSM
+  calling_code: 685
+yemen:
+  id: 235
+  name: Yemen
+  abbreviation_2: YE
+  abbreviation_3: YEM
+  calling_code: 967
+mayotte:
+  id: 236
+  name: Mayotte
+  abbreviation_2: YT
+  abbreviation_3: MYT
+  calling_code: 269
+serbia_and_montenegro:
+  id: 237
+  name: Serbia and Montenegro
+  abbreviation_2: CS
+  abbreviation_3: SCG
+  calling_code: 381
+south_africa:
+  id: 238
+  name: South Africa
+  abbreviation_2: ZA
+  abbreviation_3: ZAF
+  calling_code: 27
+zambia:
+  id: 239
+  name: Zambia
+  abbreviation_2: ZM
+  abbreviation_3: ZMB
+  calling_code: 260
+zimbabwe:
+  id: 240
+  name: Zimbabwe
+  abbreviation_2: ZW
+  abbreviation_3: ZWE
+  calling_code: 263
