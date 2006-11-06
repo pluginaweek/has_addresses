@@ -1,3 +1,6 @@
+require 'acts_association_helper'
+require 'validates_xor_presence_of'
+
 module PluginAWeek #:nodoc:
   module Acts #:nodoc:
     module Addressable #:nodoc:
@@ -26,4 +29,8 @@ module PluginAWeek #:nodoc:
       end
     end
   end
+end
+
+ActiveRecord::Base.class_eval do
+  include PluginAWeek::Acts::Addressable
 end
