@@ -12,7 +12,7 @@ class CreateCountries < ActiveRecord::Migration
   end
   
   def self.down
-    drop_table_if_exists :countries
+    drop_table :countries
   end
   
   def self.bootstrap

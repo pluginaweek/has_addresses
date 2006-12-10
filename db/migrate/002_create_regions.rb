@@ -10,7 +10,7 @@ class CreateRegions < ActiveRecord::Migration
   end
   
   def self.down
-    drop_table_if_exists :regions
+    drop_table :regions
   end
   
   def self.bootstrap

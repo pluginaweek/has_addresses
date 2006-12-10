@@ -17,6 +17,6 @@ class CreateAddresses < ActiveRecord::Migration
   end
   
   def self.down
-    drop_table_if_exists :addresses
+    drop_table :addresses
   end
 end
