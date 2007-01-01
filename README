@@ -1,4 +1,29 @@
-ActsAsAddressable
-=================
+= acts_as_addressable
 
-Description goes here
+acts_as_addressable .
+
+== Resources
+
+Wiki
+
+* http://wiki.pluginaweek.org/Acts_as_addressable
+
+Announcement
+
+* http://www.pluginaweek.org/
+
+Source
+
+* http://svn.pluginaweek.org/trunk/plugins/active_record/acts/acts_as_addressable
+
+Development
+
+* http://dev.pluginaweek.org/browser/trunk/plugins/active_record/acts/acts_as_addressable
+
+== Description
+
+
+
+== References
+
+http://pdo.debian.net/unstable/misc/iso-codes
