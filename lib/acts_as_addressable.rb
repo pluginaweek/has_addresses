@@ -10,12 +10,11 @@ module PluginAWeek #:nodoc:
       
       module MacroMethods
         # 
-        #
         def acts_as_addressable(*args, &extension)
           default_options = {
             :count => :one
           }
-          create_acts_association(:address, {}, default_options, *args, &extension)
+          create_acts_association(:address, default_options, *args, &extension)
           
           extend PluginAWeek::Acts::Addressable::ClassMethods
           include PluginAWeek::Acts::Addressable::InstanceMethods

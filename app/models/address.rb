@@ -1,6 +1,7 @@
 # Represents a mailing address
-#
 class Address < ActiveRecord::Base
+  belongs_to          :addressable,
+                        :polymorphic => true
   belongs_to          :region
   belongs_to          :country
   
@@ -10,7 +11,6 @@ class Address < ActiveRecord::Base
   before_save         :ensure_exclusive_references
   
   #
-  #
   def country_with_region_check
     region ? region.country : country_without_region_check
   end
@@ -18,18 +18,15 @@ class Address < ActiveRecord::Base
   
   # Gets the name of the region that this address is for (whether it is a custom or
   # stored region in the database)
-  #
   def region_name
     user_region || region ? region.name : nil
   end
   
   # Gets the value of the address on a single line
-  #
   def single_line
     multi_line.join(', ')
   end
   
-  #
   #
   def multi_line
     lines = []
@@ -54,7 +51,6 @@ class Address < ActiveRecord::Base
   end
   
   private
-  #
   #
   def ensure_exclusive_references
     if region_id?

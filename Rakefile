@@ -3,6 +3,9 @@ require 'rake/rdoctask'
 require 'rake/gempackagetask'
 require 'rake/contrib/sshpublisher'
 
+# Load custom rakefile extensions
+Dir["#{File.dirname(__FILE__)}/tasks/**/*.rake"].sort.each {|ext| load ext}
+
 PKG_NAME           = 'acts_as_addressable'
 PKG_VERSION        = '0.0.1'
 PKG_FILE_NAME      = "#{PKG_NAME}-#{PKG_VERSION}"
