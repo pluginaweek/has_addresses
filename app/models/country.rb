@@ -1,4 +1,4 @@
-# Defined by the ISO 3166 standard
+# Defined by the ISO 3166-1 standard
 class Country < ActiveRecord::Base
   has_many                  :regions
   has_many                  :addresses

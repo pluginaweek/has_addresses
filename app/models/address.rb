@@ -10,7 +10,7 @@ class Address < ActiveRecord::Base
                         :allow_nil => true
   before_save         :ensure_exclusive_references
   
-  #
+  # Returns the region's country if the region is specified
   def country_with_region_check
     region ? region.country : country_without_region_check
   end
@@ -27,7 +27,7 @@ class Address < ActiveRecord::Base
     multi_line.join(', ')
   end
   
-  #
+  # Gets the value of the address on multiple lines
   def multi_line
     lines = []
     lines << street_1 if street_1?
@@ -51,7 +51,8 @@ class Address < ActiveRecord::Base
   end
   
   private
-  #
+  # Ensures that the country id/user region combo is not set at the same time as
+  # the region id
   def ensure_exclusive_references
     if region_id?
       self.country_id = nil

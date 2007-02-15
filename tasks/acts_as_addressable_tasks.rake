@@ -92,14 +92,22 @@ namespace :iso3166 do
       output_file = File.new(output_file_name, 'w')
       output = ''
       
+      # Keep track of countries/regions we've already done to prevent duplication
+      # due to errors in the xml
+      countries_to_regions = {}
       region_id = 1
       Document.new(iso_3166_2).elements.each('*/iso_3166_country') do |country|
-        code = country.attributes['code']
+        code = country.attributes['code'][0..1] # Belarius is more than 2 characters for some reason, so just get the first 2
         country_id = alpha_2_code_to_country_id[code.upcase]
+        processed_regions = countries_to_regions[country_id] ||= []
         
         country.elements.each('iso_3166_2_entry') do |region|
-          name = region.attributes['name']
-          abbreviation = region.attributes['code'].upcase.sub!("#{code}-", '')
+          name = region.attributes['name'].strip # Strip because xml has trailing spaces when it shouldn't
+          next if processed_regions.include?(name)
+          
+          processed_regions << name
+          
+          abbreviation = region.attributes['code'].upcase.sub("#{code}-", '')
           record_name = name.gsub(' ', '_').gsub(/[^A-Za-z_]/, '').downcase
           
           # Prepare for yml

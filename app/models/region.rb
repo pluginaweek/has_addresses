@@ -1,5 +1,4 @@
-# Defined by the ISO 3166 standard
-#
+# Defined by the ISO 3166-2 standard
 class Region < ActiveRecord::Base
   belongs_to              :country
   has_many                :addresses

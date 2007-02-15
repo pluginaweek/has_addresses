@@ -1,5 +1,4 @@
 require 'acts_association_helper'
-require 'validates_xor_presence_of'
 
 module PluginAWeek #:nodoc:
   module Acts #:nodoc:
