@@ -1,0 +1,14 @@
+valid:
+  id: 1
+  name: Valid
+  number: 1234
+  
+known_region:
+  id: 2
+  name: Known Region
+  number: 5678
+  
+custom_region:
+  id: 3
+  name: Custom Region
+  number: 9012

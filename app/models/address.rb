@@ -6,7 +6,7 @@ class Address < ActiveRecord::Base
   belongs_to          :country
   
   validates_format_of :postal_code,
-                        :with => /[0-9]{5}/,
+                        :with => /^[0-9]{5}$/,
                         :allow_nil => true
   before_save         :ensure_exclusive_references
   
@@ -19,7 +19,7 @@ class Address < ActiveRecord::Base
   # Gets the name of the region that this address is for (whether it is a custom or
   # stored region in the database)
   def region_name
-    custom_region || region ? region.name : nil
+    custom_region || (region ? region.name : nil)
   end
   
   # Gets the value of the address on a single line
@@ -36,17 +36,16 @@ class Address < ActiveRecord::Base
     line = ''
     line << city if city?
     if region_name
-      line << ', ' if !last_line.blank?
+      line << ', ' if !line.blank?
       line << region_name
     end
     if postal_code?
-      line << '  ' if !last_line.blank?
+      line << '  ' if !line.blank?
       line << postal_code
     end
     lines << line if !line.blank?
     
     lines << country.name if country
-    
     lines
   end
   
