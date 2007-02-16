@@ -19,16 +19,38 @@ class CountryTest < Test::Unit::TestCase
     assert_invalid valid_country, :name, nil
   end
   
+  def test_name_length
+    assert_invalid valid_country, :name, 'A', 'A' * 81
+    assert_valid valid_country, :name, 'AB', 'A' * 80
+  end
+  
   def test_no_alpha_2_code
     assert_invalid valid_country, :alpha_2_code, nil
+  end
+  
+  def test_alpha_2_length
+    assert_invalid valid_country, :alpha_2_code, 'A', 'ABC'
+    assert_valid valid_country, :alpha_2_code, 'AB'
   end
   
   def test_no_alpha_3_code
     assert_invalid valid_country, :alpha_3_code, nil
   end
   
+  def test_alpha_3_length
+    assert_invalid valid_country, :alpha_3_code, 'AB', 'ABCD'
+    assert_valid valid_country, :alpha_3_code, 'ABC'
+  end
+  
   def test_no_calling_code
     assert_valid valid_country, :calling_code, nil
+  end
+  
+  def test_unique_attributes
+    c = Country.new(valid_country.attributes)
+    assert_invalid c, :name
+    assert_invalid c, :alpha_2_code
+    assert_invalid c, :alpha_3_code
   end
   
   def test_abbreviation_2
