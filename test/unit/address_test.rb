@@ -14,8 +14,12 @@ class AddressTest < Test::Unit::TestCase
     assert_valid valid_address
   end
   
-  def test_no_attributes
-    assert_valid Address.new
+  def test_no_addressable_id
+    assert_invalid valid_address, :addressable_id, nil
+  end
+  
+  def test_no_addressable_type
+    assert_invalid valid_address, :addressable_type, nil
   end
   
   def test_addressable
@@ -32,6 +36,7 @@ class AddressTest < Test::Unit::TestCase
   
   def test_region_id_and_custom_region
     a = Address.new
+    a.addressable = credit_cards(:known_region)
     a.region = regions(:california)
     a.custom_region = 'Should not save'
     assert a.save
