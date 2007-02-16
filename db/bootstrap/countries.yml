@@ -4,6 +4,7 @@ afghanistan:
   official_name: The Transitional Islamic State of Afghanistan
   alpha_2_code: AF
   alpha_3_code: AFG
+  calling_code: 93
 land_islands:
   id: 248
   name: Åland Islands
@@ -15,153 +16,180 @@ albania:
   official_name: Republic of Albania
   alpha_2_code: AL
   alpha_3_code: ALB
+  calling_code: 355
 algeria:
   id: 12
   name: Algeria
   official_name: Peoples Democratic Republic of Algerias Democratic Republic of Algeria
   alpha_2_code: DZ
   alpha_3_code: DZA
+  calling_code: 213
 american_samoa:
   id: 16
   name: American Samoa
   alpha_2_code: AS
   alpha_3_code: ASM
+  calling_code: 1
 andorra:
   id: 20
   name: Andorra
   official_name: Principality of Andorra
   alpha_2_code: AD
   alpha_3_code: AND
+  calling_code: 376
 angola:
   id: 24
   name: Angola
   official_name: Republic of Angola
   alpha_2_code: AO
   alpha_3_code: AGO
+  calling_code: 244
 anguilla:
   id: 660
   name: Anguilla
   alpha_2_code: AI
   alpha_3_code: AIA
+  calling_code: 1
 antarctica:
   id: 10
   name: Antarctica
   alpha_2_code: AQ
   alpha_3_code: ATA
+  calling_code: 672
 antigua_and_barbuda:
   id: 28
   name: Antigua and Barbuda
   alpha_2_code: AG
   alpha_3_code: ATG
+  calling_code: 1
 argentina:
   id: 32
   name: Argentina
   official_name: Argentine Republic
   alpha_2_code: AR
   alpha_3_code: ARG
+  calling_code: 54
 armenia:
   id: 51
   name: Armenia
   official_name: Republic of Armenia
   alpha_2_code: AM
   alpha_3_code: ARM
+  calling_code: 374
 aruba:
   id: 533
   name: Aruba
   alpha_2_code: AW
   alpha_3_code: ABW
+  calling_code: 297
 australia:
   id: 36
   name: Australia
   alpha_2_code: AU
   alpha_3_code: AUS
+  calling_code: 61
 austria:
   id: 40
   name: Austria
   official_name: Republic of Austria
   alpha_2_code: AT
   alpha_3_code: AUT
+  calling_code: 43
 azerbaijan:
   id: 31
   name: Azerbaijan
   official_name: Republic of Azerbaijan
   alpha_2_code: AZ
   alpha_3_code: AZE
+  calling_code: 994
 bahamas:
   id: 44
   name: Bahamas
   official_name: Commonwealth of the Bahamas
   alpha_2_code: BS
   alpha_3_code: BHS
+  calling_code: 1
 bahrain:
   id: 48
   name: Bahrain
   official_name: State of Bahrain
   alpha_2_code: BH
   alpha_3_code: BHR
+  calling_code: 973
 bangladesh:
   id: 50
   name: Bangladesh
   official_name: Peoples Republic of Bangladeshs Republic of Bangladesh
   alpha_2_code: BD
   alpha_3_code: BGD
+  calling_code: 880
 barbados:
   id: 52
   name: Barbados
   alpha_2_code: BB
   alpha_3_code: BRB
+  calling_code: 1
 belarus:
   id: 112
   name: Belarus
   official_name: Republic of Belarus
   alpha_2_code: BY
   alpha_3_code: BLR
+  calling_code: 375
 belgium:
   id: 56
   name: Belgium
   official_name: Kingdom of Belgium
   alpha_2_code: BE
   alpha_3_code: BEL
+  calling_code: 32
 belize:
   id: 84
   name: Belize
   alpha_2_code: BZ
   alpha_3_code: BLZ
+  calling_code: 501
 benin:
   id: 204
   name: Benin
   official_name: Republic of Benin
   alpha_2_code: BJ
   alpha_3_code: BEN
+  calling_code: 229
 bermuda:
   id: 60
   name: Bermuda
   alpha_2_code: BM
   alpha_3_code: BMU
+  calling_code: 1
 bhutan:
   id: 64
   name: Bhutan
   official_name: Kingdom of Bhutan
   alpha_2_code: BT
   alpha_3_code: BTN
+  calling_code: 975
 bolivia:
   id: 68
   name: Bolivia
   official_name: Republic of Bolivia
   alpha_2_code: BO
   alpha_3_code: BOL
+  calling_code: 591
 bosnia_and_herzegovina:
   id: 70
   name: Bosnia and Herzegovina
   official_name: Republic of Bosnia and Herzegovina
   alpha_2_code: BA
   alpha_3_code: BIH
+  calling_code: 387
 botswana:
   id: 72
   name: Botswana
   official_name: Republic of Botswana
   alpha_2_code: BW
   alpha_3_code: BWA
+  calling_code: 267
 bouvet_island:
   id: 74
   name: Bouvet Island
@@ -173,259 +201,305 @@ brazil:
   official_name: Federative Republic of Brazil
   alpha_2_code: BR
   alpha_3_code: BRA
+  calling_code: 55
 british_indian_ocean_territory:
   id: 86
   name: British Indian Ocean Territory
   alpha_2_code: IO
   alpha_3_code: IOT
+  calling_code: 246
 brunei_darussalam:
   id: 96
   name: Brunei Darussalam
   alpha_2_code: BN
   alpha_3_code: BRN
+  calling_code: 673
 bulgaria:
   id: 100
   name: Bulgaria
   official_name: Republic of Bulgaria
   alpha_2_code: BG
   alpha_3_code: BGR
+  calling_code: 359
 burkina_faso:
   id: 854
   name: Burkina Faso
   alpha_2_code: BF
   alpha_3_code: BFA
+  calling_code: 226
 burundi:
   id: 108
   name: Burundi
   official_name: Republic of Burundi
   alpha_2_code: BI
   alpha_3_code: BDI
+  calling_code: 257
 cambodia:
   id: 116
   name: Cambodia
   official_name: Kingdom of Cambodia
   alpha_2_code: KH
   alpha_3_code: KHM
+  calling_code: 855
 cameroon:
   id: 120
   name: Cameroon
   official_name: Republic of Cameroon
   alpha_2_code: CM
   alpha_3_code: CMR
+  calling_code: 237
 canada:
   id: 124
   name: Canada
   alpha_2_code: CA
   alpha_3_code: CAN
+  calling_code: 1
 cape_verde:
   id: 132
   name: Cape Verde
   official_name: Republic of Cape Verde
   alpha_2_code: CV
   alpha_3_code: CPV
+  calling_code: 238
 cayman_islands:
   id: 136
   name: Cayman Islands
   alpha_2_code: KY
   alpha_3_code: CYM
+  calling_code: 1
 central_african_republic:
   id: 140
   name: Central African Republic
   alpha_2_code: CF
   alpha_3_code: CAF
+  calling_code: 236
 chad:
   id: 148
   name: Chad
   official_name: Republic of Chad
   alpha_2_code: TD
   alpha_3_code: TCD
+  calling_code: 235
 chile:
   id: 152
   name: Chile
   official_name: Republic of Chile
   alpha_2_code: CL
   alpha_3_code: CHL
+  calling_code: 56
 china:
   id: 156
   name: China
   official_name: Peoples Republic of Chinas Republic of China
   alpha_2_code: CN
   alpha_3_code: CHN
+  calling_code: 86
 christmas_island:
   id: 162
   name: Christmas Island
   alpha_2_code: CX
   alpha_3_code: CXR
+  calling_code: 61
 cocos_keeling_islands:
   id: 166
   name: Cocos (Keeling) Islands
   alpha_2_code: CC
   alpha_3_code: CCK
+  calling_code: 61
 colombia:
   id: 170
   name: Colombia
   official_name: Republic of Colombia
   alpha_2_code: CO
   alpha_3_code: COL
+  calling_code: 57
 comoros:
   id: 174
   name: Comoros
   official_name: Union of the Comoros
   alpha_2_code: KM
   alpha_3_code: COM
+  calling_code: 269
 congo:
   id: 178
   name: Congo
   official_name: Republic of the Congo
   alpha_2_code: CG
   alpha_3_code: COG
+  calling_code: 242
 congo_the_democratic_republic_of_the:
   id: 180
   name: Congo, The Democratic Republic of the
   alpha_2_code: CD
   alpha_3_code: ZAR
+  calling_code: 243
 cook_islands:
   id: 184
   name: Cook Islands
   alpha_2_code: CK
   alpha_3_code: COK
+  calling_code: 682
 costa_rica:
   id: 188
   name: Costa Rica
   official_name: Republic of Costa Rica
   alpha_2_code: CR
   alpha_3_code: CRI
+  calling_code: 506
 cte_divoire:
   id: 384
   name: Côte dIvoireIvoire
   official_name: Republic of Cote dIvoireIvoire
   alpha_2_code: CI
   alpha_3_code: CIV
+  calling_code: 225
 croatia:
   id: 191
   name: Croatia
   official_name: Republic of Croatia
   alpha_2_code: HR
   alpha_3_code: HRV
+  calling_code: 385
 cuba:
   id: 192
   name: Cuba
   official_name: Republic of Cuba
   alpha_2_code: CU
   alpha_3_code: CUB
+  calling_code: 53
 cyprus:
   id: 196
   name: Cyprus
   official_name: Republic of Cyprus
   alpha_2_code: CY
   alpha_3_code: CYP
+  calling_code: 357
 czech_republic:
   id: 203
   name: Czech Republic
   alpha_2_code: CZ
   alpha_3_code: CZE
+  calling_code: 420
 denmark:
   id: 208
   name: Denmark
   official_name: Kingdom of Denmark
   alpha_2_code: DK
   alpha_3_code: DNK
+  calling_code: 45
 djibouti:
   id: 262
   name: Djibouti
   official_name: Republic of Djibouti
   alpha_2_code: DJ
   alpha_3_code: DJI
+  calling_code: 253
 dominica:
   id: 212
   name: Dominica
   official_name: Commonwealth of Dominica
   alpha_2_code: DM
   alpha_3_code: DMA
+  calling_code: 1
 dominican_republic:
   id: 214
   name: Dominican Republic
   alpha_2_code: DO
   alpha_3_code: DOM
+  calling_code: 1
 ecuador:
   id: 218
   name: Ecuador
   official_name: Republic of Ecuador
   alpha_2_code: EC
   alpha_3_code: ECU
+  calling_code: 593
 egypt:
   id: 818
   name: Egypt
   official_name: Arab Republic of Egypt
   alpha_2_code: EG
   alpha_3_code: EGY
+  calling_code: 20
 el_salvador:
   id: 222
   name: El Salvador
   official_name: Republic of El Salvador
   alpha_2_code: SV
   alpha_3_code: SLV
+  calling_code: 503
 equatorial_guinea:
   id: 226
   name: Equatorial Guinea
   official_name: Republic of Equatorial Guinea
   alpha_2_code: GQ
   alpha_3_code: GNQ
+  calling_code: 240
 eritrea:
   id: 232
   name: Eritrea
   alpha_2_code: ER
   alpha_3_code: ERI
+  calling_code: 291
 estonia:
   id: 233
   name: Estonia
   official_name: Republic of Estonia
   alpha_2_code: EE
   alpha_3_code: EST
+  calling_code: 372
 ethiopia:
   id: 231
   name: Ethiopia
   official_name: Federal Democratic Republic of Ethiopia
   alpha_2_code: ET
   alpha_3_code: ETH
+  calling_code: 251
 falkland_islands_malvinas:
   id: 238
   name: Falkland Islands (Malvinas)
   alpha_2_code: FK
   alpha_3_code: FLK
+  calling_code: 500
 faroe_islands:
   id: 234
   name: Faroe Islands
   alpha_2_code: FO
   alpha_3_code: FRO
+  calling_code: 298
 fiji:
   id: 242
   name: Fiji
   official_name: Republic of the Fiji Islands
   alpha_2_code: FJ
   alpha_3_code: FJI
+  calling_code: 679
 finland:
   id: 246
   name: Finland
   official_name: Republic of Finland
   alpha_2_code: FI
   alpha_3_code: FIN
+  calling_code: 358
 france:
   id: 250
   name: France
   official_name: French Republic
   alpha_2_code: FR
   alpha_3_code: FRA
+  calling_code: 33
 french_guiana:
   id: 254
   name: French Guiana
   alpha_2_code: GF
   alpha_3_code: GUF
+  calling_code: 594
 french_polynesia:
   id: 258
   name: French Polynesia
   alpha_2_code: PF
   alpha_3_code: PYF
+  calling_code: 689
 french_southern_territories:
   id: 260
   name: French Southern Territories
@@ -437,66 +511,78 @@ gabon:
   official_name: Gabonese Republic
   alpha_2_code: GA
   alpha_3_code: GAB
+  calling_code: 241
 gambia:
   id: 270
   name: Gambia
   official_name: Republic of the Gambia
   alpha_2_code: GM
   alpha_3_code: GMB
+  calling_code: 220
 georgia:
   id: 268
   name: Georgia
   alpha_2_code: GE
   alpha_3_code: GEO
+  calling_code: 995
 germany:
   id: 276
   name: Germany
   official_name: Federal Republic of Germany
   alpha_2_code: DE
   alpha_3_code: DEU
+  calling_code: 49
 ghana:
   id: 288
   name: Ghana
   official_name: Republic of Ghana
   alpha_2_code: GH
   alpha_3_code: GHA
+  calling_code: 233
 gibraltar:
   id: 292
   name: Gibraltar
   alpha_2_code: GI
   alpha_3_code: GIB
+  calling_code: 350
 greece:
   id: 300
   name: Greece
   official_name: Hellenic Republic
   alpha_2_code: GR
   alpha_3_code: GRC
+  calling_code: 30
 greenland:
   id: 304
   name: Greenland
   alpha_2_code: GL
   alpha_3_code: GRL
+  calling_code: 299
 grenada:
   id: 308
   name: Grenada
   alpha_2_code: GD
   alpha_3_code: GRD
+  calling_code: 1
 guadeloupe:
   id: 312
   name: Guadeloupe
   alpha_2_code: GP
   alpha_3_code: GLP
+  calling_code: 590
 guam:
   id: 316
   name: Guam
   alpha_2_code: GU
   alpha_3_code: GUM
+  calling_code: 1
 guatemala:
   id: 320
   name: Guatemala
   official_name: Republic of Guatemala
   alpha_2_code: GT
   alpha_3_code: GTM
+  calling_code: 502
 guernsey:
   id: 831
   name: Guernsey
@@ -508,24 +594,28 @@ guinea:
   official_name: Republic of Guinea
   alpha_2_code: GN
   alpha_3_code: GIN
+  calling_code: 224
 guineabissau:
   id: 624
   name: Guinea-Bissau
   official_name: Republic of Guinea-Bissau
   alpha_2_code: GW
   alpha_3_code: GNB
+  calling_code: 245
 guyana:
   id: 328
   name: Guyana
   official_name: Republic of Guyana
   alpha_2_code: GY
   alpha_3_code: GUY
+  calling_code: 592
 haiti:
   id: 332
   name: Haiti
   official_name: Republic of Haiti
   alpha_2_code: HT
   alpha_3_code: HTI
+  calling_code: 509
 heard_island_and_mcdonald_islands:
   id: 334
   name: Heard Island and McDonald Islands
@@ -536,59 +626,69 @@ holy_see_vatican_city_state:
   name: Holy See (Vatican City State)
   alpha_2_code: VA
   alpha_3_code: VAT
+  calling_code: 379
 honduras:
   id: 340
   name: Honduras
   official_name: Republic of Honduras
   alpha_2_code: HN
   alpha_3_code: HND
+  calling_code: 504
 hong_kong:
   id: 344
   name: Hong Kong
   official_name: Hong Kong Special Administrative Region of China
   alpha_2_code: HK
   alpha_3_code: HKG
+  calling_code: 852
 hungary:
   id: 348
   name: Hungary
   official_name: Republic of Hungary
   alpha_2_code: HU
   alpha_3_code: HUN
+  calling_code: 36
 iceland:
   id: 352
   name: Iceland
   official_name: Republic of Iceland
   alpha_2_code: IS
   alpha_3_code: ISL
+  calling_code: 354
 india:
   id: 356
   name: India
   official_name: Republic of India
   alpha_2_code: IN
   alpha_3_code: IND
+  calling_code: 91
 indonesia:
   id: 360
   name: Indonesia
   official_name: Republic of Indonesia
   alpha_2_code: ID
   alpha_3_code: IDN
+  calling_code: 62
 iran_islamic_republic_of:
   id: 364
   name: Iran, Islamic Republic of
   official_name: Islamic Republic of Iran
   alpha_2_code: IR
   alpha_3_code: IRN
+  calling_code: 98
 iraq:
   id: 368
   name: Iraq
   official_name: Republic of Iraq
   alpha_2_code: IQ
   alpha_3_code: IRQ
+  calling_code: 964
 ireland:
   id: 372
   name: Ireland
   alpha_2_code: IE
   alpha_3_code: IRL
+  calling_code: 353
 isle_of_man:
   id: 833
   name: Isle of Man
@@ -600,22 +700,26 @@ israel:
   official_name: State of Israel
   alpha_2_code: IL
   alpha_3_code: ISR
+  calling_code: 972
 italy:
   id: 380
   name: Italy
   official_name: Italian Republic
   alpha_2_code: IT
   alpha_3_code: ITA
+  calling_code: 39
 jamaica:
   id: 388
   name: Jamaica
   alpha_2_code: JM
   alpha_3_code: JAM
+  calling_code: 1
 japan:
   id: 392
   name: Japan
   alpha_2_code: JP
   alpha_3_code: JPN
+  calling_code: 81
 jersey:
   id: 832
   name: Jersey
@@ -627,366 +731,429 @@ jordan:
   official_name: Hashemite Kingdom of Jordan
   alpha_2_code: JO
   alpha_3_code: JOR
+  calling_code: 962
 kazakhstan:
   id: 398
   name: Kazakhstan
   official_name: Republic of Kazakhstan
   alpha_2_code: KZ
   alpha_3_code: KAZ
+  calling_code: 7
 kenya:
   id: 404
   name: Kenya
   official_name: Republic of Kenya
   alpha_2_code: KE
   alpha_3_code: KEN
+  calling_code: 254
 kiribati:
   id: 296
   name: Kiribati
   official_name: Republic of Kiribati
   alpha_2_code: KI
   alpha_3_code: KIR
+  calling_code: 686
 korea_democratic_peoples_republic_of:
   id: 408
   name: Korea, Democratic Peoples Republic ofs Republic of
   official_name: Democratic Peoples Republic of Koreas Republic of Korea
   alpha_2_code: KP
   alpha_3_code: PRK
+  calling_code: 850
 korea_republic_of:
   id: 410
   name: Korea, Republic of
   alpha_2_code: KR
   alpha_3_code: KOR
+  calling_code: 82
 kuwait:
   id: 414
   name: Kuwait
   official_name: State of Kuwait
   alpha_2_code: KW
   alpha_3_code: KWT
+  calling_code: 965
 kyrgyzstan:
   id: 417
   name: Kyrgyzstan
   official_name: Kyrgyz Republic
   alpha_2_code: KG
   alpha_3_code: KGZ
+  calling_code: 996
 lao_peoples_democratic_republic:
   id: 418
   name: Lao Peoples Democratic Republics Democratic Republic
   alpha_2_code: LA
   alpha_3_code: LAO
+  calling_code: 856
 latvia:
   id: 428
   name: Latvia
   official_name: Republic of Latvia
   alpha_2_code: LV
   alpha_3_code: LVA
+  calling_code: 371
 lebanon:
   id: 422
   name: Lebanon
   official_name: Lebanese Republic
   alpha_2_code: LB
   alpha_3_code: LBN
+  calling_code: 961
 lesotho:
   id: 426
   name: Lesotho
   official_name: Kingdom of Lesotho
   alpha_2_code: LS
   alpha_3_code: LSO
+  calling_code: 266
 liberia:
   id: 430
   name: Liberia
   official_name: Republic of Liberia
   alpha_2_code: LR
   alpha_3_code: LBR
+  calling_code: 231
 libyan_arab_jamahiriya:
   id: 434
   name: Libyan Arab Jamahiriya
   official_name: Socialist Peoples Libyan Arab Jamahiriyas Libyan Arab Jamahiriya
   alpha_2_code: LY
   alpha_3_code: LBY
+  calling_code: 218
 liechtenstein:
   id: 438
   name: Liechtenstein
   official_name: Principality of Liechtenstein
   alpha_2_code: LI
   alpha_3_code: LIE
+  calling_code: 423
 lithuania:
   id: 440
   name: Lithuania
   official_name: Republic of Lithuania
   alpha_2_code: LT
   alpha_3_code: LTU
+  calling_code: 370
 luxembourg:
   id: 442
   name: Luxembourg
   official_name: Grand Duchy of Luxembourg
   alpha_2_code: LU
   alpha_3_code: LUX
+  calling_code: 352
 macao:
   id: 446
   name: Macao
   official_name: Macao Special Administrative Region of China
   alpha_2_code: MO
   alpha_3_code: MAC
+  calling_code: 853
 macedonia_republic_of:
   id: 807
   name: Macedonia, Republic of
   official_name: The Former Yugoslav Republic of Macedonia
   alpha_2_code: MK
   alpha_3_code: MKD
+  calling_code: 389
 madagascar:
   id: 450
   name: Madagascar
   official_name: Republic of Madagascar
   alpha_2_code: MG
   alpha_3_code: MDG
+  calling_code: 261
 malawi:
   id: 454
   name: Malawi
   official_name: Republic of Malawi
   alpha_2_code: MW
   alpha_3_code: MWI
+  calling_code: 265
 malaysia:
   id: 458
   name: Malaysia
   alpha_2_code: MY
   alpha_3_code: MYS
+  calling_code: 60
 maldives:
   id: 462
   name: Maldives
   official_name: Republic of Maldives
   alpha_2_code: MV
   alpha_3_code: MDV
+  calling_code: 960
 mali:
   id: 466
   name: Mali
   official_name: Republic of Mali
   alpha_2_code: ML
   alpha_3_code: MLI
+  calling_code: 223
 malta:
   id: 470
   name: Malta
   official_name: Republic of Malta
   alpha_2_code: MT
   alpha_3_code: MLT
+  calling_code: 356
 marshall_islands:
   id: 584
   name: Marshall Islands
   official_name: Republic of the Marshall Islands
   alpha_2_code: MH
   alpha_3_code: MHL
+  calling_code: 692
 martinique:
   id: 474
   name: Martinique
   alpha_2_code: MQ
   alpha_3_code: MTQ
+  calling_code: 596
 mauritania:
   id: 478
   name: Mauritania
   official_name: Islamic Republic of Mauritania
   alpha_2_code: MR
   alpha_3_code: MRT
+  calling_code: 222
 mauritius:
   id: 480
   name: Mauritius
   official_name: Republic of Mauritius
   alpha_2_code: MU
   alpha_3_code: MUS
+  calling_code: 230
 mayotte:
   id: 175
   name: Mayotte
   alpha_2_code: YT
   alpha_3_code: MYT
+  calling_code: 269
 mexico:
   id: 484
   name: Mexico
   official_name: United Mexican States
   alpha_2_code: MX
   alpha_3_code: MEX
+  calling_code: 52
 micronesia_federated_states_of:
   id: 583
   name: Micronesia, Federated States of
   official_name: Federated States of Micronesia
   alpha_2_code: FM
   alpha_3_code: FSM
+  calling_code: 691
 moldova_republic_of:
   id: 498
   name: Moldova, Republic of
   official_name: Republic of Moldova
   alpha_2_code: MD
   alpha_3_code: MDA
+  calling_code: 373
 monaco:
   id: 492
   name: Monaco
   official_name: Principality of Monaco
   alpha_2_code: MC
   alpha_3_code: MCO
+  calling_code: 377
 mongolia:
   id: 496
   name: Mongolia
   alpha_2_code: MN
   alpha_3_code: MNG
+  calling_code: 976
 montenegro:
   id: 499
   name: Montenegro
   official_name: Republic of Montenegro
   alpha_2_code: ME
   alpha_3_code: MNE
+  calling_code: 382
 montserrat:
   id: 500
   name: Montserrat
   alpha_2_code: MS
   alpha_3_code: MSR
+  calling_code: 1
 morocco:
   id: 504
   name: Morocco
   official_name: Kingdom of Morocco
   alpha_2_code: MA
   alpha_3_code: MAR
+  calling_code: 212
 mozambique:
   id: 508
   name: Mozambique
   official_name: Republic of Mozambique
   alpha_2_code: MZ
   alpha_3_code: MOZ
+  calling_code: 258
 myanmar:
   id: 104
   name: Myanmar
   official_name: Union of Myanmar
   alpha_2_code: MM
   alpha_3_code: MMR
+  calling_code: 95
 namibia:
   id: 516
   name: Namibia
   official_name: Republic of Namibia
   alpha_2_code: NA
   alpha_3_code: NAM
+  calling_code: 264
 nauru:
   id: 520
   name: Nauru
   official_name: Republic of Nauru
   alpha_2_code: NR
   alpha_3_code: NRU
+  calling_code: 674
 nepal:
   id: 524
   name: Nepal
   official_name: Kingdom of Nepal
   alpha_2_code: NP
   alpha_3_code: NPL
+  calling_code: 977
 netherlands:
   id: 528
   name: Netherlands
   official_name: Kingdom of the Netherlands
   alpha_2_code: NL
   alpha_3_code: NLD
+  calling_code: 31
 netherlands_antilles:
   id: 530
   name: Netherlands Antilles
   alpha_2_code: AN
   alpha_3_code: ANT
+  calling_code: 599
 new_caledonia:
   id: 540
   name: New Caledonia
   alpha_2_code: NC
   alpha_3_code: NCL
+  calling_code: 687
 new_zealand:
   id: 554
   name: New Zealand
   alpha_2_code: NZ
   alpha_3_code: NZL
+  calling_code: 64
 nicaragua:
   id: 558
   name: Nicaragua
   official_name: Republic of Nicaragua
   alpha_2_code: NI
   alpha_3_code: NIC
+  calling_code: 505
 niger:
   id: 562
   name: Niger
   official_name: Republic of the Niger
   alpha_2_code: NE
   alpha_3_code: NER
+  calling_code: 227
 nigeria:
   id: 566
   name: Nigeria
   official_name: Federal Republic of Nigeria
   alpha_2_code: NG
   alpha_3_code: NGA
+  calling_code: 234
 niue:
   id: 570
   name: Niue
   official_name: Republic of Niue
   alpha_2_code: NU
   alpha_3_code: NIU
+  calling_code: 683
 norfolk_island:
   id: 574
   name: Norfolk Island
   alpha_2_code: NF
   alpha_3_code: NFK
+  calling_code: 672
 northern_mariana_islands:
   id: 580
   name: Northern Mariana Islands
   official_name: Commonwealth of the Northern Mariana Islands
   alpha_2_code: MP
   alpha_3_code: MNP
+  calling_code: 1
 norway:
   id: 578
   name: Norway
   official_name: Kingdom of Norway
   alpha_2_code: NO
   alpha_3_code: NOR
+  calling_code: 47
 oman:
   id: 512
   name: Oman
   official_name: Sultanate of Oman
   alpha_2_code: OM
   alpha_3_code: OMN
+  calling_code: 968
 pakistan:
   id: 586
   name: Pakistan
   official_name: Islamic Republic of Pakistan
   alpha_2_code: PK
   alpha_3_code: PAK
+  calling_code: 92
 palau:
   id: 585
   name: Palau
   official_name: Republic of Palau
   alpha_2_code: PW
   alpha_3_code: PLW
+  calling_code: 680
 palestinian_territory_occupied:
   id: 275
   name: Palestinian Territory, Occupied
   official_name: Occupied Palestinian Territory
   alpha_2_code: PS
   alpha_3_code: PSE
+  calling_code: 970
 panama:
   id: 591
   name: Panama
   official_name: Republic of Panama
   alpha_2_code: PA
   alpha_3_code: PAN
+  calling_code: 507
 papua_new_guinea:
   id: 598
   name: Papua New Guinea
   alpha_2_code: PG
   alpha_3_code: PNG
+  calling_code: 675
 paraguay:
   id: 600
   name: Paraguay
   official_name: Republic of Paraguay
   alpha_2_code: PY
   alpha_3_code: PRY
+  calling_code: 595
 peru:
   id: 604
   name: Peru
   official_name: Republic of Peru
   alpha_2_code: PE
   alpha_3_code: PER
+  calling_code: 51
 philippines:
   id: 608
   name: Philippines
   official_name: Republic of the Philippines
   alpha_2_code: PH
   alpha_3_code: PHL
+  calling_code: 63
 pitcairn:
   id: 612
   name: Pitcairn
@@ -998,152 +1165,179 @@ poland:
   official_name: Republic of Poland
   alpha_2_code: PL
   alpha_3_code: POL
+  calling_code: 48
 portugal:
   id: 620
   name: Portugal
   official_name: Portuguese Republic
   alpha_2_code: PT
   alpha_3_code: PRT
+  calling_code: 351
 puerto_rico:
   id: 630
   name: Puerto Rico
   alpha_2_code: PR
   alpha_3_code: PRI
+  calling_code: 1
 qatar:
   id: 634
   name: Qatar
   official_name: State of Qatar
   alpha_2_code: QA
   alpha_3_code: QAT
+  calling_code: 974
 reunion:
   id: 638
   name: Reunion
   alpha_2_code: RE
   alpha_3_code: REU
+  calling_code: 262
 romania:
   id: 642
   name: Romania
   alpha_2_code: RO
   alpha_3_code: ROU
+  calling_code: 40
 russian_federation:
   id: 643
   name: Russian Federation
   alpha_2_code: RU
   alpha_3_code: RUS
+  calling_code: 7
 rwanda:
   id: 646
   name: Rwanda
   official_name: Rwandese Republic
   alpha_2_code: RW
   alpha_3_code: RWA
+  calling_code: 250
 saint_helena:
   id: 654
   name: Saint Helena
   alpha_2_code: SH
   alpha_3_code: SHN
+  calling_code: 290
 saint_kitts_and_nevis:
   id: 659
   name: Saint Kitts and Nevis
   alpha_2_code: KN
   alpha_3_code: KNA
+  calling_code: 1
 saint_lucia:
   id: 662
   name: Saint Lucia
   alpha_2_code: LC
   alpha_3_code: LCA
+  calling_code: 1
 saint_pierre_and_miquelon:
   id: 666
   name: Saint Pierre and Miquelon
   alpha_2_code: PM
   alpha_3_code: SPM
+  calling_code: 508
 saint_vincent_and_the_grenadines:
   id: 670
   name: Saint Vincent and the Grenadines
   alpha_2_code: VC
   alpha_3_code: VCT
+  calling_code: 1
 samoa:
   id: 882
   name: Samoa
   official_name: Independent State of Samoa
   alpha_2_code: WS
   alpha_3_code: WSM
+  calling_code: 685
 san_marino:
   id: 674
   name: San Marino
   official_name: Republic of San Marino
   alpha_2_code: SM
   alpha_3_code: SMR
+  calling_code: 378
 sao_tome_and_principe:
   id: 678
   name: Sao Tome and Principe
   official_name: Democratic Republic of Sao Tome and Principe
   alpha_2_code: ST
   alpha_3_code: STP
+  calling_code: 239
 saudi_arabia:
   id: 682
   name: Saudi Arabia
   official_name: Kingdom of Saudi Arabia
   alpha_2_code: SA
   alpha_3_code: SAU
+  calling_code: 966
 senegal:
   id: 686
   name: Senegal
   official_name: Republic of Senegal
   alpha_2_code: SN
   alpha_3_code: SEN
+  calling_code: 221
 serbia:
   id: 891
   name: Serbia
   official_name: Republic of Serbia
   alpha_2_code: RS
   alpha_3_code: SRB
+  calling_code: 381
 seychelles:
   id: 690
   name: Seychelles
   official_name: Republic of Seychelles
   alpha_2_code: SC
   alpha_3_code: SYC
+  calling_code: 248
 sierra_leone:
   id: 694
   name: Sierra Leone
   official_name: Republic of Sierra Leone
   alpha_2_code: SL
   alpha_3_code: SLE
+  calling_code: 232
 singapore:
   id: 702
   name: Singapore
   official_name: Republic of Singapore
   alpha_2_code: SG
   alpha_3_code: SGP
+  calling_code: 65
 slovakia:
   id: 703
   name: Slovakia
   official_name: Slovak Republic
   alpha_2_code: SK
   alpha_3_code: SVK
+  calling_code: 421
 slovenia:
   id: 705
   name: Slovenia
   official_name: Republic of Slovenia
   alpha_2_code: SI
   alpha_3_code: SVN
+  calling_code: 386
 solomon_islands:
   id: 90
   name: Solomon Islands
   alpha_2_code: SB
   alpha_3_code: SLB
+  calling_code: 677
 somalia:
   id: 706
   name: Somalia
   official_name: Somali Republic
   alpha_2_code: SO
   alpha_3_code: SOM
+  calling_code: 252
 south_africa:
   id: 710
   name: South Africa
   official_name: Republic of South Africa
   alpha_2_code: ZA
   alpha_3_code: ZAF
+  calling_code: 27
 south_georgia_and_the_south_sandwich_islands:
   id: 239
   name: South Georgia and the South Sandwich Islands
@@ -1155,24 +1349,28 @@ spain:
   official_name: Kingdom of Spain
   alpha_2_code: ES
   alpha_3_code: ESP
+  calling_code: 34
 sri_lanka:
   id: 144
   name: Sri Lanka
   official_name: Democratic Socialist Republic of Sri Lanka
   alpha_2_code: LK
   alpha_3_code: LKA
+  calling_code: 94
 sudan:
   id: 736
   name: Sudan
   official_name: Republic of the Sudan
   alpha_2_code: SD
   alpha_3_code: SDN
+  calling_code: 249
 suriname:
   id: 740
   name: Suriname
   official_name: Republic of Suriname
   alpha_2_code: SR
   alpha_3_code: SUR
+  calling_code: 597
 svalbard_and_jan_mayen:
   id: 744
   name: Svalbard and Jan Mayen
@@ -1184,119 +1382,140 @@ swaziland:
   official_name: Kingdom of Swaziland
   alpha_2_code: SZ
   alpha_3_code: SWZ
+  calling_code: 268
 sweden:
   id: 752
   name: Sweden
   official_name: Kingdom of Sweden
   alpha_2_code: SE
   alpha_3_code: SWE
+  calling_code: 46
 switzerland:
   id: 756
   name: Switzerland
   official_name: Swiss Confederation
   alpha_2_code: CH
   alpha_3_code: CHE
+  calling_code: 41
 syrian_arab_republic:
   id: 760
   name: Syrian Arab Republic
   alpha_2_code: SY
   alpha_3_code: SYR
+  calling_code: 963
 taiwan_province_of_china:
   id: 158
   name: Taiwan, Province of China
   official_name: Taiwan, Province of China
   alpha_2_code: TW
   alpha_3_code: TWN
+  calling_code: 886
 tajikistan:
   id: 762
   name: Tajikistan
   official_name: Republic of Tajikistan
   alpha_2_code: TJ
   alpha_3_code: TJK
+  calling_code: 992
 tanzania_united_republic_of:
   id: 834
   name: Tanzania, United Republic of
   official_name: United Republic of Tanzania
   alpha_2_code: TZ
   alpha_3_code: TZA
+  calling_code: 255
 thailand:
   id: 764
   name: Thailand
   official_name: Kingdom of Thailand
   alpha_2_code: TH
   alpha_3_code: THA
+  calling_code: 66
 timorleste:
   id: 626
   name: Timor-Leste
   official_name: Democratic Republic of Timor-Leste
   alpha_2_code: TL
   alpha_3_code: TLS
+  calling_code: 670
 togo:
   id: 768
   name: Togo
   official_name: Togolese Republic
   alpha_2_code: TG
   alpha_3_code: TGO
+  calling_code: 228
 tokelau:
   id: 772
   name: Tokelau
   alpha_2_code: TK
   alpha_3_code: TKL
+  calling_code: 690
 tonga:
   id: 776
   name: Tonga
   official_name: Kingdom of Tonga
   alpha_2_code: TO
   alpha_3_code: TON
+  calling_code: 676
 trinidad_and_tobago:
   id: 780
   name: Trinidad and Tobago
   official_name: Republic of Trinidad and Tobago
   alpha_2_code: TT
   alpha_3_code: TTO
+  calling_code: 1
 tunisia:
   id: 788
   name: Tunisia
   official_name: Republic of Tunisia
   alpha_2_code: TN
   alpha_3_code: TUN
+  calling_code: 216
 turkey:
   id: 792
   name: Turkey
   official_name: Republic of Turkey
   alpha_2_code: TR
   alpha_3_code: TUR
+  calling_code: 90
 turkmenistan:
   id: 795
   name: Turkmenistan
   alpha_2_code: TM
   alpha_3_code: TKM
+  calling_code: 993
 turks_and_caicos_islands:
   id: 796
   name: Turks and Caicos Islands
   alpha_2_code: TC
   alpha_3_code: TCA
+  calling_code: 1
 tuvalu:
   id: 798
   name: Tuvalu
   alpha_2_code: TV
   alpha_3_code: TUV
+  calling_code: 688
 uganda:
   id: 800
   name: Uganda
   official_name: Republic of Uganda
   alpha_2_code: UG
   alpha_3_code: UGA
+  calling_code: 256
 ukraine:
   id: 804
   name: Ukraine
   alpha_2_code: UA
   alpha_3_code: UKR
+  calling_code: 380
 united_arab_emirates:
   id: 784
   name: United Arab Emirates
   alpha_2_code: AE
   alpha_3_code: ARE
+  calling_code: 971
 united_kingdom:
   id: 826
   name: United Kingdom
@@ -1309,6 +1528,7 @@ united_states:
   official_name: United States of America
   alpha_2_code: US
   alpha_3_code: USA
+  calling_code: 1
 united_states_minor_outlying_islands:
   id: 581
   name: United States Minor Outlying Islands
@@ -1320,67 +1540,79 @@ uruguay:
   official_name: Eastern Republic of Uruguay
   alpha_2_code: UY
   alpha_3_code: URY
+  calling_code: 598
 uzbekistan:
   id: 860
   name: Uzbekistan
   official_name: Republic of Uzbekistan
   alpha_2_code: UZ
   alpha_3_code: UZB
+  calling_code: 998
 vanuatu:
   id: 548
   name: Vanuatu
   official_name: Republic of Vanuatu
   alpha_2_code: VU
   alpha_3_code: VUT
+  calling_code: 678
 venezuela:
   id: 862
   name: Venezuela
   official_name: Bolivarian Republic of Venezuela
   alpha_2_code: VE
   alpha_3_code: VEN
+  calling_code: 58
 viet_nam:
   id: 704
   name: Viet Nam
   official_name: Socialist Republic of Viet Nam
   alpha_2_code: VN
   alpha_3_code: VNM
+  calling_code: 84
 virgin_islands_british:
   id: 92
   name: Virgin Islands, British
   official_name: British Virgin Islands
   alpha_2_code: VG
   alpha_3_code: VGB
+  calling_code: 1
 virgin_islands_us:
   id: 850
   name: Virgin Islands, U.S.
   official_name: Virgin Islands of the United States
   alpha_2_code: VI
   alpha_3_code: VIR
+  calling_code: 1
 wallis_and_futuna:
   id: 876
   name: Wallis and Futuna
   alpha_2_code: WF
   alpha_3_code: WLF
+  calling_code: 681
 western_sahara:
   id: 732
   name: Western Sahara
   alpha_2_code: EH
   alpha_3_code: ESH
+  calling_code: 212
 yemen:
   id: 887
   name: Yemen
   official_name: Republic of Yemen
   alpha_2_code: YE
   alpha_3_code: YEM
+  calling_code: 967
 zambia:
   id: 894
   name: Zambia
   official_name: Republic of Zambia
   alpha_2_code: ZM
   alpha_3_code: ZMB
+  calling_code: 260
 zimbabwe:
   id: 716
   name: Zimbabwe
   official_name: Republic of Zimbabwe
   alpha_2_code: ZW
   alpha_3_code: ZWE
+  calling_code: 263

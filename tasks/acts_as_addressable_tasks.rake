@@ -16,7 +16,7 @@ namespace :iso3166 do
       alpha_2_code_to_calling_code = Hash.new
       
       regex_phone = /'''\+([0-9]{1,3}):'''/
-      calling_codes.split("\n") do |line|
+      calling_codes.split("\n").each do |line|
         line = line.strip
         match = regex_phone.match( line )
         
