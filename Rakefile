@@ -17,7 +17,7 @@ task :default => :test
 desc 'Test the acts_as_addressable plugin.'
 Rake::TestTask.new(:test) do |t|
   t.libs << 'lib'
-  t.pattern = 'test/**/*_test.rb'
+  t.pattern = 'test/unit/**/*_test.rb'
   t.verbose = true
 end
 
@@ -40,7 +40,7 @@ spec = Gem::Specification.new do |s|
   s.require_path    = 'lib'
   s.autorequire     = 'acts_as_addressable'
   s.has_rdoc        = true
-  s.test_files      = Dir['test/**/*_test.rb']
+  s.test_files      = Dir['test/unit/**/*_test.rb']
   
   s.author          = 'Aaron Pfeifer and Neil Abraham'
   s.email           = 'info@pluginaweek.org'

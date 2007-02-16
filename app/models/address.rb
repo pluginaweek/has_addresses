@@ -19,7 +19,7 @@ class Address < ActiveRecord::Base
   # Gets the name of the region that this address is for (whether it is a custom or
   # stored region in the database)
   def region_name
-    user_region || region ? region.name : nil
+    custom_region || region ? region.name : nil
   end
   
   # Gets the value of the address on a single line
@@ -56,7 +56,7 @@ class Address < ActiveRecord::Base
   def ensure_exclusive_references
     if region_id?
       self.country_id = nil
-      self.user_region = nil
+      self.custom_region = nil
     end
     
     true

@@ -1,0 +1,11 @@
+valid:
+  id: 1
+  country_id: 1
+  name: Valid
+  abbreviation: VL
+  
+california:
+  id: 3181
+  country_id: 840
+  name: California
+  abbreviation: CA
