@@ -1,91 +1,77 @@
 require "#{File.dirname(__FILE__)}/../test_helper"
 
 class CountryTest < Test::Unit::TestCase
-  fixtures :countries, :regions, :addresses
+  fixtures :countries, :regions
   
-  def setup
-    @united_states = countries(:united_states)
+  def test_should_be_valid
+    assert_valid countries(:united_states)
   end
   
-  def valid_country
-    countries(:valid)
+  def test_should_require_name
+    assert_invalid countries(:united_states), :name, nil
   end
   
-  def test_valid_country
-    assert_valid valid_country
+  def test_should_restrict_name_length
+    assert_invalid countries(:united_states), :name, 'U', 'U' * 81
+    assert_valid countries(:united_states), :name, 'US', 'U' * 80
   end
   
-  def test_no_name
-    assert_invalid valid_country, :name, nil
+  def test_should_require_unique_name
+    assert_invalid countries(:united_states).clone, :name
   end
   
-  def test_name_length
-    assert_invalid valid_country, :name, 'A', 'A' * 81
-    assert_valid valid_country, :name, 'AB', 'A' * 80
+  def test_should_require_alpha_2_code
+    assert_invalid countries(:united_states), :alpha_2_code, nil
   end
   
-  def test_no_alpha_2_code
-    assert_invalid valid_country, :alpha_2_code, nil
+  def test_should_restrict_alpha_2_code_length
+    assert_invalid countries(:united_states), :alpha_2_code, 'U', 'USA'
+    assert_valid countries(:united_states), :alpha_2_code, 'US'
   end
   
-  def test_alpha_2_length
-    assert_invalid valid_country, :alpha_2_code, 'A', 'ABC'
-    assert_valid valid_country, :alpha_2_code, 'AB'
+  def test_should_require_unique_alpha_2_code
+    assert_invalid countries(:united_states).clone, :alpha_2_code
   end
   
-  def test_no_alpha_3_code
-    assert_invalid valid_country, :alpha_3_code, nil
+  def test_should_require_alpha_3_code
+    assert_invalid countries(:united_states), :alpha_3_code, nil
   end
   
-  def test_alpha_3_length
-    assert_invalid valid_country, :alpha_3_code, 'AB', 'ABCD'
-    assert_valid valid_country, :alpha_3_code, 'ABC'
+  def test_should_restrict_alpha_3_code_length
+    assert_invalid countries(:united_states), :alpha_3_code, 'US', 'USAC'
+    assert_valid countries(:united_states), :alpha_3_code, 'USA'
   end
   
-  def test_no_calling_code
-    assert_valid valid_country, :calling_code, nil
+  def test_should_require_unique_alpha_3_code
+    assert_invalid countries(:united_states).clone, :alpha_3_code
   end
   
-  def test_unique_attributes
-    c = Country.new(valid_country.attributes)
-    assert_invalid c, :name
-    assert_invalid c, :alpha_2_code
-    assert_invalid c, :alpha_3_code
+  def test_should_not_require_calling_code
+    assert_valid countries(:united_states), :calling_code, nil
   end
   
-  def test_abbreviation_2
-    assert_equal 'US', @united_states.abbreviation_2
+  def test_abbreviation_2_should_be_same_as_alpha_2_code
+    assert_equal 'US', countries(:united_states).abbreviation_2
   end
   
-  def test_abbreviation_3
-    assert_equal 'USA', @united_states.abbreviation_3
+  def test_abbreviation_3should_be_same_as_alpha_3_code
+    assert_equal 'USA', countries(:united_states).abbreviation_3
+  end
+#  
+  def test_should_have_an_official_name
+    assert_equal 'United States of America', countries(:united_states).official_name
   end
   
-  def test_official_name
-    assert_equal 'United States of America', @united_states.official_name
+  def test_should_use_name_when_official_name_is_not_present
+    assert_equal 'Canada', countries(:canada).official_name
   end
   
-  def test_official_name_same_as_name
-    assert_equal 'Valid', valid_country.official_name
-  end
-  
-  def test_to_s
-    assert_equal 'United States', @united_states.to_s
+  def test_should_return_name_for_to_s
+    assert_equal 'United States', countries(:united_states).to_s
+    assert_equal 'Canada', countries(:canada).to_s
   end
   
   def test_regions
-    assert_equal [regions(:california)], @united_states.regions
-  end
-  
-  def test_addresses_with_known_regions
-    assert_equal [addresses(:known_region)], @united_states.addresses_with_known_regions
-  end
-  
-  def test_addresses_with_custom_regions
-    assert_equal [addresses(:custom_region)], @united_states.addresses_with_custom_regions
-  end
-  
-  def test_addresses
-    assert_equal [addresses(:known_region), addresses(:custom_region)], @united_states.addresses
+    assert_equal [regions(:california)], countries(:united_states).regions
   end
 end

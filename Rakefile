@@ -6,7 +6,7 @@ require 'rake/contrib/sshpublisher'
 # Load custom rakefile extensions
 Dir["#{File.dirname(__FILE__)}/tasks/**/*.rake"].sort.each {|ext| load ext}
 
-PKG_NAME           = 'acts_as_addressable'
+PKG_NAME           = 'has_addresses'
 PKG_VERSION        = '0.0.1'
 PKG_FILE_NAME      = "#{PKG_NAME}-#{PKG_VERSION}"
 RUBY_FORGE_PROJECT = 'pluginaweek'
@@ -14,17 +14,17 @@ RUBY_FORGE_PROJECT = 'pluginaweek'
 desc 'Default: run unit tests.'
 task :default => :test
 
-desc 'Test the acts_as_addressable plugin.'
+desc 'Test the has_addresses plugin.'
 Rake::TestTask.new(:test) do |t|
   t.libs << 'lib'
   t.pattern = 'test/unit/**/*_test.rb'
   t.verbose = true
 end
 
-desc 'Generate documentation for the acts_as_addressable plugin.'
+desc 'Generate documentation for the has_addresses plugin.'
 Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'ActsAsAddressable'
+  rdoc.title    = 'HasAddresses'
   rdoc.options << '--line-numbers' << '--inline-source'
   rdoc.rdoc_files.include('README')
   rdoc.rdoc_files.include('lib/**/*.rb')
@@ -38,7 +38,7 @@ spec = Gem::Specification.new do |s|
   
   s.files           = FileList['{app,db,lib,tasks,test,utilities}/**/*'].to_a + %w(init.rb MIT-LICENSE Rakefile README)
   s.require_path    = 'lib'
-  s.autorequire     = 'acts_as_addressable'
+  s.autorequire     = 'has_addresses'
   s.has_rdoc        = true
   s.test_files      = Dir['test/unit/**/*_test.rb']
   

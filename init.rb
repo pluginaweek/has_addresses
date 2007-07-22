@@ -1,1 +1,1 @@
-require 'acts_as_addressable'
+require 'has_addresses'

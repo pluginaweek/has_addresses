@@ -6,11 +6,18 @@ class Address < ActiveRecord::Base
   belongs_to            :country
   
   validates_presence_of :addressable_id,
-                        :addressable_type
-  
+                        :addressable_type,
+                        :street_1,
+                        :city,
+                        :postal_code
+  validates_presence_of :region_id,
+                          :if => :known_region_required?
+  validates_presence_of :custom_region,
+                          :if => :custom_region_required?
   validates_format_of   :postal_code,
                           :with => /^[0-9]{5}$/,
                           :allow_nil => true
+  
   before_save           :ensure_exclusive_references
   
   # Returns the region's country if the region is specified
@@ -53,10 +60,21 @@ class Address < ActiveRecord::Base
   end
   
   private
+  def known_region_required?
+    country.nil? || country.regions.count != 0
+  end
+  
+  # A custom region name is required if a known region was not specified and
+  # the country in which this address resides has no known regions in the
+  # database
+  def custom_region_required?
+    region_id.nil? && country && country.regions.count == 0
+  end
+  
   # Ensures that the country id/user region combo is not set at the same time as
   # the region id
   def ensure_exclusive_references
-    if region_id?
+    if known_region_required?
       self.country_id = nil
       self.custom_region = nil
     end

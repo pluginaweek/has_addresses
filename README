@@ -1,12 +1,12 @@
-= acts_as_addressable
+= has_addresses
 
-acts_as_addressable .
+has_addresses .
 
 == Resources
 
 Wiki
 
-* http://wiki.pluginaweek.org/Acts_as_addressable
+* http://wiki.pluginaweek.org/Has_addresses
 
 Announcement
 
@@ -14,11 +14,11 @@ Announcement
 
 Source
 
-* http://svn.pluginaweek.org/trunk/plugins/active_record/acts/acts_as_addressable
+* http://svn.pluginaweek.org/trunk/plugins/active_record/has/has_addresses
 
 Development
 
-* http://dev.pluginaweek.org/browser/trunk/plugins/active_record/acts/acts_as_addressable
+* http://dev.pluginaweek.org/browser/trunk/plugins/active_record/has/has_addresses
 
 == Description
 
