@@ -36,7 +36,7 @@ spec = Gem::Specification.new do |s|
   s.platform        = Gem::Platform::RUBY
   s.summary         = ''
   
-  s.files           = FileList['{app,db,lib,tasks,test,utilities}/**/*'].to_a + %w(init.rb MIT-LICENSE Rakefile README)
+  s.files           = FileList['{app,db,lib,tasks,test}/**/*'].to_a + %w(CHANGELOG init.rb MIT-LICENSE Rakefile README)
   s.require_path    = 'lib'
   s.autorequire     = 'has_addresses'
   s.has_rdoc        = true
