@@ -5,7 +5,6 @@ class CreateCountries < ActiveRecord::Migration
       t.column :official_name, :string, :limit => 80
       t.column :alpha_2_code, :string, :null => false, :limit => 2
       t.column :alpha_3_code, :string, :null => false, :limit => 3
-      t.column :calling_code, :string, :limit => 3
     end
     add_index :countries, :name, :unique => true
     add_index :countries, :alpha_2_code, :unique => true

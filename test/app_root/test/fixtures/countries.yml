@@ -4,11 +4,9 @@ united_states:
   official_name: United States of America
   alpha_2_code: US
   alpha_3_code: USA
-  calling_code: 1
   
 canada:
   id: 124
   name: Canada
   alpha_2_code: CA
   alpha_3_code: CAN
-  calling_code: 1

@@ -1,8 +1,13 @@
 = has_addresses
 
-has_addresses .
+has_addresses adds a base skeleton for handling countries, regions, and
+addresses.
 
 == Resources
+
+API
+
+* http://api.pluginaweek.org/has_addresses
 
 Wiki
 
@@ -23,6 +28,34 @@ Development
 == Description
 
 
+
+=== Running migrations
+
+
+
+=== Bootstrapping the database
+
+
+
+== Testing
+
+Since the rake tasks for installing TinyMCE and updating the configuration
+options are part of the unit tests, already-downloaded files are included with
+the plugin.  If you want to perform a "live" test which actually downloads the
+files off the Internet (rather than using the local versions), you must set
+the LIVE environment variable to true.  For example,
+
+  rake test LIVE=true
+
+The following plugins/gems must be installed before any tests can be run:
+* plugin_dependencies - http://wiki.pluginaweekk.org/Plugin_dependencies
+* loaded_plugins - http://wiki.pluginaweek.org/Loaded_plugins
+* appable_plugins - http://wiki.pluginaweek.org/Appable_plugins
+
+== Dependencies
+
+This plugin depends on the presence of the following plugins:
+* has_association_helper - http://wiki.pluginaweek.org/Has_association_helper
 
 == References
 

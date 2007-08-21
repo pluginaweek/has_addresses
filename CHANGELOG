@@ -1,2 +1,11 @@
 *SVN*
 
+* Remove default bootstrap files in favor of creating new ones through the bootstrap tasks
+
+* Add tests for rake tests
+
+* Fix not allowing single character abbreviations for regions
+
+* Add countries:create_fixtures, countries:bootstrap, regions:create_fixtures, and regions:bootstrap files
+
+* Refactor Rake code into Country/Region classes
