@@ -19,7 +19,9 @@ class Country < ActiveRecord::Base
       output_file = File.new(output_file_path, File::CREAT|File::TRUNC|File::RDWR)
       output = ''
       
-      download_all.each do |country|
+      countries = download_all
+      puts "Saving countries to #{output_file_path}..." if PluginAWeek::Has::Addresses.verbose
+      countries.each do |country|
         record_name = country.name.gsub(' ', '_').gsub(/[^A-Za-z_]/, '').downcase
         
         output << "#{record_name}:\n"
@@ -31,15 +33,20 @@ class Country < ActiveRecord::Base
       output_file << output.slice(0..output.length-2)
       output_file.close
       
+      puts 'Done!' if PluginAWeek::Has::Addresses.verbose
       true
     end
     
     # Bootstraps the table by downloading the latest ISO 3166 standard and
     # saving each country to the database
     def bootstrap
-      delete_all
-      download_all.each {|country| country.save!}
+      countries = download_all
       
+      puts 'Loading countries into database...' if PluginAWeek::Has::Addresses.verbose
+      delete_all
+      countries.each {|country| country.save!}
+      
+      puts 'Done!' if PluginAWeek::Has::Addresses.verbose
       true
     end
     
@@ -47,10 +54,12 @@ class Country < ActiveRecord::Base
     # countries
     def download_all
       # Download the standard
+      puts 'Downloading ISO 3166 data...' if PluginAWeek::Has::Addresses.verbose
       iso_3166 = open(ISO_3166_URL).readlines * "\n"
       iso_3166 = CGI::unescapeHTML(/<pre>(.+)<\/pre>/im.match(iso_3166)[1].gsub('&nbsp;', ''))
       
       # Parse and load the countries
+      puts 'Parsing countries...' if PluginAWeek::Has::Addresses.verbose
       countries = []
       REXML::Document.new(iso_3166).elements.each('*/iso_3166_entry') do |country|
         name = country.attributes['name'].to_s.gsub("'","\\'")

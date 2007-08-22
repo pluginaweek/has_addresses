@@ -1,5 +1,13 @@
 *SVN*
 
+*0.0.1* (August 21st, 2007)
+
+* Add documentation
+
+* Add descriptive output for rake tasks
+
+* Remove dependency on has_association_helper
+
 * Remove default bootstrap files in favor of creating new ones through the bootstrap tasks
 
 * Add tests for rake tests

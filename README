@@ -27,15 +27,69 @@ Development
 
 == Description
 
+Countries, regions, and addresses are all simple models whose data and
+functionality should be able to be standardized across multiple applications.
+has_addresses adds support for countries and regions based on the ISO 3166 and
+ISO 3166-2 standard.  The data for these standards is obtained through the
+open-source Debian package, iso-codes.
 
+Along with the simple Country and Region models, addresses can be defined and
+integrated based on the data in these models.  Addresses are minimalistic in
+terms of the type of data required and follows the standard U.S. format.
 
 === Running migrations
 
+To migrate the tables required for has_addresses, you can either run the
+migration from the command line like so:
 
+  rake db:migrate:plugins PLUGIN=has_addresses
+
+or (more ideally) generate a migration file that will integrate into your main
+application's migration path:
+
+  ruby script/generate plugin_migration MigrateHasAddressesToVersion3
 
 === Bootstrapping the database
 
+has_addresses comes bundled with tasks for bootstrapping the countries and
+regions table based on the ISO 3166 and ISO 3166-2 standard.  You can bootstrap
+the database using built-in rake tasks or by creating fixtures which contain the
+bootstrap data.
 
+To bootstrap country/region data into the current database schema:
+
+  $ rake countries:bootstrap
+  (in /my/project)
+  Downloading ISO 3166 data...
+  Parsing countries...
+  Loading countries into database...
+  Done!
+  
+  $ rake regions:bootstrap
+  Downloading ISO 3166 data...
+  Parsing countries...
+  Downloading ISO 3166-2 data...
+  Parsing regions...
+  Loading regions into database...
+  Done!
+
+To create fixtures for the country/region bootstrap data:
+
+  $ rake countries:create_fixtures
+  (in /my/project)
+  Downloading ISO 3166 data...
+  Parsing countries...
+  Saving countries to /my/project/config/../db/bootstrap/countries.yml...
+  Done!
+  
+  $ rake regions:create_fixtures
+  (in /my/project)
+  Downloading ISO 3166 data...
+  Parsing countries...
+  Downloading ISO 3166-2 data...
+  Parsing regions...
+  Saving regions to /my/project/config/../db/bootstrap/regions.yml...
+  Done!
 
 == Testing
 
@@ -54,9 +108,4 @@ The following plugins/gems must be installed before any tests can be run:
 
 == Dependencies
 
-This plugin depends on the presence of the following plugins:
-* has_association_helper - http://wiki.pluginaweek.org/Has_association_helper
-
-== References
-
-http://pdo.debian.net/unstable/misc/iso-codes
+This plugin does not depend on the presence of any other plugin.

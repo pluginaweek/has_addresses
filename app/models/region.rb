@@ -18,7 +18,9 @@ class Region < ActiveRecord::Base
       output_file = File.new(output_file_path, File::CREAT|File::TRUNC|File::RDWR)
       output = ''
       
-      download_all.each do |region|
+      regions = download_all
+      puts "Saving regions to #{output_file_path}..." if PluginAWeek::Has::Addresses.verbose
+      regions.each do |region|
         record_name = region.name.gsub(' ', '_').gsub(/[^A-Za-z_]/, '').downcase
         
         output << "#{record_name}:\n"
@@ -30,15 +32,20 @@ class Region < ActiveRecord::Base
       output_file << output.slice(0..output.length-2)
       output_file.close
       
+      puts 'Done!' if PluginAWeek::Has::Addresses.verbose
       true
     end
     
     # Bootstraps the table by downloading the latest ISO 3166-2 standard and
     # saving each region to the database
     def bootstrap
-      delete_all
-      download_all.each {|region| region.save!}
+      regions = download_all
       
+      puts 'Loading regions into database...' if PluginAWeek::Has::Addresses.verbose
+      delete_all
+      regions.each {|region| region.save!}
+      
+      puts 'Done!' if PluginAWeek::Has::Addresses.verbose
       true
     end
     
@@ -49,10 +56,12 @@ class Region < ActiveRecord::Base
       alpha_2_code_to_country = Hash[*countries.collect {|c| [c.alpha_2_code, c]}.flatten]
       
       # Download the standard
+      puts 'Downloading ISO 3166-2 data...' if PluginAWeek::Has::Addresses.verbose
       iso_3166_2 = open(ISO_3166_2_URL).readlines * "\n"
       iso_3166_2 = CGI::unescapeHTML(/<pre>(.+)<\/pre>/im.match(iso_3166_2)[1].gsub('&nbsp;', ''))
       
       # Parse and load the regions
+      puts 'Parsing regions...' if PluginAWeek::Has::Addresses.verbose
       region_id = 1
       regions = []
       REXML::Document.new(iso_3166_2).elements.each('*/iso_3166_country') do |country|

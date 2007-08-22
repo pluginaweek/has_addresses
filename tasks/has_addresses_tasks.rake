@@ -12,7 +12,7 @@ end
 
 namespace :regions do
   desc 'Generates a new fixtures file for the regions table'
-  task :create_fixture => :environment do
+  task :create_fixtures => :environment do
     Region.create_fixtures(ENV['OUTPUT'])
   end
   
