@@ -37,6 +37,8 @@ Along with the simple Country and Region models, addresses can be defined and
 integrated based on the data in these models.  Addresses are minimalistic in
 terms of the type of data required and follows the standard U.S. format.
 
+== Usage
+
 === Running migrations
 
 To migrate the tables required for has_addresses, you can either run the
