@@ -1,9 +1,9 @@
 # Represents a mailing address
 class Address < ActiveRecord::Base
-  belongs_to            :addressable,
-                          :polymorphic => true
-  belongs_to            :region
-  belongs_to            :country
+  belongs_to  :addressable,
+                :polymorphic => true
+  belongs_to  :region
+  belongs_to  :country
   
   validates_presence_of :addressable_id,
                         :addressable_type,
@@ -18,7 +18,7 @@ class Address < ActiveRecord::Base
                           :with => /^[0-9]{5}$/,
                           :allow_nil => true
   
-  before_save           :ensure_exclusive_references
+  before_save :ensure_exclusive_references
   
   # Returns the region's country if the region is specified
   def country_with_region_check

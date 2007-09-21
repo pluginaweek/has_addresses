@@ -14,8 +14,8 @@ module PluginAWeek #:nodoc:
       
       module MacroMethods
         # Creates a new association for having a single address.  This takes
-        # the same parameters as ActiveRecord::Associations::ClassMethods#has_one.
-        # By default, the following associations are the same:
+        # the same parameters as +has_one+.  By default, the following associations
+        # are the same:
         # 
         #   class Person < ActiveRecord::Base
         #     has_address
@@ -34,8 +34,8 @@ module PluginAWeek #:nodoc:
         end
         
         # Creates a new association for having a multiple addresses.  This takes
-        # the same parameters as ActiveRecord::Associations::ClassMethods#has_many.
-        # By default, the following associations are the same:
+        # the same parameters as +has_many+.  By default, the following associations
+        # are the same:
         # 
         #   class Person < ActiveRecord::Base
         #     has_addresses

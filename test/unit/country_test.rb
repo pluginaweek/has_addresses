@@ -92,7 +92,7 @@ class CountryTest < Test::Unit::TestCase
     assert_equal 'US', countries(:united_states).abbreviation_2
   end
   
-  def test_abbreviation_3should_be_same_as_alpha_3_code
+  def test_abbreviation_3_should_be_same_as_alpha_3_code
     assert_equal 'USA', countries(:united_states).abbreviation_3
   end
   

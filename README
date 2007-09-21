@@ -1,6 +1,6 @@
 = has_addresses
 
-has_addresses adds a base skeleton for handling countries, regions, and
++has_addresses+ adds a base skeleton for handling countries, regions, and
 addresses.
 
 == Resources
@@ -15,7 +15,7 @@ Wiki
 
 Announcement
 
-* http://www.pluginaweek.org/
+* http://www.pluginaweek.org
 
 Source
 
@@ -51,7 +51,7 @@ application's migration path:
 
 === Bootstrapping the database
 
-has_addresses comes bundled with tasks for bootstrapping the countries and
++has_addresses+ comes bundled with tasks for bootstrapping the countries and
 regions table based on the ISO 3166 and ISO 3166-2 standard.  You can bootstrap
 the database using built-in rake tasks or by creating fixtures which contain the
 bootstrap data.
@@ -93,6 +93,10 @@ To create fixtures for the country/region bootstrap data:
 
 == Testing
 
+Before you can run any tests, the following gems must be installed:
+* plugin_test_helper[http://wiki.pluginaweek.org/Plugin_test_helper]
+* dry_validity_assertions[http://wiki.pluginaweek.org/Dry_validity_assertions]
+
 Since the rake tasks for installing TinyMCE and updating the configuration
 options are part of the unit tests, already-downloaded files are included with
 the plugin.  If you want to perform a "live" test which actually downloads the
@@ -101,11 +105,29 @@ the LIVE environment variable to true.  For example,
 
   rake test LIVE=true
 
-The following plugins/gems must be installed before any tests can be run:
-* plugin_dependencies - http://wiki.pluginaweekk.org/Plugin_dependencies
-* loaded_plugins - http://wiki.pluginaweek.org/Loaded_plugins
-* appable_plugins - http://wiki.pluginaweek.org/Appable_plugins
-
 == Dependencies
 
-This plugin does not depend on the presence of any other plugin.
+This plugin is a plugin+.  That means that it contains a slice of an
+application, such as models and migrations.  To test or use a plugin+, you
+must have the following plugins/gems installed:
+* plugin_dependencies[http://wiki.pluginaweek.org/Plugin_dependencies]
+* loaded_plugins[http://wiki.pluginaweek.org/Loaded_plugins]
+* appable_plugins[http://wiki.pluginaweek.org/Appable_plugins]
+* plugin_migrations[http://wiki.pluginaweek.org/Plugin_migrations]
+
+Instead of installing each individual plugin+ feature, you can install them all
+at once using the plugins+[http://wiki.pluginaweek.org/Plugins_plus] meta package,
+which contains all additional features.
+
+=== Installing
+
+You can install all dependencies by either:
+
+1. Using svn:externals to link to the PluginAWeek Subversion repository
+2. Using the Rails plugin installer:
+
+  ruby script/plugin install plugins_plus
+
+3. Installing them as gems:
+
+  gem install plugins_plus
