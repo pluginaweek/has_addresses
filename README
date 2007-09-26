@@ -41,7 +41,7 @@ terms of the type of data required and follows the standard U.S. format.
 
 === Running migrations
 
-To migrate the tables required for has_addresses, you can either run the
+To migrate the tables required for this plugin, you can either run the
 migration from the command line like so:
 
   rake db:migrate:plugins PLUGIN=has_addresses
