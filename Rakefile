@@ -7,7 +7,7 @@ require 'rake/contrib/sshpublisher'
 Dir["#{File.dirname(__FILE__)}/tasks/**/*.rake"].sort.each {|ext| load ext}
 
 PKG_NAME           = 'has_addresses'
-PKG_VERSION        = '0.0.1'
+PKG_VERSION        = '0.0.2'
 PKG_FILE_NAME      = "#{PKG_NAME}-#{PKG_VERSION}"
 RUBY_FORGE_PROJECT = 'pluginaweek'
 
