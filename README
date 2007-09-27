@@ -5,25 +5,25 @@ addresses.
 
 == Resources
 
-API
+Announcement
 
-* http://api.pluginaweek.org/has_addresses
+* http://www.pluginaweek.org
 
 Wiki
 
 * http://wiki.pluginaweek.org/Has_addresses
 
-Announcement
+API
 
-* http://www.pluginaweek.org
-
-Source
-
-* http://svn.pluginaweek.org/trunk/plugins/active_record/has/has_addresses
+* http://api.pluginaweek.org/has_addresses
 
 Development
 
 * http://dev.pluginaweek.org/browser/trunk/plugins/active_record/has/has_addresses
+
+Source
+
+* http://svn.pluginaweek.org/trunk/plugins/active_record/has/has_addresses
 
 == Description
 
