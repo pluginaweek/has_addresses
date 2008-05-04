@@ -1,95 +1,11 @@
-require 'open-uri'
-require 'cgi'
-require 'rexml/document'
-
 # Defined by the ISO 3166-2 standard.  This is a standard that gives short codes
 # for provinces, etc. within a country.
+# 
+# Data is based on http://svn.debian.org/wsvn/pkg-isocodes/trunk/iso-codes/iso_3166/iso_3166_2/iso_3166_2.xml?op=file
 class Region < ActiveRecord::Base
-  # The url of the open source version of the ISO 3166-2 standard
-  ISO_3166_2_URL = 'http://svn.debian.org/wsvn/pkg-isocodes/trunk/iso-codes/iso_3166/iso_3166_2/iso_3166_2.xml?op=file'
+  acts_as_enumeration :name, :country_id
   
-  class << self
-    # Creates a fixtures containing all possible regions
-    def create_fixtures(output_file_path = nil)
-      output_file_path ||= 'db/bootstrap/regions.yml'
-      output_file_path = File.join(RAILS_ROOT, output_file_path)
-      
-      FileUtils.mkdir_p(File.dirname(output_file_path))
-      output_file = File.new(output_file_path, File::CREAT|File::TRUNC|File::RDWR)
-      output = ''
-      
-      regions = download_all
-      puts "Saving regions to #{output_file_path}..." if PluginAWeek::Has::Addresses.verbose
-      regions.each do |region|
-        record_name = region.name.gsub(' ', '_').gsub(/[^A-Za-z_]/, '').downcase
-        
-        output << "#{record_name}:\n"
-        region.attributes.each do |attr, value|
-          output << "  #{attr}: #{value}\n" if value
-        end
-      end
-      
-      output_file << output.slice(0..output.length-2)
-      output_file.close
-      
-      puts 'Done!' if PluginAWeek::Has::Addresses.verbose
-      true
-    end
-    
-    # Bootstraps the table by downloading the latest ISO 3166-2 standard and
-    # saving each region to the database
-    def bootstrap
-      regions = download_all
-      
-      puts 'Loading regions into database...' if PluginAWeek::Has::Addresses.verbose
-      delete_all
-      regions.each {|region| region.save!}
-      
-      puts 'Done!' if PluginAWeek::Has::Addresses.verbose
-      true
-    end
-    
-    # Downloads the latest ISO 3166-2 standard and returns the data as a list of
-    # regions
-    def download_all
-      countries = Country.download_all
-      alpha_2_code_to_country = Hash[*countries.collect {|c| [c.alpha_2_code, c]}.flatten]
-      
-      # Download the standard
-      puts 'Downloading ISO 3166-2 data...' if PluginAWeek::Has::Addresses.verbose
-      iso_3166_2 = open(ISO_3166_2_URL).readlines * "\n"
-      iso_3166_2 = CGI::unescapeHTML(/<pre>(.+)<\/pre>/im.match(iso_3166_2)[1].gsub('&nbsp;', ''))
-      
-      # Parse and load the regions
-      puts 'Parsing regions...' if PluginAWeek::Has::Addresses.verbose
-      region_id = 1
-      regions = []
-      REXML::Document.new(iso_3166_2).elements.each('*/iso_3166_country') do |country|
-        code = country.attributes['code'][0..1] # Belarius is more than 2 characters for some reason, so just get the first 2
-        country_record = alpha_2_code_to_country[code.upcase]
-        
-        country.elements.each('iso_3166_2_entry') do |region|
-          name = region.attributes['name'].to_s.gsub("'","\\'").strip
-          abbreviation = region.attributes['code'].upcase.sub("#{code}-", '')
-          
-          region = new(
-            :country_id => country_record.id,
-            :name => name,
-            :abbreviation => abbreviation
-          )
-          region.id = region_id
-          
-          if !country_record.regions.any? {|known_region| known_region.name == region.name}
-            regions << region
-            country_record.regions << region 
-            region_id += 1
-          end
-        end
-      end
-      
-      regions
-    end
-  end
+  column :abbreviation, :string
   
   belongs_to  :country
   has_many    :addresses
@@ -97,16 +13,3184 @@ class Region < ActiveRecord::Base
   validates_presence_of   :name,
                           :country_id,
                           :abbreviation
-  validates_length_of     :name,
-                            :within => 2..80
   validates_length_of     :abbreviation,
                             :within => 1..5
-  validates_uniqueness_of :name,
-                            :scope => :country_id
-  validates_uniqueness_of :abbreviation,
-                            :scope => :country_id
   
-  def to_s #:nodoc
+  def to_s #:nodoc:
     name
+  end
+  
+  with_options(:country => "Andorra") do |country|
+    country.create :id => 1, :name => "Andorra la Vella", :abbreviation => '07'
+    country.create :id => 2, :name => "Canillo", :abbreviation => '02'
+    country.create :id => 3, :name => "Encamp", :abbreviation => '03'
+    country.create :id => 4, :name => "Escaldes-Engordany", :abbreviation => '08'
+    country.create :id => 5, :name => "La Massana", :abbreviation => '04'
+    country.create :id => 6, :name => "Ordino", :abbreviation => '05'
+    country.create :id => 7, :name => "Sant Julià de Lòria", :abbreviation => '06'
+  end
+  
+  with_options(:country => "United Arab Emirates") do |country|
+    country.create :id => 8, :name => "Abū Ȥaby [Abu Dhabi]", :abbreviation => 'AZ'
+    country.create :id => 9, :name => "AjmānAjmān", :abbreviation => 'AJ'
+    country.create :id => 10, :name => "Al Fujayrah", :abbreviation => 'FU'
+    country.create :id => 11, :name => "Ash Shāriqah", :abbreviation => 'SH'
+    country.create :id => 12, :name => "Dubayy", :abbreviation => 'DU'
+    country.create :id => 13, :name => "Ra’s al Khaymah", :abbreviation => 'RK'
+    country.create :id => 14, :name => "Umm al Qaywayn", :abbreviation => 'UQ'
+  end
+  
+  with_options(:country => "Afghanistan") do |country|
+    country.create :id => 15, :name => "Badakhshān", :abbreviation => 'BDS'
+    country.create :id => 16, :name => "Bādghīs", :abbreviation => 'BDG'
+    country.create :id => 17, :name => "Baghlān", :abbreviation => 'BGL'
+    country.create :id => 18, :name => "Balkh", :abbreviation => 'BAL'
+    country.create :id => 19, :name => "Bāmīān", :abbreviation => 'BAM'
+    country.create :id => 20, :name => "Dāykondī", :abbreviation => 'DAY'
+    country.create :id => 21, :name => "Farāh", :abbreviation => 'FRA'
+    country.create :id => 22, :name => "Fāryāb", :abbreviation => 'FYB'
+    country.create :id => 23, :name => "Ghaznī", :abbreviation => 'GHA'
+    country.create :id => 24, :name => "Ghowr", :abbreviation => 'GHO'
+    country.create :id => 25, :name => "Helmand", :abbreviation => 'HEL'
+    country.create :id => 26, :name => "Herāt", :abbreviation => 'HER'
+    country.create :id => 27, :name => "Jowzjān", :abbreviation => 'JOW'
+    country.create :id => 28, :name => "Kābul [Kābol]", :abbreviation => 'KAB'
+    country.create :id => 29, :name => "Kandahār", :abbreviation => 'KAN'
+    country.create :id => 30, :name => "Kāpīsā", :abbreviation => 'KAP'
+    country.create :id => 31, :name => "Khowst", :abbreviation => 'KHO'
+    country.create :id => 32, :name => "Konar [Kunar]", :abbreviation => 'KNR'
+    country.create :id => 33, :name => "Kondoz [Kunduz]", :abbreviation => 'KDZ'
+    country.create :id => 34, :name => "Laghmān", :abbreviation => 'LAG'
+    country.create :id => 35, :name => "Lowgar", :abbreviation => 'LOW'
+    country.create :id => 36, :name => "Nangrahār [Nangarhār]", :abbreviation => 'NAN'
+    country.create :id => 37, :name => "Nīmrūz", :abbreviation => 'NIM'
+    country.create :id => 38, :name => "Nūrestān", :abbreviation => 'NUR'
+    country.create :id => 39, :name => "Orūzgān [Urūzgān]", :abbreviation => 'ORU'
+    country.create :id => 40, :name => "Panjshīr", :abbreviation => 'PAN'
+    country.create :id => 41, :name => "Paktīā", :abbreviation => 'PIA'
+    country.create :id => 42, :name => "Paktīkā", :abbreviation => 'PKA'
+    country.create :id => 43, :name => "Parwān", :abbreviation => 'PAR'
+    country.create :id => 44, :name => "Samangān", :abbreviation => 'SAM'
+    country.create :id => 45, :name => "Sar-e Pol", :abbreviation => 'SAR'
+    country.create :id => 46, :name => "Takhār", :abbreviation => 'TAK'
+    country.create :id => 47, :name => "Wardak [Wardag]", :abbreviation => 'WAR'
+    country.create :id => 48, :name => "Zābol [Zābul]", :abbreviation => 'ZAB'
+  end
+  
+  with_options(:country => "Antigua and Barbuda") do |country|
+    country.create :id => 49, :name => "Saint George", :abbreviation => '03'
+    country.create :id => 50, :name => "Saint John", :abbreviation => '04'
+    country.create :id => 51, :name => "Saint Mary", :abbreviation => '05'
+    country.create :id => 52, :name => "Saint Paul", :abbreviation => '06'
+    country.create :id => 53, :name => "Saint Peter", :abbreviation => '07'
+    country.create :id => 54, :name => "Saint Philip", :abbreviation => '08'
+  end
+  
+  with_options(:country => "Albania") do |country|
+    country.create :id => 55, :name => "Berat", :abbreviation => 'AL 1'
+    country.create :id => 56, :name => "Dibër", :abbreviation => 'AL 9'
+    country.create :id => 57, :name => "Durrës", :abbreviation => 'AL 2'
+    country.create :id => 58, :name => "Elbasan", :abbreviation => 'AL 3'
+    country.create :id => 59, :name => "Fier", :abbreviation => 'AL 4'
+    country.create :id => 60, :name => "Gjirokastër", :abbreviation => 'AL 5'
+    country.create :id => 61, :name => "Korçë", :abbreviation => 'AL 6'
+    country.create :id => 62, :name => "Kukës", :abbreviation => 'AL 7'
+    country.create :id => 63, :name => "Lezhë", :abbreviation => 'AL 8'
+    country.create :id => 64, :name => "Shkodër", :abbreviation => 'AL 10'
+    country.create :id => 65, :name => "Tiranë", :abbreviation => 'AL 11'
+    country.create :id => 66, :name => "Vlorë", :abbreviation => 'AL 12'
+  end
+  
+  with_options(:country => "Armenia") do |country|
+    country.create :id => 67, :name => "Erevan", :abbreviation => 'ER'
+    country.create :id => 68, :name => "Aragacotn", :abbreviation => 'AG'
+    country.create :id => 69, :name => "Ararat", :abbreviation => 'AR'
+    country.create :id => 70, :name => "Armavir", :abbreviation => 'AV'
+    country.create :id => 71, :name => "Gegarkunik", :abbreviation => 'GR'
+    country.create :id => 72, :name => "Kotayk", :abbreviation => 'KT'
+    country.create :id => 73, :name => "Lory", :abbreviation => 'LO'
+    country.create :id => 74, :name => "Sirak", :abbreviation => 'SH'
+    country.create :id => 75, :name => "Syunik", :abbreviation => 'SU'
+    country.create :id => 76, :name => "Tavus", :abbreviation => 'TV'
+    country.create :id => 77, :name => "Vayoc Jor", :abbreviation => 'VD'
+  end
+  
+  with_options(:country => "Angola") do |country|
+    country.create :id => 78, :name => "Bengo", :abbreviation => 'BGO'
+    country.create :id => 79, :name => "Benguela", :abbreviation => 'BGU'
+    country.create :id => 80, :name => "Bié", :abbreviation => 'BIE'
+    country.create :id => 81, :name => "Cabinda", :abbreviation => 'CAB'
+    country.create :id => 82, :name => "Cuando-Cubango", :abbreviation => 'CCU'
+    country.create :id => 83, :name => "Cuanza Norte", :abbreviation => 'CNO'
+    country.create :id => 84, :name => "Cuanza Sul", :abbreviation => 'CUS'
+    country.create :id => 85, :name => "Cunene", :abbreviation => 'CNN'
+    country.create :id => 86, :name => "Huambo", :abbreviation => 'HUA'
+    country.create :id => 87, :name => "Huíla", :abbreviation => 'HUI'
+    country.create :id => 88, :name => "Luanda", :abbreviation => 'LUA'
+    country.create :id => 89, :name => "Lunda Norte", :abbreviation => 'LNO'
+    country.create :id => 90, :name => "Lunda Sul", :abbreviation => 'LSU'
+    country.create :id => 91, :name => "Malange", :abbreviation => 'MAL'
+    country.create :id => 92, :name => "Moxico", :abbreviation => 'MOX'
+    country.create :id => 93, :name => "Namibe", :abbreviation => 'NAM'
+    country.create :id => 94, :name => "Uíge", :abbreviation => 'UIG'
+    country.create :id => 95, :name => "Zaire", :abbreviation => 'ZAI'
+  end
+  
+  with_options(:country => "Argentina") do |country|
+    country.create :id => 96, :name => "Capital federal", :abbreviation => 'C'
+    country.create :id => 97, :name => "Buenos Aires", :abbreviation => 'B'
+    country.create :id => 98, :name => "Catamarca", :abbreviation => 'K'
+    country.create :id => 99, :name => "Cordoba", :abbreviation => 'X'
+    country.create :id => 100, :name => "Corrientes", :abbreviation => 'W'
+    country.create :id => 101, :name => "Chaco", :abbreviation => 'H'
+    country.create :id => 102, :name => "Chubut", :abbreviation => 'U'
+    country.create :id => 103, :name => "Entre Rios", :abbreviation => 'E'
+    country.create :id => 104, :name => "Formosa", :abbreviation => 'P'
+    country.create :id => 105, :name => "Jujuy", :abbreviation => 'Y'
+    country.create :id => 106, :name => "La Pampa", :abbreviation => 'L'
+    country.create :id => 107, :name => "Mendoza", :abbreviation => 'M'
+    country.create :id => 108, :name => "Misiones", :abbreviation => 'N'
+    country.create :id => 109, :name => "Neuquen", :abbreviation => 'Q'
+    country.create :id => 110, :name => "Rio Negro", :abbreviation => 'R'
+    country.create :id => 111, :name => "Salta", :abbreviation => 'A'
+    country.create :id => 112, :name => "San Juan", :abbreviation => 'J'
+    country.create :id => 113, :name => "San Luis", :abbreviation => 'D'
+    country.create :id => 114, :name => "Santa Cruz", :abbreviation => 'Z'
+    country.create :id => 115, :name => "Santa Fe", :abbreviation => 'S'
+    country.create :id => 116, :name => "Santiago del Estero", :abbreviation => 'G'
+    country.create :id => 117, :name => "Tierra del Fuego", :abbreviation => 'V'
+    country.create :id => 118, :name => "Tucuman", :abbreviation => 'T'
+  end
+  
+  with_options(:country => "Austria") do |country|
+    country.create :id => 119, :name => "Burgenland", :abbreviation => '1'
+    country.create :id => 120, :name => "Kärnten", :abbreviation => '2'
+    country.create :id => 121, :name => "Niederösterreich", :abbreviation => '3'
+    country.create :id => 122, :name => "Oberösterreich", :abbreviation => '4'
+    country.create :id => 123, :name => "Salzburg", :abbreviation => '5'
+    country.create :id => 124, :name => "Steiermark", :abbreviation => '6'
+    country.create :id => 125, :name => "Tirol", :abbreviation => '7'
+    country.create :id => 126, :name => "Vorarlberg", :abbreviation => '8'
+    country.create :id => 127, :name => "Wien", :abbreviation => '9'
+  end
+  
+  with_options(:country => "Australia") do |country|
+    country.create :id => 128, :name => "New South Wales", :abbreviation => 'NSW'
+    country.create :id => 129, :name => "Queensland", :abbreviation => 'QLD'
+    country.create :id => 130, :name => "South Australia", :abbreviation => 'SA'
+    country.create :id => 131, :name => "Tasmania", :abbreviation => 'TAS'
+    country.create :id => 132, :name => "Victoria", :abbreviation => 'VIC'
+    country.create :id => 133, :name => "Western Australia", :abbreviation => 'WA'
+  end
+  
+  with_options(:country => "Azerbaijan") do |country|
+    country.create :id => 134, :name => "Naxçıvan", :abbreviation => 'AZ NX'
+  end
+  
+  with_options(:country => "Bosnia and Herzegovina") do |country|
+    country.create :id => 135, :name => "Federacija Bosna i Hercegovina", :abbreviation => 'BIH'
+    country.create :id => 136, :name => "Republika Srpska", :abbreviation => 'SRP'
+  end
+  
+  with_options(:country => "Barbados") do |country|
+    country.create :id => 137, :name => "Christ Church", :abbreviation => '01'
+    country.create :id => 138, :name => "Saint Andrew", :abbreviation => '02'
+    country.create :id => 139, :name => "Saint George", :abbreviation => '03'
+    country.create :id => 140, :name => "Saint James", :abbreviation => '04'
+    country.create :id => 141, :name => "Saint John", :abbreviation => '05'
+    country.create :id => 142, :name => "Saint Joseph", :abbreviation => '06'
+    country.create :id => 143, :name => "Saint Lucy", :abbreviation => '07'
+    country.create :id => 144, :name => "Saint Michael", :abbreviation => '08'
+    country.create :id => 145, :name => "Saint Peter", :abbreviation => '09'
+    country.create :id => 146, :name => "Saint Philip", :abbreviation => '10'
+    country.create :id => 147, :name => "Saint Thomas", :abbreviation => '11'
+  end
+  
+  with_options(:country => "Bangladesh") do |country|
+    country.create :id => 148, :name => "Barisal bibhag", :abbreviation => 'BD 1'
+    country.create :id => 149, :name => "Chittagong bibhag", :abbreviation => 'BD 2'
+    country.create :id => 150, :name => "Dhaka bibhag", :abbreviation => 'BD 3'
+    country.create :id => 151, :name => "Khulna bibhag", :abbreviation => 'BD 4'
+    country.create :id => 152, :name => "Rajshahi bibhag", :abbreviation => 'BD 5'
+    country.create :id => 153, :name => "Sylhet bibhag", :abbreviation => 'BD 6'
+  end
+  
+  with_options(:country => "Belgium") do |country|
+    country.create :id => 154, :name => "Antwerpen", :abbreviation => 'VAN'
+    country.create :id => 155, :name => "Brabant Wallon", :abbreviation => 'WBR'
+    country.create :id => 156, :name => "Brussels-Capital Region", :abbreviation => 'BRU'
+    country.create :id => 157, :name => "Hainaut", :abbreviation => 'WHT'
+    country.create :id => 158, :name => "Liege", :abbreviation => 'WLG'
+    country.create :id => 159, :name => "Limburg", :abbreviation => 'VLI'
+    country.create :id => 160, :name => "Luxembourg", :abbreviation => 'WLX'
+    country.create :id => 161, :name => "Namur", :abbreviation => 'WNA'
+    country.create :id => 162, :name => "Oost-Vlaanderen", :abbreviation => 'VOV'
+    country.create :id => 163, :name => "Vlaams-Brabant", :abbreviation => 'VBR'
+    country.create :id => 164, :name => "West-Vlaanderen", :abbreviation => 'VWV'
+  end
+  
+  with_options(:country => "Burkina Faso") do |country|
+    country.create :id => 165, :name => "Balé", :abbreviation => 'BAL'
+    country.create :id => 166, :name => "Bam", :abbreviation => 'BAM'
+    country.create :id => 167, :name => "Banwa", :abbreviation => 'BAN'
+    country.create :id => 168, :name => "Bazèga", :abbreviation => 'BAZ'
+    country.create :id => 169, :name => "Bougouriba", :abbreviation => 'BGR'
+    country.create :id => 170, :name => "Boulgou", :abbreviation => 'BLG'
+    country.create :id => 171, :name => "Boulkiemdé", :abbreviation => 'BLK'
+    country.create :id => 172, :name => "Comoé", :abbreviation => 'COM'
+    country.create :id => 173, :name => "Ganzourgou", :abbreviation => 'GAN'
+    country.create :id => 174, :name => "Gnagna", :abbreviation => 'GNA'
+    country.create :id => 175, :name => "Gourma", :abbreviation => 'GOU'
+    country.create :id => 176, :name => "Houet", :abbreviation => 'HOU'
+    country.create :id => 177, :name => "Ioba", :abbreviation => 'IOB'
+    country.create :id => 178, :name => "Kadiogo", :abbreviation => 'KAD'
+    country.create :id => 179, :name => "Kénédougou", :abbreviation => 'KEN'
+    country.create :id => 180, :name => "Komondjari", :abbreviation => 'KMD'
+    country.create :id => 181, :name => "Kompienga", :abbreviation => 'KMP'
+    country.create :id => 182, :name => "Kossi", :abbreviation => 'KOS'
+    country.create :id => 183, :name => "Koulpélogo", :abbreviation => 'KOP'
+    country.create :id => 184, :name => "Kouritenga", :abbreviation => 'KOT'
+    country.create :id => 185, :name => "Kourwéogo", :abbreviation => 'KOW'
+    country.create :id => 186, :name => "Léraba", :abbreviation => 'LER'
+    country.create :id => 187, :name => "Loroum", :abbreviation => 'LOR'
+    country.create :id => 188, :name => "Mouhoun", :abbreviation => 'MOU'
+    country.create :id => 189, :name => "Naouri", :abbreviation => 'NAO'
+    country.create :id => 190, :name => "Namentenga", :abbreviation => 'NAM'
+    country.create :id => 191, :name => "Nayala", :abbreviation => 'NAY'
+    country.create :id => 192, :name => "Noumbiel", :abbreviation => 'NOU'
+    country.create :id => 193, :name => "Oubritenga", :abbreviation => 'OUB'
+    country.create :id => 194, :name => "Oudalan", :abbreviation => 'OUD'
+    country.create :id => 195, :name => "Passoré", :abbreviation => 'PAS'
+    country.create :id => 196, :name => "Poni", :abbreviation => 'PON'
+    country.create :id => 197, :name => "Sanguié", :abbreviation => 'SNG'
+    country.create :id => 198, :name => "Sanmatenga", :abbreviation => 'SMT'
+    country.create :id => 199, :name => "Séno", :abbreviation => 'SEN'
+    country.create :id => 200, :name => "Sissili", :abbreviation => 'SIS'
+    country.create :id => 201, :name => "Soum", :abbreviation => 'SOM'
+    country.create :id => 202, :name => "Sourou", :abbreviation => 'SOR'
+    country.create :id => 203, :name => "Tapoa", :abbreviation => 'TAP'
+    country.create :id => 204, :name => "Tui", :abbreviation => 'TUI'
+    country.create :id => 205, :name => "Yagha", :abbreviation => 'YAG'
+    country.create :id => 206, :name => "Yatenga", :abbreviation => 'YAT'
+    country.create :id => 207, :name => "Ziro", :abbreviation => 'ZIR'
+    country.create :id => 208, :name => "Zondoma", :abbreviation => 'ZON'
+    country.create :id => 209, :name => "Zoundwéogo", :abbreviation => 'ZOU'
+  end
+  
+  with_options(:country => "Bulgaria") do |country|
+    country.create :id => 210, :name => "Blagoevgrad", :abbreviation => '01'
+    country.create :id => 211, :name => "Burgas", :abbreviation => '02'
+    country.create :id => 212, :name => "Dobrich", :abbreviation => '08'
+    country.create :id => 213, :name => "Gabrovo", :abbreviation => '07'
+    country.create :id => 214, :name => "Haskovo", :abbreviation => '26'
+    country.create :id => 215, :name => "Kardzhali", :abbreviation => '09'
+    country.create :id => 216, :name => "Kyustendil", :abbreviation => '10'
+    country.create :id => 217, :name => "Lovech", :abbreviation => '11'
+    country.create :id => 218, :name => "Montana", :abbreviation => '12'
+    country.create :id => 219, :name => "Pazardzhik", :abbreviation => '13'
+    country.create :id => 220, :name => "Pernik", :abbreviation => '14'
+    country.create :id => 221, :name => "Pleven", :abbreviation => '15'
+    country.create :id => 222, :name => "Plovdiv", :abbreviation => '16'
+    country.create :id => 223, :name => "Razgrad", :abbreviation => '17'
+    country.create :id => 224, :name => "Ruse", :abbreviation => '18'
+    country.create :id => 225, :name => "Shumen", :abbreviation => '27'
+    country.create :id => 226, :name => "Silistra", :abbreviation => '19'
+    country.create :id => 227, :name => "Sliven", :abbreviation => '20'
+    country.create :id => 228, :name => "Smolyan", :abbreviation => '21'
+    country.create :id => 229, :name => "Sofia", :abbreviation => '23'
+    country.create :id => 230, :name => "Sofia-Grad", :abbreviation => '22'
+    country.create :id => 231, :name => "Stara Zagora", :abbreviation => '24'
+    country.create :id => 232, :name => "Targovishte", :abbreviation => '25'
+    country.create :id => 233, :name => "Varna", :abbreviation => '03'
+    country.create :id => 234, :name => "Veliko Tarnovo", :abbreviation => '04'
+    country.create :id => 235, :name => "Vidin", :abbreviation => '05'
+    country.create :id => 236, :name => "Vratsa", :abbreviation => '06'
+    country.create :id => 237, :name => "Yambol", :abbreviation => '28'
+  end
+  
+  with_options(:country => "Bahrain") do |country|
+    country.create :id => 238, :name => "Al Manāmah (Al ‘Āşimah)", :abbreviation => '13'
+    country.create :id => 239, :name => "Al Janūbīyah", :abbreviation => '14'
+    country.create :id => 240, :name => "Al Muḩarraq", :abbreviation => '15'
+    country.create :id => 241, :name => "Al Wusţá", :abbreviation => '16'
+    country.create :id => 242, :name => "Ash Shamālīyah", :abbreviation => '17'
+  end
+  
+  with_options(:country => "Burundi") do |country|
+    country.create :id => 243, :name => "Bubanza", :abbreviation => 'BB'
+    country.create :id => 244, :name => "Bujumbura", :abbreviation => 'BJ'
+    country.create :id => 245, :name => "Bururi", :abbreviation => 'BR'
+    country.create :id => 246, :name => "Cankuzo", :abbreviation => 'CA'
+    country.create :id => 247, :name => "Cibitoke", :abbreviation => 'CI'
+    country.create :id => 248, :name => "Gitega", :abbreviation => 'GI'
+    country.create :id => 249, :name => "Karuzi", :abbreviation => 'KR'
+    country.create :id => 250, :name => "Kayanza", :abbreviation => 'KY'
+    country.create :id => 251, :name => "Kirundo", :abbreviation => 'KI'
+    country.create :id => 252, :name => "Makamba", :abbreviation => 'MA'
+    country.create :id => 253, :name => "Muramvya", :abbreviation => 'MU'
+    country.create :id => 254, :name => "Mwaro", :abbreviation => 'MW'
+    country.create :id => 255, :name => "Ngozi", :abbreviation => 'NG'
+    country.create :id => 256, :name => "Rutana", :abbreviation => 'RT'
+    country.create :id => 257, :name => "Ruyigi", :abbreviation => 'RY'
+  end
+  
+  with_options(:country => "Benin") do |country|
+    country.create :id => 258, :name => "Alibori", :abbreviation => 'AL'
+    country.create :id => 259, :name => "Atakora", :abbreviation => 'AK'
+    country.create :id => 260, :name => "Atlantique", :abbreviation => 'AQ'
+    country.create :id => 261, :name => "Borgou", :abbreviation => 'BO'
+    country.create :id => 262, :name => "Collines", :abbreviation => 'CO'
+    country.create :id => 263, :name => "Donga", :abbreviation => 'DO'
+    country.create :id => 264, :name => "Kouffo", :abbreviation => 'KO'
+    country.create :id => 265, :name => "Littoral", :abbreviation => 'LI'
+    country.create :id => 266, :name => "Mono", :abbreviation => 'MO'
+    country.create :id => 267, :name => "Ouémé", :abbreviation => 'OU'
+    country.create :id => 268, :name => "Plateau", :abbreviation => 'PL'
+    country.create :id => 269, :name => "Zou", :abbreviation => 'ZO'
+  end
+  
+  with_options(:country => "Brunei Darussalam") do |country|
+    country.create :id => 270, :name => "Belait", :abbreviation => 'BE'
+    country.create :id => 271, :name => "Brunei-Muara", :abbreviation => 'BM'
+    country.create :id => 272, :name => "Temburong", :abbreviation => 'TE'
+    country.create :id => 273, :name => "Tutong", :abbreviation => 'TU'
+  end
+  
+  with_options(:country => "Bolivia") do |country|
+    country.create :id => 274, :name => "Cochabamba", :abbreviation => 'C'
+    country.create :id => 275, :name => "Chuquisaca", :abbreviation => 'H'
+    country.create :id => 276, :name => "El Beni", :abbreviation => 'B'
+    country.create :id => 277, :name => "La Paz", :abbreviation => 'L'
+    country.create :id => 278, :name => "Oruro", :abbreviation => 'O'
+    country.create :id => 279, :name => "Pando", :abbreviation => 'N'
+    country.create :id => 280, :name => "Potosí", :abbreviation => 'P'
+    country.create :id => 281, :name => "Santa Cruz", :abbreviation => 'S'
+    country.create :id => 282, :name => "Tarija", :abbreviation => 'T'
+  end
+  
+  with_options(:country => "Brazil") do |country|
+    country.create :id => 283, :name => "Acre", :abbreviation => 'AC'
+    country.create :id => 284, :name => "Alagoas", :abbreviation => 'AL'
+    country.create :id => 285, :name => "Amazonas", :abbreviation => 'AM'
+    country.create :id => 286, :name => "Amapá", :abbreviation => 'AP'
+    country.create :id => 287, :name => "Bahia", :abbreviation => 'BA'
+    country.create :id => 288, :name => "Ceará", :abbreviation => 'CE'
+    country.create :id => 289, :name => "Espírito Santo", :abbreviation => 'ES'
+    country.create :id => 290, :name => "Fernando de Noronha", :abbreviation => 'FN'
+    country.create :id => 291, :name => "Goiás", :abbreviation => 'GO'
+    country.create :id => 292, :name => "Maranhão", :abbreviation => 'MA'
+    country.create :id => 293, :name => "Minas Gerais", :abbreviation => 'MG'
+    country.create :id => 294, :name => "Mato Grosso do Sul", :abbreviation => 'MS'
+    country.create :id => 295, :name => "Mato Grosso", :abbreviation => 'MT'
+    country.create :id => 296, :name => "Pará", :abbreviation => 'PA'
+    country.create :id => 297, :name => "Paraíba", :abbreviation => 'PB'
+    country.create :id => 298, :name => "Pernambuco", :abbreviation => 'PE'
+    country.create :id => 299, :name => "Piauí", :abbreviation => 'PI'
+    country.create :id => 300, :name => "Paraná", :abbreviation => 'PR'
+    country.create :id => 301, :name => "Rio de Janeiro", :abbreviation => 'RJ'
+    country.create :id => 302, :name => "Rio Grande do Norte", :abbreviation => 'RN'
+    country.create :id => 303, :name => "Rondônia", :abbreviation => 'RO'
+    country.create :id => 304, :name => "Roraima", :abbreviation => 'RR'
+    country.create :id => 305, :name => "Rio Grande do Sul", :abbreviation => 'RS'
+    country.create :id => 306, :name => "Santa Catarina", :abbreviation => 'SC'
+    country.create :id => 307, :name => "Sergipe", :abbreviation => 'SE'
+    country.create :id => 308, :name => "Sâo Paulo", :abbreviation => 'SP'
+    country.create :id => 309, :name => "Tocantins", :abbreviation => 'TO'
+  end
+  
+  with_options(:country => "Bahamas") do |country|
+    country.create :id => 310, :name => "Acklins and Crooked Islands", :abbreviation => 'AC'
+    country.create :id => 311, :name => "Bimini", :abbreviation => 'BI'
+    country.create :id => 312, :name => "Cat Island", :abbreviation => 'CI'
+    country.create :id => 313, :name => "Exuma", :abbreviation => 'EX'
+    country.create :id => 314, :name => "Freeport", :abbreviation => 'FP'
+    country.create :id => 315, :name => "Fresh Creek", :abbreviation => 'FC'
+    country.create :id => 316, :name => "Governors Harbours Harbour", :abbreviation => 'GH'
+    country.create :id => 317, :name => "Green Turtle Cay", :abbreviation => 'GT'
+    country.create :id => 318, :name => "Harbour Island", :abbreviation => 'HI'
+    country.create :id => 319, :name => "High Rock", :abbreviation => 'HR'
+    country.create :id => 320, :name => "Inagua", :abbreviation => 'IN'
+    country.create :id => 321, :name => "Kemps Bay", :abbreviation => 'KB'
+    country.create :id => 322, :name => "Long Island", :abbreviation => 'LI'
+    country.create :id => 323, :name => "Marsh Harbour", :abbreviation => 'MH'
+    country.create :id => 324, :name => "Mayaguana", :abbreviation => 'MG'
+    country.create :id => 325, :name => "New Providence", :abbreviation => 'NP'
+    country.create :id => 326, :name => "Nicholls Town and Berry Islands", :abbreviation => 'NB'
+    country.create :id => 327, :name => "Ragged Island", :abbreviation => 'RI'
+    country.create :id => 328, :name => "Rock Sound", :abbreviation => 'RS'
+    country.create :id => 329, :name => "Sandy Point", :abbreviation => 'SP'
+    country.create :id => 330, :name => "San Salvador and Rum Cay", :abbreviation => 'SR'
+  end
+  
+  with_options(:country => "Bhutan") do |country|
+    country.create :id => 331, :name => "Bumthang", :abbreviation => '33'
+    country.create :id => 332, :name => "Chhukha", :abbreviation => '12'
+    country.create :id => 333, :name => "Dagana", :abbreviation => '22'
+    country.create :id => 334, :name => "Gasa", :abbreviation => 'GA'
+    country.create :id => 335, :name => "Ha", :abbreviation => '13'
+    country.create :id => 336, :name => "Lhuentse", :abbreviation => '44'
+    country.create :id => 337, :name => "Monggar", :abbreviation => '42'
+    country.create :id => 338, :name => "Paro", :abbreviation => '11'
+    country.create :id => 339, :name => "Pemagatshel", :abbreviation => '43'
+    country.create :id => 340, :name => "Punakha", :abbreviation => '23'
+    country.create :id => 341, :name => "Samdrup Jongkha", :abbreviation => '45'
+    country.create :id => 342, :name => "Samtee", :abbreviation => '14'
+    country.create :id => 343, :name => "Sarpang", :abbreviation => '31'
+    country.create :id => 344, :name => "Thimphu", :abbreviation => '15'
+    country.create :id => 345, :name => "Trashigang", :abbreviation => '41'
+    country.create :id => 346, :name => "Trashi Yangtse", :abbreviation => 'TY'
+    country.create :id => 347, :name => "Trongsa", :abbreviation => '32'
+    country.create :id => 348, :name => "Tsirang", :abbreviation => '21'
+    country.create :id => 349, :name => "Wangdue Phodrang", :abbreviation => '24'
+    country.create :id => 350, :name => "Zhemgang", :abbreviation => '34'
+  end
+  
+  with_options(:country => "Botswana") do |country|
+    country.create :id => 351, :name => "Central", :abbreviation => 'CE'
+    country.create :id => 352, :name => "Ghanzi", :abbreviation => 'GH'
+    country.create :id => 353, :name => "Kgalagadi", :abbreviation => 'KG'
+    country.create :id => 354, :name => "Kgatleng", :abbreviation => 'KL'
+    country.create :id => 355, :name => "Kweneng", :abbreviation => 'KW'
+    country.create :id => 356, :name => "Ngamiland", :abbreviation => 'NG'
+    country.create :id => 357, :name => "North-East", :abbreviation => 'NE'
+    country.create :id => 358, :name => "North-West (Botswana)", :abbreviation => 'NW'
+    country.create :id => 359, :name => "South-East", :abbreviation => 'SE'
+    country.create :id => 360, :name => "Southern (Botswana)", :abbreviation => 'SO'
+  end
+  
+  with_options(:country => "Belarus") do |country|
+    country.create :id => 361, :name => "Brèsckaja voblasc", :abbreviation => 'BR'
+    country.create :id => 362, :name => "Homelskaja voblasc'skaja voblasc", :abbreviation => 'HO'
+    country.create :id => 363, :name => "Hrodzenskaja voblasc", :abbreviation => 'HR'
+    country.create :id => 364, :name => "Mahilëuskaja voblasc", :abbreviation => 'MA'
+    country.create :id => 365, :name => "Minskaja voblasc", :abbreviation => 'MI'
+    country.create :id => 366, :name => "Vicebskaja voblasc", :abbreviation => 'VI'
+  end
+  
+  with_options(:country => "Belize") do |country|
+    country.create :id => 367, :name => "Belize", :abbreviation => 'BZ'
+    country.create :id => 368, :name => "Cayo", :abbreviation => 'CY'
+    country.create :id => 369, :name => "Corozal", :abbreviation => 'CZL'
+    country.create :id => 370, :name => "Orange Walk", :abbreviation => 'OW'
+    country.create :id => 371, :name => "Stann Creek", :abbreviation => 'SC'
+    country.create :id => 372, :name => "Toledo", :abbreviation => 'TOL'
+  end
+  
+  with_options(:country => "Canada") do |country|
+    country.create :id => 373, :name => "Alberta", :abbreviation => 'AB'
+    country.create :id => 374, :name => "British Columbia", :abbreviation => 'BC'
+    country.create :id => 375, :name => "Manitoba", :abbreviation => 'MB'
+    country.create :id => 376, :name => "New Brunswick", :abbreviation => 'NB'
+    country.create :id => 377, :name => "Newfoundland and Labrador", :abbreviation => 'NL'
+    country.create :id => 378, :name => "Nova Scotia", :abbreviation => 'NS'
+    country.create :id => 379, :name => "Ontario", :abbreviation => 'ON'
+    country.create :id => 380, :name => "Prince Edward Island", :abbreviation => 'PE'
+    country.create :id => 381, :name => "Quebec", :abbreviation => 'QC'
+    country.create :id => 382, :name => "Saskatchewan", :abbreviation => 'SK'
+  end
+  
+  with_options(:country => "Congo, The Democratic Republic of the") do |country|
+    country.create :id => 383, :name => "Kinshasa", :abbreviation => 'KN'
+  end
+  
+  with_options(:country => "Central African Republic") do |country|
+    country.create :id => 384, :name => "Bamingui-Bangoran", :abbreviation => 'BB'
+    country.create :id => 385, :name => "Basse-Kotto", :abbreviation => 'BK'
+    country.create :id => 386, :name => "Haute-Kotto", :abbreviation => 'HK'
+    country.create :id => 387, :name => "Haut-Mbomou", :abbreviation => 'HM'
+    country.create :id => 388, :name => "Kémo", :abbreviation => 'KG'
+    country.create :id => 389, :name => "Lobaye", :abbreviation => 'LB'
+    country.create :id => 390, :name => "Mambéré-Kadéï", :abbreviation => 'HS'
+    country.create :id => 391, :name => "Mbomou", :abbreviation => 'MB'
+    country.create :id => 392, :name => "Nana-Mambéré", :abbreviation => 'NM'
+    country.create :id => 393, :name => "Ombella-Mpokopoko", :abbreviation => 'MP'
+    country.create :id => 394, :name => "Ouaka", :abbreviation => 'UK'
+    country.create :id => 395, :name => "Ouham", :abbreviation => 'AC'
+    country.create :id => 396, :name => "Ouham-Pendé", :abbreviation => 'OP'
+    country.create :id => 397, :name => "Vakaga", :abbreviation => 'VR'
+  end
+  
+  with_options(:country => "Congo") do |country|
+    country.create :id => 398, :name => "Bouenza", :abbreviation => '11'
+    country.create :id => 399, :name => "Cuvette", :abbreviation => '8'
+    country.create :id => 400, :name => "Cuvette-Ouest", :abbreviation => '15'
+    country.create :id => 401, :name => "Kouilou", :abbreviation => '5'
+    country.create :id => 402, :name => "Lékoumou", :abbreviation => '2'
+    country.create :id => 403, :name => "Likouala", :abbreviation => '7'
+    country.create :id => 404, :name => "Niari", :abbreviation => '9'
+    country.create :id => 405, :name => "Plateaux", :abbreviation => '14'
+    country.create :id => 406, :name => "Pool", :abbreviation => '12'
+    country.create :id => 407, :name => "Sangha", :abbreviation => '13'
+  end
+  
+  with_options(:country => "Switzerland") do |country|
+    country.create :id => 408, :name => "Aargau", :abbreviation => 'AG'
+    country.create :id => 409, :name => "Appenzell Innerrhoden", :abbreviation => 'AI'
+    country.create :id => 410, :name => "Appenzell Ausserrhoden", :abbreviation => 'AR'
+    country.create :id => 411, :name => "Bern", :abbreviation => 'BE'
+    country.create :id => 412, :name => "Basel-Landschaft", :abbreviation => 'BL'
+    country.create :id => 413, :name => "Basel-Stadt", :abbreviation => 'BS'
+    country.create :id => 414, :name => "Fribourg", :abbreviation => 'FR'
+    country.create :id => 415, :name => "Genève", :abbreviation => 'GE'
+    country.create :id => 416, :name => "Glarus", :abbreviation => 'GL'
+    country.create :id => 417, :name => "Graubünden", :abbreviation => 'GR'
+    country.create :id => 418, :name => "Jura", :abbreviation => 'JU'
+    country.create :id => 419, :name => "Luzern", :abbreviation => 'LU'
+    country.create :id => 420, :name => "Neuchâtel", :abbreviation => 'NE'
+    country.create :id => 421, :name => "Nidwalden", :abbreviation => 'NW'
+    country.create :id => 422, :name => "Obwalden", :abbreviation => 'OW'
+    country.create :id => 423, :name => "Sankt Gallen", :abbreviation => 'SG'
+    country.create :id => 424, :name => "Schaffhausen", :abbreviation => 'SH'
+    country.create :id => 425, :name => "Solothurn", :abbreviation => 'SO'
+    country.create :id => 426, :name => "Schwyz", :abbreviation => 'SZ'
+    country.create :id => 427, :name => "Thurgau", :abbreviation => 'TG'
+    country.create :id => 428, :name => "Ticino", :abbreviation => 'TI'
+    country.create :id => 429, :name => "Uri", :abbreviation => 'UR'
+    country.create :id => 430, :name => "Vaud", :abbreviation => 'VD'
+    country.create :id => 431, :name => "Valais", :abbreviation => 'VS'
+    country.create :id => 432, :name => "Zug", :abbreviation => 'ZG'
+    country.create :id => 433, :name => "Zürich", :abbreviation => 'ZH'
+  end
+  
+  with_options(:country => "Côte dIvoireIvoire") do |country|
+    country.create :id => 434, :name => "18 Montagnes (Région des)", :abbreviation => '06'
+    country.create :id => 435, :name => "Agnébi (Région de l))", :abbreviation => '16'
+    country.create :id => 436, :name => "Bafing (Région du)", :abbreviation => '17'
+    country.create :id => 437, :name => "Bas-Sassandra (Région du)", :abbreviation => '09'
+    country.create :id => 438, :name => "Denguélé (Région du)", :abbreviation => '10'
+    country.create :id => 439, :name => "Fromager (Région du)", :abbreviation => '18'
+    country.create :id => 440, :name => "Haut-Sassandra (Région du)", :abbreviation => '02'
+    country.create :id => 441, :name => "Lacs (Région des)", :abbreviation => '07'
+    country.create :id => 442, :name => "Lagunes (Région des)", :abbreviation => '01'
+    country.create :id => 443, :name => "Marahoué (Région de la)", :abbreviation => '12'
+    country.create :id => 444, :name => "Moyen-Cavally (Région du)", :abbreviation => '19'
+    country.create :id => 445, :name => "Moyen-Comoé (Région du)", :abbreviation => '05'
+    country.create :id => 446, :name => "Nzi-Comoé (Région)", :abbreviation => '11'
+    country.create :id => 447, :name => "Savanes (Région des)", :abbreviation => '03'
+    country.create :id => 448, :name => "Sud-Bandama (Région du)", :abbreviation => '15'
+    country.create :id => 449, :name => "Sud-Comoé (Région du)", :abbreviation => '13'
+    country.create :id => 450, :name => "Vallée du Bandama (Région de la)", :abbreviation => '04'
+    country.create :id => 451, :name => "Worodouqou (Région du)", :abbreviation => '14'
+    country.create :id => 452, :name => "Zanzan (Région du)", :abbreviation => '08'
+  end
+  
+  with_options(:country => "Chile") do |country|
+    country.create :id => 453, :name => "Aisén del General Carlos Ibáñez del Campo", :abbreviation => 'AI'
+    country.create :id => 454, :name => "Antofagasta", :abbreviation => 'AN'
+    country.create :id => 455, :name => "Araucanía", :abbreviation => 'AR'
+    country.create :id => 456, :name => "Atacama", :abbreviation => 'AT'
+    country.create :id => 457, :name => "Bío-Bío", :abbreviation => 'BI'
+    country.create :id => 458, :name => "Coquimbo", :abbreviation => 'CO'
+    country.create :id => 459, :name => "Libertador General Bernardo OHigginsHiggins", :abbreviation => 'LI'
+    country.create :id => 460, :name => "Los Lagos", :abbreviation => 'LL'
+    country.create :id => 461, :name => "Magallanes y Antártica Chilena", :abbreviation => 'MA'
+    country.create :id => 462, :name => "Maule", :abbreviation => 'ML'
+    country.create :id => 463, :name => "Región Metropolitana de Santiago", :abbreviation => 'RM'
+    country.create :id => 464, :name => "Tarapacá", :abbreviation => 'TA'
+    country.create :id => 465, :name => "Valparaíso", :abbreviation => 'VS'
+  end
+  
+  with_options(:country => "Cameroon") do |country|
+    country.create :id => 466, :name => "Adamaoua", :abbreviation => 'AD'
+    country.create :id => 467, :name => "Centre", :abbreviation => 'CE'
+    country.create :id => 468, :name => "East", :abbreviation => 'ES'
+    country.create :id => 469, :name => "Far North", :abbreviation => 'EN'
+    country.create :id => 470, :name => "Littoral", :abbreviation => 'LT'
+    country.create :id => 471, :name => "North", :abbreviation => 'NO'
+    country.create :id => 472, :name => "North-West (Cameroon)", :abbreviation => 'NW'
+    country.create :id => 473, :name => "South", :abbreviation => 'SU'
+    country.create :id => 474, :name => "South-West", :abbreviation => 'SW'
+    country.create :id => 475, :name => "West", :abbreviation => 'OU'
+  end
+  
+  with_options(:country => "China") do |country|
+    country.create :id => 476, :name => "Beijing", :abbreviation => '11'
+    country.create :id => 477, :name => "Chongqing", :abbreviation => '50'
+    country.create :id => 478, :name => "Shanghai", :abbreviation => '31'
+    country.create :id => 479, :name => "Tianjin", :abbreviation => '12'
+  end
+  
+  with_options(:country => "Colombia") do |country|
+    country.create :id => 480, :name => "Distrito Capital de Bogotá", :abbreviation => 'DC'
+  end
+  
+  with_options(:country => "Costa Rica") do |country|
+    country.create :id => 481, :name => "Alajuela", :abbreviation => 'A'
+    country.create :id => 482, :name => "Cartago", :abbreviation => 'C'
+    country.create :id => 483, :name => "Guanacaste", :abbreviation => 'G'
+    country.create :id => 484, :name => "Heredia", :abbreviation => 'H'
+    country.create :id => 485, :name => "Limón", :abbreviation => 'L'
+    country.create :id => 486, :name => "Puntarenas", :abbreviation => 'P'
+    country.create :id => 487, :name => "San José", :abbreviation => 'SJ'
+  end
+  
+  with_options(:country => "Cuba") do |country|
+    country.create :id => 488, :name => "Camagüey", :abbreviation => '09'
+    country.create :id => 489, :name => "Ciego de Ávila", :abbreviation => '08'
+    country.create :id => 490, :name => "Cienfuegos", :abbreviation => '06'
+    country.create :id => 491, :name => "Ciudad de La Habana", :abbreviation => '03'
+    country.create :id => 492, :name => "Granma", :abbreviation => '12'
+    country.create :id => 493, :name => "Guantánamo", :abbreviation => '14'
+    country.create :id => 494, :name => "Holguín", :abbreviation => '11'
+    country.create :id => 495, :name => "La Habana", :abbreviation => '02'
+    country.create :id => 496, :name => "Las Tunas", :abbreviation => '10'
+    country.create :id => 497, :name => "Matanzas", :abbreviation => '04'
+    country.create :id => 498, :name => "Pinar del Rio", :abbreviation => '01'
+    country.create :id => 499, :name => "Sancti Spíritus", :abbreviation => '07'
+    country.create :id => 500, :name => "Santiago de Cuba", :abbreviation => '13'
+    country.create :id => 501, :name => "Villa Clara", :abbreviation => '05'
+  end
+  
+  with_options(:country => "Cape Verde") do |country|
+    country.create :id => 502, :name => "Ilhas de Barlavento", :abbreviation => 'CV B'
+    country.create :id => 503, :name => "Ilhas de Sotavento", :abbreviation => 'CV S'
+  end
+  
+  with_options(:country => "Cyprus") do |country|
+    country.create :id => 504, :name => "Ammóchostos", :abbreviation => '04'
+    country.create :id => 505, :name => "Kerýneia", :abbreviation => '06'
+    country.create :id => 506, :name => "Lárnaka", :abbreviation => '03'
+    country.create :id => 507, :name => "Lefkosía", :abbreviation => '01'
+    country.create :id => 508, :name => "Lemesós", :abbreviation => '02'
+    country.create :id => 509, :name => "Páfos", :abbreviation => '05'
+  end
+  
+  with_options(:country => "Czech Republic") do |country|
+    country.create :id => 510, :name => "Jihočeský kraj", :abbreviation => 'CZ JC'
+    country.create :id => 511, :name => "Jihomoravský kraj", :abbreviation => 'CZ JM'
+    country.create :id => 512, :name => "Karlovarský kraj", :abbreviation => 'CZ KA'
+    country.create :id => 513, :name => "Královéhradecký kraj", :abbreviation => 'CZ KR'
+    country.create :id => 514, :name => "Liberecký kraj", :abbreviation => 'CZ LI'
+    country.create :id => 515, :name => "Moravskoslezský kraj", :abbreviation => 'CZ MO'
+    country.create :id => 516, :name => "Olomoucký kraj", :abbreviation => 'CZ OL'
+    country.create :id => 517, :name => "Pardubický kraj", :abbreviation => 'CZ PA'
+    country.create :id => 518, :name => "Plzeňský kraj", :abbreviation => 'CZ PL'
+    country.create :id => 519, :name => "Praha, hlavní město", :abbreviation => 'CZ PR'
+    country.create :id => 520, :name => "Středočeský kraj", :abbreviation => 'CZ ST'
+    country.create :id => 521, :name => "Ústecký kraj", :abbreviation => 'CZ US'
+    country.create :id => 522, :name => "Vysočina", :abbreviation => 'CZ VY'
+    country.create :id => 523, :name => "Zlínský kraj", :abbreviation => 'CZ ZL'
+  end
+  
+  with_options(:country => "Germany") do |country|
+    country.create :id => 524, :name => "Baden-Württemberg", :abbreviation => 'BW'
+    country.create :id => 525, :name => "Bayern", :abbreviation => 'BY'
+    country.create :id => 526, :name => "Bremen", :abbreviation => 'HB'
+    country.create :id => 527, :name => "Hamburg", :abbreviation => 'HH'
+    country.create :id => 528, :name => "Hessen", :abbreviation => 'HE'
+    country.create :id => 529, :name => "Niedersachsen", :abbreviation => 'NI'
+    country.create :id => 530, :name => "Nordrhein-Westfalen", :abbreviation => 'NW'
+    country.create :id => 531, :name => "Rheinland-Pfalz", :abbreviation => 'RP'
+    country.create :id => 532, :name => "Saarland", :abbreviation => 'SL'
+    country.create :id => 533, :name => "Schleswig-Holstein", :abbreviation => 'SH'
+    country.create :id => 534, :name => "Berlin", :abbreviation => 'BE'
+    country.create :id => 535, :name => "Brandenburg", :abbreviation => 'BB'
+    country.create :id => 536, :name => "Mecklenburg-Vorpommern", :abbreviation => 'MV'
+    country.create :id => 537, :name => "Sachsen", :abbreviation => 'SN'
+    country.create :id => 538, :name => "Sachsen-Anhalt", :abbreviation => 'ST'
+    country.create :id => 539, :name => "Thüringen", :abbreviation => 'TH'
+  end
+  
+  with_options(:country => "Djibouti") do |country|
+    country.create :id => 540, :name => "Ali Sabieh", :abbreviation => 'AS'
+    country.create :id => 541, :name => "Arta", :abbreviation => 'AR'
+    country.create :id => 542, :name => "Dikhil", :abbreviation => 'DI'
+    country.create :id => 543, :name => "Obock", :abbreviation => 'OB'
+    country.create :id => 544, :name => "Tadjourah", :abbreviation => 'TA'
+  end
+  
+  with_options(:country => "Denmark") do |country|
+    country.create :id => 545, :name => "Copenhagen", :abbreviation => '015'
+    country.create :id => 546, :name => "Frederiksborg", :abbreviation => '020'
+    country.create :id => 547, :name => "Roskilde", :abbreviation => '025'
+    country.create :id => 548, :name => "Western Zealand", :abbreviation => '030'
+    country.create :id => 549, :name => "Storstrøm", :abbreviation => '035'
+    country.create :id => 550, :name => "Bornholm", :abbreviation => '040'
+    country.create :id => 551, :name => "Funen", :abbreviation => '042'
+    country.create :id => 552, :name => "Southern Jutland", :abbreviation => '050'
+    country.create :id => 553, :name => "Ribe", :abbreviation => '055'
+    country.create :id => 554, :name => "Vejle", :abbreviation => '060'
+    country.create :id => 555, :name => "Ringkøbing", :abbreviation => '065'
+    country.create :id => 556, :name => "Aarhus", :abbreviation => '070'
+    country.create :id => 557, :name => "Viborg", :abbreviation => '076'
+    country.create :id => 558, :name => "Northern Jutland", :abbreviation => '080'
+  end
+  
+  with_options(:country => "Dominica") do |country|
+    country.create :id => 559, :name => "Saint Andrew", :abbreviation => '02'
+    country.create :id => 560, :name => "Saint David", :abbreviation => '03'
+    country.create :id => 561, :name => "Saint George", :abbreviation => '04'
+    country.create :id => 562, :name => "Saint John", :abbreviation => '05'
+    country.create :id => 563, :name => "Saint Joseph", :abbreviation => '06'
+    country.create :id => 564, :name => "Saint Luke", :abbreviation => '07'
+    country.create :id => 565, :name => "Saint Mark", :abbreviation => '08'
+    country.create :id => 566, :name => "Saint Patrick", :abbreviation => '09'
+    country.create :id => 567, :name => "Saint Paul", :abbreviation => '10'
+    country.create :id => 568, :name => "Saint Peter", :abbreviation => '01'
+  end
+  
+  with_options(:country => "Dominican Republic") do |country|
+    country.create :id => 569, :name => "Distrito Nacional (Santo Domingo)", :abbreviation => '01'
+  end
+  
+  with_options(:country => "Algeria") do |country|
+    country.create :id => 570, :name => "Adrar", :abbreviation => '01'
+    country.create :id => 571, :name => "Aïn Defla", :abbreviation => '44'
+    country.create :id => 572, :name => "Aïn Témouchent", :abbreviation => '46'
+    country.create :id => 573, :name => "Alger", :abbreviation => '16'
+    country.create :id => 574, :name => "Annaba", :abbreviation => '23'
+    country.create :id => 575, :name => "Batna", :abbreviation => '05'
+    country.create :id => 576, :name => "Béchar", :abbreviation => '08'
+    country.create :id => 577, :name => "Béjaïa", :abbreviation => '06'
+    country.create :id => 578, :name => "Biskra", :abbreviation => '07'
+    country.create :id => 579, :name => "Blida", :abbreviation => '09'
+    country.create :id => 580, :name => "Bordj Bou Arréridj", :abbreviation => '34'
+    country.create :id => 581, :name => "Bouira", :abbreviation => '10'
+    country.create :id => 582, :name => "Boumerdès", :abbreviation => '35'
+    country.create :id => 583, :name => "Chlef", :abbreviation => '02'
+    country.create :id => 584, :name => "Constantine", :abbreviation => '25'
+    country.create :id => 585, :name => "Djelfa", :abbreviation => '17'
+    country.create :id => 586, :name => "El Bayadh", :abbreviation => '32'
+    country.create :id => 587, :name => "El Oued", :abbreviation => '39'
+    country.create :id => 588, :name => "El Tarf", :abbreviation => '36'
+    country.create :id => 589, :name => "Ghardaïa", :abbreviation => '47'
+    country.create :id => 590, :name => "Guelma", :abbreviation => '24'
+    country.create :id => 591, :name => "Illizi", :abbreviation => '33'
+    country.create :id => 592, :name => "Jijel", :abbreviation => '18'
+    country.create :id => 593, :name => "Khenchela", :abbreviation => '40'
+    country.create :id => 594, :name => "Laghouat", :abbreviation => '03'
+    country.create :id => 595, :name => "Mascara", :abbreviation => '29'
+    country.create :id => 596, :name => "Médéa", :abbreviation => '26'
+    country.create :id => 597, :name => "Mila", :abbreviation => '43'
+    country.create :id => 598, :name => "Mostaganem", :abbreviation => '27'
+    country.create :id => 599, :name => "Msila", :abbreviation => '28'
+    country.create :id => 600, :name => "Naama", :abbreviation => '45'
+    country.create :id => 601, :name => "Oran", :abbreviation => '31'
+    country.create :id => 602, :name => "Ouargla", :abbreviation => '30'
+    country.create :id => 603, :name => "Oum el Bouaghi", :abbreviation => '04'
+    country.create :id => 604, :name => "Relizane", :abbreviation => '48'
+    country.create :id => 605, :name => "Saïda", :abbreviation => '20'
+    country.create :id => 606, :name => "Sétif", :abbreviation => '19'
+    country.create :id => 607, :name => "Sidi Bel Abbès", :abbreviation => '22'
+    country.create :id => 608, :name => "Skikda", :abbreviation => '21'
+    country.create :id => 609, :name => "Souk Ahras", :abbreviation => '41'
+    country.create :id => 610, :name => "Tamanghasset", :abbreviation => '11'
+    country.create :id => 611, :name => "Tébessa", :abbreviation => '12'
+    country.create :id => 612, :name => "Tiaret", :abbreviation => '14'
+    country.create :id => 613, :name => "Tindouf", :abbreviation => '37'
+    country.create :id => 614, :name => "Tipaza", :abbreviation => '42'
+    country.create :id => 615, :name => "Tissemsilt", :abbreviation => '38'
+    country.create :id => 616, :name => "Tizi Ouzou", :abbreviation => '15'
+    country.create :id => 617, :name => "Tlemcen", :abbreviation => '13'
+  end
+  
+  with_options(:country => "Ecuador") do |country|
+    country.create :id => 618, :name => "Azuay", :abbreviation => 'A'
+    country.create :id => 619, :name => "Bolívar", :abbreviation => 'B'
+    country.create :id => 620, :name => "Cañar", :abbreviation => 'F'
+    country.create :id => 621, :name => "Carchi", :abbreviation => 'C'
+    country.create :id => 622, :name => "Cotopaxi", :abbreviation => 'X'
+    country.create :id => 623, :name => "Chimborazo", :abbreviation => 'H'
+    country.create :id => 624, :name => "El Oro", :abbreviation => 'O'
+    country.create :id => 625, :name => "Esmeraldas", :abbreviation => 'E'
+    country.create :id => 626, :name => "Galápagos", :abbreviation => 'W'
+    country.create :id => 627, :name => "Guayas", :abbreviation => 'G'
+    country.create :id => 628, :name => "Imbabura", :abbreviation => 'I'
+    country.create :id => 629, :name => "Loja", :abbreviation => 'L'
+    country.create :id => 630, :name => "Los Ríos", :abbreviation => 'R'
+    country.create :id => 631, :name => "Manabí", :abbreviation => 'M'
+    country.create :id => 632, :name => "Morona-Santiago", :abbreviation => 'S'
+    country.create :id => 633, :name => "Napo", :abbreviation => 'N'
+    country.create :id => 634, :name => "Orellana", :abbreviation => 'D'
+    country.create :id => 635, :name => "Pastaza", :abbreviation => 'Y'
+    country.create :id => 636, :name => "Pichincha", :abbreviation => 'P'
+    country.create :id => 637, :name => "Sucumbíos", :abbreviation => 'U'
+    country.create :id => 638, :name => "Tungurahua", :abbreviation => 'T'
+    country.create :id => 639, :name => "Zamora-Chinchipe", :abbreviation => 'Z'
+  end
+  
+  with_options(:country => "Estonia") do |country|
+    country.create :id => 640, :name => "Harjumaa", :abbreviation => '37'
+    country.create :id => 641, :name => "Hiiumaa", :abbreviation => '39'
+    country.create :id => 642, :name => "Ida-Virumaa", :abbreviation => '44'
+    country.create :id => 643, :name => "Jõgevamaa", :abbreviation => '49'
+    country.create :id => 644, :name => "Järvamaa", :abbreviation => '51'
+    country.create :id => 645, :name => "Läänemaa", :abbreviation => '57'
+    country.create :id => 646, :name => "Lääne-Virumaa", :abbreviation => '59'
+    country.create :id => 647, :name => "Põlvamaa", :abbreviation => '65'
+    country.create :id => 648, :name => "Pärnumaa", :abbreviation => '67'
+    country.create :id => 649, :name => "Raplamaa", :abbreviation => '70'
+    country.create :id => 650, :name => "Saaremaa", :abbreviation => '74'
+    country.create :id => 651, :name => "Tartumaa", :abbreviation => '78'
+    country.create :id => 652, :name => "Valgamaa", :abbreviation => '82'
+    country.create :id => 653, :name => "Viljandimaa", :abbreviation => '84'
+    country.create :id => 654, :name => "Võrumaa", :abbreviation => '86'
+  end
+  
+  with_options(:country => "Egypt") do |country|
+    country.create :id => 655, :name => "Ad Daqahlīyah", :abbreviation => 'DK'
+    country.create :id => 656, :name => "Al Bahr al Ahmar", :abbreviation => 'BA'
+    country.create :id => 657, :name => "Al Buhayrah", :abbreviation => 'BH'
+    country.create :id => 658, :name => "Al Fayyūm", :abbreviation => 'FYM'
+    country.create :id => 659, :name => "Al Gharbīyah", :abbreviation => 'GH'
+    country.create :id => 660, :name => "Al Iskandarīyah", :abbreviation => 'ALX'
+    country.create :id => 661, :name => "Al Ismā`īlīyah", :abbreviation => 'IS'
+    country.create :id => 662, :name => "Al Jīzah", :abbreviation => 'GZ'
+    country.create :id => 663, :name => "Al Minūfīyah", :abbreviation => 'MNF'
+    country.create :id => 664, :name => "Al Minyā", :abbreviation => 'MN'
+    country.create :id => 665, :name => "Al Qāhirah", :abbreviation => 'C'
+    country.create :id => 666, :name => "Al Qalyūbīyah", :abbreviation => 'KB'
+    country.create :id => 667, :name => "Al Wādī al Jadīd", :abbreviation => 'WAD'
+    country.create :id => 668, :name => "Ash Sharqīyah", :abbreviation => 'SHR'
+    country.create :id => 669, :name => "As Suways", :abbreviation => 'SUZ'
+    country.create :id => 670, :name => "Aswān", :abbreviation => 'ASN'
+    country.create :id => 671, :name => "Asyūt", :abbreviation => 'AST'
+    country.create :id => 672, :name => "Banī Suwayf", :abbreviation => 'BNS'
+    country.create :id => 673, :name => "Būr Sa`īd", :abbreviation => 'PTS'
+    country.create :id => 674, :name => "Dumyāt", :abbreviation => 'DT'
+    country.create :id => 675, :name => "Janūb Sīnā", :abbreviation => 'JS'
+    country.create :id => 676, :name => "Kafr ash Shaykh", :abbreviation => 'KFS'
+    country.create :id => 677, :name => "Matrūh", :abbreviation => 'MT'
+    country.create :id => 678, :name => "Qinā", :abbreviation => 'KN'
+    country.create :id => 679, :name => "Shamal Sīnā", :abbreviation => 'SIN'
+    country.create :id => 680, :name => "Sūhāj", :abbreviation => 'SHG'
+  end
+  
+  with_options(:country => "Eritrea") do |country|
+    country.create :id => 681, :name => "Anseba", :abbreviation => 'AN'
+    country.create :id => 682, :name => "Debub", :abbreviation => 'DU'
+    country.create :id => 683, :name => "Debubawi Keyih Bahri [Debub-Keih-Bahri]", :abbreviation => 'DK'
+    country.create :id => 684, :name => "Gash-Barka", :abbreviation => 'GB'
+    country.create :id => 685, :name => "Maakel [Maekel]", :abbreviation => 'MA'
+    country.create :id => 686, :name => "Semenawi Keyih Bahri [Semien-Keih-Bahri]", :abbreviation => 'SK'
+  end
+  
+  with_options(:country => "Spain") do |country|
+    country.create :id => 687, :name => "Andalucía", :abbreviation => 'ES AN'
+    country.create :id => 688, :name => "Aragón", :abbreviation => 'ES AR'
+    country.create :id => 689, :name => "Asturias, Principado de", :abbreviation => 'ES O'
+    country.create :id => 690, :name => "Canarias", :abbreviation => 'ES CN'
+    country.create :id => 691, :name => "Cantabria", :abbreviation => 'ES S'
+    country.create :id => 692, :name => "Castilla-La Mancha", :abbreviation => 'ES CM'
+    country.create :id => 693, :name => "Castilla y León", :abbreviation => 'ES CL'
+    country.create :id => 694, :name => "Cataluña", :abbreviation => 'ES CT'
+    country.create :id => 695, :name => "Extremadura", :abbreviation => 'ES EX'
+    country.create :id => 696, :name => "Galicia", :abbreviation => 'ES GA'
+    country.create :id => 697, :name => "Illes Balears", :abbreviation => 'ES IB'
+    country.create :id => 698, :name => "La Rioja", :abbreviation => 'ES LO'
+    country.create :id => 699, :name => "Madrid, Comunidad de", :abbreviation => 'ES M'
+    country.create :id => 700, :name => "Murcia, Región de", :abbreviation => 'ES MU'
+    country.create :id => 701, :name => "Navarra, Comunidad Foral de", :abbreviation => 'ES NA'
+    country.create :id => 702, :name => "País Vasco", :abbreviation => 'ES PV'
+    country.create :id => 703, :name => "Valenciana, Comunidad", :abbreviation => 'ES VC'
+  end
+  
+  with_options(:country => "Ethiopia") do |country|
+    country.create :id => 704, :name => "Ādīs Ābeba", :abbreviation => 'AA'
+    country.create :id => 705, :name => "Dirē Dawa", :abbreviation => 'DD'
+  end
+  
+  with_options(:country => "Finland") do |country|
+    country.create :id => 706, :name => "Ahvenanmaan lääni", :abbreviation => 'AL'
+    country.create :id => 707, :name => "Etelä-Suomen lääni", :abbreviation => 'ES'
+    country.create :id => 708, :name => "Itä-Suomen lääni", :abbreviation => 'IS'
+    country.create :id => 709, :name => "Lapin lääni", :abbreviation => 'LL'
+    country.create :id => 710, :name => "Länsi-Suomen lääni", :abbreviation => 'LS'
+    country.create :id => 711, :name => "Oulun lääni", :abbreviation => 'OL'
+  end
+  
+  with_options(:country => "Fiji") do |country|
+    country.create :id => 712, :name => "Central", :abbreviation => 'C'
+    country.create :id => 713, :name => "Eastern", :abbreviation => 'E'
+    country.create :id => 714, :name => "Northern", :abbreviation => 'N'
+    country.create :id => 715, :name => "Western", :abbreviation => 'W'
+  end
+  
+  with_options(:country => "Micronesia, Federated States of") do |country|
+    country.create :id => 716, :name => "Chuuk", :abbreviation => 'TRK'
+    country.create :id => 717, :name => "Kosrae", :abbreviation => 'KSA'
+    country.create :id => 718, :name => "Pohnpei", :abbreviation => 'PNI'
+    country.create :id => 719, :name => "Yap", :abbreviation => 'YAP'
+  end
+  
+  with_options(:country => "France") do |country|
+    country.create :id => 720, :name => "Alsace", :abbreviation => 'FR A'
+    country.create :id => 721, :name => "Aquitaine", :abbreviation => 'FR B'
+    country.create :id => 722, :name => "Auvergne", :abbreviation => 'FR C'
+    country.create :id => 723, :name => "Basse-Normandie", :abbreviation => 'FR P'
+    country.create :id => 724, :name => "Bourgogne", :abbreviation => 'FR D'
+    country.create :id => 725, :name => "Bretagne", :abbreviation => 'FR E'
+    country.create :id => 726, :name => "Centre", :abbreviation => 'FR F'
+    country.create :id => 727, :name => "Champagne-Ardenne", :abbreviation => 'FR G'
+    country.create :id => 728, :name => "Corse", :abbreviation => 'FR H'
+    country.create :id => 729, :name => "Franche-Comté", :abbreviation => 'FR I'
+    country.create :id => 730, :name => "Haute-Normandie", :abbreviation => 'FR Q'
+    country.create :id => 731, :name => "Île-de-France", :abbreviation => 'FR J'
+    country.create :id => 732, :name => "Languedoc-Roussillon", :abbreviation => 'FR K'
+    country.create :id => 733, :name => "Limousin", :abbreviation => 'FR L'
+    country.create :id => 734, :name => "Lorraine", :abbreviation => 'FR M'
+    country.create :id => 735, :name => "Midi-Pyrénées", :abbreviation => 'FR N'
+    country.create :id => 736, :name => "Nord - Pas-de-Calais", :abbreviation => 'FR O'
+    country.create :id => 737, :name => "Pays de la Loire", :abbreviation => 'FR R'
+    country.create :id => 738, :name => "Picardie", :abbreviation => 'FR S'
+    country.create :id => 739, :name => "Poitou-Charentes", :abbreviation => 'FR T'
+    country.create :id => 740, :name => "Provence-Alpes-Côte dAzurAzur", :abbreviation => 'FR U'
+    country.create :id => 741, :name => "Rhône-Alpes", :abbreviation => 'FR V'
+  end
+  
+  with_options(:country => "United Kingdom") do |country|
+    country.create :id => 742, :name => "England", :abbreviation => 'GB ENG'
+    country.create :id => 743, :name => "Scotland", :abbreviation => 'GB SCT'
+  end
+  
+  with_options(:country => "Grenada") do |country|
+    country.create :id => 744, :name => "Saint Andrew", :abbreviation => '01'
+    country.create :id => 745, :name => "Saint David", :abbreviation => '02'
+    country.create :id => 746, :name => "Saint George", :abbreviation => '03'
+    country.create :id => 747, :name => "Saint John", :abbreviation => '04'
+    country.create :id => 748, :name => "Saint Mark", :abbreviation => '05'
+    country.create :id => 749, :name => "Saint Patrick", :abbreviation => '06'
+  end
+  
+  with_options(:country => "Georgia") do |country|
+    country.create :id => 750, :name => "Abkhazia", :abbreviation => 'AB'
+    country.create :id => 751, :name => "Ajaria", :abbreviation => 'AJ'
+  end
+  
+  with_options(:country => "Ghana") do |country|
+    country.create :id => 752, :name => "Ashanti", :abbreviation => 'AH'
+    country.create :id => 753, :name => "Brong-Ahafo", :abbreviation => 'BA'
+    country.create :id => 754, :name => "Central", :abbreviation => 'CP'
+    country.create :id => 755, :name => "Eastern", :abbreviation => 'EP'
+    country.create :id => 756, :name => "Greater Accra", :abbreviation => 'AA'
+    country.create :id => 757, :name => "Northern", :abbreviation => 'NP'
+    country.create :id => 758, :name => "Upper East", :abbreviation => 'UE'
+    country.create :id => 759, :name => "Upper West", :abbreviation => 'UW'
+    country.create :id => 760, :name => "Volta", :abbreviation => 'TV'
+    country.create :id => 761, :name => "Western", :abbreviation => 'WP'
+  end
+  
+  with_options(:country => "Gambia") do |country|
+    country.create :id => 762, :name => "Lower River", :abbreviation => 'L'
+    country.create :id => 763, :name => "Central River", :abbreviation => 'M'
+    country.create :id => 764, :name => "North Bank", :abbreviation => 'N'
+    country.create :id => 765, :name => "Upper River", :abbreviation => 'U'
+    country.create :id => 766, :name => "Western", :abbreviation => 'W'
+  end
+  
+  with_options(:country => "Guinea") do |country|
+    country.create :id => 767, :name => "Boké, Gouvernorat de", :abbreviation => 'GN B'
+    country.create :id => 768, :name => "Faranah, Gouvernorat de", :abbreviation => 'GN F'
+    country.create :id => 769, :name => "Kankan, Gouvernorat de", :abbreviation => 'GN K'
+    country.create :id => 770, :name => "Kindia, Gouvernorat de", :abbreviation => 'GN D'
+    country.create :id => 771, :name => "Labé, Gouvernorat de", :abbreviation => 'GN L'
+    country.create :id => 772, :name => "Mamou, Gouvernorat de", :abbreviation => 'GN M'
+    country.create :id => 773, :name => "Nzérékoré, Gouvernorat de", :abbreviation => 'GN N'
+  end
+  
+  with_options(:country => "Equatorial Guinea") do |country|
+    country.create :id => 774, :name => "Región Continental", :abbreviation => 'C'
+    country.create :id => 775, :name => "Región Insular", :abbreviation => 'I'
+    country.create :id => 776, :name => "Annobón", :abbreviation => 'AN'
+    country.create :id => 777, :name => "Bioko Norte", :abbreviation => 'BN'
+    country.create :id => 778, :name => "Bioko Sur", :abbreviation => 'BS'
+    country.create :id => 779, :name => "Centro Sur", :abbreviation => 'CS'
+    country.create :id => 780, :name => "Kié-Ntem", :abbreviation => 'KN'
+    country.create :id => 781, :name => "Litoral", :abbreviation => 'LI'
+    country.create :id => 782, :name => "Wele-Nzás", :abbreviation => 'WN'
+  end
+  
+  with_options(:country => "Greece") do |country|
+    country.create :id => 783, :name => "Periféreia Anatolikís Makedonías kai Thrákis", :abbreviation => 'GR I'
+    country.create :id => 784, :name => "Periféreia Kentrikís Makedonías", :abbreviation => 'GR II'
+    country.create :id => 785, :name => "Periféreia Dytikís Makedonías", :abbreviation => 'GR III'
+    country.create :id => 786, :name => "Periféreia Ipeírou", :abbreviation => 'GR IV'
+    country.create :id => 787, :name => "Periféreia Thessalías", :abbreviation => 'GR V'
+    country.create :id => 788, :name => "Periféreia Ioníon Níson", :abbreviation => 'GR VI'
+    country.create :id => 789, :name => "Periféreia Dytikís Elládas", :abbreviation => 'GR VII'
+    country.create :id => 790, :name => "Periféreia Stereás Elládas", :abbreviation => 'GR VIII'
+    country.create :id => 791, :name => "Periféreia Attikís", :abbreviation => 'GR IX'
+    country.create :id => 792, :name => "Periféreia Peloponnísou", :abbreviation => 'GR X'
+    country.create :id => 793, :name => "Periféreia Voreíou Aigaíou", :abbreviation => 'GR XI'
+    country.create :id => 794, :name => "Periféreia Notíou Aigaíou", :abbreviation => 'GR XII'
+    country.create :id => 795, :name => "Periféreia Krítis", :abbreviation => 'GR XIII'
+  end
+  
+  with_options(:country => "Guatemala") do |country|
+    country.create :id => 796, :name => "Alta Verapaz", :abbreviation => 'AV'
+    country.create :id => 797, :name => "Baja Verapaz", :abbreviation => 'BV'
+    country.create :id => 798, :name => "Chimaltenango", :abbreviation => 'CM'
+    country.create :id => 799, :name => "Chiquimula", :abbreviation => 'CQ'
+    country.create :id => 800, :name => "El Progreso", :abbreviation => 'PR'
+    country.create :id => 801, :name => "Escuintla", :abbreviation => 'ES'
+    country.create :id => 802, :name => "Guatemala", :abbreviation => 'GU'
+    country.create :id => 803, :name => "Huehuetenango", :abbreviation => 'HU'
+    country.create :id => 804, :name => "Izabal", :abbreviation => 'IZ'
+    country.create :id => 805, :name => "Jalapa", :abbreviation => 'JA'
+    country.create :id => 806, :name => "Jutiapa", :abbreviation => 'JU'
+    country.create :id => 807, :name => "Petén", :abbreviation => 'PE'
+    country.create :id => 808, :name => "Quetzaltenango", :abbreviation => 'QZ'
+    country.create :id => 809, :name => "Quiché", :abbreviation => 'QC'
+    country.create :id => 810, :name => "Retalhuleu", :abbreviation => 'RE'
+    country.create :id => 811, :name => "Sacatepéquez", :abbreviation => 'SA'
+    country.create :id => 812, :name => "San Marcos", :abbreviation => 'SM'
+    country.create :id => 813, :name => "Santa Rosa", :abbreviation => 'SR'
+    country.create :id => 814, :name => "Sololá", :abbreviation => 'SO'
+    country.create :id => 815, :name => "Suchitepéquez", :abbreviation => 'SU'
+    country.create :id => 816, :name => "Totonicapán", :abbreviation => 'TO'
+    country.create :id => 817, :name => "Zacapa", :abbreviation => 'ZA'
+  end
+  
+  with_options(:country => "Guinea-Bissau") do |country|
+    country.create :id => 818, :name => "Bafatá", :abbreviation => 'BA'
+    country.create :id => 819, :name => "Biombo", :abbreviation => 'BM'
+    country.create :id => 820, :name => "Bolama", :abbreviation => 'BL'
+    country.create :id => 821, :name => "Cacheu", :abbreviation => 'CA'
+    country.create :id => 822, :name => "Gabú", :abbreviation => 'GA'
+    country.create :id => 823, :name => "Oio", :abbreviation => 'OI'
+    country.create :id => 824, :name => "Quinara", :abbreviation => 'QU'
+    country.create :id => 825, :name => "Tombali", :abbreviation => 'TO'
+  end
+  
+  with_options(:country => "Guyana") do |country|
+    country.create :id => 826, :name => "Barima-Waini", :abbreviation => 'BA'
+    country.create :id => 827, :name => "Cuyuni-Mazaruni", :abbreviation => 'CU'
+    country.create :id => 828, :name => "Demerara-Mahaica", :abbreviation => 'DE'
+    country.create :id => 829, :name => "East Berbice-Corentyne", :abbreviation => 'EB'
+    country.create :id => 830, :name => "Essequibo Islands-West Demerara", :abbreviation => 'ES'
+    country.create :id => 831, :name => "Mahaica-Berbice", :abbreviation => 'MA'
+    country.create :id => 832, :name => "Pomeroon-Supenaam", :abbreviation => 'PM'
+    country.create :id => 833, :name => "Potaro-Siparuni", :abbreviation => 'PT'
+    country.create :id => 834, :name => "Upper Demerara-Berbice", :abbreviation => 'UD'
+    country.create :id => 835, :name => "Upper Takutu-Upper Essequibo", :abbreviation => 'UT'
+  end
+  
+  with_options(:country => "Honduras") do |country|
+    country.create :id => 836, :name => "Atlántida", :abbreviation => 'AT'
+    country.create :id => 837, :name => "Colón", :abbreviation => 'CL'
+    country.create :id => 838, :name => "Comayagua", :abbreviation => 'CM'
+    country.create :id => 839, :name => "Copán", :abbreviation => 'CP'
+    country.create :id => 840, :name => "Cortés", :abbreviation => 'CR'
+    country.create :id => 841, :name => "Choluteca", :abbreviation => 'CH'
+    country.create :id => 842, :name => "El Paraíso", :abbreviation => 'EP'
+    country.create :id => 843, :name => "Francisco Morazán", :abbreviation => 'FM'
+    country.create :id => 844, :name => "Gracias a Dios", :abbreviation => 'GD'
+    country.create :id => 845, :name => "Intibucá", :abbreviation => 'IN'
+    country.create :id => 846, :name => "Islas de la Bahía", :abbreviation => 'IB'
+    country.create :id => 847, :name => "La Paz", :abbreviation => 'LP'
+    country.create :id => 848, :name => "Lempira", :abbreviation => 'LE'
+    country.create :id => 849, :name => "Ocotepeque", :abbreviation => 'OC'
+    country.create :id => 850, :name => "Olancho", :abbreviation => 'OL'
+    country.create :id => 851, :name => "Santa Bárbara", :abbreviation => 'SB'
+    country.create :id => 852, :name => "Valle", :abbreviation => 'VA'
+    country.create :id => 853, :name => "Yoro", :abbreviation => 'YO'
+  end
+  
+  with_options(:country => "Croatia") do |country|
+    country.create :id => 854, :name => "Grad Zagreb", :abbreviation => '21'
+  end
+  
+  with_options(:country => "Haiti") do |country|
+    country.create :id => 855, :name => "Artibonite", :abbreviation => 'AR'
+    country.create :id => 856, :name => "Centre", :abbreviation => 'CE'
+    country.create :id => 857, :name => "Grande-Anse", :abbreviation => 'GA'
+    country.create :id => 858, :name => "Nord", :abbreviation => 'ND'
+    country.create :id => 859, :name => "Nord-Est", :abbreviation => 'NE'
+    country.create :id => 860, :name => "Nord-Ouest", :abbreviation => 'NO'
+    country.create :id => 861, :name => "Ouest", :abbreviation => 'OU'
+    country.create :id => 862, :name => "Sud", :abbreviation => 'SD'
+    country.create :id => 863, :name => "Sud-Est", :abbreviation => 'SE'
+  end
+  
+  with_options(:country => "Hungary") do |country|
+    country.create :id => 864, :name => "Bács-Kiskun", :abbreviation => 'BK'
+    country.create :id => 865, :name => "Baranya", :abbreviation => 'BA'
+    country.create :id => 866, :name => "Békés", :abbreviation => 'BE'
+    country.create :id => 867, :name => "Borsod-Abaúj-Zemplén", :abbreviation => 'BZ'
+    country.create :id => 868, :name => "Csongrád", :abbreviation => 'CS'
+    country.create :id => 869, :name => "Fejér", :abbreviation => 'FE'
+    country.create :id => 870, :name => "Győr-Moson-Sopron", :abbreviation => 'GS'
+    country.create :id => 871, :name => "Hajdú-Bihar", :abbreviation => 'HB'
+    country.create :id => 872, :name => "Heves", :abbreviation => 'HE'
+    country.create :id => 873, :name => "Jász-Nagykun-Szolnok", :abbreviation => 'JN'
+    country.create :id => 874, :name => "Komárom-Esztergom", :abbreviation => 'KE'
+    country.create :id => 875, :name => "Nógrád", :abbreviation => 'NO'
+    country.create :id => 876, :name => "Pest", :abbreviation => 'PE'
+    country.create :id => 877, :name => "Somogy", :abbreviation => 'SO'
+    country.create :id => 878, :name => "Szabolcs-Szatmár-Bereg", :abbreviation => 'SZ'
+    country.create :id => 879, :name => "Tolna", :abbreviation => 'TO'
+    country.create :id => 880, :name => "Vas", :abbreviation => 'VA'
+    country.create :id => 881, :name => "Veszprém (county)", :abbreviation => 'VE'
+    country.create :id => 882, :name => "Zala", :abbreviation => 'ZA'
+  end
+  
+  with_options(:country => "Indonesia") do |country|
+    country.create :id => 883, :name => "Papua", :abbreviation => 'ID IJ'
+    country.create :id => 884, :name => "Jawa", :abbreviation => 'ID JW'
+    country.create :id => 885, :name => "Kalimantan", :abbreviation => 'ID KA'
+    country.create :id => 886, :name => "Maluku", :abbreviation => 'ID MA'
+    country.create :id => 887, :name => "Nusa Tenggara", :abbreviation => 'ID NU'
+    country.create :id => 888, :name => "Sulawesi", :abbreviation => 'ID SL'
+    country.create :id => 889, :name => "Sumatera", :abbreviation => 'ID SM'
+  end
+  
+  with_options(:country => "Ireland") do |country|
+    country.create :id => 890, :name => "Connacht", :abbreviation => 'IE C'
+    country.create :id => 891, :name => "Leinster", :abbreviation => 'IE L'
+    country.create :id => 892, :name => "Munster", :abbreviation => 'IE M'
+    country.create :id => 893, :name => "Ulster", :abbreviation => 'IE U'
+  end
+  
+  with_options(:country => "Israel") do |country|
+    country.create :id => 894, :name => "HaDarom", :abbreviation => 'D'
+    country.create :id => 895, :name => "HaMerkaz", :abbreviation => 'M'
+    country.create :id => 896, :name => "HaZafon", :abbreviation => 'Z'
+    country.create :id => 897, :name => "Hefa", :abbreviation => 'HA'
+    country.create :id => 898, :name => "Tel-Aviv", :abbreviation => 'TA'
+    country.create :id => 899, :name => "Yerushalayim Al Quds", :abbreviation => 'JM'
+  end
+  
+  with_options(:country => "India") do |country|
+    country.create :id => 900, :name => "Andhra Pradesh", :abbreviation => 'AP'
+    country.create :id => 901, :name => "Arunāchal Pradesh", :abbreviation => 'AR'
+    country.create :id => 902, :name => "Assam", :abbreviation => 'AS'
+    country.create :id => 903, :name => "Bihār", :abbreviation => 'BR'
+    country.create :id => 904, :name => "Chhattīsgarh", :abbreviation => 'CT'
+    country.create :id => 905, :name => "Goa", :abbreviation => 'GA'
+    country.create :id => 906, :name => "Gujarāt", :abbreviation => 'GJ'
+    country.create :id => 907, :name => "Haryāna", :abbreviation => 'HR'
+    country.create :id => 908, :name => "Himāchal Pradesh", :abbreviation => 'HP'
+    country.create :id => 909, :name => "Jammu and Kashmīr", :abbreviation => 'JK'
+    country.create :id => 910, :name => "Jharkhand", :abbreviation => 'JH'
+    country.create :id => 911, :name => "Karnātaka", :abbreviation => 'KA'
+    country.create :id => 912, :name => "Kerala", :abbreviation => 'KL'
+    country.create :id => 913, :name => "Madhya Pradesh", :abbreviation => 'MP'
+    country.create :id => 914, :name => "Mahārāshtra", :abbreviation => 'MH'
+    country.create :id => 915, :name => "Manipur", :abbreviation => 'MN'
+    country.create :id => 916, :name => "Meghālaya", :abbreviation => 'ML'
+    country.create :id => 917, :name => "Mizoram", :abbreviation => 'MZ'
+    country.create :id => 918, :name => "Nāgāland", :abbreviation => 'NL'
+    country.create :id => 919, :name => "Orissa", :abbreviation => 'OR'
+    country.create :id => 920, :name => "Punjab", :abbreviation => 'PB'
+    country.create :id => 921, :name => "Rājasthān", :abbreviation => 'RJ'
+    country.create :id => 922, :name => "Sikkim", :abbreviation => 'SK'
+    country.create :id => 923, :name => "Tamil Nādu", :abbreviation => 'TN'
+    country.create :id => 924, :name => "Tripura", :abbreviation => 'TR'
+    country.create :id => 925, :name => "Uttaranchal", :abbreviation => 'UL'
+    country.create :id => 926, :name => "Uttar Pradesh", :abbreviation => 'UP'
+    country.create :id => 927, :name => "West Bengal", :abbreviation => 'WB'
+  end
+  
+  with_options(:country => "Iraq") do |country|
+    country.create :id => 928, :name => "Al Anbar", :abbreviation => 'AN'
+    country.create :id => 929, :name => "Al Basrah", :abbreviation => 'BA'
+    country.create :id => 930, :name => "Al Muthanna", :abbreviation => 'MU'
+    country.create :id => 931, :name => "Al Qadisiyah", :abbreviation => 'QA'
+    country.create :id => 932, :name => "An Najef", :abbreviation => 'NA'
+    country.create :id => 933, :name => "Arbil", :abbreviation => 'AR'
+    country.create :id => 934, :name => "As Sulaymaniyah", :abbreviation => 'SW'
+    country.create :id => 935, :name => "At Tamimmim", :abbreviation => 'TS'
+    country.create :id => 936, :name => "Babil", :abbreviation => 'BB'
+    country.create :id => 937, :name => "Baghdad", :abbreviation => 'BG'
+    country.create :id => 938, :name => "Dahuk", :abbreviation => 'DA'
+    country.create :id => 939, :name => "Dhi Qar", :abbreviation => 'DQ'
+    country.create :id => 940, :name => "Diyala", :abbreviation => 'DI'
+    country.create :id => 941, :name => "Karbala", :abbreviation => 'KA'
+    country.create :id => 942, :name => "Maysan", :abbreviation => 'MA'
+    country.create :id => 943, :name => "Ninawa", :abbreviation => 'NI'
+    country.create :id => 944, :name => "Salah ad Din", :abbreviation => 'SD'
+    country.create :id => 945, :name => "Wasit", :abbreviation => 'WA'
+  end
+  
+  with_options(:country => "Iran, Islamic Republic of") do |country|
+    country.create :id => 946, :name => "Ardabīl", :abbreviation => '03'
+    country.create :id => 947, :name => "Āzarbāyjān-e Gharbī", :abbreviation => '02'
+    country.create :id => 948, :name => "Āzarbāyjān-e Sharqī", :abbreviation => '01'
+    country.create :id => 949, :name => "Būshehr", :abbreviation => '06'
+    country.create :id => 950, :name => "Chahār Mahāll va Bakhtīārī", :abbreviation => '08'
+    country.create :id => 951, :name => "Eşfahān", :abbreviation => '04'
+    country.create :id => 952, :name => "Fārs", :abbreviation => '14'
+    country.create :id => 953, :name => "Gīlān", :abbreviation => '19'
+    country.create :id => 954, :name => "Golestān", :abbreviation => '27'
+    country.create :id => 955, :name => "Hamadān", :abbreviation => '24'
+    country.create :id => 956, :name => "Hormozgān", :abbreviation => '23'
+    country.create :id => 957, :name => "Īlām", :abbreviation => '05'
+    country.create :id => 958, :name => "Kermān", :abbreviation => '15'
+    country.create :id => 959, :name => "Kermānshāh", :abbreviation => '17'
+    country.create :id => 960, :name => "Khorāsān-e Janūbī", :abbreviation => '29'
+    country.create :id => 961, :name => "Khorāsān-e Razavī", :abbreviation => '30'
+    country.create :id => 962, :name => "Khorāsān-e Shemālī", :abbreviation => '31'
+    country.create :id => 963, :name => "Khūzestān", :abbreviation => '10'
+    country.create :id => 964, :name => "Kohgīlūyeh va Būyer Ahmad", :abbreviation => '18'
+    country.create :id => 965, :name => "Kordestān", :abbreviation => '16'
+    country.create :id => 966, :name => "Lorestān", :abbreviation => '20'
+    country.create :id => 967, :name => "Markazī", :abbreviation => '22'
+    country.create :id => 968, :name => "Māzandarān", :abbreviation => '21'
+    country.create :id => 969, :name => "Qazvīn", :abbreviation => '28'
+    country.create :id => 970, :name => "Qom", :abbreviation => '26'
+    country.create :id => 971, :name => "Semnān", :abbreviation => '12'
+    country.create :id => 972, :name => "Sīstān va Balūchestān", :abbreviation => '13'
+    country.create :id => 973, :name => "Tehrān", :abbreviation => '07'
+    country.create :id => 974, :name => "Yazd", :abbreviation => '25'
+    country.create :id => 975, :name => "Zanjān", :abbreviation => '11'
+  end
+  
+  with_options(:country => "Iceland") do |country|
+    country.create :id => 976, :name => "Austurland", :abbreviation => '7'
+    country.create :id => 977, :name => "Höfuðborgarsvæðið", :abbreviation => '1'
+    country.create :id => 978, :name => "Norðurland eystra", :abbreviation => '6'
+    country.create :id => 979, :name => "Norðurland vestra", :abbreviation => '5'
+    country.create :id => 980, :name => "Suðurland", :abbreviation => '8'
+    country.create :id => 981, :name => "Suðurnes", :abbreviation => '2'
+    country.create :id => 982, :name => "Vestfirðir", :abbreviation => '4'
+    country.create :id => 983, :name => "Vesturland", :abbreviation => '3'
+  end
+  
+  with_options(:country => "Italy") do |country|
+    country.create :id => 984, :name => "Abruzzo", :abbreviation => 'IT 65'
+    country.create :id => 985, :name => "Basilicata", :abbreviation => 'IT 77'
+    country.create :id => 986, :name => "Calabria", :abbreviation => 'IT 78'
+    country.create :id => 987, :name => "Campania", :abbreviation => 'IT 72'
+    country.create :id => 988, :name => "Emilia-Romagna", :abbreviation => 'IT 45'
+    country.create :id => 989, :name => "Friuli-Venezia Giulia", :abbreviation => 'IT 36'
+    country.create :id => 990, :name => "Lazio", :abbreviation => 'IT 62'
+    country.create :id => 991, :name => "Liguria", :abbreviation => 'IT 42'
+    country.create :id => 992, :name => "Lombardia", :abbreviation => 'IT 25'
+    country.create :id => 993, :name => "Marche", :abbreviation => 'IT 57'
+    country.create :id => 994, :name => "Molise", :abbreviation => 'IT 67'
+    country.create :id => 995, :name => "Piemonte", :abbreviation => 'IT 21'
+    country.create :id => 996, :name => "Puglia", :abbreviation => 'IT 75'
+    country.create :id => 997, :name => "Sardegna", :abbreviation => 'IT 88'
+    country.create :id => 998, :name => "Sicilia", :abbreviation => 'IT 82'
+    country.create :id => 999, :name => "Toscana", :abbreviation => 'IT 52'
+    country.create :id => 1000, :name => "Trentino-Alto Adige", :abbreviation => 'IT 32'
+    country.create :id => 1001, :name => "Umbria", :abbreviation => 'IT 55'
+    country.create :id => 1002, :name => "Valle dAostaAosta", :abbreviation => 'IT 23'
+    country.create :id => 1003, :name => "Veneto", :abbreviation => 'IT 34'
+  end
+  
+  with_options(:country => "Jamaica") do |country|
+    country.create :id => 1004, :name => "Clarendon", :abbreviation => '13'
+    country.create :id => 1005, :name => "Hanover", :abbreviation => '09'
+    country.create :id => 1006, :name => "Kingston", :abbreviation => '01'
+    country.create :id => 1007, :name => "Manchester", :abbreviation => '12'
+    country.create :id => 1008, :name => "Portland", :abbreviation => '04'
+    country.create :id => 1009, :name => "Saint Andrew", :abbreviation => '02'
+    country.create :id => 1010, :name => "Saint Ann", :abbreviation => '06'
+    country.create :id => 1011, :name => "Saint Catherine", :abbreviation => '14'
+    country.create :id => 1012, :name => "Saint Elizabeth", :abbreviation => '11'
+    country.create :id => 1013, :name => "Saint James", :abbreviation => '08'
+    country.create :id => 1014, :name => "Saint Mary", :abbreviation => '05'
+    country.create :id => 1015, :name => "Saint Thomas", :abbreviation => '03'
+    country.create :id => 1016, :name => "Trelawny", :abbreviation => '07'
+    country.create :id => 1017, :name => "Westmoreland", :abbreviation => '10'
+  end
+  
+  with_options(:country => "Jordan") do |country|
+    country.create :id => 1018, :name => "`Ajlun", :abbreviation => 'AJ'
+    country.create :id => 1019, :name => "Al `Aqabah", :abbreviation => 'AQ'
+    country.create :id => 1020, :name => "Al Balqā", :abbreviation => 'BA'
+    country.create :id => 1021, :name => "Al Karak", :abbreviation => 'KA'
+    country.create :id => 1022, :name => "Al Mafraq", :abbreviation => 'MA'
+    country.create :id => 1023, :name => "Amman", :abbreviation => 'AM'
+    country.create :id => 1024, :name => "Aţ Ţafīlah", :abbreviation => 'AT'
+    country.create :id => 1025, :name => "Az Zarqā", :abbreviation => 'AZ'
+    country.create :id => 1026, :name => "Irbid", :abbreviation => 'JR'
+    country.create :id => 1027, :name => "Jarash", :abbreviation => 'JA'
+    country.create :id => 1028, :name => "Ma`ān", :abbreviation => 'MN'
+    country.create :id => 1029, :name => "Mādabā", :abbreviation => 'MD'
+  end
+  
+  with_options(:country => "Japan") do |country|
+    country.create :id => 1030, :name => "Aichi", :abbreviation => '23'
+    country.create :id => 1031, :name => "Akita", :abbreviation => '05'
+    country.create :id => 1032, :name => "Aomori", :abbreviation => '02'
+    country.create :id => 1033, :name => "Chiba", :abbreviation => '12'
+    country.create :id => 1034, :name => "Ehime", :abbreviation => '38'
+    country.create :id => 1035, :name => "Fukui", :abbreviation => '18'
+    country.create :id => 1036, :name => "Fukuoka", :abbreviation => '40'
+    country.create :id => 1037, :name => "Fukushima", :abbreviation => '07'
+    country.create :id => 1038, :name => "Gifu", :abbreviation => '21'
+    country.create :id => 1039, :name => "Gunma", :abbreviation => '10'
+    country.create :id => 1040, :name => "Hiroshima", :abbreviation => '34'
+    country.create :id => 1041, :name => "Hokkaido", :abbreviation => '01'
+    country.create :id => 1042, :name => "Hyogo", :abbreviation => '28'
+    country.create :id => 1043, :name => "Ibaraki", :abbreviation => '08'
+    country.create :id => 1044, :name => "Ishikawa", :abbreviation => '17'
+    country.create :id => 1045, :name => "Iwate", :abbreviation => '03'
+    country.create :id => 1046, :name => "Kagawa", :abbreviation => '37'
+    country.create :id => 1047, :name => "Kagoshima", :abbreviation => '46'
+    country.create :id => 1048, :name => "Kanagawa", :abbreviation => '14'
+    country.create :id => 1049, :name => "Kochi", :abbreviation => '39'
+    country.create :id => 1050, :name => "Kumamoto", :abbreviation => '43'
+    country.create :id => 1051, :name => "Kyoto", :abbreviation => '26'
+    country.create :id => 1052, :name => "Mie", :abbreviation => '24'
+    country.create :id => 1053, :name => "Miyagi", :abbreviation => '04'
+    country.create :id => 1054, :name => "Miyazaki", :abbreviation => '45'
+    country.create :id => 1055, :name => "Nagano", :abbreviation => '20'
+    country.create :id => 1056, :name => "Nagasaki", :abbreviation => '42'
+    country.create :id => 1057, :name => "Nara", :abbreviation => '29'
+    country.create :id => 1058, :name => "Niigata", :abbreviation => '15'
+    country.create :id => 1059, :name => "Oita", :abbreviation => '44'
+    country.create :id => 1060, :name => "Okayama", :abbreviation => '33'
+    country.create :id => 1061, :name => "Okinawa", :abbreviation => '47'
+    country.create :id => 1062, :name => "Osaka", :abbreviation => '27'
+    country.create :id => 1063, :name => "Saga", :abbreviation => '41'
+    country.create :id => 1064, :name => "Saitama", :abbreviation => '11'
+    country.create :id => 1065, :name => "Shiga", :abbreviation => '25'
+    country.create :id => 1066, :name => "Shimane", :abbreviation => '32'
+    country.create :id => 1067, :name => "Shizuoka", :abbreviation => '22'
+    country.create :id => 1068, :name => "Tochigi", :abbreviation => '09'
+    country.create :id => 1069, :name => "Tokushima", :abbreviation => '36'
+    country.create :id => 1070, :name => "Tokyo", :abbreviation => '13'
+    country.create :id => 1071, :name => "Tottori", :abbreviation => '31'
+    country.create :id => 1072, :name => "Toyama", :abbreviation => '16'
+    country.create :id => 1073, :name => "Wakayama", :abbreviation => '30'
+    country.create :id => 1074, :name => "Yamagata", :abbreviation => '06'
+    country.create :id => 1075, :name => "Yamaguchi", :abbreviation => '35'
+    country.create :id => 1076, :name => "Yamanashi", :abbreviation => '19'
+  end
+  
+  with_options(:country => "Kenya") do |country|
+    country.create :id => 1077, :name => "Nairobi Municipality", :abbreviation => '110'
+    country.create :id => 1078, :name => "Central", :abbreviation => '200'
+    country.create :id => 1079, :name => "Coast", :abbreviation => '300'
+    country.create :id => 1080, :name => "Eastern", :abbreviation => '400'
+    country.create :id => 1081, :name => "North-Eastern Kaskazini Mashariki", :abbreviation => '500'
+    country.create :id => 1082, :name => "Rift Valley", :abbreviation => '700'
+    country.create :id => 1083, :name => "Western Magharibi", :abbreviation => '900'
+  end
+  
+  with_options(:country => "Kyrgyzstan") do |country|
+    country.create :id => 1084, :name => "Bishkek", :abbreviation => 'GB'
+  end
+  
+  with_options(:country => "Cambodia") do |country|
+    country.create :id => 1085, :name => "Krong Kaeb", :abbreviation => '23'
+    country.create :id => 1086, :name => "Krong Pailin", :abbreviation => '24'
+    country.create :id => 1087, :name => "Krong Preah Sihanouk", :abbreviation => '18'
+    country.create :id => 1088, :name => "Phnom Penh", :abbreviation => '12'
+  end
+  
+  with_options(:country => "Kiribati") do |country|
+    country.create :id => 1089, :name => "Gilbert Islands", :abbreviation => 'G'
+    country.create :id => 1090, :name => "Line Islands", :abbreviation => 'L'
+    country.create :id => 1091, :name => "Phoenix Islands", :abbreviation => 'P'
+  end
+  
+  with_options(:country => "Saint Kitts and Nevis") do |country|
+    country.create :id => 1092, :name => "Saint Kitts", :abbreviation => 'KN K'
+    country.create :id => 1093, :name => "Nevis", :abbreviation => 'KN N'
+  end
+  
+  with_options(:country => "Comoros") do |country|
+    country.create :id => 1094, :name => "Anjouan Ndzouani", :abbreviation => 'A'
+    country.create :id => 1095, :name => "Grande Comore Ngazidja", :abbreviation => 'G'
+    country.create :id => 1096, :name => "Mohéli Moili", :abbreviation => 'M'
+  end
+  
+  with_options(:country => "Korea, Democratic Peoples Republic ofs Republic of") do |country|
+    country.create :id => 1097, :name => "Chagang-do", :abbreviation => 'CHA'
+    country.create :id => 1098, :name => "Hamgyongbuk-do", :abbreviation => 'HAB'
+    country.create :id => 1099, :name => "Hamgyongnam-do", :abbreviation => 'HAN'
+    country.create :id => 1100, :name => "Hwanghaebuk-do", :abbreviation => 'HWB'
+    country.create :id => 1101, :name => "Hwanghaenam-do", :abbreviation => 'HWN'
+    country.create :id => 1102, :name => "Kangwon-do", :abbreviation => 'KAN'
+    country.create :id => 1103, :name => "Pyonganbuk-do", :abbreviation => 'PYB'
+    country.create :id => 1104, :name => "Pyongannam-do", :abbreviation => 'PYN'
+    country.create :id => 1105, :name => "Yanggang-do", :abbreviation => 'YAN'
+  end
+  
+  with_options(:country => "Korea, Republic of") do |country|
+    country.create :id => 1106, :name => "Seoul Teugbyeolsi", :abbreviation => '11'
+  end
+  
+  with_options(:country => "Kuwait") do |country|
+    country.create :id => 1107, :name => "Al Ahmadi", :abbreviation => 'AH'
+    country.create :id => 1108, :name => "Al Farwānīyah", :abbreviation => 'FA'
+    country.create :id => 1109, :name => "Al Jahrah", :abbreviation => 'JA'
+    country.create :id => 1110, :name => "Al Kuwayt", :abbreviation => 'KU'
+    country.create :id => 1111, :name => "Hawallī", :abbreviation => 'HA'
+  end
+  
+  with_options(:country => "Kazakhstan") do |country|
+    country.create :id => 1112, :name => "Almaty", :abbreviation => 'ALA'
+    country.create :id => 1113, :name => "Astana", :abbreviation => 'AST'
+  end
+  
+  with_options(:country => "Lao Peoples Democratic Republics Democratic Republic") do |country|
+    country.create :id => 1114, :name => "Vientiane", :abbreviation => 'VT'
+  end
+  
+  with_options(:country => "Liechtenstein") do |country|
+    country.create :id => 1115, :name => "Balzers", :abbreviation => '01'
+    country.create :id => 1116, :name => "Eschen", :abbreviation => '02'
+    country.create :id => 1117, :name => "Gamprin", :abbreviation => '03'
+    country.create :id => 1118, :name => "Mauren", :abbreviation => '04'
+    country.create :id => 1119, :name => "Planken", :abbreviation => '05'
+    country.create :id => 1120, :name => "Ruggell", :abbreviation => '06'
+    country.create :id => 1121, :name => "Schaan", :abbreviation => '07'
+    country.create :id => 1122, :name => "Schellenberg", :abbreviation => '08'
+    country.create :id => 1123, :name => "Triesen", :abbreviation => '09'
+    country.create :id => 1124, :name => "Triesenberg", :abbreviation => '10'
+    country.create :id => 1125, :name => "Vaduz", :abbreviation => '11'
+  end
+  
+  with_options(:country => "Lebanon") do |country|
+    country.create :id => 1126, :name => "Aakkâr", :abbreviation => 'AK'
+    country.create :id => 1127, :name => "Baalbek-Hermel", :abbreviation => 'BH'
+    country.create :id => 1128, :name => "Béqaa", :abbreviation => 'BI'
+    country.create :id => 1129, :name => "Beyrouth", :abbreviation => 'BA'
+    country.create :id => 1130, :name => "Liban-Nord", :abbreviation => 'AS'
+    country.create :id => 1131, :name => "Liban-Sud", :abbreviation => 'JA'
+    country.create :id => 1132, :name => "Mont-Liban", :abbreviation => 'JL'
+    country.create :id => 1133, :name => "Nabatîyé", :abbreviation => 'NA'
+  end
+  
+  with_options(:country => "Sri Lanka") do |country|
+    country.create :id => 1134, :name => "Ampara", :abbreviation => '52'
+    country.create :id => 1135, :name => "Anuradhapura", :abbreviation => '71'
+    country.create :id => 1136, :name => "Badulla", :abbreviation => '81'
+    country.create :id => 1137, :name => "Batticaloa", :abbreviation => '51'
+    country.create :id => 1138, :name => "Colombo", :abbreviation => '11'
+    country.create :id => 1139, :name => "Galle", :abbreviation => '31'
+    country.create :id => 1140, :name => "Gampaha", :abbreviation => '12'
+    country.create :id => 1141, :name => "Hambantota", :abbreviation => '33'
+    country.create :id => 1142, :name => "Jaffna", :abbreviation => '41'
+    country.create :id => 1143, :name => "Kalutara", :abbreviation => '13'
+    country.create :id => 1144, :name => "Kandy", :abbreviation => '21'
+    country.create :id => 1145, :name => "Kegalla", :abbreviation => '92'
+    country.create :id => 1146, :name => "Kilinochchi", :abbreviation => '42'
+    country.create :id => 1147, :name => "Kurunegala", :abbreviation => '61'
+    country.create :id => 1148, :name => "Mannar", :abbreviation => '43'
+    country.create :id => 1149, :name => "Matale", :abbreviation => '22'
+    country.create :id => 1150, :name => "Matara", :abbreviation => '32'
+    country.create :id => 1151, :name => "Monaragala", :abbreviation => '82'
+    country.create :id => 1152, :name => "Mullaittivu", :abbreviation => '45'
+    country.create :id => 1153, :name => "Nuwara Eliya", :abbreviation => '23'
+    country.create :id => 1154, :name => "Polonnaruwa", :abbreviation => '72'
+    country.create :id => 1155, :name => "Puttalum", :abbreviation => '62'
+    country.create :id => 1156, :name => "Ratnapura", :abbreviation => '91'
+    country.create :id => 1157, :name => "Trincomalee", :abbreviation => '53'
+    country.create :id => 1158, :name => "Vavuniya", :abbreviation => '44'
+  end
+  
+  with_options(:country => "Liberia") do |country|
+    country.create :id => 1159, :name => "Bomi", :abbreviation => 'BM'
+    country.create :id => 1160, :name => "Bong", :abbreviation => 'BG'
+    country.create :id => 1161, :name => "Grand Bassa", :abbreviation => 'GB'
+    country.create :id => 1162, :name => "Grand Cape Mount", :abbreviation => 'CM'
+    country.create :id => 1163, :name => "Grand Gedeh", :abbreviation => 'GG'
+    country.create :id => 1164, :name => "Grand Kru", :abbreviation => 'GK'
+    country.create :id => 1165, :name => "Lofa", :abbreviation => 'LO'
+    country.create :id => 1166, :name => "Margibi", :abbreviation => 'MG'
+    country.create :id => 1167, :name => "Maryland", :abbreviation => 'MY'
+    country.create :id => 1168, :name => "Montserrado", :abbreviation => 'MO'
+    country.create :id => 1169, :name => "Nimba", :abbreviation => 'NI'
+    country.create :id => 1170, :name => "Rivercess", :abbreviation => 'RI'
+    country.create :id => 1171, :name => "Sinoe", :abbreviation => 'SI'
+  end
+  
+  with_options(:country => "Lesotho") do |country|
+    country.create :id => 1172, :name => "Berea", :abbreviation => 'D'
+    country.create :id => 1173, :name => "Butha-Buthe", :abbreviation => 'B'
+    country.create :id => 1174, :name => "Leribe", :abbreviation => 'C'
+    country.create :id => 1175, :name => "Mafeteng", :abbreviation => 'E'
+    country.create :id => 1176, :name => "Maseru", :abbreviation => 'A'
+    country.create :id => 1177, :name => "Mohales Hoeks Hoek", :abbreviation => 'F'
+    country.create :id => 1178, :name => "Mokhotlong", :abbreviation => 'J'
+    country.create :id => 1179, :name => "Qachas Neks Nek", :abbreviation => 'H'
+    country.create :id => 1180, :name => "Quthing", :abbreviation => 'G'
+    country.create :id => 1181, :name => "Thaba-Tseka", :abbreviation => 'K'
+  end
+  
+  with_options(:country => "Lithuania") do |country|
+    country.create :id => 1182, :name => "Alytaus Apskritis", :abbreviation => 'AL'
+    country.create :id => 1183, :name => "Kauno Apskritis", :abbreviation => 'KU'
+    country.create :id => 1184, :name => "Klaipėdos Apskritis", :abbreviation => 'KL'
+    country.create :id => 1185, :name => "Marijampolės Apskritis", :abbreviation => 'MR'
+    country.create :id => 1186, :name => "Panevėžio Apskritis", :abbreviation => 'PN'
+    country.create :id => 1187, :name => "Šiaulių Apskritis", :abbreviation => 'SA'
+    country.create :id => 1188, :name => "Tauragés Apskritis", :abbreviation => 'TA'
+    country.create :id => 1189, :name => "Telšių Apskritis", :abbreviation => 'TE'
+    country.create :id => 1190, :name => "Utenos Apskritis", :abbreviation => 'UT'
+    country.create :id => 1191, :name => "Vilniaus Apskritis", :abbreviation => 'VL'
+  end
+  
+  with_options(:country => "Luxembourg") do |country|
+    country.create :id => 1192, :name => "Diekirch", :abbreviation => 'D'
+    country.create :id => 1193, :name => "Grevenmacher", :abbreviation => 'G'
+    country.create :id => 1194, :name => "Luxembourg", :abbreviation => 'L'
+  end
+  
+  with_options(:country => "Latvia") do |country|
+    country.create :id => 1195, :name => "Aizkraukle", :abbreviation => 'AI'
+    country.create :id => 1196, :name => "Alūksne", :abbreviation => 'AL'
+    country.create :id => 1197, :name => "Balvi", :abbreviation => 'BL'
+    country.create :id => 1198, :name => "Bauska", :abbreviation => 'BU'
+    country.create :id => 1199, :name => "Cēsis", :abbreviation => 'CE'
+    country.create :id => 1200, :name => "Daugavpils", :abbreviation => 'DA'
+    country.create :id => 1201, :name => "Dobele", :abbreviation => 'DO'
+    country.create :id => 1202, :name => "Gulbene", :abbreviation => 'GU'
+    country.create :id => 1203, :name => "Jēkabpils", :abbreviation => 'JK'
+    country.create :id => 1204, :name => "Jelgava", :abbreviation => 'JL'
+    country.create :id => 1205, :name => "Krāslava", :abbreviation => 'KR'
+    country.create :id => 1206, :name => "Kuldīga", :abbreviation => 'KU'
+    country.create :id => 1207, :name => "Liepāja", :abbreviation => 'LE'
+    country.create :id => 1208, :name => "Limbaži", :abbreviation => 'LM'
+    country.create :id => 1209, :name => "Ludza", :abbreviation => 'LU'
+    country.create :id => 1210, :name => "Madona", :abbreviation => 'MA'
+    country.create :id => 1211, :name => "Ogre", :abbreviation => 'OG'
+    country.create :id => 1212, :name => "Preiļi", :abbreviation => 'PR'
+    country.create :id => 1213, :name => "Rēzekne", :abbreviation => 'RE'
+    country.create :id => 1214, :name => "Rīga", :abbreviation => 'RI'
+    country.create :id => 1215, :name => "Saldus", :abbreviation => 'SA'
+    country.create :id => 1216, :name => "Talsi", :abbreviation => 'TA'
+    country.create :id => 1217, :name => "Tukums", :abbreviation => 'TU'
+    country.create :id => 1218, :name => "Valka", :abbreviation => 'VK'
+    country.create :id => 1219, :name => "Valmiera", :abbreviation => 'VM'
+    country.create :id => 1220, :name => "Ventspils", :abbreviation => 'VE'
+  end
+  
+  with_options(:country => "Libyan Arab Jamahiriya") do |country|
+    country.create :id => 1221, :name => "Ajdābiyā", :abbreviation => 'AJ'
+    country.create :id => 1222, :name => "Al Buţnān", :abbreviation => 'BU'
+    country.create :id => 1223, :name => "Al Ḩizām al Akhḑar", :abbreviation => 'HZ'
+    country.create :id => 1224, :name => "Al Jabal al Akhḑar", :abbreviation => 'JA'
+    country.create :id => 1225, :name => "Al Jifārah", :abbreviation => 'JI'
+    country.create :id => 1226, :name => "Al Jufrah", :abbreviation => 'JU'
+    country.create :id => 1227, :name => "Al Kufrah", :abbreviation => 'KF'
+    country.create :id => 1228, :name => "Al Marj", :abbreviation => 'MJ'
+    country.create :id => 1229, :name => "Al Marqab", :abbreviation => 'MB'
+    country.create :id => 1230, :name => "Al Qaţrūn", :abbreviation => 'QT'
+    country.create :id => 1231, :name => "Al Qubbah", :abbreviation => 'QB'
+    country.create :id => 1232, :name => "Al Wāḩah", :abbreviation => 'WA'
+    country.create :id => 1233, :name => "An Nuqaţ al Khams", :abbreviation => 'NQ'
+    country.create :id => 1234, :name => "Ash Shāţi", :abbreviation => 'SH'
+    country.create :id => 1235, :name => "Az Zāwiyah", :abbreviation => 'ZA'
+    country.create :id => 1236, :name => "Banghāzī", :abbreviation => 'BA'
+    country.create :id => 1237, :name => "Banī Walīd", :abbreviation => 'BW'
+    country.create :id => 1238, :name => "Darnah", :abbreviation => 'DR'
+    country.create :id => 1239, :name => "Ghadāmis", :abbreviation => 'GD'
+    country.create :id => 1240, :name => "Gharyān", :abbreviation => 'GR'
+    country.create :id => 1241, :name => "Ghāt", :abbreviation => 'GT'
+    country.create :id => 1242, :name => "Jaghbūb", :abbreviation => 'JB'
+    country.create :id => 1243, :name => "Mişrātah", :abbreviation => 'MI'
+    country.create :id => 1244, :name => "Mizdah", :abbreviation => 'MZ'
+    country.create :id => 1245, :name => "Murzuq", :abbreviation => 'MQ'
+    country.create :id => 1246, :name => "Nālūt", :abbreviation => 'NL'
+    country.create :id => 1247, :name => "Sabhā", :abbreviation => 'SB'
+    country.create :id => 1248, :name => "Şabrātah Şurmān", :abbreviation => 'SS'
+    country.create :id => 1249, :name => "Surt", :abbreviation => 'SR'
+    country.create :id => 1250, :name => "Tājūrā wa an Nawāḩī al Arbāʻ wa an Nawāḩī al Arbāʻ", :abbreviation => 'TN'
+    country.create :id => 1251, :name => "Ţarābulus", :abbreviation => 'TB'
+    country.create :id => 1252, :name => "Tarhūnah-Masallātah", :abbreviation => 'TM'
+    country.create :id => 1253, :name => "Wādī al Ḩayāt", :abbreviation => 'WD'
+    country.create :id => 1254, :name => "Yafran-Jādū", :abbreviation => 'YJ'
+  end
+  
+  with_options(:country => "Morocco") do |country|
+    country.create :id => 1255, :name => "Chaouia-Ouardigha", :abbreviation => 'MA 09'
+    country.create :id => 1256, :name => "Doukhala-Abda", :abbreviation => 'MA 10'
+    country.create :id => 1257, :name => "Fès-Boulemane", :abbreviation => 'MA 05'
+    country.create :id => 1258, :name => "Gharb-Chrarda-Beni Hssen", :abbreviation => 'MA 02'
+    country.create :id => 1259, :name => "Grand Casablanca", :abbreviation => 'MA 08'
+    country.create :id => 1260, :name => "Guelmim-Es Smara", :abbreviation => 'MA 14'
+    country.create :id => 1261, :name => "Laâyoune-Boujdour-Sakia el Hamra", :abbreviation => 'MA 15'
+    country.create :id => 1262, :name => "LOrientalOriental", :abbreviation => 'MA 04'
+    country.create :id => 1263, :name => "Marrakech-Tensift-Al Haouz", :abbreviation => 'MA 11'
+    country.create :id => 1264, :name => "Meknès-Tafilalet", :abbreviation => 'MA 06'
+    country.create :id => 1265, :name => "Oued ed Dahab-Lagouira", :abbreviation => 'MA 16'
+    country.create :id => 1266, :name => "Rabat-Salé-Zemmour-Zaer", :abbreviation => 'MA 07'
+    country.create :id => 1267, :name => "Sous-Massa-Draa", :abbreviation => 'MA 13'
+    country.create :id => 1268, :name => "Tadla-Azilal", :abbreviation => 'MA 12'
+    country.create :id => 1269, :name => "Tanger-Tétouan", :abbreviation => 'MA 01'
+    country.create :id => 1270, :name => "Taza-Al Hoceima-Taounate", :abbreviation => 'MA 03'
+  end
+  
+  with_options(:country => "Moldova, Republic of") do |country|
+    country.create :id => 1271, :name => "Găgăuzia, Unitate Teritorială Autonomă", :abbreviation => 'GA'
+  end
+  
+  with_options(:country => "Montenegro") do |country|
+    country.create :id => 1272, :name => "Andrijevica", :abbreviation => '01'
+    country.create :id => 1273, :name => "Bar", :abbreviation => '02'
+    country.create :id => 1274, :name => "Berane", :abbreviation => '03'
+    country.create :id => 1275, :name => "Bijelo Polje", :abbreviation => '04'
+    country.create :id => 1276, :name => "Budva", :abbreviation => '05'
+    country.create :id => 1277, :name => "Cetinje", :abbreviation => '06'
+    country.create :id => 1278, :name => "Danilovgrad", :abbreviation => '07'
+    country.create :id => 1279, :name => "Herceg-Novi", :abbreviation => '08'
+    country.create :id => 1280, :name => "Kolašin", :abbreviation => '09'
+    country.create :id => 1281, :name => "Kotor", :abbreviation => '10'
+    country.create :id => 1282, :name => "Mojkovac", :abbreviation => '11'
+    country.create :id => 1283, :name => "Nikšić", :abbreviation => '12'
+    country.create :id => 1284, :name => "Plav", :abbreviation => '13'
+    country.create :id => 1285, :name => "Pljevlja", :abbreviation => '14'
+    country.create :id => 1286, :name => "Plužine", :abbreviation => '15'
+    country.create :id => 1287, :name => "Podgorica", :abbreviation => '16'
+    country.create :id => 1288, :name => "Rožaje", :abbreviation => '17'
+    country.create :id => 1289, :name => "Šavnik", :abbreviation => '18'
+    country.create :id => 1290, :name => "Tivat", :abbreviation => '19'
+    country.create :id => 1291, :name => "Ulcinj", :abbreviation => '20'
+    country.create :id => 1292, :name => "Žabljak", :abbreviation => '21'
+  end
+  
+  with_options(:country => "Madagascar") do |country|
+    country.create :id => 1293, :name => "Antananarivo", :abbreviation => 'T'
+    country.create :id => 1294, :name => "Antsiranana", :abbreviation => 'D'
+    country.create :id => 1295, :name => "Fianarantsoa", :abbreviation => 'F'
+    country.create :id => 1296, :name => "Mahajanga", :abbreviation => 'M'
+    country.create :id => 1297, :name => "Toamasina", :abbreviation => 'A'
+    country.create :id => 1298, :name => "Toliara", :abbreviation => 'U'
+  end
+  
+  with_options(:country => "Marshall Islands") do |country|
+    country.create :id => 1299, :name => "Ailinglapalap", :abbreviation => 'ALL'
+    country.create :id => 1300, :name => "Ailuk", :abbreviation => 'ALK'
+    country.create :id => 1301, :name => "Arno", :abbreviation => 'ARN'
+    country.create :id => 1302, :name => "Aur", :abbreviation => 'AUR'
+    country.create :id => 1303, :name => "Ebon", :abbreviation => 'EBO'
+    country.create :id => 1304, :name => "Eniwetok", :abbreviation => 'ENI'
+    country.create :id => 1305, :name => "Jaluit", :abbreviation => 'JAL'
+    country.create :id => 1306, :name => "Kili", :abbreviation => 'KIL'
+    country.create :id => 1307, :name => "Kwajalein", :abbreviation => 'KWA'
+    country.create :id => 1308, :name => "Lae", :abbreviation => 'LAE'
+    country.create :id => 1309, :name => "Lib", :abbreviation => 'LIB'
+    country.create :id => 1310, :name => "Likiep", :abbreviation => 'LIK'
+    country.create :id => 1311, :name => "Majuro", :abbreviation => 'MAJ'
+    country.create :id => 1312, :name => "Maloelap", :abbreviation => 'MAL'
+    country.create :id => 1313, :name => "Mejit", :abbreviation => 'MEJ'
+    country.create :id => 1314, :name => "Mili", :abbreviation => 'MIL'
+    country.create :id => 1315, :name => "Namorik", :abbreviation => 'NMK'
+    country.create :id => 1316, :name => "Namu", :abbreviation => 'NMU'
+    country.create :id => 1317, :name => "Rongelap", :abbreviation => 'RON'
+    country.create :id => 1318, :name => "Ujae", :abbreviation => 'UJA'
+    country.create :id => 1319, :name => "Ujelang", :abbreviation => 'UJL'
+    country.create :id => 1320, :name => "Utirik", :abbreviation => 'UTI'
+    country.create :id => 1321, :name => "Wotho", :abbreviation => 'WTN'
+    country.create :id => 1322, :name => "Wotje", :abbreviation => 'WTJ'
+  end
+  
+  with_options(:country => "Macedonia, Republic of") do |country|
+    country.create :id => 1323, :name => "Aerodrom", :abbreviation => '01'
+    country.create :id => 1324, :name => "Aračinovo", :abbreviation => '02'
+    country.create :id => 1325, :name => "Berovo", :abbreviation => '03'
+    country.create :id => 1326, :name => "Bitola", :abbreviation => '04'
+    country.create :id => 1327, :name => "Bogdanci", :abbreviation => '05'
+    country.create :id => 1328, :name => "Bogovinje", :abbreviation => '06'
+    country.create :id => 1329, :name => "Bosilovo", :abbreviation => '07'
+    country.create :id => 1330, :name => "Brvenica", :abbreviation => '08'
+    country.create :id => 1331, :name => "Butel", :abbreviation => '09'
+    country.create :id => 1332, :name => "Centar", :abbreviation => '77'
+    country.create :id => 1333, :name => "Centar Župa", :abbreviation => '78'
+    country.create :id => 1334, :name => "Čair", :abbreviation => '79'
+    country.create :id => 1335, :name => "Čaška", :abbreviation => '80'
+    country.create :id => 1336, :name => "Češinovo-Obleševo", :abbreviation => '81'
+    country.create :id => 1337, :name => "Čučer Sandevo", :abbreviation => '82'
+    country.create :id => 1338, :name => "Debar", :abbreviation => '21'
+    country.create :id => 1339, :name => "Debarca", :abbreviation => '22'
+    country.create :id => 1340, :name => "Delčevo", :abbreviation => '23'
+    country.create :id => 1341, :name => "Demir Hisar", :abbreviation => '25'
+    country.create :id => 1342, :name => "Demir Kapija", :abbreviation => '24'
+    country.create :id => 1343, :name => "Dojran", :abbreviation => '26'
+    country.create :id => 1344, :name => "Dolneni", :abbreviation => '27'
+    country.create :id => 1345, :name => "Drugovo", :abbreviation => '28'
+    country.create :id => 1346, :name => "Gazi Baba", :abbreviation => '17'
+    country.create :id => 1347, :name => "Gevgelija", :abbreviation => '18'
+    country.create :id => 1348, :name => "Gjorče Petrov", :abbreviation => '29'
+    country.create :id => 1349, :name => "Gostivar", :abbreviation => '19'
+    country.create :id => 1350, :name => "Gradsko", :abbreviation => '20'
+    country.create :id => 1351, :name => "Ilinden", :abbreviation => '34'
+    country.create :id => 1352, :name => "Jegunovce", :abbreviation => '35'
+    country.create :id => 1353, :name => "Karbinci", :abbreviation => '37'
+    country.create :id => 1354, :name => "Karpoš", :abbreviation => '38'
+    country.create :id => 1355, :name => "Kavadarci", :abbreviation => '36'
+    country.create :id => 1356, :name => "Kičevo", :abbreviation => '40'
+    country.create :id => 1357, :name => "Kisela Voda", :abbreviation => '39'
+    country.create :id => 1358, :name => "Kočani", :abbreviation => '42'
+    country.create :id => 1359, :name => "Konče", :abbreviation => '41'
+    country.create :id => 1360, :name => "Kratovo", :abbreviation => '43'
+    country.create :id => 1361, :name => "Kriva Palanka", :abbreviation => '44'
+    country.create :id => 1362, :name => "Krivogaštani", :abbreviation => '45'
+    country.create :id => 1363, :name => "Kruševo", :abbreviation => '46'
+    country.create :id => 1364, :name => "Kumanovo", :abbreviation => '47'
+    country.create :id => 1365, :name => "Lipkovo", :abbreviation => '48'
+    country.create :id => 1366, :name => "Lozovo", :abbreviation => '49'
+    country.create :id => 1367, :name => "Makedonska Kamenica", :abbreviation => '51'
+    country.create :id => 1368, :name => "Makedonski Brod", :abbreviation => '52'
+    country.create :id => 1369, :name => "Mavrovo-i-Rostuša", :abbreviation => '50'
+    country.create :id => 1370, :name => "Mogila", :abbreviation => '53'
+    country.create :id => 1371, :name => "Negotino", :abbreviation => '54'
+    country.create :id => 1372, :name => "Novaci", :abbreviation => '55'
+    country.create :id => 1373, :name => "Novo Selo", :abbreviation => '56'
+    country.create :id => 1374, :name => "Ohrid", :abbreviation => '58'
+    country.create :id => 1375, :name => "Oslomej", :abbreviation => '57'
+    country.create :id => 1376, :name => "Pehčevo", :abbreviation => '60'
+    country.create :id => 1377, :name => "Petrovec", :abbreviation => '59'
+    country.create :id => 1378, :name => "Plasnica", :abbreviation => '61'
+    country.create :id => 1379, :name => "Prilep", :abbreviation => '62'
+    country.create :id => 1380, :name => "Probištip", :abbreviation => '63'
+    country.create :id => 1381, :name => "Radoviš", :abbreviation => '64'
+    country.create :id => 1382, :name => "Rankovce", :abbreviation => '65'
+    country.create :id => 1383, :name => "Resen", :abbreviation => '66'
+    country.create :id => 1384, :name => "Rosoman", :abbreviation => '67'
+    country.create :id => 1385, :name => "Saraj", :abbreviation => '68'
+    country.create :id => 1386, :name => "Štip", :abbreviation => '83'
+    country.create :id => 1387, :name => "Šuto Orizari", :abbreviation => '84'
+    country.create :id => 1388, :name => "Sopište", :abbreviation => '70'
+    country.create :id => 1389, :name => "Staro Nagoričane", :abbreviation => '71'
+    country.create :id => 1390, :name => "Struga", :abbreviation => '72'
+    country.create :id => 1391, :name => "Strumica", :abbreviation => '73'
+    country.create :id => 1392, :name => "Studeničani", :abbreviation => '74'
+    country.create :id => 1393, :name => "Sveti Nikole", :abbreviation => '69'
+    country.create :id => 1394, :name => "Tearce", :abbreviation => '75'
+    country.create :id => 1395, :name => "Tetovo", :abbreviation => '76'
+    country.create :id => 1396, :name => "Valandovo", :abbreviation => '10'
+    country.create :id => 1397, :name => "Vasilevo", :abbreviation => '11'
+    country.create :id => 1398, :name => "Veles", :abbreviation => '13'
+    country.create :id => 1399, :name => "Vevčani", :abbreviation => '12'
+    country.create :id => 1400, :name => "Vinica", :abbreviation => '14'
+    country.create :id => 1401, :name => "Vraneštica", :abbreviation => '15'
+    country.create :id => 1402, :name => "Vrapčište", :abbreviation => '16'
+    country.create :id => 1403, :name => "Zajas", :abbreviation => '31'
+    country.create :id => 1404, :name => "Zelenikovo", :abbreviation => '32'
+    country.create :id => 1405, :name => "Želino", :abbreviation => '30'
+    country.create :id => 1406, :name => "Zrnovci", :abbreviation => '33'
+  end
+  
+  with_options(:country => "Mali") do |country|
+    country.create :id => 1407, :name => "Bamako", :abbreviation => 'BK0'
+  end
+  
+  with_options(:country => "Myanmar") do |country|
+    country.create :id => 1408, :name => "Ayeyarwady", :abbreviation => '07'
+    country.create :id => 1409, :name => "Bago", :abbreviation => '02'
+    country.create :id => 1410, :name => "Magway", :abbreviation => '03'
+    country.create :id => 1411, :name => "Mandalay", :abbreviation => '04'
+    country.create :id => 1412, :name => "Sagaing", :abbreviation => '01'
+    country.create :id => 1413, :name => "Tanintharyi", :abbreviation => '05'
+    country.create :id => 1414, :name => "Yangon", :abbreviation => '06'
+  end
+  
+  with_options(:country => "Mongolia") do |country|
+    country.create :id => 1415, :name => "Arhangay", :abbreviation => '073'
+    country.create :id => 1416, :name => "Bayanhongor", :abbreviation => '069'
+    country.create :id => 1417, :name => "Bayan-Ölgiy", :abbreviation => '071'
+    country.create :id => 1418, :name => "Bulgan", :abbreviation => '067'
+    country.create :id => 1419, :name => "Dornod", :abbreviation => '061'
+    country.create :id => 1420, :name => "Dornogovi", :abbreviation => '063'
+    country.create :id => 1421, :name => "Dundgovi", :abbreviation => '059'
+    country.create :id => 1422, :name => "Dzavhan", :abbreviation => '057'
+    country.create :id => 1423, :name => "Govi-Altay", :abbreviation => '065'
+    country.create :id => 1424, :name => "Hentiy", :abbreviation => '039'
+    country.create :id => 1425, :name => "Hovd", :abbreviation => '043'
+    country.create :id => 1426, :name => "Hövsgöl", :abbreviation => '041'
+    country.create :id => 1427, :name => "Ömnögovi", :abbreviation => '053'
+    country.create :id => 1428, :name => "Övörhangay", :abbreviation => '055'
+    country.create :id => 1429, :name => "Selenge", :abbreviation => '049'
+    country.create :id => 1430, :name => "Sühbaatar", :abbreviation => '051'
+    country.create :id => 1431, :name => "Töv", :abbreviation => '047'
+    country.create :id => 1432, :name => "Uvs", :abbreviation => '046'
+  end
+  
+  with_options(:country => "Mauritania") do |country|
+    country.create :id => 1433, :name => "Nouakchott", :abbreviation => 'NKC'
+  end
+  
+  with_options(:country => "Malta") do |country|
+    country.create :id => 1434, :name => "Attard", :abbreviation => '01'
+    country.create :id => 1435, :name => "Balzan", :abbreviation => '02'
+    country.create :id => 1436, :name => "Birgu", :abbreviation => '03'
+    country.create :id => 1437, :name => "Birkirkara", :abbreviation => '04'
+    country.create :id => 1438, :name => "Birżebbuġa", :abbreviation => '05'
+    country.create :id => 1439, :name => "Bormla", :abbreviation => '06'
+    country.create :id => 1440, :name => "Dingli", :abbreviation => '07'
+    country.create :id => 1441, :name => "Fgura", :abbreviation => '08'
+    country.create :id => 1442, :name => "Floriana", :abbreviation => '09'
+    country.create :id => 1443, :name => "Fontana", :abbreviation => '10'
+    country.create :id => 1444, :name => "Gudja", :abbreviation => '11'
+    country.create :id => 1445, :name => "Gżira", :abbreviation => '12'
+    country.create :id => 1446, :name => "Għajnsielem", :abbreviation => '13'
+    country.create :id => 1447, :name => "Għarb", :abbreviation => '14'
+    country.create :id => 1448, :name => "Għargħur", :abbreviation => '15'
+    country.create :id => 1449, :name => "Għasri", :abbreviation => '16'
+    country.create :id => 1450, :name => "Għaxaq", :abbreviation => '17'
+    country.create :id => 1451, :name => "Ħamrun", :abbreviation => '18'
+    country.create :id => 1452, :name => "Iklin", :abbreviation => '19'
+    country.create :id => 1453, :name => "Isla", :abbreviation => '20'
+    country.create :id => 1454, :name => "Kalkara", :abbreviation => '21'
+    country.create :id => 1455, :name => "Kerċem", :abbreviation => '22'
+    country.create :id => 1456, :name => "Kirkop", :abbreviation => '23'
+    country.create :id => 1457, :name => "Lija", :abbreviation => '24'
+    country.create :id => 1458, :name => "Luqa", :abbreviation => '25'
+    country.create :id => 1459, :name => "Marsa", :abbreviation => '26'
+    country.create :id => 1460, :name => "Marsaskala", :abbreviation => '27'
+    country.create :id => 1461, :name => "Marsaxlokk", :abbreviation => '28'
+    country.create :id => 1462, :name => "Mdina", :abbreviation => '29'
+    country.create :id => 1463, :name => "Mellieħa", :abbreviation => '30'
+    country.create :id => 1464, :name => "Mġarr", :abbreviation => '31'
+    country.create :id => 1465, :name => "Mosta", :abbreviation => '32'
+    country.create :id => 1466, :name => "Mqabba", :abbreviation => '33'
+    country.create :id => 1467, :name => "Msida", :abbreviation => '34'
+    country.create :id => 1468, :name => "Mtarfa", :abbreviation => '35'
+    country.create :id => 1469, :name => "Munxar", :abbreviation => '36'
+    country.create :id => 1470, :name => "Nadur", :abbreviation => '37'
+    country.create :id => 1471, :name => "Naxxar", :abbreviation => '38'
+    country.create :id => 1472, :name => "Paola", :abbreviation => '39'
+    country.create :id => 1473, :name => "Pembroke", :abbreviation => '40'
+    country.create :id => 1474, :name => "Pietà", :abbreviation => '41'
+    country.create :id => 1475, :name => "Qala", :abbreviation => '42'
+    country.create :id => 1476, :name => "Qormi", :abbreviation => '43'
+    country.create :id => 1477, :name => "Qrendi", :abbreviation => '44'
+    country.create :id => 1478, :name => "Rabat Għawdex", :abbreviation => '45'
+    country.create :id => 1479, :name => "Rabat Malta", :abbreviation => '46'
+    country.create :id => 1480, :name => "Safi", :abbreviation => '47'
+    country.create :id => 1481, :name => "San Ġiljan", :abbreviation => '48'
+    country.create :id => 1482, :name => "San Ġwann", :abbreviation => '49'
+    country.create :id => 1483, :name => "San Lawrenz", :abbreviation => '50'
+    country.create :id => 1484, :name => "San Pawl il-Baħar", :abbreviation => '51'
+    country.create :id => 1485, :name => "Sannat", :abbreviation => '52'
+    country.create :id => 1486, :name => "Santa Luċija", :abbreviation => '53'
+    country.create :id => 1487, :name => "Santa Venera", :abbreviation => '54'
+    country.create :id => 1488, :name => "Siġġiewi", :abbreviation => '55'
+    country.create :id => 1489, :name => "Sliema", :abbreviation => '56'
+    country.create :id => 1490, :name => "Swieqi", :abbreviation => '57'
+    country.create :id => 1491, :name => "Ta’ Xbiex", :abbreviation => '58'
+    country.create :id => 1492, :name => "Tarxien", :abbreviation => '59'
+    country.create :id => 1493, :name => "Valletta", :abbreviation => '60'
+    country.create :id => 1494, :name => "Xagħra", :abbreviation => '61'
+    country.create :id => 1495, :name => "Xewkija", :abbreviation => '62'
+    country.create :id => 1496, :name => "Xgħajra", :abbreviation => '63'
+    country.create :id => 1497, :name => "Żabbar", :abbreviation => '64'
+    country.create :id => 1498, :name => "Żebbuġ Għawdex", :abbreviation => '65'
+    country.create :id => 1499, :name => "Żebbuġ Malta", :abbreviation => '66'
+    country.create :id => 1500, :name => "Żejtun", :abbreviation => '67'
+    country.create :id => 1501, :name => "Żurrieq", :abbreviation => '68'
+  end
+  
+  with_options(:country => "Mauritius") do |country|
+    country.create :id => 1502, :name => "Beau Bassin-Rose Hill", :abbreviation => 'BR'
+    country.create :id => 1503, :name => "Curepipe", :abbreviation => 'CU'
+    country.create :id => 1504, :name => "Port Louis", :abbreviation => 'PU'
+    country.create :id => 1505, :name => "Quatre Bornes", :abbreviation => 'QB'
+    country.create :id => 1506, :name => "Vacoas-Phoenix", :abbreviation => 'VP'
+  end
+  
+  with_options(:country => "Maldives") do |country|
+    country.create :id => 1507, :name => "Male", :abbreviation => 'MLE'
+  end
+  
+  with_options(:country => "Malawi") do |country|
+    country.create :id => 1508, :name => "Central", :abbreviation => 'MW C'
+    country.create :id => 1509, :name => "Northern", :abbreviation => 'MW N'
+    country.create :id => 1510, :name => "Southern (Malawi)", :abbreviation => 'MW S'
+  end
+  
+  with_options(:country => "Mexico") do |country|
+    country.create :id => 1511, :name => "Distrito Federal", :abbreviation => 'DIF'
+  end
+  
+  with_options(:country => "Malaysia") do |country|
+    country.create :id => 1512, :name => "Wilayah Persekutuan Kuala Lumpur", :abbreviation => '14'
+    country.create :id => 1513, :name => "Wilayah Persekutuan Labuan", :abbreviation => '15'
+    country.create :id => 1514, :name => "Wilayah Persekutuan Putrajaya", :abbreviation => '16'
+  end
+  
+  with_options(:country => "Mozambique") do |country|
+    country.create :id => 1515, :name => "Maputo (city)", :abbreviation => 'MPM'
+  end
+  
+  with_options(:country => "Namibia") do |country|
+    country.create :id => 1516, :name => "Caprivi", :abbreviation => 'CA'
+    country.create :id => 1517, :name => "Erongo", :abbreviation => 'ER'
+    country.create :id => 1518, :name => "Hardap", :abbreviation => 'HA'
+    country.create :id => 1519, :name => "Karas", :abbreviation => 'KA'
+    country.create :id => 1520, :name => "Khomas", :abbreviation => 'KH'
+    country.create :id => 1521, :name => "Kunene", :abbreviation => 'KU'
+    country.create :id => 1522, :name => "Ohangwena", :abbreviation => 'OW'
+    country.create :id => 1523, :name => "Okavango", :abbreviation => 'OK'
+    country.create :id => 1524, :name => "Omaheke", :abbreviation => 'OH'
+    country.create :id => 1525, :name => "Omusati", :abbreviation => 'OS'
+    country.create :id => 1526, :name => "Oshana", :abbreviation => 'ON'
+    country.create :id => 1527, :name => "Oshikoto", :abbreviation => 'OT'
+    country.create :id => 1528, :name => "Otjozondjupa", :abbreviation => 'OD'
+  end
+  
+  with_options(:country => "Niger") do |country|
+    country.create :id => 1529, :name => "Niamey", :abbreviation => '8'
+  end
+  
+  with_options(:country => "Nigeria") do |country|
+    country.create :id => 1530, :name => "Abuja Capital Territory", :abbreviation => 'FC'
+  end
+  
+  with_options(:country => "Nicaragua") do |country|
+    country.create :id => 1531, :name => "Boaco", :abbreviation => 'BO'
+    country.create :id => 1532, :name => "Carazo", :abbreviation => 'CA'
+    country.create :id => 1533, :name => "Chinandega", :abbreviation => 'CI'
+    country.create :id => 1534, :name => "Chontales", :abbreviation => 'CO'
+    country.create :id => 1535, :name => "Estelí", :abbreviation => 'ES'
+    country.create :id => 1536, :name => "Granada", :abbreviation => 'GR'
+    country.create :id => 1537, :name => "Jinotega", :abbreviation => 'JI'
+    country.create :id => 1538, :name => "León", :abbreviation => 'LE'
+    country.create :id => 1539, :name => "Madriz", :abbreviation => 'MD'
+    country.create :id => 1540, :name => "Managua", :abbreviation => 'MN'
+    country.create :id => 1541, :name => "Masaya", :abbreviation => 'MS'
+    country.create :id => 1542, :name => "Matagalpa", :abbreviation => 'MT'
+    country.create :id => 1543, :name => "Nueva Segovia", :abbreviation => 'NS'
+    country.create :id => 1544, :name => "Río San Juan", :abbreviation => 'SJ'
+    country.create :id => 1545, :name => "Rivas", :abbreviation => 'RI'
+  end
+  
+  with_options(:country => "Netherlands") do |country|
+    country.create :id => 1546, :name => "Drenthe", :abbreviation => 'DR'
+    country.create :id => 1547, :name => "Flevoland", :abbreviation => 'FL'
+    country.create :id => 1548, :name => "Friesland", :abbreviation => 'FR'
+    country.create :id => 1549, :name => "Gelderland", :abbreviation => 'GE'
+    country.create :id => 1550, :name => "Groningen", :abbreviation => 'GR'
+    country.create :id => 1551, :name => "Limburg", :abbreviation => 'LI'
+    country.create :id => 1552, :name => "Noord-Brabant", :abbreviation => 'NB'
+    country.create :id => 1553, :name => "Noord-Holland", :abbreviation => 'NH'
+    country.create :id => 1554, :name => "Overijssel", :abbreviation => 'OV'
+    country.create :id => 1555, :name => "Utrecht", :abbreviation => 'UT'
+    country.create :id => 1556, :name => "Zeeland", :abbreviation => 'ZE'
+    country.create :id => 1557, :name => "Zuid-Holland", :abbreviation => 'ZH'
+  end
+  
+  with_options(:country => "Norway") do |country|
+    country.create :id => 1558, :name => "Akershus", :abbreviation => '02'
+    country.create :id => 1559, :name => "Aust-Agder", :abbreviation => '09'
+    country.create :id => 1560, :name => "Buskerud", :abbreviation => '06'
+    country.create :id => 1561, :name => "Finnmark", :abbreviation => '20'
+    country.create :id => 1562, :name => "Hedmark", :abbreviation => '04'
+    country.create :id => 1563, :name => "Hordaland", :abbreviation => '12'
+    country.create :id => 1564, :name => "Møre og Romsdal", :abbreviation => '15'
+    country.create :id => 1565, :name => "Nordland", :abbreviation => '18'
+    country.create :id => 1566, :name => "Nord-Trøndelag", :abbreviation => '17'
+    country.create :id => 1567, :name => "Oppland", :abbreviation => '05'
+    country.create :id => 1568, :name => "Oslo", :abbreviation => '03'
+    country.create :id => 1569, :name => "Rogaland", :abbreviation => '11'
+    country.create :id => 1570, :name => "Sogn og Fjordane", :abbreviation => '14'
+    country.create :id => 1571, :name => "Sør-Trøndelag", :abbreviation => '16'
+    country.create :id => 1572, :name => "Telemark", :abbreviation => '08'
+    country.create :id => 1573, :name => "Troms", :abbreviation => '19'
+    country.create :id => 1574, :name => "Vest-Agder", :abbreviation => '10'
+    country.create :id => 1575, :name => "Vestfold", :abbreviation => '07'
+    country.create :id => 1576, :name => "Østfold", :abbreviation => '01'
+    country.create :id => 1577, :name => "Jan Mayen", :abbreviation => '22'
+    country.create :id => 1578, :name => "Svalbard", :abbreviation => '21'
+  end
+  
+  with_options(:country => "Nauru") do |country|
+    country.create :id => 1579, :name => "Aiwo", :abbreviation => '01'
+    country.create :id => 1580, :name => "Anabar", :abbreviation => '02'
+    country.create :id => 1581, :name => "Anetan", :abbreviation => '03'
+    country.create :id => 1582, :name => "Anibare", :abbreviation => '04'
+    country.create :id => 1583, :name => "Baiti", :abbreviation => '05'
+    country.create :id => 1584, :name => "Boe", :abbreviation => '06'
+    country.create :id => 1585, :name => "Buada", :abbreviation => '07'
+    country.create :id => 1586, :name => "Denigomodu", :abbreviation => '08'
+    country.create :id => 1587, :name => "Ewa", :abbreviation => '09'
+    country.create :id => 1588, :name => "Ijuw", :abbreviation => '10'
+    country.create :id => 1589, :name => "Meneng", :abbreviation => '11'
+    country.create :id => 1590, :name => "Nibok", :abbreviation => '12'
+    country.create :id => 1591, :name => "Uaboe", :abbreviation => '13'
+    country.create :id => 1592, :name => "Yaren", :abbreviation => '14'
+  end
+  
+  with_options(:country => "New Zealand") do |country|
+    country.create :id => 1593, :name => "Auckland", :abbreviation => 'AUK'
+    country.create :id => 1594, :name => "Bay of Plenty", :abbreviation => 'BOP'
+    country.create :id => 1595, :name => "Canterbury", :abbreviation => 'CAN'
+    country.create :id => 1596, :name => "Hawkes Bay", :abbreviation => 'HKB'
+    country.create :id => 1597, :name => "Manawatu-Wanganui", :abbreviation => 'MWT'
+    country.create :id => 1598, :name => "Northland", :abbreviation => 'NTL'
+    country.create :id => 1599, :name => "Otago", :abbreviation => 'OTA'
+    country.create :id => 1600, :name => "Southland", :abbreviation => 'STL'
+    country.create :id => 1601, :name => "Taranaki", :abbreviation => 'TKI'
+    country.create :id => 1602, :name => "Waikato", :abbreviation => 'WKO'
+    country.create :id => 1603, :name => "Wellington", :abbreviation => 'WGN'
+    country.create :id => 1604, :name => "West Coast", :abbreviation => 'WTC'
+  end
+  
+  with_options(:country => "Oman") do |country|
+    country.create :id => 1605, :name => "Ad Dakhillyah", :abbreviation => 'DA'
+    country.create :id => 1606, :name => "Al Batinah", :abbreviation => 'BA'
+    country.create :id => 1607, :name => "Al Wusta", :abbreviation => 'WU'
+    country.create :id => 1608, :name => "Ash Sharqlyah", :abbreviation => 'SH'
+    country.create :id => 1609, :name => "Az Zahirah", :abbreviation => 'ZA'
+  end
+  
+  with_options(:country => "Panama") do |country|
+    country.create :id => 1610, :name => "Bocas del Toro", :abbreviation => '1'
+    country.create :id => 1611, :name => "Coclé", :abbreviation => '2'
+    country.create :id => 1612, :name => "Colón", :abbreviation => '3'
+    country.create :id => 1613, :name => "Chiriquí", :abbreviation => '4'
+    country.create :id => 1614, :name => "Darién", :abbreviation => '5'
+    country.create :id => 1615, :name => "Herrera", :abbreviation => '6'
+    country.create :id => 1616, :name => "Los Santos", :abbreviation => '7'
+    country.create :id => 1617, :name => "Panamá", :abbreviation => '8'
+    country.create :id => 1618, :name => "Veraguas", :abbreviation => '9'
+    country.create :id => 1619, :name => "Kuna Yala", :abbreviation => '0'
+  end
+  
+  with_options(:country => "Peru") do |country|
+    country.create :id => 1620, :name => "El Callao", :abbreviation => 'CAL'
+    country.create :id => 1621, :name => "Amazonas", :abbreviation => 'AMA'
+    country.create :id => 1622, :name => "Ancash", :abbreviation => 'ANC'
+    country.create :id => 1623, :name => "Apurímac", :abbreviation => 'APU'
+    country.create :id => 1624, :name => "Arequipa", :abbreviation => 'ARE'
+    country.create :id => 1625, :name => "Ayacucho", :abbreviation => 'AYA'
+    country.create :id => 1626, :name => "Cajamarca", :abbreviation => 'CAJ'
+    country.create :id => 1627, :name => "Cusco", :abbreviation => 'CUS'
+    country.create :id => 1628, :name => "Huancavelica", :abbreviation => 'HUV'
+    country.create :id => 1629, :name => "Huánuco", :abbreviation => 'HUC'
+    country.create :id => 1630, :name => "Ica", :abbreviation => 'ICA'
+    country.create :id => 1631, :name => "Junín", :abbreviation => 'JUN'
+    country.create :id => 1632, :name => "La Libertad", :abbreviation => 'LAL'
+    country.create :id => 1633, :name => "Lambayeque", :abbreviation => 'LAM'
+    country.create :id => 1634, :name => "Lima", :abbreviation => 'LIM'
+    country.create :id => 1635, :name => "Loreto", :abbreviation => 'LOR'
+    country.create :id => 1636, :name => "Madre de Dios", :abbreviation => 'MDD'
+    country.create :id => 1637, :name => "Moquegua", :abbreviation => 'MOQ'
+    country.create :id => 1638, :name => "Pasco", :abbreviation => 'PAS'
+    country.create :id => 1639, :name => "Piura", :abbreviation => 'PIU'
+    country.create :id => 1640, :name => "Puno", :abbreviation => 'PUN'
+    country.create :id => 1641, :name => "San Martín", :abbreviation => 'SAM'
+    country.create :id => 1642, :name => "Tacna", :abbreviation => 'TAC'
+    country.create :id => 1643, :name => "Tumbes", :abbreviation => 'TUM'
+    country.create :id => 1644, :name => "Ucayali", :abbreviation => 'UCA'
+  end
+  
+  with_options(:country => "Papua New Guinea") do |country|
+    country.create :id => 1645, :name => "National Capital District (Port Moresby)", :abbreviation => 'NCD'
+  end
+  
+  with_options(:country => "Philippines") do |country|
+    country.create :id => 1646, :name => "Autonomous Region in Muslim Mindanao (ARMM)", :abbreviation => 'PH 14'
+    country.create :id => 1647, :name => "Bicol", :abbreviation => 'PH 05'
+    country.create :id => 1648, :name => "Cagayan Valley", :abbreviation => 'PH 02'
+    country.create :id => 1649, :name => "CARAGA", :abbreviation => 'PH 13'
+    country.create :id => 1650, :name => "Central Luzon", :abbreviation => 'PH 03'
+    country.create :id => 1651, :name => "Central Mindanao", :abbreviation => 'PH 12'
+    country.create :id => 1652, :name => "Central Visayas", :abbreviation => 'PH 07'
+    country.create :id => 1653, :name => "Cordillera Administrative Region (CAR)", :abbreviation => 'PH 15'
+    country.create :id => 1654, :name => "Eastern Visayas", :abbreviation => 'PH 08'
+    country.create :id => 1655, :name => "Ilocos", :abbreviation => 'PH 01'
+    country.create :id => 1656, :name => "National Capital Region (Manila)", :abbreviation => 'PH 00'
+    country.create :id => 1657, :name => "Northern Mindanao", :abbreviation => 'PH 10'
+    country.create :id => 1658, :name => "Southern Mindanao", :abbreviation => 'PH 11'
+    country.create :id => 1659, :name => "Southern Tagalog", :abbreviation => 'PH 04'
+    country.create :id => 1660, :name => "Western Mindanao", :abbreviation => 'PH 09'
+    country.create :id => 1661, :name => "Western Visayas", :abbreviation => 'PH 06'
+  end
+  
+  with_options(:country => "Pakistan") do |country|
+    country.create :id => 1662, :name => "Islamabad", :abbreviation => 'IS'
+  end
+  
+  with_options(:country => "Poland") do |country|
+    country.create :id => 1663, :name => "Dolnośląskie", :abbreviation => 'DS'
+    country.create :id => 1664, :name => "Kujawsko-pomorskie", :abbreviation => 'KP'
+    country.create :id => 1665, :name => "Lubelskie", :abbreviation => 'LU'
+    country.create :id => 1666, :name => "Lubuskie", :abbreviation => 'LB'
+    country.create :id => 1667, :name => "Łódzkie", :abbreviation => 'LD'
+    country.create :id => 1668, :name => "Małopolskie", :abbreviation => 'MA'
+    country.create :id => 1669, :name => "Mazowieckie", :abbreviation => 'MZ'
+    country.create :id => 1670, :name => "Opolskie", :abbreviation => 'OP'
+    country.create :id => 1671, :name => "Podkarpackie", :abbreviation => 'PK'
+    country.create :id => 1672, :name => "Podlaskie", :abbreviation => 'PD'
+    country.create :id => 1673, :name => "Pomorskie", :abbreviation => 'PM'
+    country.create :id => 1674, :name => "Śląskie", :abbreviation => 'SL'
+    country.create :id => 1675, :name => "Świętokrzyskie", :abbreviation => 'SK'
+    country.create :id => 1676, :name => "Warmińsko-mazurskie", :abbreviation => 'WN'
+    country.create :id => 1677, :name => "Wielkopolskie", :abbreviation => 'WP'
+    country.create :id => 1678, :name => "Zachodniopomorskie", :abbreviation => 'ZP'
+  end
+  
+  with_options(:country => "Portugal") do |country|
+    country.create :id => 1679, :name => "Aveiro", :abbreviation => '01'
+    country.create :id => 1680, :name => "Beja", :abbreviation => '02'
+    country.create :id => 1681, :name => "Braga", :abbreviation => '03'
+    country.create :id => 1682, :name => "Bragança", :abbreviation => '04'
+    country.create :id => 1683, :name => "Castelo Branco", :abbreviation => '05'
+    country.create :id => 1684, :name => "Coimbra", :abbreviation => '06'
+    country.create :id => 1685, :name => "Évora", :abbreviation => '07'
+    country.create :id => 1686, :name => "Faro", :abbreviation => '08'
+    country.create :id => 1687, :name => "Guarda", :abbreviation => '09'
+    country.create :id => 1688, :name => "Leiria", :abbreviation => '10'
+    country.create :id => 1689, :name => "Lisboa", :abbreviation => '11'
+    country.create :id => 1690, :name => "Portalegre", :abbreviation => '12'
+    country.create :id => 1691, :name => "Porto", :abbreviation => '13'
+    country.create :id => 1692, :name => "Santarém", :abbreviation => '14'
+    country.create :id => 1693, :name => "Setúbal", :abbreviation => '15'
+    country.create :id => 1694, :name => "Viana do Castelo", :abbreviation => '16'
+    country.create :id => 1695, :name => "Vila Real", :abbreviation => '17'
+    country.create :id => 1696, :name => "Viseu", :abbreviation => '18'
+  end
+  
+  with_options(:country => "Palau") do |country|
+    country.create :id => 1697, :name => "Aimeliik", :abbreviation => '002'
+    country.create :id => 1698, :name => "Airai", :abbreviation => '004'
+    country.create :id => 1699, :name => "Angaur", :abbreviation => '010'
+    country.create :id => 1700, :name => "Hatobohei", :abbreviation => '050'
+    country.create :id => 1701, :name => "Kayangel", :abbreviation => '100'
+    country.create :id => 1702, :name => "Koror", :abbreviation => '150'
+    country.create :id => 1703, :name => "Melekeok", :abbreviation => '212'
+    country.create :id => 1704, :name => "Ngaraard", :abbreviation => '214'
+    country.create :id => 1705, :name => "Ngarchelong", :abbreviation => '218'
+    country.create :id => 1706, :name => "Ngardmau", :abbreviation => '222'
+    country.create :id => 1707, :name => "Ngatpang", :abbreviation => '224'
+    country.create :id => 1708, :name => "Ngchesar", :abbreviation => '226'
+    country.create :id => 1709, :name => "Ngeremlengui", :abbreviation => '227'
+    country.create :id => 1710, :name => "Ngiwal", :abbreviation => '228'
+    country.create :id => 1711, :name => "Peleliu", :abbreviation => '350'
+    country.create :id => 1712, :name => "Sonsorol", :abbreviation => '370'
+  end
+  
+  with_options(:country => "Paraguay") do |country|
+    country.create :id => 1713, :name => "Asunción", :abbreviation => 'ASU'
+  end
+  
+  with_options(:country => "Qatar") do |country|
+    country.create :id => 1714, :name => "Ad Dawhah", :abbreviation => 'DA'
+    country.create :id => 1715, :name => "Al Ghuwayriyah", :abbreviation => 'GH'
+    country.create :id => 1716, :name => "Al Jumayliyah", :abbreviation => 'JU'
+    country.create :id => 1717, :name => "Al Khawr", :abbreviation => 'KH'
+    country.create :id => 1718, :name => "Al Wakrah", :abbreviation => 'WA'
+    country.create :id => 1719, :name => "Ar Rayyan", :abbreviation => 'RA'
+    country.create :id => 1720, :name => "Jariyan al Batnah", :abbreviation => 'JB'
+    country.create :id => 1721, :name => "Madinat ash Shamal", :abbreviation => 'MS'
+    country.create :id => 1722, :name => "Umm Salal", :abbreviation => 'US'
+  end
+  
+  with_options(:country => "Romania") do |country|
+    country.create :id => 1723, :name => "Alba", :abbreviation => 'AB'
+    country.create :id => 1724, :name => "Arad", :abbreviation => 'AR'
+    country.create :id => 1725, :name => "Argeş", :abbreviation => 'AG'
+    country.create :id => 1726, :name => "Bacău", :abbreviation => 'BC'
+    country.create :id => 1727, :name => "Bihor", :abbreviation => 'BH'
+    country.create :id => 1728, :name => "Bistriţa-Năsăud", :abbreviation => 'BN'
+    country.create :id => 1729, :name => "Botoşani", :abbreviation => 'BT'
+    country.create :id => 1730, :name => "Braşov", :abbreviation => 'BV'
+    country.create :id => 1731, :name => "Brăila", :abbreviation => 'BR'
+    country.create :id => 1732, :name => "Buzău", :abbreviation => 'BZ'
+    country.create :id => 1733, :name => "Caraş-Severin", :abbreviation => 'CS'
+    country.create :id => 1734, :name => "Călăraşi", :abbreviation => 'CL'
+    country.create :id => 1735, :name => "Cluj", :abbreviation => 'CJ'
+    country.create :id => 1736, :name => "Constanţa", :abbreviation => 'CT'
+    country.create :id => 1737, :name => "Covasna", :abbreviation => 'CV'
+    country.create :id => 1738, :name => "Dâmboviţa", :abbreviation => 'DB'
+    country.create :id => 1739, :name => "Dolj", :abbreviation => 'DJ'
+    country.create :id => 1740, :name => "Galaţi", :abbreviation => 'GL'
+    country.create :id => 1741, :name => "Giurgiu", :abbreviation => 'GR'
+    country.create :id => 1742, :name => "Gorj", :abbreviation => 'GJ'
+    country.create :id => 1743, :name => "Harghita", :abbreviation => 'HR'
+    country.create :id => 1744, :name => "Hunedoara", :abbreviation => 'HD'
+    country.create :id => 1745, :name => "Ialomiţa", :abbreviation => 'IL'
+    country.create :id => 1746, :name => "Iaşi", :abbreviation => 'IS'
+    country.create :id => 1747, :name => "Ilfov", :abbreviation => 'IF'
+    country.create :id => 1748, :name => "Maramureş", :abbreviation => 'MM'
+    country.create :id => 1749, :name => "Mehedinţi", :abbreviation => 'MH'
+    country.create :id => 1750, :name => "Mureş", :abbreviation => 'MS'
+    country.create :id => 1751, :name => "Neamţ", :abbreviation => 'NT'
+    country.create :id => 1752, :name => "Olt", :abbreviation => 'OT'
+    country.create :id => 1753, :name => "Prahova", :abbreviation => 'PH'
+    country.create :id => 1754, :name => "Satu Mare", :abbreviation => 'SM'
+    country.create :id => 1755, :name => "Sălaj", :abbreviation => 'SJ'
+    country.create :id => 1756, :name => "Sibiu", :abbreviation => 'SB'
+    country.create :id => 1757, :name => "Suceava", :abbreviation => 'SV'
+    country.create :id => 1758, :name => "Teleorman", :abbreviation => 'TR'
+    country.create :id => 1759, :name => "Timiş", :abbreviation => 'TM'
+    country.create :id => 1760, :name => "Tulcea", :abbreviation => 'TL'
+    country.create :id => 1761, :name => "Vaslui", :abbreviation => 'VS'
+    country.create :id => 1762, :name => "Vâlcea", :abbreviation => 'VL'
+    country.create :id => 1763, :name => "Vrancea", :abbreviation => 'VN'
+  end
+  
+  with_options(:country => "Serbia") do |country|
+    country.create :id => 1764, :name => "Beograd", :abbreviation => '00'
+  end
+  
+  with_options(:country => "Russian Federation") do |country|
+    country.create :id => 1765, :name => "Adygeya, Respublika", :abbreviation => 'AD'
+    country.create :id => 1766, :name => "Altay, Respublika", :abbreviation => 'AL'
+    country.create :id => 1767, :name => "Bashkortostan, Respublika", :abbreviation => 'BA'
+    country.create :id => 1768, :name => "Buryatiya, Respublika", :abbreviation => 'BU'
+    country.create :id => 1769, :name => "Chechenskaya Respublika", :abbreviation => 'CE'
+    country.create :id => 1770, :name => "Chuvashskaya Respublika", :abbreviation => 'CU'
+    country.create :id => 1771, :name => "Dagestan, Respublika", :abbreviation => 'DA'
+    country.create :id => 1772, :name => "Respublika Ingushetiya", :abbreviation => 'IN'
+    country.create :id => 1773, :name => "Kabardino-Balkarskaya Respublika", :abbreviation => 'KB'
+    country.create :id => 1774, :name => "Kalmykiya, Respublika", :abbreviation => 'KL'
+    country.create :id => 1775, :name => "Karachayevo-Cherkesskaya Respublika", :abbreviation => 'KC'
+    country.create :id => 1776, :name => "Kareliya, Respublika", :abbreviation => 'KR'
+    country.create :id => 1777, :name => "Khakasiya, Respublika", :abbreviation => 'KK'
+    country.create :id => 1778, :name => "Komi, Respublika", :abbreviation => 'KO'
+    country.create :id => 1779, :name => "Mariy El, Respublika", :abbreviation => 'ME'
+    country.create :id => 1780, :name => "Mordoviya, Respublika", :abbreviation => 'MO'
+    country.create :id => 1781, :name => "Sakha, Respublika [Yakutiya]", :abbreviation => 'SA'
+    country.create :id => 1782, :name => "Severnaya Osetiya-Alaniya, Respublika", :abbreviation => 'SE'
+    country.create :id => 1783, :name => "Tatarstan, Respublika", :abbreviation => 'TA'
+    country.create :id => 1784, :name => "Tyva, Respublika [Tuva]", :abbreviation => 'TY'
+    country.create :id => 1785, :name => "Udmurtskaya Respublika", :abbreviation => 'UD'
+  end
+  
+  with_options(:country => "Rwanda") do |country|
+    country.create :id => 1786, :name => "Ville de Kigali", :abbreviation => '01'
+  end
+  
+  with_options(:country => "Saudi Arabia") do |country|
+    country.create :id => 1787, :name => "Al Bāhah", :abbreviation => '11'
+    country.create :id => 1788, :name => "Al Ḥudūd ash Shamāliyah", :abbreviation => '08'
+    country.create :id => 1789, :name => "Al Jawf", :abbreviation => '12'
+    country.create :id => 1790, :name => "Al Madīnah", :abbreviation => '03'
+    country.create :id => 1791, :name => "Al Qaşīm", :abbreviation => '05'
+    country.create :id => 1792, :name => "Ar Riyāḍ", :abbreviation => '01'
+    country.create :id => 1793, :name => "Ash Sharqīyah", :abbreviation => '04'
+    country.create :id => 1794, :name => "`Asīr", :abbreviation => '14'
+    country.create :id => 1795, :name => "Ḥāilil", :abbreviation => '06'
+    country.create :id => 1796, :name => "Jīzan", :abbreviation => '09'
+    country.create :id => 1797, :name => "Makkah", :abbreviation => '02'
+    country.create :id => 1798, :name => "Najrān", :abbreviation => '10'
+    country.create :id => 1799, :name => "Tabūk", :abbreviation => '07'
+  end
+  
+  with_options(:country => "Solomon Islands") do |country|
+    country.create :id => 1800, :name => "Capital Territory (Honiara)", :abbreviation => 'CT'
+  end
+  
+  with_options(:country => "Seychelles") do |country|
+    country.create :id => 1801, :name => "Anse aux Pins", :abbreviation => '01'
+    country.create :id => 1802, :name => "Anse Boileau", :abbreviation => '02'
+    country.create :id => 1803, :name => "Anse Étoile", :abbreviation => '03'
+    country.create :id => 1804, :name => "Anse Louis", :abbreviation => '04'
+    country.create :id => 1805, :name => "Anse Royale", :abbreviation => '05'
+    country.create :id => 1806, :name => "Baie Lazare", :abbreviation => '06'
+    country.create :id => 1807, :name => "Baie Sainte Anne", :abbreviation => '07'
+    country.create :id => 1808, :name => "Beau Vallon", :abbreviation => '08'
+    country.create :id => 1809, :name => "Bel Air", :abbreviation => '09'
+    country.create :id => 1810, :name => "Bel Ombre", :abbreviation => '10'
+    country.create :id => 1811, :name => "Cascade", :abbreviation => '11'
+    country.create :id => 1812, :name => "Glacis", :abbreviation => '12'
+    country.create :id => 1813, :name => "Grand Anse (Mahé) Anse (Mahé)", :abbreviation => '13'
+    country.create :id => 1814, :name => "Grand Anse (Praslin) Anse (Praslin)", :abbreviation => '14'
+    country.create :id => 1815, :name => "La Digue", :abbreviation => '15'
+    country.create :id => 1816, :name => "La Rivière Anglaise", :abbreviation => '16'
+    country.create :id => 1817, :name => "Mont Buxton", :abbreviation => '17'
+    country.create :id => 1818, :name => "Mont Fleuri", :abbreviation => '18'
+    country.create :id => 1819, :name => "Plaisance", :abbreviation => '19'
+    country.create :id => 1820, :name => "Pointe La Rue", :abbreviation => '20'
+    country.create :id => 1821, :name => "Port Glaud", :abbreviation => '21'
+    country.create :id => 1822, :name => "Saint Louis", :abbreviation => '22'
+    country.create :id => 1823, :name => "Takamaka", :abbreviation => '23'
+  end
+  
+  with_options(:country => "Sudan") do |country|
+    country.create :id => 1824, :name => "Al Baḩr al Aḩmar", :abbreviation => '26'
+    country.create :id => 1825, :name => "Al Buḩayrāt", :abbreviation => '18'
+    country.create :id => 1826, :name => "Al Jazīrah", :abbreviation => '07'
+    country.create :id => 1827, :name => "Al Kharţūm", :abbreviation => '03'
+    country.create :id => 1828, :name => "Al Qaḑārif", :abbreviation => '06'
+    country.create :id => 1829, :name => "Al Waḩdah", :abbreviation => '22'
+    country.create :id => 1830, :name => "An Nīl", :abbreviation => '04'
+    country.create :id => 1831, :name => "An Nīl al Abyaḑ", :abbreviation => '08'
+    country.create :id => 1832, :name => "An Nīl al Azraq", :abbreviation => '24'
+    country.create :id => 1833, :name => "Ash Shamālīyah", :abbreviation => '01'
+    country.create :id => 1834, :name => "A‘ālī an Nīl", :abbreviation => '23'
+    country.create :id => 1835, :name => "Baḩr al Jabal", :abbreviation => '17'
+    country.create :id => 1836, :name => "Gharb al Istiwāīyahīyah", :abbreviation => '16'
+    country.create :id => 1837, :name => "Gharb Baḩr al Ghazāl", :abbreviation => '14'
+    country.create :id => 1838, :name => "Gharb Dārfūr", :abbreviation => '12'
+    country.create :id => 1839, :name => "Janūb Dārfūr", :abbreviation => '11'
+    country.create :id => 1840, :name => "Janūb Kurdufān", :abbreviation => '13'
+    country.create :id => 1841, :name => "Jūnqalī", :abbreviation => '20'
+    country.create :id => 1842, :name => "Kassalā", :abbreviation => '05'
+    country.create :id => 1843, :name => "Shamāl Baḩr al Ghazāl", :abbreviation => '15'
+    country.create :id => 1844, :name => "Shamāl Dārfūr", :abbreviation => '02'
+    country.create :id => 1845, :name => "Shamāl Kurdufān", :abbreviation => '09'
+    country.create :id => 1846, :name => "Sharq al Istiwāīyahīyah", :abbreviation => '19'
+    country.create :id => 1847, :name => "Sinnār", :abbreviation => '25'
+    country.create :id => 1848, :name => "Wārāb", :abbreviation => '21'
+  end
+  
+  with_options(:country => "Sweden") do |country|
+    country.create :id => 1849, :name => "Blekinge län", :abbreviation => 'K'
+    country.create :id => 1850, :name => "Dalarnas län", :abbreviation => 'W'
+    country.create :id => 1851, :name => "Gotlands län", :abbreviation => 'I'
+    country.create :id => 1852, :name => "Gävleborgs län", :abbreviation => 'X'
+    country.create :id => 1853, :name => "Hallands län", :abbreviation => 'N'
+    country.create :id => 1854, :name => "Jämtlande län", :abbreviation => 'Z'
+    country.create :id => 1855, :name => "Jönköpings län", :abbreviation => 'F'
+    country.create :id => 1856, :name => "Kalmar län", :abbreviation => 'H'
+    country.create :id => 1857, :name => "Kronobergs län", :abbreviation => 'G'
+    country.create :id => 1858, :name => "Norrbottens län", :abbreviation => 'BD'
+    country.create :id => 1859, :name => "Skåne län", :abbreviation => 'M'
+    country.create :id => 1860, :name => "Stockholms län", :abbreviation => 'AB'
+    country.create :id => 1861, :name => "Södermanlands län", :abbreviation => 'D'
+    country.create :id => 1862, :name => "Uppsala län", :abbreviation => 'C'
+    country.create :id => 1863, :name => "Värmlands län", :abbreviation => 'S'
+    country.create :id => 1864, :name => "Västerbottens län", :abbreviation => 'AC'
+    country.create :id => 1865, :name => "Västernorrlands län", :abbreviation => 'Y'
+    country.create :id => 1866, :name => "Västmanlands län", :abbreviation => 'U'
+    country.create :id => 1867, :name => "Västra Götalands län", :abbreviation => 'Q'
+    country.create :id => 1868, :name => "Örebro län", :abbreviation => 'T'
+    country.create :id => 1869, :name => "Östergötlands län", :abbreviation => 'E'
+  end
+  
+  with_options(:country => "Singapore") do |country|
+    country.create :id => 1870, :name => "Central Singapore", :abbreviation => '01'
+    country.create :id => 1871, :name => "North East", :abbreviation => '02'
+    country.create :id => 1872, :name => "North West", :abbreviation => '03'
+    country.create :id => 1873, :name => "South East", :abbreviation => '04'
+    country.create :id => 1874, :name => "South West", :abbreviation => '05'
+  end
+  
+  with_options(:country => "Saint Helena") do |country|
+    country.create :id => 1875, :name => "Saint Helena", :abbreviation => 'SH'
+    country.create :id => 1876, :name => "Tristan da Cunha", :abbreviation => 'TA'
+  end
+  
+  with_options(:country => "Slovenia") do |country|
+    country.create :id => 1877, :name => "Ajdovščina", :abbreviation => '001'
+    country.create :id => 1878, :name => "Beltinci", :abbreviation => '002'
+    country.create :id => 1879, :name => "Benedikt", :abbreviation => '148'
+    country.create :id => 1880, :name => "Bistrica ob Sotli", :abbreviation => '149'
+    country.create :id => 1881, :name => "Bled", :abbreviation => '003'
+    country.create :id => 1882, :name => "Bloke", :abbreviation => '150'
+    country.create :id => 1883, :name => "Bohinj", :abbreviation => '004'
+    country.create :id => 1884, :name => "Borovnica", :abbreviation => '005'
+    country.create :id => 1885, :name => "Bovec", :abbreviation => '006'
+    country.create :id => 1886, :name => "Braslovče", :abbreviation => '151'
+    country.create :id => 1887, :name => "Brda", :abbreviation => '007'
+    country.create :id => 1888, :name => "Brežice", :abbreviation => '009'
+    country.create :id => 1889, :name => "Brezovica", :abbreviation => '008'
+    country.create :id => 1890, :name => "Cankova", :abbreviation => '152'
+    country.create :id => 1891, :name => "Celje", :abbreviation => '011'
+    country.create :id => 1892, :name => "Cerklje na Gorenjskem", :abbreviation => '012'
+    country.create :id => 1893, :name => "Cerknica", :abbreviation => '013'
+    country.create :id => 1894, :name => "Cerkno", :abbreviation => '014'
+    country.create :id => 1895, :name => "Cerkvenjak", :abbreviation => '153'
+    country.create :id => 1896, :name => "Črenšovci", :abbreviation => '015'
+    country.create :id => 1897, :name => "Črna na Koroškem", :abbreviation => '016'
+    country.create :id => 1898, :name => "Črnomelj", :abbreviation => '017'
+    country.create :id => 1899, :name => "Destrnik", :abbreviation => '018'
+    country.create :id => 1900, :name => "Divača", :abbreviation => '019'
+    country.create :id => 1901, :name => "Dobje", :abbreviation => '154'
+    country.create :id => 1902, :name => "Dobrepolje", :abbreviation => '020'
+    country.create :id => 1903, :name => "Dobrna", :abbreviation => '155'
+    country.create :id => 1904, :name => "Dobrova-Polhov Gradec", :abbreviation => '021'
+    country.create :id => 1905, :name => "Dobrovnik/Dobronak", :abbreviation => '156'
+    country.create :id => 1906, :name => "Dol pri Ljubljani", :abbreviation => '022'
+    country.create :id => 1907, :name => "Dolenjske Toplice", :abbreviation => '157'
+    country.create :id => 1908, :name => "Domžale", :abbreviation => '023'
+    country.create :id => 1909, :name => "Dornava", :abbreviation => '024'
+    country.create :id => 1910, :name => "Dravograd", :abbreviation => '025'
+    country.create :id => 1911, :name => "Duplek", :abbreviation => '026'
+    country.create :id => 1912, :name => "Gorenja vas-Poljane", :abbreviation => '027'
+    country.create :id => 1913, :name => "Gorišnica", :abbreviation => '028'
+    country.create :id => 1914, :name => "Gornja Radgona", :abbreviation => '029'
+    country.create :id => 1915, :name => "Gornji Grad", :abbreviation => '030'
+    country.create :id => 1916, :name => "Gornji Petrovci", :abbreviation => '031'
+    country.create :id => 1917, :name => "Grad", :abbreviation => '158'
+    country.create :id => 1918, :name => "Grosuplje", :abbreviation => '032'
+    country.create :id => 1919, :name => "Hajdina", :abbreviation => '159'
+    country.create :id => 1920, :name => "Hoče-Slivnica", :abbreviation => '160'
+    country.create :id => 1921, :name => "Hodoš/Hodos", :abbreviation => '161'
+    country.create :id => 1922, :name => "Horjul", :abbreviation => '162'
+    country.create :id => 1923, :name => "Hrastnik", :abbreviation => '034'
+    country.create :id => 1924, :name => "Hrpelje-Kozina", :abbreviation => '035'
+    country.create :id => 1925, :name => "Idrija", :abbreviation => '036'
+    country.create :id => 1926, :name => "Ig", :abbreviation => '037'
+    country.create :id => 1927, :name => "Ilirska Bistrica", :abbreviation => '038'
+    country.create :id => 1928, :name => "Ivančna Gorica", :abbreviation => '039'
+    country.create :id => 1929, :name => "Izola/Isola", :abbreviation => '040'
+    country.create :id => 1930, :name => "Jesenice", :abbreviation => '041'
+    country.create :id => 1931, :name => "Jezersko", :abbreviation => '163'
+    country.create :id => 1932, :name => "Juršinci", :abbreviation => '042'
+    country.create :id => 1933, :name => "Kamnik", :abbreviation => '043'
+    country.create :id => 1934, :name => "Kanal", :abbreviation => '044'
+    country.create :id => 1935, :name => "Kidričevo", :abbreviation => '045'
+    country.create :id => 1936, :name => "Kobarid", :abbreviation => '046'
+    country.create :id => 1937, :name => "Kobilje", :abbreviation => '047'
+    country.create :id => 1938, :name => "Kočevje", :abbreviation => '048'
+    country.create :id => 1939, :name => "Komen", :abbreviation => '049'
+    country.create :id => 1940, :name => "Komenda", :abbreviation => '164'
+    country.create :id => 1941, :name => "Koper/Capodistria", :abbreviation => '050'
+    country.create :id => 1942, :name => "Kostel", :abbreviation => '165'
+    country.create :id => 1943, :name => "Kozje", :abbreviation => '051'
+    country.create :id => 1944, :name => "Kranj", :abbreviation => '052'
+    country.create :id => 1945, :name => "Kranjska Gora", :abbreviation => '053'
+    country.create :id => 1946, :name => "Križevci", :abbreviation => '166'
+    country.create :id => 1947, :name => "Krško", :abbreviation => '054'
+    country.create :id => 1948, :name => "Kungota", :abbreviation => '055'
+    country.create :id => 1949, :name => "Kuzma", :abbreviation => '056'
+    country.create :id => 1950, :name => "Laško", :abbreviation => '057'
+    country.create :id => 1951, :name => "Lenart", :abbreviation => '058'
+    country.create :id => 1952, :name => "Lendava/Lendva", :abbreviation => '059'
+    country.create :id => 1953, :name => "Litija", :abbreviation => '060'
+    country.create :id => 1954, :name => "Ljubljana", :abbreviation => '061'
+    country.create :id => 1955, :name => "Ljubno", :abbreviation => '062'
+    country.create :id => 1956, :name => "Ljutomer", :abbreviation => '063'
+    country.create :id => 1957, :name => "Logatec", :abbreviation => '064'
+    country.create :id => 1958, :name => "Loška dolina", :abbreviation => '065'
+    country.create :id => 1959, :name => "Loški Potok", :abbreviation => '066'
+    country.create :id => 1960, :name => "Lovrenc na Pohorju", :abbreviation => '167'
+    country.create :id => 1961, :name => "Luče", :abbreviation => '067'
+    country.create :id => 1962, :name => "Lukovica", :abbreviation => '068'
+    country.create :id => 1963, :name => "Majšperk", :abbreviation => '069'
+    country.create :id => 1964, :name => "Maribor", :abbreviation => '070'
+    country.create :id => 1965, :name => "Markovci", :abbreviation => '168'
+    country.create :id => 1966, :name => "Medvode", :abbreviation => '071'
+    country.create :id => 1967, :name => "Mengeš", :abbreviation => '072'
+    country.create :id => 1968, :name => "Metlika", :abbreviation => '073'
+    country.create :id => 1969, :name => "Mežica", :abbreviation => '074'
+    country.create :id => 1970, :name => "Miklavž na Dravskem polju", :abbreviation => '169'
+    country.create :id => 1971, :name => "Miren-Kostanjevica", :abbreviation => '075'
+    country.create :id => 1972, :name => "Mirna Peč", :abbreviation => '170'
+    country.create :id => 1973, :name => "Mislinja", :abbreviation => '076'
+    country.create :id => 1974, :name => "Moravče", :abbreviation => '077'
+    country.create :id => 1975, :name => "Moravske Toplice", :abbreviation => '078'
+    country.create :id => 1976, :name => "Mozirje", :abbreviation => '079'
+    country.create :id => 1977, :name => "Murska Sobota", :abbreviation => '080'
+    country.create :id => 1978, :name => "Muta", :abbreviation => '081'
+    country.create :id => 1979, :name => "Naklo", :abbreviation => '082'
+    country.create :id => 1980, :name => "Nazarje", :abbreviation => '083'
+    country.create :id => 1981, :name => "Nova Gorica", :abbreviation => '084'
+    country.create :id => 1982, :name => "Novo mesto", :abbreviation => '085'
+    country.create :id => 1983, :name => "Odranci", :abbreviation => '086'
+    country.create :id => 1984, :name => "Oplotnica", :abbreviation => '171'
+    country.create :id => 1985, :name => "Ormož", :abbreviation => '087'
+    country.create :id => 1986, :name => "Osilnica", :abbreviation => '088'
+    country.create :id => 1987, :name => "Pesnica", :abbreviation => '089'
+    country.create :id => 1988, :name => "Piran/Pirano", :abbreviation => '090'
+    country.create :id => 1989, :name => "Pivka", :abbreviation => '091'
+    country.create :id => 1990, :name => "Podčetrtek", :abbreviation => '092'
+    country.create :id => 1991, :name => "Podlehnik", :abbreviation => '172'
+    country.create :id => 1992, :name => "Podvelka", :abbreviation => '093'
+    country.create :id => 1993, :name => "Polzela", :abbreviation => '173'
+    country.create :id => 1994, :name => "Postojna", :abbreviation => '094'
+    country.create :id => 1995, :name => "Prebold", :abbreviation => '174'
+    country.create :id => 1996, :name => "Preddvor", :abbreviation => '095'
+    country.create :id => 1997, :name => "Prevalje", :abbreviation => '175'
+    country.create :id => 1998, :name => "Ptuj", :abbreviation => '096'
+    country.create :id => 1999, :name => "Puconci", :abbreviation => '097'
+    country.create :id => 2000, :name => "Rače-Fram", :abbreviation => '098'
+    country.create :id => 2001, :name => "Radeče", :abbreviation => '099'
+    country.create :id => 2002, :name => "Radenci", :abbreviation => '100'
+    country.create :id => 2003, :name => "Radlje ob Dravi", :abbreviation => '101'
+    country.create :id => 2004, :name => "Radovljica", :abbreviation => '102'
+    country.create :id => 2005, :name => "Ravne na Koroškem", :abbreviation => '103'
+    country.create :id => 2006, :name => "Razkrižje", :abbreviation => '176'
+    country.create :id => 2007, :name => "Ribnica", :abbreviation => '104'
+    country.create :id => 2008, :name => "Ribnica na Pohorju", :abbreviation => '177'
+    country.create :id => 2009, :name => "Rogaška Slatina", :abbreviation => '106'
+    country.create :id => 2010, :name => "Rogašovci", :abbreviation => '105'
+    country.create :id => 2011, :name => "Rogatec", :abbreviation => '107'
+    country.create :id => 2012, :name => "Ruše", :abbreviation => '108'
+    country.create :id => 2013, :name => "Šalovci", :abbreviation => '033'
+    country.create :id => 2014, :name => "Selnica ob Dravi", :abbreviation => '178'
+    country.create :id => 2015, :name => "Semič", :abbreviation => '109'
+    country.create :id => 2016, :name => "Šempeter-Vrtojba", :abbreviation => '183'
+    country.create :id => 2017, :name => "Šenčur", :abbreviation => '117'
+    country.create :id => 2018, :name => "Šentilj", :abbreviation => '118'
+    country.create :id => 2019, :name => "Šentjernej", :abbreviation => '119'
+    country.create :id => 2020, :name => "Šentjur pri Celju", :abbreviation => '120'
+    country.create :id => 2021, :name => "Sevnica", :abbreviation => '110'
+    country.create :id => 2022, :name => "Sežana", :abbreviation => '111'
+    country.create :id => 2023, :name => "Škocjan", :abbreviation => '121'
+    country.create :id => 2024, :name => "Škofja Loka", :abbreviation => '122'
+    country.create :id => 2025, :name => "Škofljica", :abbreviation => '123'
+    country.create :id => 2026, :name => "Slovenj Gradec", :abbreviation => '112'
+    country.create :id => 2027, :name => "Slovenska Bistrica", :abbreviation => '113'
+    country.create :id => 2028, :name => "Slovenske Konjice", :abbreviation => '114'
+    country.create :id => 2029, :name => "Šmarje pri Jelšah", :abbreviation => '124'
+    country.create :id => 2030, :name => "Šmartno ob Paki", :abbreviation => '125'
+    country.create :id => 2031, :name => "Šmartno pri Litiji", :abbreviation => '194'
+    country.create :id => 2032, :name => "Sodražica", :abbreviation => '179'
+    country.create :id => 2033, :name => "Solčava", :abbreviation => '180'
+    country.create :id => 2034, :name => "Šoštanj", :abbreviation => '126'
+    country.create :id => 2035, :name => "Starše", :abbreviation => '115'
+    country.create :id => 2036, :name => "Štore", :abbreviation => '127'
+    country.create :id => 2037, :name => "Sveta Ana", :abbreviation => '181'
+    country.create :id => 2038, :name => "Sveti Andraž v Slovenskih goricah", :abbreviation => '182'
+    country.create :id => 2039, :name => "Sveti Jurij", :abbreviation => '116'
+    country.create :id => 2040, :name => "Tabor", :abbreviation => '184'
+    country.create :id => 2041, :name => "Tišina", :abbreviation => '010'
+    country.create :id => 2042, :name => "Tolmin", :abbreviation => '128'
+    country.create :id => 2043, :name => "Trbovlje", :abbreviation => '129'
+    country.create :id => 2044, :name => "Trebnje", :abbreviation => '130'
+    country.create :id => 2045, :name => "Trnovska vas", :abbreviation => '185'
+    country.create :id => 2046, :name => "Tržič", :abbreviation => '131'
+    country.create :id => 2047, :name => "Trzin", :abbreviation => '186'
+    country.create :id => 2048, :name => "Turnišče", :abbreviation => '132'
+    country.create :id => 2049, :name => "Velenje", :abbreviation => '133'
+    country.create :id => 2050, :name => "Velika Polana", :abbreviation => '187'
+    country.create :id => 2051, :name => "Velike Lašče", :abbreviation => '134'
+    country.create :id => 2052, :name => "Veržej", :abbreviation => '188'
+    country.create :id => 2053, :name => "Videm", :abbreviation => '135'
+    country.create :id => 2054, :name => "Vipava", :abbreviation => '136'
+    country.create :id => 2055, :name => "Vitanje", :abbreviation => '137'
+    country.create :id => 2056, :name => "Vodice", :abbreviation => '138'
+    country.create :id => 2057, :name => "Vojnik", :abbreviation => '139'
+    country.create :id => 2058, :name => "Vransko", :abbreviation => '189'
+    country.create :id => 2059, :name => "Vrhnika", :abbreviation => '140'
+    country.create :id => 2060, :name => "Vuzenica", :abbreviation => '141'
+    country.create :id => 2061, :name => "Zagorje ob Savi", :abbreviation => '142'
+    country.create :id => 2062, :name => "Žalec", :abbreviation => '190'
+    country.create :id => 2063, :name => "Zavrč", :abbreviation => '143'
+    country.create :id => 2064, :name => "Železniki", :abbreviation => '146'
+    country.create :id => 2065, :name => "Žetale", :abbreviation => '191'
+    country.create :id => 2066, :name => "Žiri", :abbreviation => '147'
+    country.create :id => 2067, :name => "Žirovnica", :abbreviation => '192'
+    country.create :id => 2068, :name => "Zreče", :abbreviation => '144'
+    country.create :id => 2069, :name => "Žužemberk", :abbreviation => '193'
+  end
+  
+  with_options(:country => "Slovakia") do |country|
+    country.create :id => 2070, :name => "Banskobystrický kraj", :abbreviation => 'BC'
+    country.create :id => 2071, :name => "Bratislavský kraj", :abbreviation => 'BL'
+    country.create :id => 2072, :name => "Košický kraj", :abbreviation => 'KI'
+    country.create :id => 2073, :name => "Nitriansky kraj", :abbreviation => 'NJ'
+    country.create :id => 2074, :name => "Prešovský kraj", :abbreviation => 'PV'
+    country.create :id => 2075, :name => "Trenčiansky kraj", :abbreviation => 'TC'
+    country.create :id => 2076, :name => "Trnavský kraj", :abbreviation => 'TA'
+    country.create :id => 2077, :name => "Žilinský kraj", :abbreviation => 'ZI'
+  end
+  
+  with_options(:country => "Sierra Leone") do |country|
+    country.create :id => 2078, :name => "Western Area (Freetown)", :abbreviation => 'W'
+  end
+  
+  with_options(:country => "San Marino") do |country|
+    country.create :id => 2079, :name => "Acquaviva", :abbreviation => '01'
+    country.create :id => 2080, :name => "Borgo Maggiore", :abbreviation => '06'
+    country.create :id => 2081, :name => "Chiesanuova", :abbreviation => '02'
+    country.create :id => 2082, :name => "Domagnano", :abbreviation => '03'
+    country.create :id => 2083, :name => "Faetano", :abbreviation => '04'
+    country.create :id => 2084, :name => "Fiorentino", :abbreviation => '05'
+    country.create :id => 2085, :name => "Montegiardino", :abbreviation => '08'
+    country.create :id => 2086, :name => "San Marino", :abbreviation => '07'
+    country.create :id => 2087, :name => "Serravalle", :abbreviation => '09'
+  end
+  
+  with_options(:country => "Senegal") do |country|
+    country.create :id => 2088, :name => "Dakar", :abbreviation => 'DK'
+    country.create :id => 2089, :name => "Diourbel", :abbreviation => 'DB'
+    country.create :id => 2090, :name => "Fatick", :abbreviation => 'FK'
+    country.create :id => 2091, :name => "Kaolack", :abbreviation => 'KL'
+    country.create :id => 2092, :name => "Kolda", :abbreviation => 'KD'
+    country.create :id => 2093, :name => "Louga", :abbreviation => 'LG'
+    country.create :id => 2094, :name => "Matam", :abbreviation => 'MT'
+    country.create :id => 2095, :name => "Saint-Louis", :abbreviation => 'SL'
+    country.create :id => 2096, :name => "Tambacounda", :abbreviation => 'TC'
+    country.create :id => 2097, :name => "Thiès", :abbreviation => 'TH'
+    country.create :id => 2098, :name => "Ziguinchor", :abbreviation => 'ZG'
+  end
+  
+  with_options(:country => "Somalia") do |country|
+    country.create :id => 2099, :name => "Awdal", :abbreviation => 'AW'
+    country.create :id => 2100, :name => "Bakool", :abbreviation => 'BK'
+    country.create :id => 2101, :name => "Banaadir", :abbreviation => 'BN'
+    country.create :id => 2102, :name => "Bari", :abbreviation => 'BR'
+    country.create :id => 2103, :name => "Bay", :abbreviation => 'BY'
+    country.create :id => 2104, :name => "Galguduud", :abbreviation => 'GA'
+    country.create :id => 2105, :name => "Gedo", :abbreviation => 'GE'
+    country.create :id => 2106, :name => "Hiirsan", :abbreviation => 'HI'
+    country.create :id => 2107, :name => "Jubbada Dhexe", :abbreviation => 'JD'
+    country.create :id => 2108, :name => "Jubbada Hoose", :abbreviation => 'JH'
+    country.create :id => 2109, :name => "Mudug", :abbreviation => 'MU'
+    country.create :id => 2110, :name => "Nugaal", :abbreviation => 'NU'
+    country.create :id => 2111, :name => "Saneag", :abbreviation => 'SA'
+    country.create :id => 2112, :name => "Shabeellaha Dhexe", :abbreviation => 'SD'
+    country.create :id => 2113, :name => "Shabeellaha Hoose", :abbreviation => 'SH'
+    country.create :id => 2114, :name => "Sool", :abbreviation => 'SO'
+    country.create :id => 2115, :name => "Togdheer", :abbreviation => 'TO'
+    country.create :id => 2116, :name => "Woqooyi Galbeed", :abbreviation => 'WO'
+  end
+  
+  with_options(:country => "Suriname") do |country|
+    country.create :id => 2117, :name => "Brokopondo", :abbreviation => 'BR'
+    country.create :id => 2118, :name => "Commewijne", :abbreviation => 'CM'
+    country.create :id => 2119, :name => "Coronie", :abbreviation => 'CR'
+    country.create :id => 2120, :name => "Marowijne", :abbreviation => 'MA'
+    country.create :id => 2121, :name => "Nickerie", :abbreviation => 'NI'
+    country.create :id => 2122, :name => "Para", :abbreviation => 'PR'
+    country.create :id => 2123, :name => "Paramaribo", :abbreviation => 'PM'
+    country.create :id => 2124, :name => "Saramacca", :abbreviation => 'SA'
+    country.create :id => 2125, :name => "Sipaliwini", :abbreviation => 'SI'
+    country.create :id => 2126, :name => "Wanica", :abbreviation => 'WA'
+  end
+  
+  with_options(:country => "Sao Tome and Principe") do |country|
+    country.create :id => 2127, :name => "Príncipe", :abbreviation => 'P'
+    country.create :id => 2128, :name => "São Tomé", :abbreviation => 'S'
+  end
+  
+  with_options(:country => "El Salvador") do |country|
+    country.create :id => 2129, :name => "Ahuachapán", :abbreviation => 'AH'
+    country.create :id => 2130, :name => "Cabañas", :abbreviation => 'CA'
+    country.create :id => 2131, :name => "Cuscatlán", :abbreviation => 'CU'
+    country.create :id => 2132, :name => "Chalatenango", :abbreviation => 'CH'
+    country.create :id => 2133, :name => "La Libertad", :abbreviation => 'LI'
+    country.create :id => 2134, :name => "La Paz", :abbreviation => 'PA'
+    country.create :id => 2135, :name => "La Unión", :abbreviation => 'UN'
+    country.create :id => 2136, :name => "Morazán", :abbreviation => 'MO'
+    country.create :id => 2137, :name => "San Miguel", :abbreviation => 'SM'
+    country.create :id => 2138, :name => "San Salvador", :abbreviation => 'SS'
+    country.create :id => 2139, :name => "Santa Ana", :abbreviation => 'SA'
+    country.create :id => 2140, :name => "San Vicente", :abbreviation => 'SV'
+    country.create :id => 2141, :name => "Sonsonate", :abbreviation => 'SO'
+    country.create :id => 2142, :name => "Usulután", :abbreviation => 'US'
+  end
+  
+  with_options(:country => "Syrian Arab Republic") do |country|
+    country.create :id => 2143, :name => "Al Hasakah", :abbreviation => 'HA'
+    country.create :id => 2144, :name => "Al Ladhiqiyah", :abbreviation => 'LA'
+    country.create :id => 2145, :name => "Al Qunaytirah", :abbreviation => 'QU'
+    country.create :id => 2146, :name => "Ar Raqqah", :abbreviation => 'RA'
+    country.create :id => 2147, :name => "As Suwayda", :abbreviation => 'SU'
+    country.create :id => 2148, :name => "Daraa", :abbreviation => 'DR'
+    country.create :id => 2149, :name => "Dayr az Zawr", :abbreviation => 'DY'
+    country.create :id => 2150, :name => "Dimashq", :abbreviation => 'DI'
+    country.create :id => 2151, :name => "Halab", :abbreviation => 'HL'
+    country.create :id => 2152, :name => "Hamah", :abbreviation => 'HM'
+    country.create :id => 2153, :name => "Homs", :abbreviation => 'HI'
+    country.create :id => 2154, :name => "Idlib", :abbreviation => 'ID'
+    country.create :id => 2155, :name => "Rif Dimashq", :abbreviation => 'RD'
+    country.create :id => 2156, :name => "Tartus", :abbreviation => 'TA'
+  end
+  
+  with_options(:country => "Swaziland") do |country|
+    country.create :id => 2157, :name => "Hhohho", :abbreviation => 'HH'
+    country.create :id => 2158, :name => "Lubombo", :abbreviation => 'LU'
+    country.create :id => 2159, :name => "Manzini", :abbreviation => 'MA'
+    country.create :id => 2160, :name => "Shiselweni", :abbreviation => 'SH'
+  end
+  
+  with_options(:country => "Chad") do |country|
+    country.create :id => 2161, :name => "Batha", :abbreviation => 'BA'
+    country.create :id => 2162, :name => "Borkou-Ennedi-Tibesti", :abbreviation => 'BET'
+    country.create :id => 2163, :name => "Chari-Baguirmi", :abbreviation => 'CB'
+    country.create :id => 2164, :name => "Guéra", :abbreviation => 'GR'
+    country.create :id => 2165, :name => "Hadjer Lamis", :abbreviation => 'HL'
+    country.create :id => 2166, :name => "Kanem", :abbreviation => 'KA'
+    country.create :id => 2167, :name => "Lac", :abbreviation => 'LC'
+    country.create :id => 2168, :name => "Logone-Occidental", :abbreviation => 'LO'
+    country.create :id => 2169, :name => "Logone-Oriental", :abbreviation => 'LR'
+    country.create :id => 2170, :name => "Mandoul", :abbreviation => 'MA'
+    country.create :id => 2171, :name => "Mayo-Kébbi-Est", :abbreviation => 'ME'
+    country.create :id => 2172, :name => "Mayo-Kébbi-Ouest", :abbreviation => 'MO'
+    country.create :id => 2173, :name => "Moyen-Chari", :abbreviation => 'MC'
+    country.create :id => 2174, :name => "Ndjamena", :abbreviation => 'ND'
+    country.create :id => 2175, :name => "Ouaddaï", :abbreviation => 'OD'
+    country.create :id => 2176, :name => "Salamat", :abbreviation => 'SA'
+    country.create :id => 2177, :name => "Tandjilé", :abbreviation => 'TA'
+    country.create :id => 2178, :name => "Wadi Fira", :abbreviation => 'WF'
+  end
+  
+  with_options(:country => "Togo") do |country|
+    country.create :id => 2179, :name => "Région du Centre", :abbreviation => 'C'
+    country.create :id => 2180, :name => "Région de la Kara", :abbreviation => 'K'
+    country.create :id => 2181, :name => "Région Maritime", :abbreviation => 'M'
+    country.create :id => 2182, :name => "Région des Plateaux", :abbreviation => 'P'
+    country.create :id => 2183, :name => "Région des Savannes", :abbreviation => 'S'
+  end
+  
+  with_options(:country => "Thailand") do |country|
+    country.create :id => 2184, :name => "Krung Thep Maha Nakhon Bangkok", :abbreviation => '10'
+  end
+  
+  with_options(:country => "Tajikistan") do |country|
+    country.create :id => 2185, :name => "Gorno-Badakhshan", :abbreviation => 'GB'
+  end
+  
+  with_options(:country => "Timor-Leste") do |country|
+    country.create :id => 2186, :name => "Aileu", :abbreviation => 'AL'
+    country.create :id => 2187, :name => "Ainaro", :abbreviation => 'AN'
+    country.create :id => 2188, :name => "Baucau", :abbreviation => 'BA'
+    country.create :id => 2189, :name => "Bobonaro", :abbreviation => 'BO'
+    country.create :id => 2190, :name => "Cova Lima", :abbreviation => 'CO'
+    country.create :id => 2191, :name => "Dili", :abbreviation => 'DI'
+    country.create :id => 2192, :name => "Ermera", :abbreviation => 'ER'
+    country.create :id => 2193, :name => "Lautem", :abbreviation => 'LA'
+    country.create :id => 2194, :name => "Liquiça", :abbreviation => 'LI'
+    country.create :id => 2195, :name => "Manatuto", :abbreviation => 'MT'
+    country.create :id => 2196, :name => "Manufahi", :abbreviation => 'MF'
+    country.create :id => 2197, :name => "Oecussi", :abbreviation => 'OE'
+    country.create :id => 2198, :name => "Viqueque", :abbreviation => 'VI'
+  end
+  
+  with_options(:country => "Turkmenistan") do |country|
+    country.create :id => 2199, :name => "Ahal", :abbreviation => 'A'
+    country.create :id => 2200, :name => "Balkan", :abbreviation => 'B'
+    country.create :id => 2201, :name => "Daşoguz", :abbreviation => 'D'
+    country.create :id => 2202, :name => "Lebap", :abbreviation => 'L'
+    country.create :id => 2203, :name => "Mary", :abbreviation => 'M'
+  end
+  
+  with_options(:country => "Tunisia") do |country|
+    country.create :id => 2204, :name => "Béja", :abbreviation => '31'
+    country.create :id => 2205, :name => "Ben Arous", :abbreviation => '13'
+    country.create :id => 2206, :name => "Bizerte", :abbreviation => '23'
+    country.create :id => 2207, :name => "Gabès", :abbreviation => '81'
+    country.create :id => 2208, :name => "Gafsa", :abbreviation => '71'
+    country.create :id => 2209, :name => "Jendouba", :abbreviation => '32'
+    country.create :id => 2210, :name => "Kairouan", :abbreviation => '41'
+    country.create :id => 2211, :name => "Kasserine", :abbreviation => '42'
+    country.create :id => 2212, :name => "Kebili", :abbreviation => '73'
+    country.create :id => 2213, :name => "LArianaAriana", :abbreviation => '12'
+    country.create :id => 2214, :name => "Le Kef", :abbreviation => '33'
+    country.create :id => 2215, :name => "Mahdia", :abbreviation => '53'
+    country.create :id => 2216, :name => "La Manouba", :abbreviation => '14'
+    country.create :id => 2217, :name => "Medenine", :abbreviation => '82'
+    country.create :id => 2218, :name => "Monastir", :abbreviation => '52'
+    country.create :id => 2219, :name => "Nabeul", :abbreviation => '21'
+    country.create :id => 2220, :name => "Sfax", :abbreviation => '61'
+    country.create :id => 2221, :name => "Sidi Bouzid", :abbreviation => '43'
+    country.create :id => 2222, :name => "Siliana", :abbreviation => '34'
+    country.create :id => 2223, :name => "Sousse", :abbreviation => '51'
+    country.create :id => 2224, :name => "Tataouine", :abbreviation => '83'
+    country.create :id => 2225, :name => "Tozeur", :abbreviation => '72'
+    country.create :id => 2226, :name => "Tunis", :abbreviation => '11'
+    country.create :id => 2227, :name => "Zaghouan", :abbreviation => '22'
+  end
+  
+  with_options(:country => "Tonga") do |country|
+    country.create :id => 2228, :name => "EuaEua", :abbreviation => '01'
+    country.create :id => 2229, :name => "Haapaiapai", :abbreviation => '02'
+    country.create :id => 2230, :name => "Niuas", :abbreviation => '03'
+    country.create :id => 2231, :name => "Tongatapu", :abbreviation => '04'
+    country.create :id => 2232, :name => "Vavauu", :abbreviation => '05'
+  end
+  
+  with_options(:country => "Turkey") do |country|
+    country.create :id => 2233, :name => "Adana", :abbreviation => '01'
+    country.create :id => 2234, :name => "Adıyaman", :abbreviation => '02'
+    country.create :id => 2235, :name => "Afyon", :abbreviation => '03'
+    country.create :id => 2236, :name => "Ağrı", :abbreviation => '04'
+    country.create :id => 2237, :name => "Aksaray", :abbreviation => '68'
+    country.create :id => 2238, :name => "Amasya", :abbreviation => '05'
+    country.create :id => 2239, :name => "Ankara", :abbreviation => '06'
+    country.create :id => 2240, :name => "Antalya", :abbreviation => '07'
+    country.create :id => 2241, :name => "Ardahan", :abbreviation => '75'
+    country.create :id => 2242, :name => "Artvin", :abbreviation => '08'
+    country.create :id => 2243, :name => "Aydın", :abbreviation => '09'
+    country.create :id => 2244, :name => "Balıkesir", :abbreviation => '10'
+    country.create :id => 2245, :name => "Bartın", :abbreviation => '74'
+    country.create :id => 2246, :name => "Batman", :abbreviation => '72'
+    country.create :id => 2247, :name => "Bayburt", :abbreviation => '69'
+    country.create :id => 2248, :name => "Bilecik", :abbreviation => '11'
+    country.create :id => 2249, :name => "Bingöl", :abbreviation => '12'
+    country.create :id => 2250, :name => "Bitlis", :abbreviation => '13'
+    country.create :id => 2251, :name => "Bolu", :abbreviation => '14'
+    country.create :id => 2252, :name => "Burdur", :abbreviation => '15'
+    country.create :id => 2253, :name => "Bursa", :abbreviation => '16'
+    country.create :id => 2254, :name => "Çanakkale", :abbreviation => '17'
+    country.create :id => 2255, :name => "Çankırı", :abbreviation => '18'
+    country.create :id => 2256, :name => "Çorum", :abbreviation => '19'
+    country.create :id => 2257, :name => "Denizli", :abbreviation => '20'
+    country.create :id => 2258, :name => "Diyarbakır", :abbreviation => '21'
+    country.create :id => 2259, :name => "Düzce", :abbreviation => '81'
+    country.create :id => 2260, :name => "Edirne", :abbreviation => '22'
+    country.create :id => 2261, :name => "Elazığ", :abbreviation => '23'
+    country.create :id => 2262, :name => "Erzincan", :abbreviation => '24'
+    country.create :id => 2263, :name => "Erzurum", :abbreviation => '25'
+    country.create :id => 2264, :name => "Eskişehir", :abbreviation => '26'
+    country.create :id => 2265, :name => "Gaziantep", :abbreviation => '27'
+    country.create :id => 2266, :name => "Giresun", :abbreviation => '28'
+    country.create :id => 2267, :name => "Gümüşhane", :abbreviation => '29'
+    country.create :id => 2268, :name => "Hakkâri", :abbreviation => '30'
+    country.create :id => 2269, :name => "Hatay", :abbreviation => '31'
+    country.create :id => 2270, :name => "Iğdır", :abbreviation => '76'
+    country.create :id => 2271, :name => "Isparta", :abbreviation => '32'
+    country.create :id => 2272, :name => "İçel", :abbreviation => '33'
+    country.create :id => 2273, :name => "İstanbul", :abbreviation => '34'
+    country.create :id => 2274, :name => "İzmir", :abbreviation => '35'
+    country.create :id => 2275, :name => "Kahramanmaraş", :abbreviation => '46'
+    country.create :id => 2276, :name => "Karabük", :abbreviation => '78'
+    country.create :id => 2277, :name => "Karaman", :abbreviation => '70'
+    country.create :id => 2278, :name => "Kars", :abbreviation => '36'
+    country.create :id => 2279, :name => "Kastamonu", :abbreviation => '37'
+    country.create :id => 2280, :name => "Kayseri", :abbreviation => '38'
+    country.create :id => 2281, :name => "Kırıkkale", :abbreviation => '71'
+    country.create :id => 2282, :name => "Kırklareli", :abbreviation => '39'
+    country.create :id => 2283, :name => "Kırşehir", :abbreviation => '40'
+    country.create :id => 2284, :name => "Kilis", :abbreviation => '79'
+    country.create :id => 2285, :name => "Kocaeli", :abbreviation => '41'
+    country.create :id => 2286, :name => "Konya", :abbreviation => '42'
+    country.create :id => 2287, :name => "Kütahya", :abbreviation => '43'
+    country.create :id => 2288, :name => "Malatya", :abbreviation => '44'
+    country.create :id => 2289, :name => "Manisa", :abbreviation => '45'
+    country.create :id => 2290, :name => "Mardin", :abbreviation => '47'
+    country.create :id => 2291, :name => "Muğla", :abbreviation => '48'
+    country.create :id => 2292, :name => "Muş", :abbreviation => '49'
+    country.create :id => 2293, :name => "Nevşehir", :abbreviation => '50'
+    country.create :id => 2294, :name => "Niğde", :abbreviation => '51'
+    country.create :id => 2295, :name => "Ordu", :abbreviation => '52'
+    country.create :id => 2296, :name => "Osmaniye", :abbreviation => '80'
+    country.create :id => 2297, :name => "Rize", :abbreviation => '53'
+    country.create :id => 2298, :name => "Sakarya", :abbreviation => '54'
+    country.create :id => 2299, :name => "Samsun", :abbreviation => '55'
+    country.create :id => 2300, :name => "Siirt", :abbreviation => '56'
+    country.create :id => 2301, :name => "Sinop", :abbreviation => '57'
+    country.create :id => 2302, :name => "Sivas", :abbreviation => '58'
+    country.create :id => 2303, :name => "Şanlıurfa", :abbreviation => '63'
+    country.create :id => 2304, :name => "Şırnak", :abbreviation => '73'
+    country.create :id => 2305, :name => "Tekirdağ", :abbreviation => '59'
+    country.create :id => 2306, :name => "Tokat", :abbreviation => '60'
+    country.create :id => 2307, :name => "Trabzon", :abbreviation => '61'
+    country.create :id => 2308, :name => "Tunceli", :abbreviation => '62'
+    country.create :id => 2309, :name => "Uşak", :abbreviation => '64'
+    country.create :id => 2310, :name => "Van", :abbreviation => '65'
+    country.create :id => 2311, :name => "Yalova", :abbreviation => '77'
+    country.create :id => 2312, :name => "Yozgat", :abbreviation => '66'
+    country.create :id => 2313, :name => "Zonguldak", :abbreviation => '67'
+  end
+  
+  with_options(:country => "Trinidad and Tobago") do |country|
+    country.create :id => 2314, :name => "Couva-Tabaquite-Talparo", :abbreviation => 'CTT'
+    country.create :id => 2315, :name => "Diego Martin", :abbreviation => 'DMN'
+    country.create :id => 2316, :name => "Eastern Tobago", :abbreviation => 'ETO'
+    country.create :id => 2317, :name => "Penal-Debe", :abbreviation => 'PED'
+    country.create :id => 2318, :name => "Princes Town", :abbreviation => 'PRT'
+    country.create :id => 2319, :name => "Rio Claro-Mayaro", :abbreviation => 'RCM'
+    country.create :id => 2320, :name => "Sangre Grande", :abbreviation => 'SGE'
+    country.create :id => 2321, :name => "San Juan-Laventille", :abbreviation => 'SJL'
+    country.create :id => 2322, :name => "Siparia", :abbreviation => 'SIP'
+    country.create :id => 2323, :name => "Tunapuna-Piarco", :abbreviation => 'TUP'
+    country.create :id => 2324, :name => "Western Tobago", :abbreviation => 'WTO'
+  end
+  
+  with_options(:country => "Tuvalu") do |country|
+    country.create :id => 2325, :name => "Funafuti", :abbreviation => 'FUN'
+  end
+  
+  with_options(:country => "Taiwan, Province of China") do |country|
+    country.create :id => 2326, :name => "Changhua", :abbreviation => 'CHA'
+    country.create :id => 2327, :name => "Chiayi", :abbreviation => 'CYQ'
+    country.create :id => 2328, :name => "Hsinchu", :abbreviation => 'HSQ'
+    country.create :id => 2329, :name => "Hualien", :abbreviation => 'HUA'
+    country.create :id => 2330, :name => "Ilan", :abbreviation => 'ILA'
+    country.create :id => 2331, :name => "Kaohsiung", :abbreviation => 'KHQ'
+    country.create :id => 2332, :name => "Miaoli", :abbreviation => 'MIA'
+    country.create :id => 2333, :name => "Nantou", :abbreviation => 'NAN'
+    country.create :id => 2334, :name => "Penghu", :abbreviation => 'PEN'
+    country.create :id => 2335, :name => "Pingtung", :abbreviation => 'PIF'
+    country.create :id => 2336, :name => "Taichung", :abbreviation => 'TXQ'
+    country.create :id => 2337, :name => "Tainan", :abbreviation => 'TNQ'
+    country.create :id => 2338, :name => "Taipei", :abbreviation => 'TPQ'
+    country.create :id => 2339, :name => "Taitung", :abbreviation => 'TTT'
+    country.create :id => 2340, :name => "Taoyuan", :abbreviation => 'TAO'
+    country.create :id => 2341, :name => "Yunlin", :abbreviation => 'YUN'
+  end
+  
+  with_options(:country => "Tanzania, United Republic of") do |country|
+    country.create :id => 2342, :name => "Arusha", :abbreviation => '01'
+    country.create :id => 2343, :name => "Dar-es-Salaam", :abbreviation => '02'
+    country.create :id => 2344, :name => "Dodoma", :abbreviation => '03'
+    country.create :id => 2345, :name => "Iringa", :abbreviation => '04'
+    country.create :id => 2346, :name => "Kagera", :abbreviation => '05'
+    country.create :id => 2347, :name => "Kaskazini Pemba", :abbreviation => '06'
+    country.create :id => 2348, :name => "Kaskazini Unguja", :abbreviation => '07'
+    country.create :id => 2349, :name => "Kigoma", :abbreviation => '08'
+    country.create :id => 2350, :name => "Kilimanjaro", :abbreviation => '09'
+    country.create :id => 2351, :name => "Kusini Pemba", :abbreviation => '10'
+    country.create :id => 2352, :name => "Kusini Unguja", :abbreviation => '11'
+    country.create :id => 2353, :name => "Lindi", :abbreviation => '12'
+    country.create :id => 2354, :name => "Manyara", :abbreviation => '26'
+    country.create :id => 2355, :name => "Mara", :abbreviation => '13'
+    country.create :id => 2356, :name => "Mbeya", :abbreviation => '14'
+    country.create :id => 2357, :name => "Mjini Magharibi", :abbreviation => '15'
+    country.create :id => 2358, :name => "Morogoro", :abbreviation => '16'
+    country.create :id => 2359, :name => "Mtwara", :abbreviation => '17'
+    country.create :id => 2360, :name => "Mwanza", :abbreviation => '18'
+    country.create :id => 2361, :name => "Pwani", :abbreviation => '19'
+    country.create :id => 2362, :name => "Rukwa", :abbreviation => '20'
+    country.create :id => 2363, :name => "Ruvuma", :abbreviation => '21'
+    country.create :id => 2364, :name => "Shinyanga", :abbreviation => '22'
+    country.create :id => 2365, :name => "Singida", :abbreviation => '23'
+    country.create :id => 2366, :name => "Tabora", :abbreviation => '24'
+    country.create :id => 2367, :name => "Tanga", :abbreviation => '25'
+  end
+  
+  with_options(:country => "Ukraine") do |country|
+    country.create :id => 2368, :name => "Cherkaska Oblast'ka Oblast", :abbreviation => '71'
+    country.create :id => 2369, :name => "Chernihivska Oblast'ka Oblast", :abbreviation => '74'
+    country.create :id => 2370, :name => "Chernivetska Oblast'ka Oblast", :abbreviation => '77'
+    country.create :id => 2371, :name => "Dnipropetrovska Oblast'ka Oblast", :abbreviation => '12'
+    country.create :id => 2372, :name => "Donetska Oblast'ka Oblast", :abbreviation => '14'
+    country.create :id => 2373, :name => "Ivano-Frankivska Oblast'ka Oblast", :abbreviation => '26'
+    country.create :id => 2374, :name => "Kharkivska Oblast'ka Oblast", :abbreviation => '63'
+    country.create :id => 2375, :name => "Khersonska Oblast'ka Oblast", :abbreviation => '65'
+    country.create :id => 2376, :name => "Khmelnyts'ka Oblast'nytska Oblast'ka Oblast", :abbreviation => '68'
+    country.create :id => 2377, :name => "Kirovohradska Oblast'ka Oblast", :abbreviation => '35'
+    country.create :id => 2378, :name => "Kyïvska Oblast'ka Oblast", :abbreviation => '32'
+    country.create :id => 2379, :name => "Luhanska Oblast'ka Oblast", :abbreviation => '09'
+    country.create :id => 2380, :name => "Lvivs'ka Oblast'vivska Oblast'ka Oblast", :abbreviation => '46'
+    country.create :id => 2381, :name => "Mykolaïvska Oblast'ka Oblast", :abbreviation => '48'
+    country.create :id => 2382, :name => "Odeska Oblast'ka Oblast", :abbreviation => '51'
+    country.create :id => 2383, :name => "Poltavska Oblast'ka Oblast", :abbreviation => '53'
+    country.create :id => 2384, :name => "Rivnenska Oblast'ka Oblast", :abbreviation => '56'
+    country.create :id => 2385, :name => "Sums ka Oblast'ka Oblast", :abbreviation => '59'
+    country.create :id => 2386, :name => "Ternopils'ka Oblast'ska Oblast'ka Oblast", :abbreviation => '61'
+    country.create :id => 2387, :name => "Vinnytska Oblast'ka Oblast", :abbreviation => '05'
+    country.create :id => 2388, :name => "Volynska Oblast'ka Oblast", :abbreviation => '07'
+    country.create :id => 2389, :name => "Zakarpatska Oblast'ka Oblast", :abbreviation => '21'
+    country.create :id => 2390, :name => "Zaporizka Oblast'ka Oblast", :abbreviation => '23'
+    country.create :id => 2391, :name => "Zhytomyrska Oblast'ka Oblast", :abbreviation => '18'
+  end
+  
+  with_options(:country => "Uganda") do |country|
+    country.create :id => 2392, :name => "Central", :abbreviation => 'UG C'
+    country.create :id => 2393, :name => "Eastern", :abbreviation => 'UG E'
+    country.create :id => 2394, :name => "Northern", :abbreviation => 'UG N'
+    country.create :id => 2395, :name => "Western", :abbreviation => 'UG W'
+  end
+  
+  with_options(:country => "United States Minor Outlying Islands") do |country|
+    country.create :id => 2396, :name => "Baker Island", :abbreviation => '81'
+    country.create :id => 2397, :name => "Howland Island", :abbreviation => '84'
+    country.create :id => 2398, :name => "Jarvis Island", :abbreviation => '86'
+    country.create :id => 2399, :name => "Johnston Atoll", :abbreviation => '67'
+    country.create :id => 2400, :name => "Kingman Reef", :abbreviation => '89'
+    country.create :id => 2401, :name => "Midway Islands", :abbreviation => '71'
+    country.create :id => 2402, :name => "Navassa Island", :abbreviation => '76'
+    country.create :id => 2403, :name => "Palmyra Atoll", :abbreviation => '95'
+    country.create :id => 2404, :name => "Wake Island", :abbreviation => '79'
+  end
+  
+  with_options(:country => "United States") do |country|
+    country.create :id => 2405, :name => "Alabama", :abbreviation => 'AL'
+    country.create :id => 2406, :name => "Alaska", :abbreviation => 'AK'
+    country.create :id => 2407, :name => "Arizona", :abbreviation => 'AZ'
+    country.create :id => 2408, :name => "Arkansas", :abbreviation => 'AR'
+    country.create :id => 2409, :name => "California", :abbreviation => 'CA'
+    country.create :id => 2410, :name => "Colorado", :abbreviation => 'CO'
+    country.create :id => 2411, :name => "Connecticut", :abbreviation => 'CT'
+    country.create :id => 2412, :name => "Delaware", :abbreviation => 'DE'
+    country.create :id => 2413, :name => "Florida", :abbreviation => 'FL'
+    country.create :id => 2414, :name => "Georgia", :abbreviation => 'GA'
+    country.create :id => 2415, :name => "Hawaii", :abbreviation => 'HI'
+    country.create :id => 2416, :name => "Idaho", :abbreviation => 'ID'
+    country.create :id => 2417, :name => "Illinois", :abbreviation => 'IL'
+    country.create :id => 2418, :name => "Indiana", :abbreviation => 'IN'
+    country.create :id => 2419, :name => "Iowa", :abbreviation => 'IA'
+    country.create :id => 2420, :name => "Kansas", :abbreviation => 'KS'
+    country.create :id => 2421, :name => "Kentucky", :abbreviation => 'KY'
+    country.create :id => 2422, :name => "Louisiana", :abbreviation => 'LA'
+    country.create :id => 2423, :name => "Maine", :abbreviation => 'ME'
+    country.create :id => 2424, :name => "Maryland", :abbreviation => 'MD'
+    country.create :id => 2425, :name => "Massachusetts", :abbreviation => 'MA'
+    country.create :id => 2426, :name => "Michigan", :abbreviation => 'MI'
+    country.create :id => 2427, :name => "Minnesota", :abbreviation => 'MN'
+    country.create :id => 2428, :name => "Mississippi", :abbreviation => 'MS'
+    country.create :id => 2429, :name => "Missouri", :abbreviation => 'MO'
+    country.create :id => 2430, :name => "Montana", :abbreviation => 'MT'
+    country.create :id => 2431, :name => "Nebraska", :abbreviation => 'NE'
+    country.create :id => 2432, :name => "Nevada", :abbreviation => 'NV'
+    country.create :id => 2433, :name => "New Hampshire", :abbreviation => 'NH'
+    country.create :id => 2434, :name => "New Jersey", :abbreviation => 'NJ'
+    country.create :id => 2435, :name => "New Mexico", :abbreviation => 'NM'
+    country.create :id => 2436, :name => "New York", :abbreviation => 'NY'
+    country.create :id => 2437, :name => "North Carolina", :abbreviation => 'NC'
+    country.create :id => 2438, :name => "North Dakota", :abbreviation => 'ND'
+    country.create :id => 2439, :name => "Ohio", :abbreviation => 'OH'
+    country.create :id => 2440, :name => "Oklahoma", :abbreviation => 'OK'
+    country.create :id => 2441, :name => "Oregon", :abbreviation => 'OR'
+    country.create :id => 2442, :name => "Pennsylvania", :abbreviation => 'PA'
+    country.create :id => 2443, :name => "Rhode Island", :abbreviation => 'RI'
+    country.create :id => 2444, :name => "South Carolina", :abbreviation => 'SC'
+    country.create :id => 2445, :name => "South Dakota", :abbreviation => 'SD'
+    country.create :id => 2446, :name => "Tennessee", :abbreviation => 'TN'
+    country.create :id => 2447, :name => "Texas", :abbreviation => 'TX'
+    country.create :id => 2448, :name => "Utah", :abbreviation => 'UT'
+    country.create :id => 2449, :name => "Vermont", :abbreviation => 'VT'
+    country.create :id => 2450, :name => "Virginia", :abbreviation => 'VA'
+    country.create :id => 2451, :name => "Washington", :abbreviation => 'WA'
+    country.create :id => 2452, :name => "West Virginia", :abbreviation => 'WV'
+    country.create :id => 2453, :name => "Wisconsin", :abbreviation => 'WI'
+    country.create :id => 2454, :name => "Wyoming", :abbreviation => 'WY'
+  end
+  
+  with_options(:country => "Uruguay") do |country|
+    country.create :id => 2455, :name => "Artigas", :abbreviation => 'AR'
+    country.create :id => 2456, :name => "Canelones", :abbreviation => 'CA'
+    country.create :id => 2457, :name => "Cerro Largo", :abbreviation => 'CL'
+    country.create :id => 2458, :name => "Colonia", :abbreviation => 'CO'
+    country.create :id => 2459, :name => "Durazno", :abbreviation => 'DU'
+    country.create :id => 2460, :name => "Flores", :abbreviation => 'FS'
+    country.create :id => 2461, :name => "Florida", :abbreviation => 'FD'
+    country.create :id => 2462, :name => "Lavalleja", :abbreviation => 'LA'
+    country.create :id => 2463, :name => "Maldonado", :abbreviation => 'MA'
+    country.create :id => 2464, :name => "Montevideo", :abbreviation => 'MO'
+    country.create :id => 2465, :name => "Paysandú", :abbreviation => 'PA'
+    country.create :id => 2466, :name => "Río Negro", :abbreviation => 'RN'
+    country.create :id => 2467, :name => "Rivera", :abbreviation => 'RV'
+    country.create :id => 2468, :name => "Rocha", :abbreviation => 'RO'
+    country.create :id => 2469, :name => "Salto", :abbreviation => 'SA'
+    country.create :id => 2470, :name => "San José", :abbreviation => 'SJ'
+    country.create :id => 2471, :name => "Soriano", :abbreviation => 'SO'
+    country.create :id => 2472, :name => "Tacuarembó", :abbreviation => 'TA'
+    country.create :id => 2473, :name => "Treinta y Tres", :abbreviation => 'TT'
+  end
+  
+  with_options(:country => "Uzbekistan") do |country|
+    country.create :id => 2474, :name => "Toshkent", :abbreviation => 'TK'
+  end
+  
+  with_options(:country => "Saint Vincent and the Grenadines") do |country|
+    country.create :id => 2475, :name => "Charlotte", :abbreviation => '01'
+    country.create :id => 2476, :name => "Grenadines", :abbreviation => '06'
+    country.create :id => 2477, :name => "Saint Andrew", :abbreviation => '02'
+    country.create :id => 2478, :name => "Saint David", :abbreviation => '03'
+    country.create :id => 2479, :name => "Saint George", :abbreviation => '04'
+    country.create :id => 2480, :name => "Saint Patrick", :abbreviation => '05'
+  end
+  
+  with_options(:country => "Venezuela") do |country|
+    country.create :id => 2481, :name => "Dependencias Federales", :abbreviation => 'W'
+  end
+  
+  with_options(:country => "Viet Nam") do |country|
+    country.create :id => 2482, :name => "An Giang", :abbreviation => '44'
+    country.create :id => 2483, :name => "Bà Rịa - Vũng Tàu", :abbreviation => '43'
+    country.create :id => 2484, :name => "Bắc Kạn", :abbreviation => '53'
+    country.create :id => 2485, :name => "Bắc Giang", :abbreviation => '54'
+    country.create :id => 2486, :name => "Bạc Liêu", :abbreviation => '55'
+    country.create :id => 2487, :name => "Bắc Ninh", :abbreviation => '56'
+    country.create :id => 2488, :name => "Bến Tre", :abbreviation => '50'
+    country.create :id => 2489, :name => "Bình Định", :abbreviation => '31'
+    country.create :id => 2490, :name => "Bình Dương", :abbreviation => '57'
+    country.create :id => 2491, :name => "Bình Phước", :abbreviation => '58'
+    country.create :id => 2492, :name => "Bình Thuận", :abbreviation => '40'
+    country.create :id => 2493, :name => "Cà Mau", :abbreviation => '59'
+    country.create :id => 2494, :name => "Cần Thơ", :abbreviation => '48'
+    country.create :id => 2495, :name => "Cao Bằng", :abbreviation => '04'
+    country.create :id => 2496, :name => "Đà Nẵng, thành phố", :abbreviation => '60'
+    country.create :id => 2497, :name => "Đắc Lắk", :abbreviation => '33'
+    country.create :id => 2498, :name => "Đắk Nông", :abbreviation => '72'
+    country.create :id => 2499, :name => "Điện Biên", :abbreviation => '71'
+    country.create :id => 2500, :name => "Đồng Nai", :abbreviation => '39'
+    country.create :id => 2501, :name => "Đồng Tháp", :abbreviation => '45'
+    country.create :id => 2502, :name => "Gia Lai", :abbreviation => '30'
+    country.create :id => 2503, :name => "Hà Giang", :abbreviation => '03'
+    country.create :id => 2504, :name => "Hà Nam", :abbreviation => '63'
+    country.create :id => 2505, :name => "Hà Nội, thủ đô", :abbreviation => '64'
+    country.create :id => 2506, :name => "Hà Tây", :abbreviation => '15'
+    country.create :id => 2507, :name => "Hà Tỉnh", :abbreviation => '23'
+    country.create :id => 2508, :name => "Hải Duong", :abbreviation => '61'
+    country.create :id => 2509, :name => "Hải Phòng, thành phố", :abbreviation => '62'
+    country.create :id => 2510, :name => "Hậu Giang", :abbreviation => '73'
+    country.create :id => 2511, :name => "Hoà Bình", :abbreviation => '14'
+    country.create :id => 2512, :name => "Hồ Chí Minh, thành phố [Sài Gòn]", :abbreviation => '65'
+    country.create :id => 2513, :name => "Hưng Yên", :abbreviation => '66'
+    country.create :id => 2514, :name => "Khánh Hòa", :abbreviation => '34'
+    country.create :id => 2515, :name => "Kiên Giang", :abbreviation => '47'
+    country.create :id => 2516, :name => "Kon Tum", :abbreviation => '28'
+    country.create :id => 2517, :name => "Lai Châu", :abbreviation => '01'
+    country.create :id => 2518, :name => "Lâm Đồng", :abbreviation => '35'
+    country.create :id => 2519, :name => "Lạng Sơn", :abbreviation => '09'
+    country.create :id => 2520, :name => "Lào Cai", :abbreviation => '02'
+    country.create :id => 2521, :name => "Long An", :abbreviation => '41'
+    country.create :id => 2522, :name => "Nam Định", :abbreviation => '67'
+    country.create :id => 2523, :name => "Nghệ An", :abbreviation => '22'
+    country.create :id => 2524, :name => "Ninh Bình", :abbreviation => '18'
+    country.create :id => 2525, :name => "Ninh Thuận", :abbreviation => '36'
+    country.create :id => 2526, :name => "Phú Thọ", :abbreviation => '68'
+    country.create :id => 2527, :name => "Phú Yên", :abbreviation => '32'
+    country.create :id => 2528, :name => "Quảng Bình", :abbreviation => '24'
+    country.create :id => 2529, :name => "Quảng Nam", :abbreviation => '27'
+    country.create :id => 2530, :name => "Quảng Ngãi", :abbreviation => '29'
+    country.create :id => 2531, :name => "Quảng Ninh", :abbreviation => '13'
+    country.create :id => 2532, :name => "Quảng Trị", :abbreviation => '25'
+    country.create :id => 2533, :name => "Sóc Trăng", :abbreviation => '52'
+    country.create :id => 2534, :name => "Sơn La", :abbreviation => '05'
+    country.create :id => 2535, :name => "Tây Ninh", :abbreviation => '37'
+    country.create :id => 2536, :name => "Thái Bình", :abbreviation => '20'
+    country.create :id => 2537, :name => "Thái Nguyên", :abbreviation => '69'
+    country.create :id => 2538, :name => "Thanh Hóa", :abbreviation => '21'
+    country.create :id => 2539, :name => "Thừa Thiên-Huế", :abbreviation => '26'
+    country.create :id => 2540, :name => "Tiền Giang", :abbreviation => '46'
+    country.create :id => 2541, :name => "Trà Vinh", :abbreviation => '51'
+    country.create :id => 2542, :name => "Tuyên Quang", :abbreviation => '07'
+    country.create :id => 2543, :name => "Vĩnh Long", :abbreviation => '49'
+    country.create :id => 2544, :name => "Vĩnh Phúc", :abbreviation => '70'
+    country.create :id => 2545, :name => "Yên Bái", :abbreviation => '06'
+  end
+  
+  with_options(:country => "Vanuatu") do |country|
+    country.create :id => 2546, :name => "Malampa", :abbreviation => 'MAP'
+    country.create :id => 2547, :name => "Pénama", :abbreviation => 'PAM'
+    country.create :id => 2548, :name => "Sanma", :abbreviation => 'SAM'
+    country.create :id => 2549, :name => "Shéfa", :abbreviation => 'SEE'
+    country.create :id => 2550, :name => "Taféa", :abbreviation => 'TAE'
+    country.create :id => 2551, :name => "Torba", :abbreviation => 'TOB'
+  end
+  
+  with_options(:country => "Samoa") do |country|
+    country.create :id => 2552, :name => "Aanaana", :abbreviation => 'AA'
+    country.create :id => 2553, :name => "Aiga-i-le-Tai", :abbreviation => 'AL'
+    country.create :id => 2554, :name => "Atua", :abbreviation => 'AT'
+    country.create :id => 2555, :name => "Faasaleleagaasaleleaga", :abbreviation => 'FA'
+    country.create :id => 2556, :name => "Gagaemaugaemauga", :abbreviation => 'GE'
+    country.create :id => 2557, :name => "Gagaifomauga", :abbreviation => 'GI'
+    country.create :id => 2558, :name => "Palauli", :abbreviation => 'PA'
+    country.create :id => 2559, :name => "Satupaiteaitea", :abbreviation => 'SA'
+    country.create :id => 2560, :name => "Tuamasaga", :abbreviation => 'TU'
+    country.create :id => 2561, :name => "Vaa-o-Fonotia-o-Fonoti", :abbreviation => 'VF'
+    country.create :id => 2562, :name => "Vaisigano", :abbreviation => 'VS'
+  end
+  
+  with_options(:country => "Yemen") do |country|
+    country.create :id => 2563, :name => "Abyān", :abbreviation => 'AB'
+    country.create :id => 2564, :name => "AdanAdan", :abbreviation => 'AD'
+    country.create :id => 2565, :name => "Aḑ Ḑāli", :abbreviation => 'DA'
+    country.create :id => 2566, :name => "Al Bayḑā", :abbreviation => 'BA'
+    country.create :id => 2567, :name => "Al Ḩudaydah", :abbreviation => 'MU'
+    country.create :id => 2568, :name => "Al Jawf", :abbreviation => 'JA'
+    country.create :id => 2569, :name => "Al Mahrah", :abbreviation => 'MR'
+    country.create :id => 2570, :name => "Al Maḩwīt", :abbreviation => 'MW'
+    country.create :id => 2571, :name => "AmrānAmrān", :abbreviation => 'AM'
+    country.create :id => 2572, :name => "Dhamār", :abbreviation => 'DH'
+    country.create :id => 2573, :name => "Ḩaḑramawt", :abbreviation => 'HD'
+    country.create :id => 2574, :name => "Ḩajjah", :abbreviation => 'HJ'
+    country.create :id => 2575, :name => "Ibb", :abbreviation => 'IB'
+    country.create :id => 2576, :name => "Laḩij", :abbreviation => 'LA'
+    country.create :id => 2577, :name => "Maribrib", :abbreviation => 'MA'
+    country.create :id => 2578, :name => "Şadahdah", :abbreviation => 'SD'
+    country.create :id => 2579, :name => "Şanā'ā", :abbreviation => 'SN'
+    country.create :id => 2580, :name => "Shabwah", :abbreviation => 'SH'
+    country.create :id => 2581, :name => "Tāizzizz", :abbreviation => 'TA'
+  end
+  
+  with_options(:country => "South Africa") do |country|
+    country.create :id => 2582, :name => "Eastern Cape", :abbreviation => 'EC'
+    country.create :id => 2583, :name => "Free State", :abbreviation => 'FS'
+    country.create :id => 2584, :name => "Gauteng", :abbreviation => 'GT'
+    country.create :id => 2585, :name => "Kwazulu-Natal", :abbreviation => 'NL'
+    country.create :id => 2586, :name => "Limpopo", :abbreviation => 'LP'
+    country.create :id => 2587, :name => "Mpumalanga", :abbreviation => 'MP'
+    country.create :id => 2588, :name => "Northern Cape", :abbreviation => 'NC'
+    country.create :id => 2589, :name => "North-West (South Africa)", :abbreviation => 'NW'
+    country.create :id => 2590, :name => "Western Cape", :abbreviation => 'WC'
+  end
+  
+  with_options(:country => "Zambia") do |country|
+    country.create :id => 2591, :name => "Central", :abbreviation => '02'
+    country.create :id => 2592, :name => "Copperbelt", :abbreviation => '08'
+    country.create :id => 2593, :name => "Eastern", :abbreviation => '03'
+    country.create :id => 2594, :name => "Luapula", :abbreviation => '04'
+    country.create :id => 2595, :name => "Lusaka", :abbreviation => '09'
+    country.create :id => 2596, :name => "Northern", :abbreviation => '05'
+    country.create :id => 2597, :name => "North-Western", :abbreviation => '06'
+    country.create :id => 2598, :name => "Southern (Zambia)", :abbreviation => '07'
+    country.create :id => 2599, :name => "Western", :abbreviation => '01'
+  end
+  
+  with_options(:country => "Zimbabwe") do |country|
+    country.create :id => 2600, :name => "Bulawayo", :abbreviation => 'BU'
+    country.create :id => 2601, :name => "Harare", :abbreviation => 'HA'
   end
 end

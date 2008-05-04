@@ -1,13 +1,8 @@
 = has_addresses
 
-+has_addresses+ adds a base skeleton for handling countries, regions, and
-addresses.
++has_addresses+ demonstrates a reference implementation for handling countries, regions, and addresses.
 
 == Resources
-
-Announcement
-
-* http://www.pluginaweek.org
 
 Wiki
 
@@ -19,11 +14,11 @@ API
 
 Development
 
-* http://dev.pluginaweek.org/browser/trunk/plugins/active_record/has/has_addresses
+* http://dev.pluginaweek.org/browser/trunk/has_addresses
 
 Source
 
-* http://svn.pluginaweek.org/trunk/plugins/active_record/has/has_addresses
+* http://svn.pluginaweek.org/trunk/has_addresses
 
 == Description
 
@@ -35,88 +30,29 @@ open-source Debian package, iso-codes.
 
 Along with the simple Country and Region models, addresses can be defined and
 integrated based on the data in these models.  Addresses are minimalistic in
-terms of the type of data required and follows the standard U.S. format.
+terms of the type of data required.
 
 == Usage
 
-=== Running migrations
+Note that this is a reference implementation and, most likely, should be
+modified for your own usage.
 
-To migrate the tables required for this plugin, you can either run the
-migration from the command line like so:
+=== Example
 
-  rake db:migrate:plugins PLUGIN=has_addresses
-
-or (more ideally) generate a migration file that will integrate into your main
-application's migration path:
-
-  ruby script/generate plugin_migration has_addresses
-
-=== Bootstrapping the database
-
-+has_addresses+ comes bundled with tasks for bootstrapping the countries and
-regions table based on the ISO 3166 and ISO 3166-2 standard.  You can bootstrap
-the database using built-in rake tasks or by creating fixtures which contain the
-bootstrap data.
-
-To bootstrap country/region data into the current database schema:
-
-  $ rake countries:bootstrap
-  (in /my/project)
-  Downloading ISO 3166 data...
-  Parsing countries...
-  Loading countries into database...
-  Done!
-  
-  $ rake regions:bootstrap
-  Downloading ISO 3166 data...
-  Parsing countries...
-  Downloading ISO 3166-2 data...
-  Parsing regions...
-  Loading regions into database...
-  Done!
-
-To create fixtures for the country/region bootstrap data:
-
-  $ rake countries:create_fixtures
-  (in /my/project)
-  Downloading ISO 3166 data...
-  Parsing countries...
-  Saving countries to /my/project/config/../db/bootstrap/countries.yml...
-  Done!
-  
-  $ rake regions:create_fixtures
-  (in /my/project)
-  Downloading ISO 3166 data...
-  Parsing countries...
-  Downloading ISO 3166-2 data...
-  Parsing regions...
-  Saving regions to /my/project/config/../db/bootstrap/regions.yml...
-  Done!
+  address = Address.new(
+    :street_1 => '1600 Amphitheatre Parkway',
+    :city => 'Mountain View',
+    :region => :california,
+    :postal_code => '94043'
+  )
+  address.single_line # => "1600 Amphitheatre Parkway, Mountain View, California  94043, United States"
 
 == Testing
 
-Before you can run any tests, the following gems must be installed:
+Before you can run any tests, the following gem must be installed:
 * plugin_test_helper[http://wiki.pluginaweek.org/Plugin_test_helper]
-* dry_validity_assertions[http://wiki.pluginaweek.org/Dry_validity_assertions]
-
-Since the rake tasks for installing TinyMCE and updating the configuration
-options are part of the unit tests, already-downloaded files are included with
-the plugin.  If you want to perform a "live" test which actually downloads the
-files off the Internet (rather than using the local versions), you must set
-the LIVE environment variable to true.  For example,
-
-  rake test LIVE=true
 
 == Dependencies
 
-This plugin is a plugin+.  That means that it contains a slice of an
-application, such as models and migrations.  To test or use a plugin+, you
-must have the following plugins/gems installed:
-* plugin_dependencies[http://wiki.pluginaweek.org/Plugin_dependencies]
-* loaded_plugins[http://wiki.pluginaweek.org/Loaded_plugins]
-* appable_plugins[http://wiki.pluginaweek.org/Appable_plugins]
-* plugin_migrations[http://wiki.pluginaweek.org/Plugin_migrations]
-
-Instead of installing each individual plugin+ feature, you can install them all
-at once using the plugins+[http://wiki.pluginaweek.org/Plugins_plus] meta package,
-which contains all additional features.
+* plugins_plus[http://wiki.pluginaweek.org/Plugins_plus]
+* acts_as_enumeration[http://wiki.pluginaweek.org/Acts_as_enumeration]

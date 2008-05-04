@@ -1,74 +1,23 @@
 module PluginAWeek #:nodoc:
-  module Has #:nodoc:
-    # Adds base models for interacting with addresses, including Country,
-    # Region, and Address.  These have the minimal attribute definitions needed
-    # to store addresses.
-    module Addresses
-      # Whether or not to use verbose output
-      mattr_accessor :verbose
-      @@verbose = true
-      
-      def self.included(base) #:nodoc:
-        base.extend(MacroMethods)
+  # Adds a generic implementation for dealing with regions, countries, and
+  # addresses
+  module HasAddresses
+    def self.included(base) #:nodoc:
+      base.class_eval do
+        extend PluginAWeek::HasAddresses::MacroMethods
       end
-      
-      module MacroMethods
-        # Creates a new association for having a single address.  This takes
-        # the same parameters as +has_one+.  By default, the following associations
-        # are the same:
-        # 
-        #   class Person < ActiveRecord::Base
-        #     has_address
-        #   end
-        # 
-        # and
-        # 
-        #   class Person < ActiveRecord::Base
-        #     has_one :address,
-        #               :class_name => 'Address',
-        #               :as => :addressable,
-        #               :dependent => :destroy
-        #   end
-        def has_address(*args, &extension)
-          create_address_association(:one, :address, *args, &extension)
-        end
-        
-        # Creates a new association for having a multiple addresses.  This takes
-        # the same parameters as +has_many+.  By default, the following associations
-        # are the same:
-        # 
-        #   class Person < ActiveRecord::Base
-        #     has_addresses
-        #   end
-        # 
-        # and
-        # 
-        #   class Person < ActiveRecord::Base
-        #     has_many  :addresses,
-        #                 :class_name => 'Address',
-        #                 :as => :addressable,
-        #                 :dependent => :destroy
-        #   end
-        def has_addresses(*args, &extension)
-          create_address_association(:many, :addresses, *args, &extension)
-        end
-        
-        private
-        def create_address_association(cardinality, association_id, *args, &extension)
-          options = extract_options_from_args!(args)
-          options.symbolize_keys!.reverse_merge!(
-            :class_name => 'Address',
-            :as => :addressable,
-            :dependent => :destroy
-          )
-          
-          send("has_#{cardinality}", args.first || association_id, options, &extension)
-        end
+    end
+    
+    module MacroMethods
+      # Creates the following association:
+      # * +addresses+ - All addresses associated with the current record.
+      def has_addresses
+        has_many  :addresses
       end
     end
   end
 end
 
 ActiveRecord::Base.class_eval do
-  include PluginAWeek::Has::Addresses
+  include PluginAWeek::HasAddresses
 end

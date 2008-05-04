@@ -1,101 +1,90 @@
 require "#{File.dirname(__FILE__)}/../test_helper"
 
-unless ENV['LIVE']
-  Region::ISO_3166_2_URL = "#{RAILS_ROOT}/../files/iso_3166_2.xml"
+class RegionByDefaultTest < Test::Unit::TestCase
+  def setup
+    @region = Region.new
+  end
+  
+  def test_should_not_have_a_name
+    assert_nil @region.name
+  end
+  
+  def test_should_not_have_a_country
+    assert_nil @region.country_id
+  end
+  
+  def test_should_not_have_an_abbreviation
+    assert_nil @region.abbreviation
+  end
 end
 
 class RegionTest < Test::Unit::TestCase
-  fixtures :countries, :regions, :addresses
-  
-  def test_should_download_and_parse_regions_from_iso_standard
-    regions = Region.download_all
-    assert_instance_of Array, regions
-    assert !regions.empty?
+  def test_should_be_valid_with_a_set_of_valid_attributes
+    region = new_region
+    assert region.valid?
   end
   
-  def test_bootstrap_should_remove_existing_records
-    region = Region.create(:name => 'Test', :country_id => 840, :abbreviation => 'TE')
-    assert !region.new_record?
-    Region.bootstrap
-    assert_nil Region.find_by_name('Test')
+  def test_should_require_a_name
+    region = new_region(:name => nil)
+    assert !region.valid?
+    assert_equal 1, Array(region.errors.on(:name)).size
   end
   
-  def test_bootstrap_should_insert_downloaded_regions
-    Region.bootstrap
-    assert Region.count > 1
+  def test_should_require_a_country
+    region = new_region(:country => nil)
+    assert !region.valid?
+    assert_equal 1, Array(region.errors.on(:country_id)).size
   end
   
-  def test_bootstrap_should_return_true_if_successful
-    assert Region.bootstrap
+  def test_should_require_an_abbreviation
+    region = new_region(:abbreviation => nil)
+    assert !region.valid?
+    assert_equal 2, Array(region.errors.on(:abbreviation)).size
   end
   
-  def test_should_use_default_path_for_created_fixture
-    Region.create_fixtures
-    assert File.exists?("#{RAILS_ROOT}/db/bootstrap/regions.yml")
-  end
-  
-  def test_should_allow_custom_path_for_created_fixture
-    Region.create_fixtures('db/bootstrap/the_regions.yml')
-    assert File.exists?("#{RAILS_ROOT}/db/bootstrap/the_regions.yml")
-  end
-  
-  def test_created_fixture_should_load_into_table
-    Region.create_fixtures
-    Fixtures.create_fixtures("#{RAILS_ROOT}/db/bootstrap", 'regions')
-    assert Region.count > 1
-  end
-  
-  def test_should_be_valid
-    assert_valid regions(:california)
-  end
-  
-  def test_should_require_name
-    assert_invalid regions(:california), :name, nil
-  end
-  
-  def test_should_restrict_name_length
-    assert_invalid regions(:california), :name, 'C', 'C' * 81
-    assert_valid regions(:california), :name, 'Ca', 'C' * 80
-  end
-  
-  def test_should_require_unique_name_per_country
-    region = regions(:california).clone
-    assert_invalid region, :name
+  def test_should_not_allow_abbrevations_shorter_than_1_or_longer_than_5_characters
+    region = new_region(:abbreviation => '')
+    assert !region.valid?
+    assert_equal 2, Array(region.errors.on(:abbreviation)).size
     
-    region.country = countries(:canada)
-    assert_valid region, :name
-  end
-  
-  def test_should_require_abbreviation
-    assert_invalid regions(:california), :abbreviation, nil
-  end
-  
-  def test_should_restrict_abbreviation_length
-    assert_invalid regions(:california), :abbreviation, '', 'C' * 6
-    assert_valid regions(:california), :abbreviation, 'CA', 'C' * 5
-  end
-  
-  def test_should_require_unique_abbreviation_per_country
-    region = regions(:california).clone
-    assert_invalid region, :abbreviation
+    region.abbreviation += 'a'
+    assert region.valid?
     
-    region.country = countries(:canada)
-    assert_valid region, :abbreviation
-  end
-  
-  def test_should_belong_to_a_country
-    assert_equal countries(:united_states), regions(:california).country
-  end
-  
-  def test_should_have_many_addresses
-    assert_equal [addresses(:in_known_region), addresses(:google_headquarters), addresses(:google_sales)], regions(:california).addresses
+    region.abbreviation += 'aaaa'
+    assert region.valid?
+    
+    region.abbreviation += 'a'
+    assert !region.valid?
+    assert_equal 1, Array(region.errors.on(:abbreviation)).size
   end
   
   def test_should_use_name_for_stringification
-    assert_equal 'California', regions(:california).to_s
+    region = new_region(:name => 'California')
+    assert_equal 'California', region.to_s
+  end
+end
+
+class RegionAfterBeingCreatedTest < Test::Unit::TestCase
+  def setup
+    @region = Region['California']
   end
   
-  def teardown
-    FileUtils.rmtree("#{RAILS_ROOT}/db/bootstrap")
+  def test_should_belong_to_a_country
+    assert_equal Country['United States'], @region.country
+  end
+  
+  def test_should_not_have_any_addresses
+    assert_equal 0, @region.addresses.size
+  end
+end
+
+class RegionWithAddressesTest < Test::Unit::TestCase
+  def setup
+    @region = Region['California']
+    @address = create_address(:region => @region)
+  end
+  
+  def test_should_have_many_addresses
+    assert_equal [@address], @region.addresses
   end
 end

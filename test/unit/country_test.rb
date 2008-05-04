@@ -1,119 +1,123 @@
 require "#{File.dirname(__FILE__)}/../test_helper"
 
-unless ENV['LIVE']
-  Country::ISO_3166_URL = "#{RAILS_ROOT}/../files/iso_3166.xml"
+class CountryByDefaultTest < Test::Unit::TestCase
+  def setup
+    @country = Country.new
+  end
+  
+  def test_should_not_have_a_name
+    assert_nil @country.name
+  end
+  
+  def test_should_not_have_an_official_name
+    assert_nil @country.official_name
+  end
+  
+  def test_should_not_have_an_alpha_2_code
+    assert_nil @country.alpha_2_code
+  end
+  
+  def test_should_not_have_an_alpha_3_code
+    assert_nil @country.alpha_3_code
+  end
+  
+  def test_should_use_name_for_official_name
+    country = Country.new(:name => 'United States')
+    assert_equal 'United States', country.official_name
+  end
 end
 
 class CountryTest < Test::Unit::TestCase
-  fixtures :countries, :regions
-  
-  def test_should_download_and_parse_countries_from_iso_standard
-    countries = Country.download_all
-    assert_instance_of Array, countries
-    assert !countries.empty?
+  def test_should_be_valid_with_a_set_of_valid_attributes
+    country = new_country
+    assert country.valid?
   end
   
-  def test_bootstrap_should_remove_existing_records
-    country = Country.create(:name => 'Test', :alpha_2_code => 'TE', :alpha_3_code => 'TES')
-    assert !country.new_record?
-    Country.bootstrap
-    assert_nil Country.find_by_name('Test')
+  def test_should_require_a_name
+    country = new_country(:name => nil)
+    assert !country.valid?
+    assert_equal 1, Array(country.errors.on(:name)).size
   end
   
-  def test_bootstrap_should_insert_downloaded_countries
-    Country.bootstrap
-    assert Country.count > 2
+  def test_should_not_require_an_official_name
+    country = new_country(:official_name => nil)
+    assert country.valid?
   end
   
-  def test_bootstrap_should_return_true_if_successful
-    assert Country.bootstrap
+  def test_should_require_an_alpha_2_code
+    country = new_country(:alpha_2_code => nil)
+    assert !country.valid?
+    assert_equal 2, Array(country.errors.on(:alpha_2_code)).size
   end
   
-  def test_should_use_default_path_for_created_fixture
-    Country.create_fixtures
-    assert File.exists?("#{RAILS_ROOT}/db/bootstrap/countries.yml")
+  def test_should_not_allow_alpha_2_codes_shorter_or_longer_than_2_characters
+    country = new_country(:alpha_2_code => 'a')
+    assert !country.valid?
+    assert_equal 1, Array(country.errors.on(:alpha_2_code)).size
+    
+    country.alpha_2_code += 'a'
+    assert country.valid?
+    
+    country.alpha_2_code += 'a'
+    assert !country.valid?
+    assert_equal 1, Array(country.errors.on(:alpha_2_code)).size
   end
   
-  def test_should_allow_custom_path_for_created_fixture
-    Country.create_fixtures('db/bootstrap/the_countries.yml')
-    assert File.exists?("#{RAILS_ROOT}/db/bootstrap/the_countries.yml")
+  def test_should_require_an_alpha_3_code
+    country = new_country(:alpha_3_code => nil)
+    assert !country.valid?
+    assert_equal 2, Array(country.errors.on(:alpha_3_code)).size
   end
   
-  def test_created_fixture_should_load_into_table
-    Country.create_fixtures
-    Fixtures.create_fixtures("#{RAILS_ROOT}/db/bootstrap", 'countries')
-    assert Country.count > 2
+  def test_should_not_allow_alpha_3_codes_shorter_or_longer_than_3_characters
+    country = new_country(:alpha_3_code => 'aa')
+    assert !country.valid?
+    assert_equal 1, Array(country.errors.on(:alpha_3_code)).size
+    
+    country.alpha_3_code += 'a'
+    assert country.valid?
+    
+    country.alpha_3_code += 'a'
+    assert !country.valid?
+    assert_equal 1, Array(country.errors.on(:alpha_3_code)).size
   end
   
-  def test_should_be_valid
-    assert_valid countries(:united_states)
+  def test_should_use_alpha_2_code_for_abbreviation_2
+    country = new_country(:alpha_2_code => 'US')
+    assert_equal 'US', country.abbreviation_2
   end
   
-  def test_should_require_name
-    assert_invalid countries(:united_states), :name, nil
-  end
-  
-  def test_should_restrict_name_length
-    assert_invalid countries(:united_states), :name, 'U', 'U' * 81
-    assert_valid countries(:united_states), :name, 'US', 'U' * 80
-  end
-  
-  def test_should_require_unique_name
-    assert_invalid countries(:united_states).clone, :name
-  end
-  
-  def test_should_require_alpha_2_code
-    assert_invalid countries(:united_states), :alpha_2_code, nil
-  end
-  
-  def test_should_restrict_alpha_2_code_length
-    assert_invalid countries(:united_states), :alpha_2_code, 'U', 'USA'
-    assert_valid countries(:united_states), :alpha_2_code, 'US'
-  end
-  
-  def test_should_require_unique_alpha_2_code
-    assert_invalid countries(:united_states).clone, :alpha_2_code
-  end
-  
-  def test_should_require_alpha_3_code
-    assert_invalid countries(:united_states), :alpha_3_code, nil
-  end
-  
-  def test_should_restrict_alpha_3_code_length
-    assert_invalid countries(:united_states), :alpha_3_code, 'US', 'USAC'
-    assert_valid countries(:united_states), :alpha_3_code, 'USA'
-  end
-  
-  def test_should_require_unique_alpha_3_code
-    assert_invalid countries(:united_states).clone, :alpha_3_code
-  end
-  
-  def test_abbreviation_2_should_be_same_as_alpha_2_code
-    assert_equal 'US', countries(:united_states).abbreviation_2
-  end
-  
-  def test_abbreviation_3_should_be_same_as_alpha_3_code
-    assert_equal 'USA', countries(:united_states).abbreviation_3
-  end
-  
-  def test_should_have_an_official_name
-    assert_equal 'United States of America', countries(:united_states).official_name
-  end
-  
-  def test_should_use_name_when_official_name_is_not_present
-    assert_equal 'Canada', countries(:canada).official_name
+  def test_should_use_alpha_3_code_for_abbreviation_3
+    country = new_country(:alpha_3_code => 'USA')
+    assert_equal 'USA', country.abbreviation_3
   end
   
   def test_should_return_name_for_to_s
-    assert_equal 'United States', countries(:united_states).to_s
-    assert_equal 'Canada', countries(:canada).to_s
+    country = new_country(:name => 'United States')
+    assert_equal 'United States', country.to_s
+  end
+end
+
+class CountryAfterBeingCreatedTest < Test::Unit::TestCase
+  def setup
+    @country = Country['United States']
   end
   
-  def test_regions
-    assert_equal [regions(:california)], countries(:united_states).regions
+  def test_should_have_an_id
+    assert_not_nil @country.id
   end
   
-  def teardown
-    FileUtils.rmtree("#{RAILS_ROOT}/db/bootstrap")
+  def test_should_have_an_official_name
+    assert_equal 'United States of America', @country.official_name
+  end
+end
+
+class CountryWithRegionsTest < Test::Unit::TestCase
+  def setup
+    @country = Country['United States']
+  end
+  
+  def test_should_have_regions
+    assert_equal 50, @country.regions.size
   end
 end

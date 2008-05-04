@@ -1,5 +1,13 @@
 *SVN*
 
+*0.1.0* (May 5th, 2008)
+
+* Convert Country/Region to enumerations
+
+* Add dependency on acts_as_enumeration
+
+* Update documentation to reflect plugins_plus changes
+
 *0.0.2* (September 26th, 2007)
 
 * Move test fixtures out of the test application root directory

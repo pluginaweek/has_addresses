@@ -14,9 +14,6 @@ class Address < ActiveRecord::Base
                           :if => :known_region_required?
   validates_presence_of :custom_region,
                           :if => :custom_region_required?
-  validates_format_of   :postal_code,
-                          :with => /^[0-9]{5}$/,
-                          :allow_nil => true
   
   before_save :ensure_exclusive_references
   
@@ -29,7 +26,7 @@ class Address < ActiveRecord::Base
   # Gets the name of the region that this address is for (whether it is a custom or
   # stored region in the database)
   def region_name
-    custom_region || (region ? region.name : nil)
+    custom_region || region && region.name
   end
   
   # Gets the value of the address on a single line
@@ -46,39 +43,39 @@ class Address < ActiveRecord::Base
     line = ''
     line << city if city?
     if region_name
-      line << ', ' if !line.blank?
+      line << ', ' unless line.blank?
       line << region_name
     end
     if postal_code?
-      line << '  ' if !line.blank?
+      line << '  ' unless line.blank?
       line << postal_code
     end
-    lines << line if !line.blank?
+    lines << line unless line.blank?
     
     lines << country.name if country
     lines
   end
   
   private
-  def known_region_required?
-    country.nil? || country.regions.count != 0
-  end
-  
-  # A custom region name is required if a known region was not specified and
-  # the country in which this address resides has no known regions in the
-  # database
-  def custom_region_required?
-    region_id.nil? && country && country.regions.count == 0
-  end
-  
-  # Ensures that the country id/user region combo is not set at the same time as
-  # the region id
-  def ensure_exclusive_references
-    if known_region_required?
-      self.country_id = nil
-      self.custom_region = nil
+    def known_region_required?
+      !country || country.regions.any?
     end
     
-    true
-  end
+    # A custom region name is required if a known region was not specified and
+    # the country in which this address resides has no known regions in the
+    # database
+    def custom_region_required?
+      !region_id && country && country.regions.empty?
+    end
+    
+    # Ensures that the country id/user region combo is not set at the same time as
+    # the region id
+    def ensure_exclusive_references
+      if known_region_required?
+        self.country_id = nil
+        self.custom_region = nil
+      end
+      
+      true
+    end
 end
