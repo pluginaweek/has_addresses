@@ -3,9 +3,6 @@ require 'rake/rdoctask'
 require 'rake/gempackagetask'
 require 'rake/contrib/sshpublisher'
 
-# Load custom rakefile extensions
-Dir["#{File.dirname(__FILE__)}/tasks/**/*.rake"].sort.each {|ext| load ext}
-
 PKG_NAME           = 'has_addresses'
 PKG_VERSION        = '0.1.0'
 PKG_FILE_NAME      = "#{PKG_NAME}-#{PKG_VERSION}"
@@ -25,6 +22,7 @@ desc 'Generate documentation for the has_addresses plugin.'
 Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title    = 'HasAddresses'
+  rdoc.template = '../rdoc_template.rb'
   rdoc.options << '--line-numbers' << '--inline-source'
   rdoc.rdoc_files.include('README')
   rdoc.rdoc_files.include('lib/**/*.rb')
