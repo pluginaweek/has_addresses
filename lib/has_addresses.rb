@@ -12,7 +12,8 @@ module PluginAWeek #:nodoc:
       # Creates the following association:
       # * +addresses+ - All addresses associated with the current record.
       def has_addresses
-        has_many  :addresses
+        has_many  :addresses,
+                    :as => :addressable
       end
     end
   end
