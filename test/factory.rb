@@ -26,7 +26,7 @@ module Factory
   build Address do |attributes|
     attributes[:addressable] = create_company unless attributes.include?(:addressable)
     attributes.reverse_merge!(
-      :region => 'California',
+      :region => 'US-CA',
       :street_1 => '1600 Amphitheatre Parkway',
       :city => 'Mountain View',
       :postal_code => '94043'
@@ -44,7 +44,7 @@ module Factory
       :id => 123,
       :name => 'Moon',
       :official_name => 'The Moon',
-      :alpha_2_code => 'MO',
+      :alpha_2_code => 'GC',
       :alpha_3_code => 'MOO'
     )
   end
@@ -52,7 +52,7 @@ module Factory
   build Region do |attributes|
     attributes.reverse_merge!(
       :id => 123,
-      :country => 'United States',
+      :country => 'US',
       :name => 'New Something',
       :abbreviation => 'NS'
     )

@@ -42,7 +42,7 @@ modified for your own usage.
   address = Address.new(
     :street_1 => '1600 Amphitheatre Parkway',
     :city => 'Mountain View',
-    :region => 'California',
+    :region => 'US-CA',
     :postal_code => '94043'
   )
   address.single_line # => "1600 Amphitheatre Parkway, Mountain View, California  94043, United States"

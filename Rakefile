@@ -4,7 +4,7 @@ require 'rake/gempackagetask'
 require 'rake/contrib/sshpublisher'
 
 PKG_NAME           = 'has_addresses'
-PKG_VERSION        = '0.1.0'
+PKG_VERSION        = '0.2.0'
 PKG_FILE_NAME      = "#{PKG_NAME}-#{PKG_VERSION}"
 RUBY_FORGE_PROJECT = 'pluginaweek'
 
@@ -39,7 +39,7 @@ spec = Gem::Specification.new do |s|
   s.autorequire     = 'has_addresses'
   s.has_rdoc        = true
   s.test_files      = Dir['test/**/*_test.rb']
-  s.add_dependency  'acts_as_enumeration', '>= 0.1.0'
+  s.add_dependency  'acts_as_enumeration', '>= 0.2.0'
   
   s.author          = 'Aaron Pfeifer'
   s.email           = 'aaron@pluginaweek.org'

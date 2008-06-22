@@ -1,5 +1,21 @@
 *SVN*
 
+*0.2.0* (June 22nd, 2008)
+
+* Fix incorrect regions being listed for most countries
+
+* Use an id scheme for regions based on the id of the country to prevent id clashing in future updates
+
+* Improve performance by not requiring that the country be looked up for every new region created
+
+* Index region enumerations by their ISO code
+
+* Use common display names for countries, rather than the default specified in the standard; use the official name if needed
+
+* Organize country enumerations by id
+
+* Index country enumerations by their alpha 2 code
+
 *0.1.0* (May 5th, 2008)
 
 * Convert Country/Region to enumerations

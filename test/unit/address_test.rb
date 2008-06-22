@@ -92,24 +92,24 @@ class AddressTest < Test::Unit::TestCase
   end
   
   def test_should_require_a_region_if_country_has_regions
-    address = new_address(:country => 'United States', :region => nil)
+    address = new_address(:country => 'US', :region => nil)
     assert !address.valid?
     assert_equal 1, Array(address.errors.on(:region_id)).size
   end
   
   def test_should_not_require_a_region_if_country_has_no_regions
-    address = new_address(:country => 'Antarctica', :region => nil, :custom_region => 'Somewhere')
+    address = new_address(:country => 'AQ', :region => nil, :custom_region => 'Somewhere')
     assert address.valid?
   end
   
   def test_should_require_a_custom_region_if_country_has_no_regions
-    address = new_address(:country => 'Antarctica', :region => nil, :custom_region => nil)
+    address = new_address(:country => 'AQ', :region => nil, :custom_region => nil)
     assert !address.valid?
     assert_equal 1, Array(address.errors.on(:custom_region)).size
   end
   
   def test_should_not_require_a_custom_region_if_country_has_regions
-    address = new_address(:country => 'United States', :region => 'California', :custom_region => nil)
+    address = new_address(:country => 'US', :region => 'US-CA', :custom_region => nil)
     assert address.valid?
   end
   
@@ -133,7 +133,7 @@ class AddressTest < Test::Unit::TestCase
     ]
     assert_equal expected, address.multi_line
     
-    address.region = 'California'
+    address.region = 'US-CA'
     expected = [
       '123 Fake Street',
       'Apartment 456',
@@ -178,7 +178,7 @@ class AddressTest < Test::Unit::TestCase
   end
   
   def test_single_line
-    address = new_address(:street_1 => '1600 Amphitheatre Parkway', :city => 'Mountain View', :region => 'California', :postal_code => '94043')
+    address = new_address(:street_1 => '1600 Amphitheatre Parkway', :city => 'Mountain View', :region => 'US-CA', :postal_code => '94043')
     assert_equal '1600 Amphitheatre Parkway, Mountain View, California  94043, United States', address.single_line
   end
 end
@@ -196,7 +196,7 @@ end
 
 class AddressInKnownRegionTest < Test::Unit::TestCase
   def setup
-    @address = create_address(:region => 'New Jersey')
+    @address = create_address(:region => 'US-NJ')
   end
   
   def test_should_have_a_region
@@ -226,7 +226,7 @@ end
 
 class AddressInUnknownRegionTest < Test::Unit::TestCase
   def setup
-    @address = create_address(:country => 'Antarctica', :region => nil, :custom_region => 'Somewhere')
+    @address = create_address(:country => 'AQ', :region => nil, :custom_region => 'Somewhere')
   end
   
   def test_should_not_have_a_region
