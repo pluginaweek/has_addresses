@@ -1,51 +1,36 @@
-*SVN*
+== master
 
-*0.2.1* (June 22nd, 2008)
+== 0.2.1 / 2008-06-22
 
 * Remove log files from gems
 
-*0.2.0* (June 22nd, 2008)
+== 0.2.0 / 2008-06-22
 
 * Fix incorrect regions being listed for most countries
-
 * Use an id scheme for regions based on the id of the country to prevent id clashing in future updates
-
 * Improve performance by not requiring that the country be looked up for every new region created
-
 * Index region enumerations by their ISO code
-
 * Use common display names for countries, rather than the default specified in the standard; use the official name if needed
-
 * Organize country enumerations by id
-
 * Index country enumerations by their alpha 2 code
 
-*0.1.0* (May 5th, 2008)
+== 0.1.0 / 2008-05-05
 
 * Convert Country/Region to enumerations
-
 * Add dependency on acts_as_enumeration
-
 * Update documentation to reflect plugins_plus changes
 
-*0.0.2* (September 26th, 2007)
+== 0.0.2 / 2007-09-26
 
 * Move test fixtures out of the test application root directory
 
-*0.0.1* (August 21st, 2007)
+== 0.0.1 / 2007-08-21
 
 * Add documentation
-
 * Add descriptive output for rake tasks
-
 * Remove dependency on has_association_helper
-
 * Remove default bootstrap files in favor of creating new ones through the bootstrap tasks
-
 * Add tests for rake tests
-
 * Fix not allowing single character abbreviations for regions
-
 * Add countries:create_fixtures, countries:bootstrap, regions:create_fixtures, and regions:bootstrap files
-
 * Refactor Rake code into Country/Region classes
