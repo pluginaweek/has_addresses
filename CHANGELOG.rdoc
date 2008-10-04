@@ -1,5 +1,7 @@
 == master
 
+* Change how the base module is included to prevent namespacing conflicts
+
 == 0.2.1 / 2008-06-22
 
 * Remove log files from gems

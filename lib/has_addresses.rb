@@ -2,12 +2,6 @@ module PluginAWeek #:nodoc:
   # Adds a generic implementation for dealing with regions, countries, and
   # addresses
   module HasAddresses
-    def self.included(base) #:nodoc:
-      base.class_eval do
-        extend PluginAWeek::HasAddresses::MacroMethods
-      end
-    end
-    
     module MacroMethods
       # Creates the following association:
       # * +addresses+ - All addresses associated with the current record.
@@ -20,5 +14,5 @@ module PluginAWeek #:nodoc:
 end
 
 ActiveRecord::Base.class_eval do
-  include PluginAWeek::HasAddresses
+  extend PluginAWeek::HasAddresses::MacroMethods
 end
