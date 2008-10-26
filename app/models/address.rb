@@ -28,6 +28,14 @@ class Address < ActiveRecord::Base
   validates_presence_of :custom_region,
                           :if => :custom_region_required?
   
+  attr_accessible :street_1,
+                  :street_2,
+                  :city,
+                  :postal_code,
+                  :region,
+                  :custom_region,
+                  :country
+  
   before_save :ensure_exclusive_references
   
   # Returns the country for this country, which may be determined from the

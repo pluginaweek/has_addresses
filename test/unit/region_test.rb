@@ -124,6 +124,24 @@ class RegionTest < Test::Unit::TestCase
     region = new_region(:country => 'US', :abbreviation => 'NS')
     assert_equal 'US-NS', region.to_s
   end
+  
+  def test_should_protect_attributes_from_mass_assignment
+    region = Region.new(
+      :id => 999,
+      :country_id => 840,
+      :group => 'Somewhere',
+      :name => 'Anywhere',
+      :abbreviation => 'AW',
+      :code => 'AW'
+    )
+    
+    assert_equal 999, region.id
+    assert_equal 840, region.country_id
+    assert_equal 'Somewhere', region.group
+    assert_equal 'Anywhere', region.name
+    assert_equal 'AW', region.abbreviation
+    assert_equal 'US-AW', region.code
+  end
 end
 
 class RegionAfterBeingCreatedTest < Test::Unit::TestCase

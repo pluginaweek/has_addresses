@@ -39,7 +39,7 @@ class Region < ActiveRecord::Base
   
   def initialize(attributes = nil) #:nodoc:
     super
-    self.abbreviation ||= default_abbreviation unless attributes && attributes.include?(:abbreviation)
+    self.abbreviation ||= default_abbreviation unless attributes && attributes.symbolize_keys.include?(:abbreviation)
     self.code = default_code
   end
   

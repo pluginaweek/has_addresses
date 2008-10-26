@@ -177,9 +177,35 @@ class AddressTest < Test::Unit::TestCase
     assert_equal expected, address.multi_line
   end
   
-  def test_single_line
+  def test_should_construct_single_line_based_on_current_information
     address = new_address(:street_1 => '1600 Amphitheatre Parkway', :city => 'Mountain View', :region => 'US-CA', :postal_code => '94043')
     assert_equal '1600 Amphitheatre Parkway, Mountain View, California  94043, United States', address.single_line
+  end
+  
+  def test_should_protect_attributes_from_mass_assignment
+    address = Address.new(
+      :id => 1,
+      :addressable_id => 1,
+      :addressable_type => 'User',
+      :street_1 => '1600 Amphitheatre Parkway',
+      :street_2 => 'Apt. 1',
+      :city => 'Mountain View',
+      :region => 'US-CA',
+      :custom_region => 'Anywhere',
+      :postal_code => '94043',
+      :country => 'US'
+    )
+    
+    assert_nil address.id
+    assert_nil address.addressable_id
+    assert address.addressable_type.blank?
+    assert_equal '1600 Amphitheatre Parkway', address.street_1
+    assert_equal 'Apt. 1', address.street_2
+    assert_equal 'Mountain View', address.city
+    assert_equal 'US-CA', address.region
+    assert_equal 'Anywhere', address.custom_region
+    assert_equal '94043', address.postal_code
+    assert_equal 'US', address.country
   end
 end
 

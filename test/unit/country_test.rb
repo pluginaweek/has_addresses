@@ -117,6 +117,22 @@ class CountryTest < Test::Unit::TestCase
     country = new_country(:alpha_2_code => 'US')
     assert_equal 'US', country.to_s
   end
+  
+  def test_should_protect_attributes_from_mass_assignment
+    country = Country.new(
+      :id => 999,
+      :name => 'Somewhere',
+      :official_name => 'Somewhere Republic',
+      :alpha_2_code => 'SW',
+      :alpha_3_code => 'SMW'
+    )
+    
+    assert_equal 999, country.id
+    assert_equal 'Somewhere', country.name
+    assert_equal 'Somewhere Republic', country.official_name
+    assert_equal 'SW', country.alpha_2_code
+    assert_equal 'SMW', country.alpha_3_code
+  end
 end
 
 class CountryAfterBeingCreatedTest < Test::Unit::TestCase
