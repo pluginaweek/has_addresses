@@ -45,13 +45,13 @@ class CountryTest < Test::Unit::TestCase
   def test_should_require_an_id
     country = new_country(:id => nil)
     assert !country.valid?
-    assert_equal 1, Array(country.errors.on(:id)).size
+    assert country.errors.invalid?(:id)
   end
   
   def test_should_require_a_name
     country = new_country(:name => nil)
     assert !country.valid?
-    assert_equal 1, Array(country.errors.on(:name)).size
+    assert country.errors.invalid?(:name)
   end
   
   def test_should_not_require_an_official_name
@@ -62,45 +62,45 @@ class CountryTest < Test::Unit::TestCase
   def test_should_require_an_alpha_2_code
     country = new_country(:alpha_2_code => nil)
     assert !country.valid?
-    assert_equal 2, Array(country.errors.on(:alpha_2_code)).size
+    assert country.errors.invalid?(:alpha_2_code)
   end
   
   def test_should_require_a_unique_alpha_2_code
     country = new_country(:alpha_2_code => 'US')
     assert !country.valid?
-    assert_equal 1, Array(country.errors.on(:alpha_2_code)).size
+    assert country.errors.invalid?(:alpha_2_code)
   end
   
   def test_should_not_allow_alpha_2_codes_shorter_or_longer_than_2_characters
     country = new_country(:alpha_2_code => 'a')
     assert !country.valid?
-    assert_equal 1, Array(country.errors.on(:alpha_2_code)).size
+    assert country.errors.invalid?(:alpha_2_code)
     
     country.alpha_2_code += 'a'
     assert country.valid?
     
     country.alpha_2_code += 'a'
     assert !country.valid?
-    assert_equal 1, Array(country.errors.on(:alpha_2_code)).size
+    assert country.errors.invalid?(:alpha_2_code)
   end
   
   def test_should_require_an_alpha_3_code
     country = new_country(:alpha_3_code => nil)
     assert !country.valid?
-    assert_equal 2, Array(country.errors.on(:alpha_3_code)).size
+    assert country.errors.invalid?(:alpha_3_code)
   end
   
   def test_should_not_allow_alpha_3_codes_shorter_or_longer_than_3_characters
     country = new_country(:alpha_3_code => 'aa')
     assert !country.valid?
-    assert_equal 1, Array(country.errors.on(:alpha_3_code)).size
+    assert country.errors.invalid?(:alpha_3_code)
     
     country.alpha_3_code += 'a'
     assert country.valid?
     
     country.alpha_3_code += 'a'
     assert !country.valid?
-    assert_equal 1, Array(country.errors.on(:alpha_3_code)).size
+    assert country.errors.invalid?(:alpha_3_code)
   end
   
   def test_should_use_alpha_2_code_for_abbreviation_2

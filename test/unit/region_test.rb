@@ -64,45 +64,45 @@ class RegionTest < Test::Unit::TestCase
   def test_should_require_an_id
     region = new_region(:id => nil)
     assert !region.valid?
-    assert_equal 1, Array(region.errors.on(:id)).size
+    assert region.errors.invalid?(:id)
   end
   
   def test_should_require_a_code
     region = new_region
     region.code = nil
     assert !region.valid?
-    assert_equal 1, Array(region.errors.on(:code)).size
+    assert region.errors.invalid?(:code)
   end
   
   def test_should_require_a_unique_code
     region = new_region
     region.code = 'US-CA'
     assert !region.valid?
-    assert_equal 1, Array(region.errors.on(:code)).size
+    assert region.errors.invalid?(:code)
   end
   
   def test_should_require_a_name
     region = new_region(:name => nil)
     assert !region.valid?
-    assert_equal 1, Array(region.errors.on(:name)).size
+    assert region.errors.invalid?(:name)
   end
   
   def test_should_require_a_country
     region = new_region(:country => nil)
     assert !region.valid?
-    assert_equal 1, Array(region.errors.on(:country_id)).size
+    assert region.errors.invalid?(:country_id)
   end
   
   def test_should_require_an_abbreviation
     region = new_region(:abbreviation => nil)
     assert !region.valid?
-    assert_equal 2, Array(region.errors.on(:abbreviation)).size
+    assert region.errors.invalid?(:abbreviation)
   end
   
   def test_should_not_allow_abbrevations_shorter_than_1_or_longer_than_5_characters
     region = new_region(:abbreviation => '')
     assert !region.valid?
-    assert_equal 2, Array(region.errors.on(:abbreviation)).size
+    assert region.errors.invalid?(:abbreviation)
     
     region.abbreviation += 'a'
     assert region.valid?
@@ -112,7 +112,7 @@ class RegionTest < Test::Unit::TestCase
     
     region.abbreviation += 'a'
     assert !region.valid?
-    assert_equal 1, Array(region.errors.on(:abbreviation)).size
+    assert region.errors.invalid?(:abbreviation)
   end
   
   def test_should_not_require_a_group

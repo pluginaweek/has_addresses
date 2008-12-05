@@ -59,19 +59,19 @@ class AddressTest < Test::Unit::TestCase
   def test_should_require_an_addressable_id
     address = new_address(:addressable => nil)
     assert !address.valid?
-    assert_equal 1, Array(address.errors.on(:addressable_id)).size
+    assert address.errors.invalid?(:addressable_id)
   end
   
   def test_should_require_an_addressable_type
     address = new_address(:addressable => nil)
     assert !address.valid?
-    assert_equal 1, Array(address.errors.on(:addressable_type)).size
+    assert address.errors.invalid?(:addressable_type)
   end
   
   def test_should_require_a_street_1
     address = new_address(:street_1 => nil)
     assert !address.valid?
-    assert_equal 1, Array(address.errors.on(:street_1)).size
+    assert address.errors.invalid?(:street_1)
   end
   
   def test_should_not_require_a_street_2
@@ -82,19 +82,19 @@ class AddressTest < Test::Unit::TestCase
   def test_should_require_a_city
     address = new_address(:city => nil)
     assert !address.valid?
-    assert_equal 1, Array(address.errors.on(:city)).size
+    assert address.errors.invalid?(:city)
   end
   
   def test_should_require_a_postal_code
     address = new_address(:postal_code => nil)
     assert !address.valid?
-    assert_equal 1, Array(address.errors.on(:postal_code)).size
+    assert address.errors.invalid?(:postal_code)
   end
   
   def test_should_require_a_region_if_country_has_regions
     address = new_address(:country => 'US', :region => nil)
     assert !address.valid?
-    assert_equal 1, Array(address.errors.on(:region_id)).size
+    assert address.errors.invalid?(:region_id)
   end
   
   def test_should_not_require_a_region_if_country_has_no_regions
@@ -105,7 +105,7 @@ class AddressTest < Test::Unit::TestCase
   def test_should_require_a_custom_region_if_country_has_no_regions
     address = new_address(:country => 'AQ', :region => nil, :custom_region => nil)
     assert !address.valid?
-    assert_equal 1, Array(address.errors.on(:custom_region)).size
+    assert address.errors.invalid?(:custom_region)
   end
   
   def test_should_not_require_a_custom_region_if_country_has_regions
