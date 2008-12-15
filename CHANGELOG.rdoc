@@ -1,5 +1,7 @@
 == master
 
+* Remove the PluginAWeek namespace
+
 == 0.3.0 / 2008-10-26
 
 * Add mass-assignment protection in the Address model
