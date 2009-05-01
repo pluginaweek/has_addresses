@@ -11,3 +11,7 @@ require File.expand_path("#{File.dirname(__FILE__)}/factory")
 Test::Unit::TestCase.class_eval do
   include Factory
 end
+
+# Remove defaults for testing
+Region.delete_all
+Country.delete_all

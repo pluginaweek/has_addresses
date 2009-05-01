@@ -1,12 +1,8 @@
 require "#{File.dirname(__FILE__)}/../test_helper"
 
-class CountryByDefaultTest < Test::Unit::TestCase
+class CountryByDefaultTest < ActiveRecord::TestCase
   def setup
     @country = Country.new
-  end
-  
-  def test_should_not_have_an_id
-    assert_nil @country.id
   end
   
   def test_should_not_have_a_name
@@ -30,22 +26,16 @@ class CountryByDefaultTest < Test::Unit::TestCase
     assert_equal 'United States', country.official_name
   end
   
-  def test_should_not_use_name_if_official_name_is_included
+  def test_should_not_use_name_for_official_name_if_specified
     country = Country.new(:official_name => nil)
     assert_nil country.official_name
   end
 end
 
-class CountryTest < Test::Unit::TestCase
+class CountryTest < ActiveRecord::TestCase
   def test_should_be_valid_with_a_set_of_valid_attributes
     country = new_country
     assert country.valid?
-  end
-  
-  def test_should_require_an_id
-    country = new_country(:id => nil)
-    assert !country.valid?
-    assert country.errors.invalid?(:id)
   end
   
   def test_should_require_a_name
@@ -66,6 +56,8 @@ class CountryTest < Test::Unit::TestCase
   end
   
   def test_should_require_a_unique_alpha_2_code
+    create_country(:alpha_2_code => 'US')
+    
     country = new_country(:alpha_2_code => 'US')
     assert !country.valid?
     assert country.errors.invalid?(:alpha_2_code)
@@ -117,44 +109,40 @@ class CountryTest < Test::Unit::TestCase
     country = new_country(:alpha_2_code => 'US')
     assert_equal 'US', country.to_s
   end
+end
+
+class CountryAfterBeingCreatedTest < ActiveRecord::TestCase
+  def setup
+    @country = create_country
+  end
   
-  def test_should_protect_attributes_from_mass_assignment
-    country = Country.new(
-      :id => 999,
-      :name => 'Somewhere',
-      :official_name => 'Somewhere Republic',
-      :alpha_2_code => 'SW',
-      :alpha_3_code => 'SMW'
-    )
-    
-    assert_equal 999, country.id
-    assert_equal 'Somewhere', country.name
-    assert_equal 'Somewhere Republic', country.official_name
-    assert_equal 'SW', country.alpha_2_code
-    assert_equal 'SMW', country.alpha_3_code
+  def test_should_not_have_any_regions
+    assert @country.regions.empty?
+  end
+  
+  def test_should_not_have_any_addresses
+    assert @country.addresses.empty?
   end
 end
 
-class CountryAfterBeingCreatedTest < Test::Unit::TestCase
+class CountryWithRegionsTest < ActiveRecord::TestCase
   def setup
-    @country = Country['US']
-  end
-  
-  def test_should_have_an_id
-    assert_not_nil @country.id
-  end
-  
-  def test_should_have_an_official_name
-    assert_equal 'United States of America', @country.official_name
-  end
-end
-
-class CountryWithRegionsTest < Test::Unit::TestCase
-  def setup
-    @country = Country['US']
+    @country = create_country
+    @region = create_region(:country => @country)
   end
   
   def test_should_have_regions
-    assert_equal 57, @country.regions.size
+    assert_equal [@region], @country.regions
+  end
+end
+
+class CountryWithAddressesTest < ActiveRecord::TestCase
+  def setup
+    @country = create_country
+    @address = create_address(:country => @country)
+  end
+  
+  def test_should_have_addresses
+    assert_equal [@address], @country.addresses
   end
 end

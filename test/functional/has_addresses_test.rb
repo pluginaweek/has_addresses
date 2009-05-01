@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../test_helper')
 
-class CompanyByDefaultTest < Test::Unit::TestCase
+class CompanyByDefaultTest < ActiveRecord::TestCase
   def setup
     @company = create_company
   end
@@ -10,7 +10,7 @@ class CompanyByDefaultTest < Test::Unit::TestCase
   end
 end
 
-class CompanyWithAddressesTest < Test::Unit::TestCase
+class CompanyWithAddressesTest < ActiveRecord::TestCase
   def setup
     @company = create_company
     @address = create_address(:addressable => @company)

@@ -3,10 +3,9 @@
 module HasAddresses
   module MacroMethods
     # Creates the following association:
-    # * +addresses+ - All addresses associated with the current record.
+    # * +addresses+ - All addresses associated with the current record
     def has_addresses
-      has_many  :addresses,
-                  :as => :addressable
+      has_many :addresses, :as => :addressable
     end
   end
 end

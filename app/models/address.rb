@@ -1,5 +1,5 @@
-# Represents a generic mailing address. Addresses are expected to consist of the
-# following fields:
+# Represents a generic mailing address. Addresses are expected to consist of
+# the following fields:
 # * +addressable+ - The record that owns the address
 # * +street_1+ - The first line of the street address
 # * +city+ - The name of the city
@@ -8,45 +8,27 @@
 # * +country+ - The country, which may be implied by the region
 # 
 # The following fields are optional:
-# * +street_2+ - The second lien of the street address
+# * +street_2+ - The second line of the street address
 # 
-# There is no attempt to validate the open-ended fields since the context in
-# which the addresses will be used is unknown
+# There is no attempt to validate open-ended fields since the context in which
+# the addresses will be used is unknown
 class Address < ActiveRecord::Base
-  belongs_to  :addressable,
-                :polymorphic => true
-  belongs_to  :region
-  belongs_to  :country
+  belongs_to :addressable, :polymorphic => true
+  belongs_to :region
+  belongs_to :country
   
-  validates_presence_of :addressable_id,
-                        :addressable_type,
-                        :street_1,
-                        :city,
-                        :postal_code
-  validates_presence_of :region_id,
-                          :if => :known_region_required?
-  validates_presence_of :custom_region,
-                          :if => :custom_region_required?
+  validates_presence_of :addressable_id, :addressable_type, :street_1, :city,
+                        :postal_code, :country_id
+  validates_presence_of :region_id, :if => :known_region_required?
+  validates_presence_of :custom_region, :if => :custom_region_required?
   
-  attr_accessible :street_1,
-                  :street_2,
-                  :city,
-                  :postal_code,
-                  :region,
-                  :custom_region,
-                  :country
+  attr_accessible :street_1, :street_2, :city, :postal_code, :region,
+                  :custom_region, :country
   
-  before_save :ensure_exclusive_references
+  before_validation :ensure_exclusive_references, :set_region_attributes
   
-  # Returns the country for this country, which may be determined from the
-  # current region
-  def country_with_region_check
-    region ? region.country : country_without_region_check
-  end
-  alias_method_chain :country, :region_check
-  
-  # Gets the name of the region that this address is for (whether it is a custom or
-  # known region in the database)
+  # Gets the name of the region that this address is for (whether it is a
+  # custom or known region in the database)
   def region_name
     custom_region || region && region.name
   end
@@ -54,6 +36,7 @@ class Address < ActiveRecord::Base
   # Gets a representation of the address on a single line.
   # 
   # For example,
+  # 
   #   address = Address.new
   #   address.single_line     # => ""
   #   
@@ -78,6 +61,7 @@ class Address < ActiveRecord::Base
   # Gets a representation of the address on multiple lines.
   # 
   # For example,
+  # 
   #   address = Address.new
   #   address.multi_line      # => []
   #   
@@ -129,14 +113,14 @@ class Address < ActiveRecord::Base
       !region_id && country && country.regions.empty?
     end
     
-    # Ensures that the country id/user region combo is not set at the same time as
-    # the region id
+    # Ensures that the custom region is not set at the same time as the known
+    # region
     def ensure_exclusive_references
-      if known_region_required?
-        self.country_id = nil
-        self.custom_region = nil
-      end
-      
-      true
+      self.custom_region = nil if known_region_required?
+    end
+    
+    # Sets the attributes on the address based on the region (if available)
+    def set_region_attributes
+      self.country = region.country if region
     end
 end

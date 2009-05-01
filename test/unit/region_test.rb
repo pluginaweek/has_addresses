@@ -1,12 +1,8 @@
 require "#{File.dirname(__FILE__)}/../test_helper"
 
-class RegionByDefaultTest < Test::Unit::TestCase
+class RegionByDefaultTest < ActiveRecord::TestCase
   def setup
     @region = Region.new
-  end
-  
-  def test_should_not_have_an_id
-    assert_nil @region.id
   end
   
   def test_should_not_have_a_country
@@ -45,26 +41,20 @@ class RegionByDefaultTest < Test::Unit::TestCase
   end
   
   def test_should_use_country_and_abbreviation_for_code_if_not_specified
-    region = Region.new(:country => 'US', :abbreviation => 'CA')
+    region = Region.new(:country => create_country(:alpha_2_code => 'US'), :abbreviation => 'CA')
     assert_equal 'US-CA', region.code
   end
   
   def test_should_use_country_and_abbreviation_for_code_if_specified
-    region = Region.new(:country => 'US', :abbreviation => 'CA', :code => 'US--CA')
+    region = Region.new(:country => create_country(:alpha_2_code => 'US'), :abbreviation => 'CA', :code => 'US--CA')
     assert_equal 'US-CA', region.code
   end
 end
 
-class RegionTest < Test::Unit::TestCase
+class RegionTest < ActiveRecord::TestCase
   def test_should_be_valid_with_a_set_of_valid_attributes
     region = new_region
     assert region.valid?
-  end
-  
-  def test_should_require_an_id
-    region = new_region(:id => nil)
-    assert !region.valid?
-    assert region.errors.invalid?(:id)
   end
   
   def test_should_require_a_code
@@ -75,7 +65,13 @@ class RegionTest < Test::Unit::TestCase
   end
   
   def test_should_require_a_unique_code
-    region = new_region
+    country = create_country
+    
+    region = new_region(:country => country)
+    region.code = 'US-CA'
+    region.save!
+    
+    region = new_region(:country => country)
     region.code = 'US-CA'
     assert !region.valid?
     assert region.errors.invalid?(:code)
@@ -121,36 +117,14 @@ class RegionTest < Test::Unit::TestCase
   end
   
   def test_should_use_code_for_stringification
-    region = new_region(:country => 'US', :abbreviation => 'NS')
-    assert_equal 'US-NS', region.to_s
-  end
-  
-  def test_should_protect_attributes_from_mass_assignment
-    region = Region.new(
-      :id => 999,
-      :country_id => 840,
-      :group => 'Somewhere',
-      :name => 'Anywhere',
-      :abbreviation => 'AW',
-      :code => 'AW'
-    )
-    
-    assert_equal 999, region.id
-    assert_equal 840, region.country_id
-    assert_equal 'Somewhere', region.group
-    assert_equal 'Anywhere', region.name
-    assert_equal 'AW', region.abbreviation
-    assert_equal 'US-AW', region.code
+    region = new_region(:country => create_country(:alpha_2_code => 'US'), :abbreviation => 'CA')
+    assert_equal 'US-CA', region.to_s
   end
 end
 
-class RegionAfterBeingCreatedTest < Test::Unit::TestCase
+class RegionAfterBeingCreatedTest < ActiveRecord::TestCase
   def setup
-    @region = Region['US-CA']
-  end
-  
-  def test_should_belong_to_a_country
-    assert_equal Country['US'], @region.country
+    @region = create_region
   end
   
   def test_should_not_have_any_addresses
@@ -158,13 +132,13 @@ class RegionAfterBeingCreatedTest < Test::Unit::TestCase
   end
 end
 
-class RegionWithAddressesTest < Test::Unit::TestCase
+class RegionWithAddressesTest < ActiveRecord::TestCase
   def setup
-    @region = Region['US-CA']
+    @region = create_region
     @address = create_address(:region => @region)
   end
   
-  def test_should_have_many_addresses
+  def test_should_have_addresses
     assert_equal [@address], @region.addresses
   end
 end
