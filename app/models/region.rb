@@ -24,10 +24,12 @@
 # 
 # == Performance
 # 
-# If this plugin reload is enabled or this model is added to your app,
-# considering marking the file as unloadable like so (in the environment):
+# If plugin reloading is enabled or this model is added to your app,
+# consider marking the file as unloadable like so (in the environment):
 # 
-#   config.load_once_paths << 'app/models/country'
+#   config.after_initialize do
+#     ActiveSupport::Dependencies.load_once_paths << "#{Rails.root}/vendor/plugins/has_addresses/app/models/region" # or "#{Rails.root}/app/models/region"
+#   end
 # 
 # This will prevent the enumeration from being bootstrapped after every
 # request when in development mode.
