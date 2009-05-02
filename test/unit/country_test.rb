@@ -44,9 +44,10 @@ class CountryTest < ActiveRecord::TestCase
     assert country.errors.invalid?(:name)
   end
   
-  def test_should_not_require_an_official_name
+  def test_should_require_an_official_name
     country = new_country(:official_name => nil)
-    assert country.valid?
+    assert !country.valid?
+    assert country.errors.invalid?(:official_name)
   end
   
   def test_should_require_an_alpha_2_code

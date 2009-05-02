@@ -60,4 +60,4 @@ To run against a specific version of Rails:
 == Dependencies
 
 * Rails 2.3 or later
-* enumerate_by[http://github.com/pluginaweek/enumerate_by]
+* enumerate_by[http://github.com/pluginaweek/enumerate_by] 0.4.1 or later

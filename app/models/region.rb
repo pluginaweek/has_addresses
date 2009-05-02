@@ -43,13 +43,25 @@ class Region < ActiveRecord::Base
   validates_length_of :abbreviation, :within => 1..5
   
   def initialize(attributes = nil) #:nodoc:
-    super
-    
-    self.abbreviation = "%03d" % (attributes[:id] % 1000) if attributes && !attributes.include?(:abbreviation) && attributes[:id]
-    self.code = "#{country}-#{abbreviation}"
+    super(self.class.with_defaults(attributes))
   end
   
-  fast_bootstrap(
+  # Adds the default attributes for the given country attributes
+  def self.with_defaults(attributes = nil)
+    attributes ||= {}
+    attributes.symbolize_keys!
+    
+    country = attributes.delete(:country)
+    attributes[:country_id] = country.id if country
+    attributes[:abbreviation] = "%03d" % (attributes[:id] % 1000) if !attributes.include?(:abbreviation) && attributes[:id]
+    
+    country ||= attributes[:country_id] && Country.find(attributes[:country_id])
+    attributes[:code] = "#{country}-#{attributes[:abbreviation]}"
+    
+    attributes
+  end
+  
+  fast_bootstrap([
     # Andorra
     [{:country => Country['AD']}].map {|r| [
       r.merge(:id => 20002, :name => "Canillo"),
@@ -5380,5 +5392,5 @@ class Region < ActiveRecord::Base
       r.merge(:id => 716009, :name => "Matabeleland South", :abbreviation => 'MS'),
       r.merge(:id => 716010, :name => "Midlands", :abbreviation => 'MI')
     ]}
-  )
+  ].flatten.map {|attributes| with_defaults(attributes)})
 end

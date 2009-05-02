@@ -45,11 +45,18 @@ class Country < ActiveRecord::Base
   alias_attribute :abbreviation_3, :alpha_3_code
   
   def initialize(attributes = nil) #:nodoc:
-    super
-    self.official_name ||= name unless attributes && attributes.include?(:official_name)
+    super(self.class.with_defaults(attributes))
   end
   
-  fast_bootstrap(
+  # Adds the default attributes for the given country attributes
+  def self.with_defaults(attributes = nil)
+    attributes ||= {}
+    attributes.symbolize_keys!
+    attributes[:official_name] = attributes[:name] unless attributes.include?(:official_name)
+    attributes
+  end
+  
+  fast_bootstrap([
     {:id => 4, :name => "Afghanistan", :official_name => "Islamic Republic of Afghanistan", :alpha_2_code => 'AF', :alpha_3_code => 'AFG'},
     {:id => 8, :name => "Albania", :official_name => "Republic of Albania", :alpha_2_code => 'AL', :alpha_3_code => 'ALB'},
     {:id => 10, :name => "Antarctica", :alpha_2_code => 'AQ', :alpha_3_code => 'ATA'},
@@ -296,5 +303,5 @@ class Country < ActiveRecord::Base
     {:id => 882, :name => "Samoa", :official_name => "Independent State of Samoa", :alpha_2_code => 'WS', :alpha_3_code => 'WSM'},
     {:id => 887, :name => "Yemen", :official_name => "Republic of Yemen", :alpha_2_code => 'YE', :alpha_3_code => 'YEM'},
     {:id => 894, :name => "Zambia", :official_name => "Republic of Zambia", :alpha_2_code => 'ZM', :alpha_3_code => 'ZMB'}
-  )
+  ].map {|attributes| with_defaults(attributes)})
 end
