@@ -7,7 +7,8 @@ spec = Gem::Specification.new do |s|
   s.name              = 'has_addresses'
   s.version           = '0.5.1'
   s.platform          = Gem::Platform::RUBY
-  s.summary           = 'Demonstrates a reference implementation for handling countries, regions, and addresses.'
+  s.summary           = 'Demonstrates a reference implementation for handling countries, regions, and addresses in ActiveRecord'
+  s.description       = s.summary
   
   s.files             = FileList['{app,db,lib,test}/**/*']  + %w(CHANGELOG.rdoc init.rb LICENSE Rakefile README.rdoc) - FileList['test/app_root/{log,log/*,script,script/*}']
   s.require_path      = 'lib'
