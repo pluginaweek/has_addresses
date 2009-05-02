@@ -1,5 +1,7 @@
 == master
 
+== 0.5.1 / 2009-05-01
+
 * Update to enumerate_by 0.4.1's #fast_bootstrap for speed boost
 
 == 0.5.0 / 2009-04-30

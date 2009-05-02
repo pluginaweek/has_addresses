@@ -5,7 +5,7 @@ require 'rake/contrib/sshpublisher'
 
 spec = Gem::Specification.new do |s|
   s.name              = 'has_addresses'
-  s.version           = '0.5.0'
+  s.version           = '0.5.1'
   s.platform          = Gem::Platform::RUBY
   s.summary           = 'Demonstrates a reference implementation for handling countries, regions, and addresses.'
   
