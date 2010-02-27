@@ -1,6 +1,7 @@
 == master
 
-* Fix Region / Country models failing to load in Ruby 1.9+ due to encoding 
+* Release gems via rake-gemcutter instead of rubyforge
+* Fix Region / Country models failing to load in Ruby 1.9+ due to character encoding 
 
 == 0.5.1 / 2009-05-01
 
