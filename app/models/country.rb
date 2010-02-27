@@ -1,3 +1,4 @@
+# coding: utf-8
 # Defined by the ISO 3166 standard.  The ISO 3166 standard includes a
 # "Country Subdivision Code", giving a code for the names of the principal
 # administrative subdivisions of the countries coded in ISO 3166.

@@ -1,3 +1,4 @@
+# coding: utf-8
 # Defined by the ISO 3166-2 standard.  This is a standard that gives short
 # codes for states, provinces, etc. within a country.
 # 
