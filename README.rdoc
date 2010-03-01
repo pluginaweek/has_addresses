@@ -38,6 +38,17 @@ terms of the type of data required.
 Note that this is a reference implementation and, most likely, should be
 modified for your own usage.
 
+=== Installation
+
++has_addresses+ requires additional database tables to work.  You can generate
+a migration for these tables like so:
+
+  script/generate has_addresses
+
+Then simply migrate your database:
+
+  rake db:migrate
+
 === Example
 
   address = Address.new(
