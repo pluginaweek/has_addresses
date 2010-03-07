@@ -6,7 +6,7 @@ require 'rake/gempackagetask'
 
 spec = Gem::Specification.new do |s|
   s.name              = 'has_addresses'
-  s.version           = '0.5.1'
+  s.version           = '0.5.2'
   s.platform          = Gem::Platform::RUBY
   s.summary           = 'Demonstrates a reference implementation for handling countries, regions, and addresses in ActiveRecord'
   s.description       = s.summary

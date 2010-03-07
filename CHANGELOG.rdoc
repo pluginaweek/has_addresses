@@ -1,5 +1,7 @@
 == master
 
+== 0.5.2 / 2010-03-07
+
 * Add a generator for db migrations
 * Release gems via rake-gemcutter instead of rubyforge
 * Fix Region / Country models failing to load in Ruby 1.9+ due to character encoding 
