@@ -7,7 +7,7 @@ regions, and addresses.
 
 API
 
-* http://api.pluginaweek.org/has_addresses
+* http://rdoc.info/projects/pluginaweek/has_addresses
 
 Bugs
 
