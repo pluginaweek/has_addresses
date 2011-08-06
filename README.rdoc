@@ -1,4 +1,4 @@
-= has_addresses
+= has_addresses http://travis-ci.org/pluginaweek/has_addresses.png
 
 +has_addresses+ demonstrates a reference implementation for handling countries,
 regions, and addresses.
@@ -16,6 +16,10 @@ Bugs
 Development
 
 * http://github.com/pluginaweek/has_addresses
+
+Testing
+
+* http://travis-ci.org/pluginaweek/has_addresses
 
 Source
 
