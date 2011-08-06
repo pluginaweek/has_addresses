@@ -21,6 +21,10 @@ Source
 
 * git://github.com/pluginaweek/has_addresses.git
 
+Mailing List
+
+* http://groups.google.com/group/pluginaweek-talk
+
 == Description
 
 Countries, regions, and addresses are all simple models whose data and
