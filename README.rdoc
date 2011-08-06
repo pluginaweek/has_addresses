@@ -11,7 +11,7 @@ API
 
 Bugs
 
-* http://pluginaweek.lighthouseapp.com/projects/13271-has_addresses
+* http://github.com/pluginaweek/has_addresses/issues
 
 Development
 
